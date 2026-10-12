@@ -1,0 +1,25 @@
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC PIVE__.APF CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC/
+CC                                                                                                 /
+CC                 AIRLINES PROCEDURES FILE                                                        /
+CC                                                                                                 /
+CC      File_name: PIVE__.APF                                                                      /
+CC                                                                                                 /
+CC      Creation_date: Feb 16 2022                                                                 /
+CC                                                                                                 /
+CC      Modification_date: Feb 16 2022                                                             /
+CC                                                                                                 /
+CC                                                                                                 /
+CC                                                                                                 /
+CC   LO= 000.42 to ---.--  /  AV= ---.-- to ---.--  /  HI= ---.-- to 000.60                        /
+CC                                                                                                 /
+CC=================================================================================================/
+CC  COM CO    Company name ------climb-------  --cruise--  -----descent------  --approach-  model- /
+CC                    mass  lo  hi              lo  hi         hi  lo            (unused)          /
+CC    version engines  ma  cas cas mc xxxx xx  cas cas mc  mc cas cas xxxx xx  xxx xxx xxx  opf___ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CD  *** **    Default Company                                                                      /
+CD    128              LO   75  75 15           75  75 15  15  75  75            0   0   0  PIVE__ /
+CD    128              AV   75  75 15           75  75 15  15  75  75            0   0   0  PIVE__ /
+CD    128              HI   75  75 15           75  75 15  15  75  75            0   0   0  PIVE__ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CC/////////////////////////////////////////////THE END/////////////////////////////////////////////

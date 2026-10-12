@@ -1,0 +1,22 @@
+# ARR_APPROACH.scn -- tiếp cận từ CADAS tới đầu thềm đường CHC 35R theo IAP
+# ILS V 35R.
+#
+# SỬA LỖI: bản trước dùng 1 điểm "~TAMLA" tự nội suy lệch ~198m so với TAMLA
+# THẬT, và 2 điểm chặn ILS tiếp theo cũng tự nội suy (không phải toạ độ công
+# bố), khiến cả đoạn cuối bị lệch trục so với đường FF35R-DN010 hiển thị
+# trên bản đồ (đúng như người dùng phát hiện qua ảnh chụp màn hình). Đã sửa
+# lại dùng ĐÚNG các điểm CÔNG BỐ trong dữ liệu procedure thật của app
+# (WebATM/static/data/vatm_kmz/procedures_by_airport/vatm_procedures_VVDN.geojson,
+# feature "ILS V 35R"): MONRY -> TAMLA -> FIRAI -> FF35R -> DN010 (điểm cuối
+# DN010 xấp xỉ đầu thềm 35R). MONRY/TAMLA giữ cao độ/tốc độ khống chế thật
+# theo AIP AD 2-VVDN; FIRAI/FF35R không có số liệu khống chế công bố sẵn nên
+# nội suy tuyến tính THEO CỰ LY DỌC TRỤC THẬT (không tự đặt toạ độ) giữa
+# TAMLA (4429ft/180kt) và ngưỡng chạm đất giả định 140kt/0ft tại DN010.
+# Gọi: PCALL ARR_APPROACH <acid>
+00:00:00.00>%0 ADDWPT 15.700556,108.250000 4921 210
+00:00:00.00>%0 ADDWPT 15.788333,108.237500 4429 180
+00:00:00.00>%0 ADDWPT 15.872651,108.225236 2880 166
+00:00:00.00>%0 ADDWPT 15.956505,108.213078 1335 152
+00:00:00.00>%0 ADDWPT 16.029047,108.202547 0 140
+00:00:00.00>%0 LNAV ON
+00:00:00.00>%0 VNAV ON

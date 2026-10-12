@@ -1,0 +1,156 @@
+[
+  {
+    "id": "task-surv-scan",
+    "code": "SURV_SCAN",
+    "name": "Surveillance scan",
+    "category": "surveillance",
+    "baseEffortSec": 4,
+    "description": "Routine radar and traffic situation scan in simulation context.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-traffic-count-monitor",
+    "code": "TRAFFIC_COUNT_MONITOR",
+    "name": "Traffic count monitoring",
+    "category": "surveillance",
+    "baseEffortSec": 5,
+    "description": "Monitor number of aircraft within sector, TMA or airport flow.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-conflict-check",
+    "code": "CONFLICT_CHECK",
+    "name": "Conflict check",
+    "category": "conflict_monitoring",
+    "baseEffortSec": 8,
+    "description": "Assess potential conflict or loss of separation in simulation.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-stca-response",
+    "code": "STCA_RESPONSE",
+    "name": "STCA response assessment",
+    "category": "conflict_monitoring",
+    "baseEffortSec": 15,
+    "description": "Assess and respond to simulated short-term conflict alert.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-vector-direct",
+    "code": "VECTOR_OR_DIRECT",
+    "name": "Vector or direct routing instruction",
+    "category": "communication",
+    "baseEffortSec": 12,
+    "description": "Issue heading, vector or direct routing instruction in simulation context.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-altitude-change",
+    "code": "ALTITUDE_CHANGE",
+    "name": "Altitude change instruction",
+    "category": "communication",
+    "baseEffortSec": 10,
+    "description": "Issue climb, descent or level-off instruction in simulation context.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-speed-control",
+    "code": "SPEED_CONTROL",
+    "name": "Speed control instruction",
+    "category": "communication",
+    "baseEffortSec": 8,
+    "description": "Issue speed control instruction in simulation context.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-handoff-coord",
+    "code": "HANDOFF_COORD",
+    "name": "Handoff coordination",
+    "category": "coordination",
+    "baseEffortSec": 15,
+    "description": "Coordinate aircraft handoff between sectors or ATC positions.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-cross-sector-coord",
+    "code": "CROSS_SECTOR_COORD",
+    "name": "Cross-sector coordination",
+    "category": "coordination",
+    "baseEffortSec": 18,
+    "description": "Coordinate traffic or restrictions across sector boundaries.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-runway-sequence",
+    "code": "RUNWAY_SEQUENCE",
+    "name": "Runway sequencing decision",
+    "category": "planning",
+    "baseEffortSec": 18,
+    "description": "Arrival/departure sequencing around selected runway configuration.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-weather-deviation",
+    "code": "WEATHER_DEVIATION",
+    "name": "Weather deviation handling",
+    "category": "weather",
+    "baseEffortSec": 20,
+    "description": "Handle simulated weather deviation or rerouting demand.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-military-coord",
+    "code": "MILITARY_COORD",
+    "name": "Military coordination",
+    "category": "military_sua",
+    "baseEffortSec": 20,
+    "description": "Coordination related to military, restricted or special-use airspace activity.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-system-degraded",
+    "code": "SYSTEM_DEGRADED",
+    "name": "Degraded system handling",
+    "category": "system",
+    "baseEffortSec": 25,
+    "description": "Additional workload due to simulated degraded system, procedure or display condition.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value for ATWI foundation."
+  },
+  {
+    "id": "task-airport-surface-feedback",
+    "code": "AIRPORT_SURFACE_FEEDBACK",
+    "name": "Airport surface feedback handling",
+    "category": "airport_surface",
+    "baseEffortSec": 16,
+    "description": "Additional workload caused by simulated runway, taxiway, stand or arrival metering feedback.",
+    "evidenceLevel": "assumed",
+    "source": "system_seed",
+    "notes": "Initial seed value aligned with gate-to-gate future capability."
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "aiGeneration": {
+    "provider": "rule_based",
+    "claudeApiKey": "",
+    "geminiApiKey": ""
+  }
+}

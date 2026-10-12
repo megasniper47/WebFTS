@@ -1,0 +1,14 @@
+# Internal helper -- NOT meant to be run standalone via IC.
+# PCALLed by VVDN_35L35R_COORDINATED_OPS.scn's ATDIST trigger the instant
+# VDN601 (arrival) reaches the real G4 taxiway runway-exit point
+# (16.048721,108.197655). Turns LNAV/VNAV off (see note above on why this
+# is done here, not chained onto the outer ATDIST line) then taxis to the
+# user-specified runway-crossing hold point 16.0489,108.1987 (sits
+# directly on the real G4 taxiway path itself) and stops there
+# indefinitely -- no auto-resume timer; see _INTERNAL_ARR_RESUME_VDN601.scn
+# for the clearance-triggered continuation to Gate 26.
+
+00:00:00.00>VDN601 LNAV OFF
+00:00:00.00>VDN601 VNAV OFF
+00:00:00.00>MOVE VDN601,16.048721,108.197655,0,080,15.0
+00:00:29.40>MOVE VDN601,16.048900,108.198700,0,080,0.0

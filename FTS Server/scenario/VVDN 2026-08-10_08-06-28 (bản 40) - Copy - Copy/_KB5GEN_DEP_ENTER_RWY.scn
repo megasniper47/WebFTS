@@ -1,0 +1,13 @@
+# _KB5GEN_DEP_ENTER_RWY.scn — lăn từ PRE_HOLD vào đầu 35R
+# Gọi: PCALL _KB5GEN_DEP_ENTER_RWY <acid>
+# TAXIOFF trước tiên: đã được ATC cho phép vào đường CHC, trả lại quyền điều
+# khiển tốc độ cho chuỗi ADDWPT/LNAV có sẵn dưới đây (SurfaceTaxiController
+# chỉ quản lý pha xếp hàng gate->PRE_HOLD, không can thiệp từ đây trở đi).
+00:00:00.00>TAXIOFF %0
+00:00:00.00>%0 DELRTE
+00:00:00.00>%0 ADDWPT 16.029181,108.202508 0 5.0
+00:00:00.00>%0 ADDWPT 16.0292,108.2025 0 0.0
+00:00:00.00>%0 ADDWPT 16.030000,108.202000 0 5.0
+00:00:00.00>%0 LNAV ON
+00:00:00.00>%0 VNAV ON
+00:00:00.00>%0 ATDIST 16.029200,108.202500,0.01 PCALL _KB5GEN_STOP_HOLD %0 16.029200 108.202500 352.1

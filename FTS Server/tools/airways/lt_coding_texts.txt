@@ -1,0 +1,1609 @@
+===== SID DOVIN 5F, BIXEX 5D, PTH 5E, PATMA 5D, DOVIN 5G, BIXEX 5E, PTH 5F, ELSAS 5D, NIXIV 5C, ANBOV 5C, TRN 5D, POTIX 5A, ATGAS 5A, SAPEN 5C Coding.pdf =====
+STANDARD DEPARTURE CHART -
+INSTRUMENT (SID) - ICAO
+DONG NAI/LONG THANH INTL (VVLT)
+RNP RWY 23L
+PATMA 5C, DOVIN 5F, BIXEX 5D, PTH 5E,
+PATMA 5D, DOVIN 5G, BIXEX 5E, PTH 5F,
+ELSAS 5D, NIXIV 5C, ANBOV 5C, TRN 5D, 
+POTIX 5A, ATGAS 5A, SAPEN 5C
+M:\2025\OTHER\LONG THÀNH BAN HÀNH\DRAFT\V1\LT\Code\PL01-2A SID 23L.doc
+TRANSITION ALTITUDE
+9000
+1. TABULAR DESCRIPTION 
+PATMA 5C DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 CA – – 235(234.1) +1 – – +700 – – RNP 1
+020 DF LT601 – – +1 – – – -195 – RNP 1
+030 TF LT602 – 058(057.4) +1 10.24 – @3000 – – RNP 1
+040 TF LT603 – 058(057.1) +1 4.18 – @3000 – – RNP 1
+050 TF LUTRI – 015(014.0) +1 10.06 – -FL100 – – RNP 1
+060 TF PATMA – 027(025.6) +1 77.88 – +FL290 – 4.7 RNP 1
+DOVIN 5F DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 CA – – 235(234.1) +1 – – +700 – – RNP 1
+020 DF LT601 – – +1 – – – -195 – RNP 1
+030 TF LT602 – 058(057.4) +1 10.24 – @3000 – – RNP 1
+040 TF LT603 – 058(057.1) +1 4.18 – @3000 – – RNP 1
+050 TF LUTRI – 015(014.0) +1 10.06 – -FL100 – – RNP 1
+060 TF DOVIN – 050(048.6) +1 68.36 – +9000 – – RNP 1
+BIXEX 5D DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 CA – – 235(234.1) +1 – – +700 – – RNP 1
+020 DF LT601 – – +1 – – – -195 – RNP 1
+030 TF LT602 – 058(057.4) +1 10.24 – @3000 – – RNP 1
+040 TF LT603 – 058(057.1) +1 4.18 – @3000 – – RNP 1
+050 TF LUTRI – 015(014.0) +1 10.06 – -FL100 – – RNP 1
+060 TF BIXEX – 065(063.5) +1 59.38 – +FL100 – – RNP 1
+PTH 5E DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 CA – – 235(234.1) +1 – – +700 – – RNP 1
+020 DF LT601 – – +1 – – – -195 – RNP 1
+030 TF LT602 – 058(057.4) +1 10.24 – @3000 – – RNP 1
+040 TF LT603 – 058(057.1) +1 4.18 – @3000 – – RNP 1
+050 TF LUTRI – 015(014.0) +1 10.06 – -FL100 – – RNP 1
+060 TF PTH – 107(105.7) +1 51.24 – +FL135 – – RNP 1
+PATMA 5D DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 CA – – 235(234.1) +1 – – +700 – – RNP 1
+020 DF LT601 – – +1 – – – -195 – RNP 1
+030 TF LT602 – 058(057.4) +1 10.24 – @3000 – – RNP 1
+040 TF LT603 – 058(057.1) +1 4.18 – @3000 – – RNP 1
+050 TF LT604 – 060(058.8) +1 9.70 – -8000 – 4.5 RNP 1
+060 TF PATMA – 021(020.4) +1 79.96 – +FL290 – 4.5 RNP 1
+
+===== SID PATMA 5C, DOVIN 5F, BIXEX 5D, PTH 5E, PATMA 5D, DOVIN 5G, BIXEX 5E, PTH 5F, ELSAS 5D, NIXIV 5C, ANBOV 5C, TRN 5D, POTIX 5A, ATGAS 5A, SAPEN 5C.pdf =====
+SFC
+22 966
+VVR19
+SFC
+UNL
+VVD70
+164
+3 281
+VVD24
+984
+3 281
+VVD25
+SFC
+9 842
+VVP4
+SFC
+UNL
+VVD32
+656
+22 966
+VVD68
+SFC
+19 685
+VVD67
+164
+3 281
+VVD23
+1 968
+19 685
+VVR36
+984
+3 281
+VVD26
+2323
+4003
+3251
+5075
+5902
+4819
+6447
+7096
+2375
+1096
+2743
+2287
+3209
+1722
+1873
+1289
+1109 1683
+1371
+4386
+4272
+5433
+1404
+3537
+5115
+3000
+3000
+3000
+3000
+3000
+3000
+3000
+5000
+5000
+5000
+1000
+1000
+1000
+1000
+1000
+1000
+3000
+INTERVALS
+CONTOUR
+3000
+1000
+7000
+5000
+9000
+POTIX5A,ATGAS5A,SAPEN5C
+ELSAS5D,NIXIV5C,ANBOV5C,TRN5D,
+PATMA5D,DOVIN5G,BIXEX5E,PTH5F,
+PATMA5C,DOVIN5F,BIXEX5D,PTH5E,
+RNP
+RW
+Y
+23L
+TRANSITION
+ALTITUDE
+DONG
+NAI/LONG
+THANH
+INTL
+(VVLT)
+STANDARD
+DEPARTURE
+CHART
+-
+INSTRUMENT
+(SID)-ICAO
+027°
+050°
+107°
+065°
+058°
+043°
+103°
+021°
+LT601
+BIXEX
+PATMA DOVIN
+172°
+326°
+240°
+326°
+268°
+165°
+240°
+326°
+182°
+282°
+252°
+326°
+LT600 LT608
+LT610
+FL100
+XOBAV
+LT611
+FL110
+FL100
+ANBOV
+ELSAS
+POTIX
+LT612
+FL130
+NIXIV
+ATGAS
+SAPEN
+FL140
+68
+DOVIN5F
+59
+BIXEX5D
+51
+PTH5E
+68
+DOVIN5G
+57
+BIXEX5E
+44
+PTH5F
+ELSAS5D
+3000
+19
+15
+4
+45
+N
+XI
+VI
+5C
+23
+ANBOV5C
+34
+CAN THO
+TRN TRN5D
+37
+POTIX5A
+44
+ATGAS5A
+10
+4
+4
+23
+SAPEN5C
+78
+PATMA5C
+80
+PATMA5D
+ N
+00'
+12°
+ N
+30'
+11°
+ N
+00'
+11°
+ N
+30'
+10°
+ N
+00'
+10°
+105°30'E 106°00'E 106°30'E 107°00'E 107°30'E 108°00'E
+PTH
+PHAN THIET
+1529
+823 BIEN HOA
+LONG THANH
+10
+53
+92
+89
+64
+15 15 10
+30
+37
+22
+195 KT
+MAX IAS 
+56
+15 184°
+110° 14
+LT630
+5000
+6000
+VIPEV
+30
+110°
+FL100
+LUTRI
+8000
+LT604
+FL290 9000
+FL135
+FL135
+FL100
+4000
+6000
+LT609
+7000
+FL140
+TS644
+015°10
+10
+060°
+LT603
+3000 4
+058°
+LT602 10
+058°
+3000
+CHANGE: NEW CHART.
+VAR 1° W
+BRG ARE MAG
+DIST IN NM
+ELEV, ALT IN FT
+RNP 1 (GNSS) REQUIRED
+PHNOM PENH FIR
+HO CHI MINH FIR
+TAN SON NHAT
+0 KM
+0 NM
+10
+10 10 20
+10 20 30 40
+SCALE 1 : 1 500 000
+ARP
+MSA 25 NM
+2800 290°
+3800
+230°
+124.325SRY
+TW
+R
+LT:118.425PRI
+124.475SRY
+ARR
+LT: 126.075PRI
+127.725SRY
+ARR
+TSN:126.35PRI
+124.075SRY
+TM
+C
+TSN:125.5PRI
+1
+195 KT
+MAX IAS 
+LT601
+235°
+LT600
+1
+700
+SCALE
+TO 
+NOT
+COORDINATION WITH REGIONAL AIR COMMAND CENTRE III.
+THESE PROCEDURES ARE ONLY USED WHEN HAVING COMPLETED 
+USAGE CONDITION: 
+REQUIREMENT) REFERRED IN CODING TABULATION.
+MINIMUM CLIMB GRADIENT (DUE TO ATC OPERATIONAL 
+NOTE:
+
+===== SID VVLT Coding 1.pdf =====
+STANDARD DEPARTURE CHART -
+INSTRUMENT (SID) - ICAO
+DONG NAI/LONG THANH INTL (VVLT)
+RNP RWY 23L
+PATMA 5C, DOVIN 5F, BIXEX 5D, PTH 5E,
+PATMA 5D, DOVIN 5G, BIXEX 5E, PTH 5F,
+ELSAS 5D, NIXIV 5C, ANBOV 5C, TRN 5D, 
+POTIX 5A, ATGAS 5A, SAPEN 5C
+M:\2025\OTHER\LONG THÀNH BAN HÀNH\DRAFT\V1\LT\Code\PL01-2A SID 23L.doc
+TRANSITION ALTITUDE
+9000
+1. TABULAR DESCRIPTION 
+PATMA 5C DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 CA – – 235(234.1) +1 – – +700 – – RNP 1
+020 DF LT601 – – +1 – – – -195 – RNP 1
+030 TF LT602 – 058(057.4) +1 10.24 – @3000 – – RNP 1
+040 TF LT603 – 058(057.1) +1 4.18 – @3000 – – RNP 1
+050 TF LUTRI – 015(014.0) +1 10.06 – -FL100 – – RNP 1
+060 TF PATMA – 027(025.6) +1 77.88 – +FL290 – 4.7 RNP 1
+DOVIN 5F DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 CA – – 235(234.1) +1 – – +700 – – RNP 1
+020 DF LT601 – – +1 – – – -195 – RNP 1
+030 TF LT602 – 058(057.4) +1 10.24 – @3000 – – RNP 1
+040 TF LT603 – 058(057.1) +1 4.18 – @3000 – – RNP 1
+050 TF LUTRI – 015(014.0) +1 10.06 – -FL100 – – RNP 1
+060 TF DOVIN – 050(048.6) +1 68.36 – +9000 – – RNP 1
+BIXEX 5D DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 CA – – 235(234.1) +1 – – +700 – – RNP 1
+020 DF LT601 – – +1 – – – -195 – RNP 1
+030 TF LT602 – 058(057.4) +1 10.24 – @3000 – – RNP 1
+040 TF LT603 – 058(057.1) +1 4.18 – @3000 – – RNP 1
+050 TF LUTRI – 015(014.0) +1 10.06 – -FL100 – – RNP 1
+060 TF BIXEX – 065(063.5) +1 59.38 – +FL100 – – RNP 1
+PTH 5E DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 CA – – 235(234.1) +1 – – +700 – – RNP 1
+020 DF LT601 – – +1 – – – -195 – RNP 1
+030 TF LT602 – 058(057.4) +1 10.24 – @3000 – – RNP 1
+040 TF LT603 – 058(057.1) +1 4.18 – @3000 – – RNP 1
+050 TF LUTRI – 015(014.0) +1 10.06 – -FL100 – – RNP 1
+060 TF PTH – 107(105.7) +1 51.24 – +FL135 – – RNP 1
+PATMA 5D DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 CA – – 235(234.1) +1 – – +700 – – RNP 1
+020 DF LT601 – – +1 – – – -195 – RNP 1
+030 TF LT602 – 058(057.4) +1 10.24 – @3000 – – RNP 1
+040 TF LT603 – 058(057.1) +1 4.18 – @3000 – – RNP 1
+050 TF LT604 – 060(058.8) +1 9.70 – -8000 – 4.5 RNP 1
+060 TF PATMA – 021(020.4) +1 79.96 – +FL290 – 4.5 RNP 1
+
+===== SID VVLT Coding 2.pdf =====
+STANDARD DEPARTURE CHART -
+INSTRUMENT (SID) - ICAO
+DONG NAI/LONG THANH INTL (VVLT)
+RNP RWY 23L
+PATMA 5C, DOVIN 5F, BIXEX 5D, PTH 5E,
+PATMA 5D, DOVIN 5G, BIXEX 5E, PTH 5F,
+ELSAS 5D, NIXIV 5C, ANBOV 5C, TRN 5D, 
+POTIX 5A, ATGAS 5A, SAPEN 5C
+M:\2025\OTHER\LONG THÀNH BAN HÀNH\DRAFT\V1\LT\Code\PL01-2A SID 23L.doc
+TRANSITION ALTITUDE
+9000
+ANBOV 5C DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 DF LT600 Y – +1 – – – – – RNP 1
+020 DF LT608 – – +1 – – @3000 – – RNP 1
+030 TF LT609 – 240(238.8) +1 19.40 –
+-6000
++4000 – – RNP 1
+040 TF ANBOV – 240(239.3) +1 23.03 – – – – RNP 1
+TRN 5D DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 DF LT600 Y – +1 – – – – – RNP 1
+020 DF LT608 – – +1 – – @3000 – – RNP 1
+030 TF LT609 – 240(238.8) +1 19.40 –
+-6000
++4000 – – RNP 1
+040 TF ANBOV – 240(239.3) +1 23.03 – – – – RNP 1
+050 TF TRN – 252(251.3) +1 33.93 – – – – RNP 1
+POTIX 5A DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 DF LT600 Y – +1 – – – – – RNP 1
+020 DF LT608 – – +1 – – @3000 – – RNP 1
+030 TF LT609 – 240(238.8) +1 19.40 –
+-6000
++4000 – – RNP 1
+040 TF ANBOV – 240(239.3) +1 23.03 – – – – RNP 1
+050 TF POTIX – 268(267.2) +1 37.41 – – – – RNP 1
+ATGAS 5A DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 DF LT600 Y – +1 – – – – – RNP 1
+020 DF LT608 – – +1 – – @3000 – – RNP 1
+030 TF LT609 – 240(238.8) +1 19.40 –
+-6000
++4000 – – RNP 1
+040 TF ANBOV – 240(239.3) +1 23.03 – – – – RNP 1
+050 TF ATGAS – 282(280.9) +1 44.02 – – – – RNP 1
+SAPEN 5C DEPARTURE
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Min CG 
+(%)
+Nav 
+Spec
+010 DF LT600 Y – +1 – – – – – RNP 1
+020 DF LT608 – – +1 – – @3000 – – RNP 1
+030 TF LT609 – 240(238.8) +1 19.40 –
+-6000
++4000 – – RNP 1
+040 TF LT610 – 326(324.7) +1 9.74 – -FL100 – 4.9 RNP 1
+050 TF LT611 – 326(324.6) +1 3.85 –
+-FL110
++FL100 – 4.9 RNP 1
+060 TF LT612 – 326(324.6) +1 4.04 – -FL130 – – RNP 1
+070 TF SAPEN – 326(324.6) +1 23.14 – -FL140 – – RNP 1
+
+===== SID VVLT Coding 3.pdf =====
+STANDARD DEPARTURE CHART -
+INSTRUMENT (SID) - ICAO
+DONG NAI/LONG THANH INTL (VVLT)
+RNP RWY 23L
+PATMA 5C, DOVIN 5F, BIXEX 5D, PTH 5E,
+PATMA 5D, DOVIN 5G, BIXEX 5E, PTH 5F,
+ELSAS 5D, NIXIV 5C, ANBOV 5C, TRN 5D, 
+POTIX 5A, ATGAS 5A, SAPEN 5C
+M:\2025\OTHER\LONG THÀNH BAN HÀNH\DRAFT\V1\LT\Code\PL01-2A SID 23L.doc
+TRANSITION ALTITUDE
+9000
+2. WAYPOINT LIST
+WPT ID COORDINATES (WGS-84)
+ANBOV 10°15'59.0"N 106°14'54.0"E
+ATGAS 10°24'17.0"N 105°31'02.0"E
+BIXEX 11°36'13.3"N 108°08'19.3"E
+DOVIN 11°55'01.0"N 108°06'29.0"E
+ELSAS 10°08'12.0"N 107°32'54.0"E
+LANHI 10°24'22.0"N 107°11'29.0"E
+LT600 10°44'39.8"N 106°59'06.1"E
+LT601 10°52'03.9"N 106°59'22.0"E
+LT602 10°57'36.3"N 107°08'08.3"E
+LT603 10°59'53.0"N 107°11'42.2"E
+LT604 11°04'55.3"N 107°20'08.6"E
+LT606 10°33'43.1"N 107°05'47.0"E
+LT607 10°28'53.0"N 107°08'43.9"E
+LT608 10°37'54.5"N 106°51'49.8"E
+LT609 10°27'47.7"N 106°34'59.3"E
+LT610 10°35'46.7"N 106°29'15.9"E
+LT611 10°38'56.1"N 106°27'00.0"E
+LT612 10°42'14.9"N 106°24'37.4"E
+LT630 10°22'32.5"N 106°51'04.6"E
+LUTRI 11°09'41.4"N 107°14'10.5"E
+NIXIV 09°23'36.0"N 106°38'02.0"E
+PATMA 12°20'11.0"N 107°48'36.0"E
+POTIX 10°14'05.0"N 105°37'00.0"E
+PTH 10°55'41.0"N 108°04'19.0"E
+SAPEN 11°01'12.0"N 106°11'00.0"E
+TRN 10°05'00.2"N 105°42'19.9"E
+TS644 10°12'44.3"N 106°37'19.7"E
+VIPEV 10°17'56.5"N 107°04'31.6"E
+XOBAV 10°08'25.0"N 106°38'33.0"E
+
+===== STAR DOVIN 5H, VETOM 5B, PTH 5G, DAGAG 5A, NIXIV 5D, TRN 5E, ANBOV 5D, SAPEN 5D Coding 2.pdf =====
+STANDARD ARRIVAL CHART -
+INSTRUMENT (STAR) - ICAO
+DONG NAI/LONG THANH INTL (VVLT)
+RNP RWY 23L
+DOVIN 5H, VETOM 5B, PTH 5G, DAGAG 5A, 
+NIXIV 5D, TRN 5E, ANBOV 5D, SAPEN 5D 
+M:\2025\OTHER\LONG THÀNH BAN HÀNH\DRAFT\V1\LT\Code\PL02-3A STAR 23L Full.doc
+TRANSITION ALTITUDE
+9000
+DAGAG 5A ARRIVAL
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Nav Spec
+010 IF DAGAG – – +1 – – +FL135 – RNP 1
+020 TF ELSAS – 308(307.3) +1 66.46 – -FL120 – RNP 1
+030 TF LT503 – 337(335.7) +1 32.90 – @3000 – RNP 1
+040 TF LT502 – 337(335.7) +1 11.93 – – -210 RNP 1
+050 TF LT501 – 055(054.1) +1 4.00 – – – RNP 1
+060 TF LT403 – 325(324.1) +1 5.00 – – – RNP 1
+070 TF LT402 – 235(234.1) +1 4.00 – – – RNP 1
+080 TF LT401 – 235(234.1) +1 4.00 – – – RNP 1
+090 TF LT510 – 235(234.1) +1 5.50 – – – RNP 1
+100 TF LT511 – 145(144.1) +1 5.00 – – – RNP 1
+110 TF LT512 – 055(054.1) +1 5.50 – – – RNP 1
+120 TF LT502 – 055(054.1) +1 4.00 – @3000 – RNP 1
+NIXIV 5D ARRIVAL
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Nav Spec
+010 IF NIXIV – – +1 – – – – RNP 1
+020 TF VICAL – 010(008.7) +1 45.50 – – – RNP 1
+030 TF LT505 – 051(050.0) +1 23.21 – @7000 – RNP 1
+040 TF LT545 – 048(047.5) +1 6.13 – -6000 – RNP 1
+050 TF LT504 – 049(047.5) +1 6.52 – +5000 – RNP 1
+060 TF LT503 – 049(047.5) +1 8.81 – @3000 – RNP 1
+070 TF LT502 – 337(335.7) +1 11.93 – – -210 RNP 1
+080 TF LT501 – 055(054.1) +1 4.00 – – – RNP 1
+090 TF LT403 – 325(324.1) +1 5.00 – – – RNP 1
+100 TF LT402 – 235(234.1) +1 4.00 – – – RNP 1
+110 TF LT401 – 235(234.1) +1 4.00 – – – RNP 1
+120 TF LT510 – 235(234.1) +1 5.50 – – – RNP 1
+130 TF LT511 – 145(144.1) +1 5.00 – – – RNP 1
+140 TF LT512 – 055(054.1) +1 5.50 – – – RNP 1
+150 TF LT502 – 055(054.1) +1 4.00 – @3000 – RNP 1
+TRN 5E ARRIVAL
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Nav Spec
+010 IF TRN – – +1 – – – – RNP 1
+020 TF ANBOV – 072(071.2) +1 33.93 – – – RNP 1
+030 TF NOKUM – 047(046.5) +1 27.40 – +FL120 – RNP 1
+040 TF TS492 – 113(111.9) +1 7.00 – +FL110 – RNP 1
+050 TF LETRO – 113(111.9) +1 9.80 – @7000 – RNP 1
+060 TF LT505 – 113(112.0) +1 12.95 – @7000 – RNP 1
+070 TF LT545 – 048(047.5) +1 6.13 – -6000 – RNP 1
+080 TF LT504 – 049(047.5) +1 6.52 – +5000 – RNP 1
+090 TF LT503 – 049(047.5) +1 8.81 – @3000 – RNP 1
+100 TF LT502 – 337(335.7) +1 11.93 – – -210 RNP 1
+110 TF LT501 – 055(054.1) +1 4.00 – – – RNP 1
+120 TF LT403 – 325(324.1) +1 5.00 – – – RNP 1
+130 TF LT402 – 235(234.1) +1 4.00 – – – RNP 1
+
+===== STAR DOVIN 5H, VETOM 5B, PTH 5G, DAGAG 5A, NIXIV 5D, TRN 5E, ANBOV 5D, SAPEN 5D Coding 3.pdf =====
+STANDARD ARRIVAL CHART -
+INSTRUMENT (STAR) - ICAO
+DONG NAI/LONG THANH INTL (VVLT)
+RNP RWY 23L
+DOVIN 5H, VETOM 5B, PTH 5G, DAGAG 5A, 
+NIXIV 5D, TRN 5E, ANBOV 5D, SAPEN 5D 
+M:\2025\OTHER\LONG THÀNH BAN HÀNH\DRAFT\V1\LT\Code\PL02-3A STAR 23L Full.doc
+TRANSITION ALTITUDE
+9000
+140 TF LT401 – 235(234.1) +1 4.00 – – – RNP 1
+150 TF LT510 – 235(234.1) +1 5.50 – – – RNP 1
+160 TF LT511 – 145(144.1) +1 5.00 – – – RNP 1
+170 TF LT512 – 055(054.1) +1 5.50 – – – RNP 1
+180 TF LT502 – 055(054.1) +1 4.00 – @3000 – RNP 1
+ANBOV 5D ARRIVAL
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Nav Spec
+010 IF ANBOV – – +1 – – – – RNP 1
+020 TF NOKUM – 047(046.5) +1 27.40 – +FL120 – RNP 1
+030 TF TS492 – 113(111.9) +1 7.00 – +FL110 – RNP 1
+040 TF LETRO – 113(111.9) +1 9.80 – @7000 – RNP 1
+050 TF LT505 – 113(112.0) +1 12.95 – @7000 – RNP 1
+060 TF LT545 – 048(047.5) +1 6.13 – -6000 – RNP 1
+070 TF LT504 – 049(047.5) +1 6.52 – +5000 – RNP 1
+080 TF LT503 – 049(047.5) +1 8.81 – @3000 – RNP 1
+090 TF LT502 – 337(335.7) +1 11.93 – – -210 RNP 1
+100 TF LT501 – 055(054.1) +1 4.00 – – – RNP 1
+110 TF LT403 – 325(324.1) +1 5.00 – – – RNP 1
+120 TF LT402 – 235(234.1) +1 4.00 – – – RNP 1
+130 TF LT401 – 235(234.1) +1 4.00 – – – RNP 1
+140 TF LT510 – 235(234.1) +1 5.50 – – – RNP 1
+150 TF LT511 – 145(144.1) +1 5.00 – – – RNP 1
+160 TF LT512 – 055(054.1) +1 5.50 – – – RNP 1
+170 TF LT502 – 055(054.1) +1 4.00 – @3000 – RNP 1
+SAPEN 5D ARRIVAL
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Nav Spec
+010 IF SAPEN – – +1 – – – – RNP 1
+020 TF TS498 – 139(137.8) +1 23.28 – +FL150 – RNP 1
+030 TF TS496 – 139(137.8) +1 4.00 – @FL140 – RNP 1
+040 TF NOKUM – 139(137.9) +1 8.00 – +FL120 – RNP 1
+050 TF TS492 – 113(111.9) +1 7.00 – +FL110 – RNP 1
+060 TF LETRO – 113(111.9) +1 9.80 – @7000 – RNP 1
+070 TF LT505 – 113(112.0) +1 12.95 – @7000 – RNP 1
+080 TF LT545 – 048(047.5) +1 6.13 – -6000 – RNP 1
+090 TF LT504 – 049(047.5) +1 6.52 – +5000 – RNP 1
+100 TF LT503 – 049(047.5) +1 8.81 – @3000 – RNP 1
+110 TF LT502 – 337(335.7) +1 11.93 – – -210 RNP 1
+120 TF LT501 – 055(054.1) +1 4.00 – – – RNP 1
+130 TF LT403 – 325(324.1) +1 5.00 – – – RNP 1
+140 TF LT402 – 235(234.1) +1 4.00 – – – RNP 1
+150 TF LT401 – 235(234.1) +1 4.00 – – – RNP 1
+160 TF LT510 – 235(234.1) +1 5.50 – – – RNP 1
+170 TF LT511 – 145(144.1) +1 5.00 – – – RNP 1
+180 TF LT512 – 055(054.1) +1 5.50 – – – RNP 1
+190 TF LT502 – 055(054.1) +1 4.00 – @3000 – RNP 1
+
+===== STAR DOVIN 5H, VETOM 5B, PTH 5G, DAGAG 5A, NIXIV 5D, TRN 5E, ANBOV 5D, SAPEN 5D Coding.pdf =====
+STANDARD ARRIVAL CHART -
+INSTRUMENT (STAR) - ICAO
+DONG NAI/LONG THANH INTL (VVLT)
+RNP RWY 23L
+DOVIN 5H, VETOM 5B, PTH 5G, DAGAG 5A, 
+NIXIV 5D, TRN 5E, ANBOV 5D, SAPEN 5D 
+M:\2025\OTHER\LONG THÀNH BAN HÀNH\DRAFT\V1\LT\Code\PL02-3A STAR 23L Full.doc
+TRANSITION ALTITUDE
+9000
+1. TABULAR DESCRIPTION 
+DOVIN 5H ARRIVAL
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Nav Spec
+010 IF DOVIN – – +1 – – – – RNP 1
+020 TF LT515 – 219(218.2) +1 50.22 – +FL100 – RNP 1
+030 TF DALAP – 219(218.1) +1 18.34 –
+-6000
++4000 – RNP 1
+040 TF LT500 – 240(239.5) +1 5.17 – @3000 -210 RNP 1
+050 TF LT403 – 240(239.5) +1 5.00 – – – RNP 1
+060 TF LT402 – 235(234.1) +1 4.00 – – – RNP 1
+070 TF LT401 – 235(234.1) +1 4.00 – – – RNP 1
+080 TF LT510 – 235(234.1) +1 5.50 – – – RNP 1
+090 TF LT511 – 145(144.1) +1 5.00 – – – RNP 1
+100 TF LT512 – 055(054.1) +1 5.50 – – – RNP 1
+110 TF LT502 – 055(054.1) +1 4.00 – – – RNP 1
+120 TF LT501 – 055(054.1) +1 4.00 – – – RNP 1
+130 TF LT403 – 325(324.1) +1 5.00 – @3000 – RNP 1
+VETOM 5B ARRIVAL
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Nav Spec
+010 IF VETOM – – +1 – – +FL100 – RNP 1
+020 TF DALAP – 226(224.6) +1 18.34 –
+-6000
++4000 – RNP 1
+030 TF LT500 – 240(239.5) +1 5.17 – @3000 -210 RNP 1
+040 TF LT403 – 240(239.5) +1 5.00 – – – RNP 1
+050 TF LT402 – 235(234.1) +1 4.00 – – – RNP 1
+060 TF LT401 – 235(234.1) +1 4.00 – – – RNP 1
+070 TF LT510 – 235(234.1) +1 5.50 – – – RNP 1
+080 TF LT511 – 145(144.1) +1 5.00 – – – RNP 1
+090 TF LT512 – 055(054.1) +1 5.50 – – – RNP 1
+100 TF LT502 – 055(054.1) +1 4.00 – – – RNP 1
+110 TF LT501 – 055(054.1) +1 4.00 – – – RNP 1
+120 TF LT403 – 325(324.1) +1 5.00 – @3000 – RNP 1
+PTH 5G ARRIVAL
+Serial
+number
+Path
+Descriptor
+Waypoint
+Identifier
+Fly￾over
+Course 
+°M(°T)
+Magnetic 
+Variation
+Distance
+(NM)
+Turn
+Direction
+Altitude
+(FT)
+Speed 
+limit
+(KT)
+Nav Spec
+010 IF PTH – – +1 – – +FL135 – RNP 1
+020 TF DALAP – 278(277.3) +1 40.61 –
+-6000
++4000 – RNP 1
+030 TF LT500 – 240(239.5) +1 5.17 – @3000 -210 RNP 1
+040 TF LT403 – 240(239.5) +1 5.00 – – – RNP 1
+050 TF LT402 – 235(234.1) +1 4.00 – – – RNP 1
+060 TF LT401 – 235(234.1) +1 4.00 – – – RNP 1
+070 TF LT510 – 235(234.1) +1 5.50 – – – RNP 1
+080 TF LT511 – 145(144.1) +1 5.00 – – – RNP 1
+090 TF LT512 – 055(054.1) +1 5.50 – – – RNP 1
+100 TF LT502 – 055(054.1) +1 4.00 – – – RNP 1
+110 TF LT501 – 055(054.1) +1 4.00 – – – RNP 1
+120 TF LT403 – 325(324.1) +1 5.00 – @3000 – RNP 1
+
+===== STAR DOVIN 5H, VETOM 5B, PTH 5G, DAGAG 5A, NIXIV 5D, TRN 5E, ANBOV 5D, SAPEN 5D coding 4.pdf =====
+STANDARD ARRIVAL CHART -
+INSTRUMENT (STAR) - ICAO
+DONG NAI/LONG THANH INTL (VVLT)
+RNP RWY 23L
+DOVIN 5H, VETOM 5B, PTH 5G, DAGAG 5A, 
+NIXIV 5D, TRN 5E, ANBOV 5D, SAPEN 5D 
+M:\2025\OTHER\LONG THÀNH BAN HÀNH\DRAFT\V1\LT\Code\PL02-3A STAR 23L Full.doc
+TRANSITION ALTITUDE
+9000
+2. HOLDING PROCEDURES
+Holding Fix
+Inbound 
+Course
+°M(°T)
+Magnetic 
+Variation Time (min) Turn
+Direction
+Altitude
+(FT)
+Speed limit
+(KT)
+Nav Spec
+ANBOV 029 (028.0) +1 1.5 L
+-FL200
++8000 -230 RNP 1
+DALAP 237 (236.0) +1 1 L
+-6000
++4000 -220 RNP 1
+NOKUM 113 (112.0) +1 1 R
+-FL140
++FL120 -220 RNP 1
+VICAL 001 (360.0) +1 1 L
+-FL120
++7000 -230 RNP 1
+3. WAYPOINT LIST
+WPT ID COORDINATES (WGS-84)
+ANBOV 10°15'59.0"N 106°14'54.0"E
+DALAP 11°00'51.0"N 107°23'21.8"E
+DAGAG 09°27’48.0"N 108°26'30.0"E
+DOVIN 11°55'01.0"N 108°06'29.0"E
+ELSAS 10°08'12.0"N 107°32'54.0"E
+LETRO 10°28'37.5"N 106°50'53.4"E
+LT401 10°50'56.9"N 107°07'52.5"E
+LT402 10°53'18.4"N 107°11'10.0"E
+LT403 10°55'39.8"N 107°14'27.6"E
+LT500 10°58'12.9"N 107°18'50.3"E
+LT501 10°51'35.7"N 107°17'26.4"E
+LT502 10°49'14.3"N 107°14'08.9"E
+LT503 10°38'19.2"N 107°19'08.7"E
+LT504 10°32'20.6"N 107°12'32.9"E
+LT505 10°23'45.3"N 107°03'04.7"E
+LT510 10°47'42.3"N 107°03'20.8"E
+LT511 10°43'38.2"N 107°06'19.7"E
+LT512 10°46'52.9"N 107°10'51.3"E
+LT515 11°15'21.2"N 107°34'52.4"E
+LT545 10°27'55.0"N 107°07'40.0"E
+NIXIV 09°23'36.0"N 106°38'02.0"E
+NOKUM 10°34'55.8"N 106°35'04.2"E
+PTH 10°55'41.0"N 108°04'19.0"E
+SAPEN 11°01'12.0"N 106°11'00.0"E
+TRN 10°05'00.2"N 105°42'19.9"E
+TS492 10°32'18.3"N 106°41'39.8"E
+TS496 10°40'53.4"N 106°29'37.1"E
+TS498 10°43'52.1"N 106°26'53.5"E
+VETOM 11°13'59.0"N 107°36'27.0"E
+VICAL 10°08'46.9"N 106°45'02.0"E
+
+===== STAR DOVIN 5H, VETOM 5B, PTH 5G, DAGAG 5A, NIXIV 5D, TRN 5E, ANBOV 5D, SAPEN 5D.pdf =====
+SFC
+22 966
+VVR19
+SFC
+UNL
+164 VVD70
+3 281
+VVD24
+984
+3 281
+VVD25
+SFC
+9 842
+VVP4
+SFC
+UNL
+VVD32
+656
+22 966
+VVD68
+SFC
+19 685
+VVD67
+164
+3 281
+VVD23
+1 968
+19 685
+VVR36
+984
+3 281
+VVD26
+3000
+3000
+3000
+3000
+3000
+3000
+3000
+5000
+5000
+5000
+1000
+1000
+1000
+1000
+1000
+1000
+INTERVALS
+CONTOUR
+3000
+1000
+7000
+5000
+2323
+4003
+3251
+5075
+5902
+4819
+6447
+7096
+2375
+1096
+2743
+2287
+3209
+1722
+1873
+1289
+1109 1683
+1371
+4386
+4272
+5433
+1404
+3537
+5115
+NIXIV5D,TRN5E,ANBOV5D,SAPEN5D
+DOVIN5H,VETOM 5B,PTH5G,DAGAG5A,
+RNP
+RW
+Y
+23L
+DONG
+NAI/LONG
+THANH
+INTL
+(VVLT)
+9000
+TRANSITION
+ALTITUDE
+INSTRUMENT
+(STAR)-ICAO
+STANDARD
+ARRIVAL
+CHART
+-
+072°
+010°
+337°
+139°
+139°
+047°
+051°
+139°
+113°
+113°
+113°
+337°
+235°
+293°
+113°
+SAPEN
+TS498
+FL150
+NOKUM
+LT501
+LT402
+LT510
+240° 240° 235°
+235°
+145°
+055° 055° 055°
+325°
+LT500 DALAP
+LT401
+LT511
+LT512
+VICAL
+TS496
+FL140
+TS492
+FL110
+LT503
+LETRO
+LT403
+226°
+219°
+278°
+219°
+057°
+237°
+VETOM
+LT515
+NIXIV
+DOVIN
+50
+DOVIN5H
+FL100
+23
+4
+8
+FL120
+7
+10
+7000
+13
+9
+3000
+4
+45
+4
+6 5
+6
+4
+12
+3000
+18
+6000
+4000
+5
+3000
+5
+FL100
+18
+41
+23
+NIXIV5D
+34
+27
+PTH
+PHAN THIET
+CAN THO
+TRN
+TRN5E
+SAPEN5D
+VETOM 5B
+PTH5G
+ N
+00'
+12°
+ N
+30'
+11°
+ N
+00'
+11°
+ N
+30'
+10°
+ N
+00'
+10°
+105°30'E 106°00'E 106°30'E 107°00'E 107°30'E 108°00'E
+210 KT
+MAX IAS
+IAF
+MAX IAS 210 KT 1
+MAXFL140
+MNM 4000
+MAX6000
+1529
+823 BIEN HOA
+LONG THANH
+10
+53
+92
+89
+64
+15 15 10
+30
+37
+22
+56
+ANBOV
+ANBOV5D
+MAXIAS220KT
+MAXIAS220KT
+MNM FL120
+LT502 IAF 3000
+12
+337°
+MAX IAS 210 KT
+LT502 IAF 3000
+LT503
+3000
+LT512
+055°
+4
+4
+055°
+LT501
+055°
+6
+1
+5
+45°
+LT510
+6
+235°
+LT401 235°
+LT402
+4
+4
+5
+325°
+235°
+LT403
+IAF
+3000 240°
+5
+3000
+LT500
+5
+240°
+4000
+6000
+DALAP
+LT511
+MAX IAS 210 KT
+MNM
+8000
+MAXIAS230KT
+029°
+209°
+MAXFL200
+MAX AIS230KT
+MNM 7000
+MAXFL120
+181°
+048°
+LT505
+LT504
+6
+7
+049°
+LT545
+5000
+6000
+7000
+9
+049°
+FL135
+308°
+33
+66
+DAGAG
+FL135
+DAGAG5A FL120
+ELSAS
+46
+001°
+CHANGE: NEW CHART.
+VAR 1° W
+BRG ARE MAG
+DIST IN NM
+ELEV, ALT IN FT
+RNP 1 (GNSS) REQUIRED
+PHNOM PENH FIR
+TRN 5E, ANBOV 5D, SAPEN 5D PROCEDURES.
+MAX IAS 210 KT USED FOR DAGAG 5A, NIXIV 5D, 
+HO CHI MINH FIR
+SCALE
+TO 
+NOT 
+TAN SON NHAT
+0 KM
+0 NM
+10
+10 10 20
+10 20 30 40
+SCALE 1 : 1 500 000
+ARP
+MSA 25 NM
+290°
+3800
+230°
+2800
+124.325SRY
+TW
+R
+LT:118.425PRI
+124.475SRY
+ARR
+LT: 126.075PRI
+127.725SRY
+ARR
+TSN:126.35PRI
+124.075SRY
+TM
+C
+TSN:125.5PRI
+2
+2
+COORDINATION WITH REGIONAL AIR COMMAND CENTRE III.
+THESE PROCEDURES ARE ONLY USED WHEN HAVING COMPLETED 
+USAGE CONDITION: 
+1
+

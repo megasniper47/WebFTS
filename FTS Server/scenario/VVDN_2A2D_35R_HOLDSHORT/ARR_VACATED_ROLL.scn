@@ -1,0 +1,12 @@
+# ARR_VACATED_ROLL.scn -- 30 giây SAU KHI tàu bay hạ cánh tương ứng thoát ly
+# HOÀN TOÀN khỏi đường CHC 35R (đuôi vượt qua E4 hoặc E6 -- xấp xỉ bằng bán
+# kính ATDIST 0.02NM ~ 37m, tương đương khoảng 1 thân tàu bay A321 44.5m,
+# tính từ điểm đăng ký ATDIST ở kịch bản chính), tàu bay cất cánh tương ứng
+# mới được phép bắt đầu chạy đà.
+#
+# Chỉ chứa 1 lệnh PCALL có độ trễ thời gian cố định (không đăng ký Condition
+# mới) -- an toàn tuyệt đối theo đúng nguyên tắc đã áp dụng cho
+# _KB5GEN_DEP_ROLL_*.scn trong generator chính (kịch bản KB5 1 giờ).
+#
+# Gọi: ARRxxx ATDIST <E4_hoặc_E6>,0.02 PCALL ARR_VACATED_ROLL DEPxxx
+00:00:30.00>PCALL DEP_ROLL %0

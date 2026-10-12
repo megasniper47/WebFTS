@@ -1,0 +1,45 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "17L/35R",
+        "type": "runway_centerline"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.19800431,
+            16.06036556
+          ],
+          [
+            108.20252762,
+            16.02903758
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "17R/35L",
+        "type": "runway_centerline"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            108.196433,
+            16.057408
+          ],
+          [
+            108.200392,
+            16.030125
+          ]
+        ]
+      }
+    }
+  ]
+}

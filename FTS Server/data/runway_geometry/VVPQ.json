@@ -1,0 +1,55 @@
+{
+  "airport": "VVPQ",
+  "geometryStatus": "verified",
+  "runways": [
+    {
+      "designator": "10L",
+      "oppositeDesignator": "28R",
+      "thresholdLat": 10.174425,
+      "thresholdLon": 103.9797889,
+      "oppositeThresholdLat": 10.1714556,
+      "oppositeThresholdLon": 104.0097556,
+      "trueHeadingDeg": 95.7,
+      "oppositeTrueHeadingDeg": 275.7,
+      "source": "RNP Z RWY10L waypoint list (RW10L 10°10'27.93\"N 103°58'47.24\"E) + RNP Z RWY28R waypoint list (RW28R 10°10'17.24\"N 104°00'35.12\"E), Quyet dinh 1287/QD-CHK ngay 12/6/2026"
+    },
+    {
+      "designator": "28R",
+      "oppositeDesignator": "10L",
+      "thresholdLat": 10.1714556,
+      "thresholdLon": 104.0097556,
+      "oppositeThresholdLat": 10.174425,
+      "oppositeThresholdLon": 103.9797889,
+      "trueHeadingDeg": 275.7,
+      "oppositeTrueHeadingDeg": 95.7,
+      "source": "RNP Z RWY28R waypoint list (RW28R 10°10'17.24\"N 104°00'35.12\"E), Quyet dinh 1287/QD-CHK ngay 12/6/2026"
+    },
+    {
+      "designator": "10R",
+      "oppositeDesignator": "28L",
+      "thresholdLat": 10.1711889,
+      "thresholdLon": 103.9794639,
+      "oppositeThresholdLat": 10.1684917,
+      "oppositeThresholdLon": 104.0067056,
+      "trueHeadingDeg": 95.7,
+      "oppositeTrueHeadingDeg": 275.7,
+      "source": "RNP Z RWY10R waypoint list (RW10R 10°10'16.28\"N 103°58'46.07\"E) + RNP Z RWY28L waypoint list (RW28L 10°10'06.57\"N 104°00'24.14\"E), Quyet dinh 1287/QD-CHK ngay 12/6/2026"
+    },
+    {
+      "designator": "28L",
+      "oppositeDesignator": "10R",
+      "thresholdLat": 10.1684917,
+      "thresholdLon": 104.0067056,
+      "oppositeThresholdLat": 10.1711889,
+      "oppositeThresholdLon": 103.9794639,
+      "trueHeadingDeg": 275.7,
+      "oppositeTrueHeadingDeg": 95.7,
+      "source": "RNP Z RWY28L waypoint list (RW28L 10°10'06.57\"N 104°00'24.14\"E), Quyet dinh 1287/QD-CHK ngay 12/6/2026"
+    }
+  ],
+  "runwayModes": [
+    { "mode": "10L-ARR/10R-DEP", "arrivalRunway": "10L", "departureRunway": "10R" },
+    { "mode": "28R-ARR/28L-DEP", "arrivalRunway": "28R", "departureRunway": "28L" }
+  ],
+  "notes": "10L/28R and 10R/28L confirmed as two separate physical parallel runways (opposite-threshold distances 1.78NM and 1.62NM respectively, bearing 095.7/275.7T both, matching the RNP Z approach inbound courses 096(095.7T)/276(275.7T)) from the real RNP Z RWY10L/10R/28L/28R waypoint lists in Quyet dinh 1287/QD-CHK ngay 12/6/2026. Dependent parallel runway operation per Du thao CV 5297/QLB-KL (see project memory project_vvpq_parallel_runway_procedure.md): 10L/28R used mainly for arrivals, 10R/28L used mainly for departures. This runway-role assignment (mainly-arrival vs mainly-departure per direction) differs from VVDN/VVCR's 'ARR on one runway / DEP on the parallel runway, both directions symmetric' style modes -- VVPQ's roles are fixed by physical runway (10L/28R = arrivals, 10R/28L = departures) rather than by heading alone, since it does not have DEP-role runways for 10R-direction landings or ARR-role for 10L-direction departures per the source document."
+}

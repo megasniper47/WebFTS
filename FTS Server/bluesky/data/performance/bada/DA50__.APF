@@ -1,0 +1,25 @@
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC DA50__.APF CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC/
+CC                                                                                                 /
+CC                 AIRLINES PROCEDURES FILE                                                        /
+CC                                                                                                 /
+CC      File_name: DA50__.APF                                                                      /
+CC                                                                                                 /
+CC      Creation_date: Jan 13 2022                                                                 /
+CC                                                                                                 /
+CC      Modification_date: Jan 13 2022                                                             /
+CC                                                                                                 /
+CC                                                                                                 /
+CC                                                                                                 /
+CC   LO= 001.44 to ---.--  /  AV= ---.-- to ---.--  /  HI= ---.-- to 001.99                        /
+CC                                                                                                 /
+CC=================================================================================================/
+CC  COM CO    Company name ------climb-------  --cruise--  -----descent------  --approach-  model- /
+CC                    mass  lo  hi              lo  hi         hi  lo            (unused)          /
+CC    version engines  ma  cas cas mc xxxx xx  cas cas mc  mc cas cas xxxx xx  xxx xxx xxx  opf___ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CD  *** **    Default Company                                                                      /
+CD    50C              LO   94  94 21          142 138 27  30 132 132            0   0   0  DA50__ /
+CD    50C              AV   94  94 21          142 138 27  30 132 132            0   0   0  DA50__ /
+CD    50C              HI   94  94 21          142 138 27  30 132 132            0   0   0  DA50__ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CC/////////////////////////////////////////////THE END/////////////////////////////////////////////

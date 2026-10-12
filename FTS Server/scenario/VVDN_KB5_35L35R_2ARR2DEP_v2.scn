@@ -1,0 +1,264 @@
+# ================================================================
+# KỊCH BẢN 5 (REBUILT TỪ ĐẦU) – KHAI THÁC PHỐI HỢP ĐƯỜNG CHC 35L/35R – VVDN
+#
+# File này được dựng lại HOÀN TOÀN MỚI, KHÔNG dựa trên bất kỳ file .scn cũ
+# nào trong thư mục này (các file VVDN_KB5_35L35R_2ARR_2DEP.scn và _KB5_*.scn
+# cũ đã được xác nhận SAI và không được dùng làm nguồn tham khảo).
+#
+# Toàn bộ dữ liệu thủ tục bay lấy trực tiếp từ nguồn AIP gốc:
+#  - STAR RNAV RWY35L/R (DOTEN-TRACO-CADAS-MONRY-TAMLA, chung cho mọi transition)
+#    và IAP ILS V RWY35L (TAMLA-KALET-FAP/FAF-THR35L):
+#    "vietnam_ats_routes_pack/Dữ liệu PTB + code/PTB QLBMT/
+#     VVDN_PBN_Procedure_Extract_Pack/{STAR_RNAV_RWY35LR,IAP}/..." (AIP Việt Nam
+#    AD2-VVDN-11-7..11, AD2-VVDN-9-x, AMDT 01/23).
+#  - SID BUNTA 2G RWY35L/R (DN456-HOKIN-BINKU-BUNTA):
+#    "...VVDN_PBN_Procedure_Extract_Pack/SID_RNAV_RWY35LR/SID_RNAV_RWY35LR_BUNTA_2G.pdf"
+#  - Toạ độ Gate 26/27/11, đường lăn song song "C A" phía Đông RWY17L/35R,
+#    hai đầu đường CHC: từ GeoJSON layout thực tế VVDN (FTS Server/data/
+#    aerodrome_layout/.../721d167a-.../normalized/airports/VVDN/*.geojson).
+#
+# CÚ PHÁP ENGINE (đã xác nhận trực tiếp từ mã nguồn "FTS Server/bluesky/",
+# KHÔNG suy ra từ file .scn cũ):
+#  - ATALT acid,alt,cmd  (bluesky/stack/basecmds.py + traffic/conditional.py):
+#    KHÔNG có mệnh đề "DELAY" (lệnh DELAY không tồn tại trong engine này!).
+#    "cmd" là MỘT lệnh duy nhất được thực thi khi điều kiện xảy ra.
+#  - ATDIST acid,lat,lon,dist[nm],cmd — cùng cơ chế, dist tính bằng NM.
+#  - PCALL filename [args...] mặc định REL: mọi timestamp trong file được
+#    PCALL sẽ CỘNG THÊM thời gian hiện tại lúc gọi (bluesky/stack/simstack.py
+#    merge(): t_offset = bs.sim.simt). => Độ trễ "N giây sau khi..." được
+#    hiện thực bằng cách đặt timestamp đầu tiên trong file con = N giây,
+#    KHÔNG dùng "DELAY" (đây chính là lỗi khiến các file .scn cũ không chạy
+#    đúng: chúng viết "ATALT 0 DELAY 30.0 PCALL ..." nhưng DELAY không phải
+#    lệnh hợp lệ nên toàn bộ chuỗi lệnh đó sẽ lỗi "Unknown command: DELAY"
+#    và KHÔNG BAO GIỜ thực thi PCALL).
+#  - ATALT 0 dùng để phát hiện chạm đất: cơ chế addcondition() kiểm tra đổi
+#    dấu của (target - actual), nên phải set trước khi tàu bay còn ở trên
+#    không (actual alt > 0) thì mới bắt đúng thời điểm chạm đất.
+#  - Ngưỡng lỗi Mach/CAS (bluesky/tools/aero.py: casmach_threshold=2.0 m/s,
+#    ismach = 0.1 < spd < casmach_thr): MỌI tốc độ lệnh (ADDWPT spd, MOVE spd)
+#    phải bằng 0 (dừng thật) hoặc > 2.0 m/s (~3.89kt). File này dùng sàn an
+#    toàn ≥5kt cho mọi tốc độ khác 0.
+#  - LNAV/VNAV OFF bắt buộc trước khi dùng MOVE để tránh autopilot ghi đè lại
+#    vị trí/tốc độ đặt bằng tay (traffic.py move() không tự tắt LNAV/VNAV).
+#  - QUAN TRỌNG (bug đã gặp và sửa): bluesky/traffic/autopilot.py TỰ ĐỘNG XOÁ
+#    tàu bay ngay khi nó "đến" (reached) waypoint CUỐI CÙNG trong route — coi
+#    đó là đã tới đích ("Delete aircraft that reached their last waypoint").
+#    Vì vậy KHÔNG BAO GIỜ để một điểm "dừng chờ" (còn cần tồn tại tiếp) là
+#    waypoint cuối của route ADDWPT. Cách sửa dùng trong file này: sau mỗi
+#    điểm dừng chờ, thêm 1 waypoint "mồi" (dummy, không bao giờ bay tới) để
+#    điểm dừng không còn là waypoint cuối; đồng thời dùng ATDIST (bán kính
+#    nhỏ) + PCALL để chuyển hẳn sang MOVE (LNAV/VNAV OFF) ngay khi tàu bay
+#    tới gần, khoá cứng vị trí/hướng mũi/tốc độ=0 một cách chủ động.
+#
+# CẤU TRÚC:
+#   ARR001 (B738) – DOTEN → STAR chung 35L/R → IAP ILS V 35L → chạm 35L →
+#                   giảm tốc, lăn hướng 352 → thoát ly khu vực G4 → dừng
+#                   ngay trước 16.0489,108.1987 (chốt bằng MOVE tại
+#                   16.0489,108.1986, hdg 082) → (chờ DEP001 bay HẾT toàn bộ
+#                   đường CHC 35R) → cắt 35R theo waypoint đã cho → Gate 26
+#                   → DEL sau 10s khi đến gate.
+#   ARR002 (B738) – như ARR001, vào sau 3 phút, thoát ly khu vực G6 → dừng
+#                   tại 16.0572,108.1974 hdg 082 (chốt bằng MOVE) → (chờ
+#                   DEP002 bay hết chiều dài 35R) → cắt 35R, lăn thẳng hướng
+#                   82° → Gate 11 → DEL 10s.
+#   DEP001 (B738) – lăn ra từ Gate 26 → dừng chờ đầu 35R (16.0292,108.2025,
+#                   hdg352, chốt bằng MOVE) → 30s sau khi ARR001 chạm đất:
+#                   chạy đà, NHẤC BÁNH MŨI đúng tại 16.049442,108.199582 →
+#                   SID BUNTA 2G. Khi DEP001 bay HẾT toàn bộ đường CHC 35R
+#                   (không phải lúc nhấc bánh mũi): cho phép ARR001 cắt 35R
+#                   VÀ cho phép DEP002 lăn vào 35R — CÙNG một trigger.
+#   DEP002 (B738) – lăn ra từ Gate 27 → dừng chờ PRE_HOLD (16.029259,
+#                   108.203066, hdg263, chốt bằng MOVE) → khi DEP001 bay hết
+#                   đường CHC 35R: lăn tiếp vào 35R (16.0292,108.2025,
+#                   hdg352, chốt bằng MOVE) → 30s sau khi ARR002 chạm đất:
+#                   chạy đà, nhấc bánh mũi cùng toạ độ 16.049442,108.199582
+#                   → SID.
+#
+# GIÃN CÁCH: ARR002 CRE tại 00:03:00 (3 phút sau ARR001) | DEP002 CRE tại
+# 00:02:30 (2 phút 30 giây sau DEP001).
+#
+# GHI CHÚ MÔ HÌNH HÓA (minh bạch, không có trong yêu cầu gốc):
+#  - ARR001/ARR002 đều chờ DEP001/DEP002 (tương ứng) bay HẾT TOÀN BỘ chiều
+#    dài đường CHC 35R rồi mới được cắt qua (dùng điểm gần đầu 17L,
+#    16.0604,108.1980, bán kính 0.15NM, làm mốc "đã bay hết đường CHC").
+#    Ban đầu ARR001 dùng mốc "vượt qua điểm ngang G4" nhưng bị phản hồi là
+#    cắt quá sớm khi DEP001 còn đang chạy đà tốc độ cao gần đó — đã đổi sang
+#    cùng quy tắc "bay hết đường CHC" như ARR002/DEP002 để nhất quán và an
+#    toàn hơn. Sự kiện "DEP001 bay hết đường CHC" cũng là mốc cho phép DEP002
+#    lăn vào đường CHC 35R (không còn gắn với thời điểm nhấc bánh mũi nữa).
+#  - Không tìm thấy đường lăn có tên "G4"/"G6" trong dữ liệu GeoJIS VVDN;
+#    đoạn nối từ tim đường CHC 35L ra điểm dừng chờ do người dùng cho
+#    (16.0489,108.1987 / 16.0572,108.1974) được dựng bằng một đoạn rẽ ngắn
+#    tính toán hình học (toạ độ hold point cách tim đường CHC ~100-110m về
+#    phía Đông — hợp lý vì đó là hướng ARR001/ARR002 sẽ cắt qua 35R).
+#  - Đoạn chạy đà/hạ cánh dùng mô hình gia/giảm tốc đều (constant
+#    acceleration/deceleration) tự tính; gia tốc chạy đà (1.3084 m/s^2) được
+#    suy ngược từ đúng toạ độ nhấc bánh mũi người dùng cho (16.049442,
+#    108.199582, cách điểm chờ 2276.1m theo hướng 352.1°) và Vr=150kt.
+#  - Loại tàu bay: trộn heavy/medium theo yêu cầu — ARR001=A320 (medium),
+#    ARR002=B772 (heavy), DEP001=B738 (medium), DEP002=A333 (heavy). Cả 4
+#    type đều có dữ liệu performance thật trong openap (performance_model
+#    mặc định của engine, xem bluesky/resources/default.cfg). LƯU Ý: các
+#    đoạn chạy đà/hạ cánh dùng MOVE (vật lý tự tính, không qua performance
+#    model) vẫn giữ nguyên số liệu chung cho mọi loại — KHÔNG được hiệu
+#    chỉnh riêng theo từng loại tàu bay (đơn giản hoá có chủ đích).
+#  - KHỐNG CHẾ TỐC ĐỘ TIẾP CẬN (áp tại CADAS≈25NM, KALET≈10NM, điểm nội suy
+#    15.947115,108.212410≈5NM trên trục chót, tính từ THR RWY35L
+#    16.030133,108.200372 — đã kiểm tra margin so Vstall theo BADA):
+#      25NM: ARR001(A320)=220kt, ARR002(B772)=220kt   [khoảng 200-230kt]
+#      10NM: ARR001(A320)=170kt, ARR002(B772)=180kt   [khoảng 160-180kt;
+#            B772 lấy cận trên vì margin so Vstall Flap1 (124kt) chỉ ~1.29x
+#            ở 160kt, khá sát ngưỡng an toàn cho tàu bay heavy]
+#       5NM: ARR001(A320)=155kt, ARR002(B772)=160kt   [khoảng 150-160kt]
+#    FAF (D4.56NM, trong vùng 5NM) tiếp tục giảm nhẹ: ARR001=150kt,
+#    ARR002=155kt, trước khi vào THR ở 140kt (chung cho cả 2, phù hợp Vref
+#    thực tế cả A320 và B772 ở trọng lượng khai thác thông thường).
+#  - KHỐNG CHẾ TỐC ĐỘ THOÁT LY (rẽ 90° khỏi đường CHC 35L tại khu vực G4/G6):
+#    BADA không có tham số này (chỉ mô hình tính năng bay, không có giới hạn
+#    rẽ trên mặt đất) — áp dụng theo thực tiễn khai thác chung cho rẽ 90°:
+#    15kt (bắt đầu rẽ, tại điểm ngang G4/G6 trên tim đường CHC) → 8kt (giữa
+#    đoạn rẽ) → 0kt (dừng chờ) — đã có sẵn trong route ARR001/ARR002, không
+#    cần chỉnh sửa thêm.
+# ================================================================
+
+00:00:00.00>TRAILS ON
+00:00:00.00>ASAS OFF
+00:00:00.00>PAN 16.0400,108.2000
+
+# ================================================================
+# PHẦN 1 – DEP001: lăn ra từ Gate 26 (16.052622,108.201973) → đầu 35R
+# ================================================================
+00:00:00.00>CRE DEP001,B738,16.052622,108.201973,80.9,0,15
+# DEP001 = B738 (medium)
+00:00:00.00>DEP001 ADDWPT 16.052004,108.200773 0 10.0
+00:00:00.00>DEP001 ADDWPT 16.051764,108.200781 0 15.0
+00:00:00.00>DEP001 ADDWPT 16.051560,108.200776 0 15.0
+00:00:00.00>DEP001 ADDWPT 16.051307,108.200786 0 15.0
+00:00:00.00>DEP001 ADDWPT 16.049490,108.200986 0 15.0
+00:00:00.00>DEP001 ADDWPT 16.049218,108.201025 0 12.0
+00:00:00.00>DEP001 ADDWPT 16.044100,108.201789 0 18.0
+00:00:00.00>DEP001 ADDWPT 16.038291,108.202625 0 18.0
+00:00:00.00>DEP001 ADDWPT 16.030836,108.203677 0 15.0
+00:00:00.00>DEP001 ADDWPT 16.029967,108.203803 0 10.0
+00:00:00.00>DEP001 ADDWPT 16.029680,108.203824 0 8.0
+00:00:00.00>DEP001 ADDWPT 16.029490,108.203744 0 6.0
+00:00:00.00>DEP001 ADDWPT 16.029355,108.203538 0 5.0
+00:00:00.00>DEP001 ADDWPT 16.029272,108.203047 0 5.0
+00:00:00.00>DEP001 ADDWPT 16.029181,108.202508 0 5.0
+00:00:00.00>DEP001 ADDWPT 16.0292,108.2025 0 0.0
+00:00:00.00>DEP001 ADDWPT 16.030000,108.202000 0 5.0
+00:00:00.00>DEP001 LNAV ON
+00:00:00.00>DEP001 VNAV ON
+
+# QUAN TRỌNG: waypoint "16.030000,108.202000" ở trên chỉ là điểm "mồi" (dummy)
+# KHÔNG BAO GIỜ được bay tới — nó tồn tại chỉ để điểm dừng chờ (16.0292,108.2025)
+# KHÔNG PHẢI là waypoint cuối cùng của route. Lý do: autopilot.py của BlueSky
+# tự động XOÁ tàu bay ngay khi nó "đến" waypoint cuối cùng trong route (coi đó
+# là đã tới đích) — nếu để 16.0292,108.2025 là waypoint cuối, DEP001 sẽ BIẾN
+# MẤT ngay khi line-up! Việc dừng thật + giữ nguyên vị trí do ATDIST+MOVE dưới
+# đây đảm nhiệm, không phải do route tự dừng.
+00:00:00.00>DEP001 ATDIST 16.029200,108.202500,0.01 PCALL _KB5v2_STOP_DEP001_RWYHOLD
+
+# SỬA THEO PHẢN HỒI: ARR001 từng cắt 35R quá sớm (chỉ dựa vào "vượt qua điểm
+# ngang G4" trong khi DEP001 vẫn đang chạy đà tốc độ cao gần đó). Đổi sang
+# CÙNG quy tắc với ARR002/DEP002: chờ DEP001 bay HẾT toàn bộ chiều dài đường
+# CHC 35R (bán kính 0.15NM quanh điểm gần đầu 17L). Sự kiện này đồng thời cho
+# phép DEP002 lăn vào đường CHC 35R (mục 2.2) — gộp 2 việc vào 1 trigger.
+00:00:00.00>DEP001 ATDIST 16.0604,108.1980,0.15 PCALL _KB5v2_DEP001_RUNWAY_CLEARED
+
+# ================================================================
+# PHẦN 2 – DEP002: lăn ra từ Gate 27 (16.052259,108.202091) → PRE_HOLD
+# ================================================================
+00:02:30.00>CRE DEP002,A333,16.052259,108.202091,80.9,0,15
+# DEP002 = A333 (Airbus A330-300, heavy)
+00:02:30.00>DEP002 ADDWPT 16.051764,108.200781 0 10.0
+00:02:30.00>DEP002 ADDWPT 16.051560,108.200776 0 15.0
+00:02:30.00>DEP002 ADDWPT 16.051307,108.200786 0 15.0
+00:02:30.00>DEP002 ADDWPT 16.049490,108.200986 0 15.0
+00:02:30.00>DEP002 ADDWPT 16.049218,108.201025 0 12.0
+00:02:30.00>DEP002 ADDWPT 16.044100,108.201789 0 18.0
+00:02:30.00>DEP002 ADDWPT 16.038291,108.202625 0 18.0
+00:02:30.00>DEP002 ADDWPT 16.030836,108.203677 0 15.0
+00:02:30.00>DEP002 ADDWPT 16.029967,108.203803 0 10.0
+00:02:30.00>DEP002 ADDWPT 16.029680,108.203824 0 8.0
+00:02:30.00>DEP002 ADDWPT 16.029490,108.203744 0 6.0
+00:02:30.00>DEP002 ADDWPT 16.029355,108.203538 0 5.0
+00:02:30.00>DEP002 ADDWPT 16.029259,108.203066 0 0.0
+00:02:30.00>DEP002 ADDWPT 16.029000,108.202800 0 5.0
+00:02:30.00>DEP002 LNAV ON
+00:02:30.00>DEP002 VNAV ON
+
+# "16.029000,108.202800" là waypoint mồi — không bao giờ bay tới, chỉ để
+# PRE_HOLD (16.029259,108.203066) không phải là waypoint cuối route (tránh bug
+# tự xoá tàu bay khi "đến" waypoint cuối — xem giải thích ở PHẦN 1).
+00:02:30.00>DEP002 ATDIST 16.029259,108.203066,0.01 PCALL _KB5v2_STOP_DEP002_PREHOLD
+
+# Cho phép ARR002 cắt 35R chỉ sau khi DEP002 đã bay HẾT chiều dài đường CHC
+# 35R (tới gần đầu 17L, bán kính 0.15NM do DEP002 đã rời đất, cần dung sai lớn hơn)
+00:02:30.00>DEP002 ATDIST 16.0604,108.1980,0.15 PCALL _KB5v2_ARR002_CROSS
+
+# ================================================================
+# PHẦN 3 – ARR001: DOTEN → STAR → IAP ILS V 35L → chạm 35L → thoát G4
+# ================================================================
+00:00:00.00>CRE ARR001,A320,15.767222,108.118333,173,9000,250
+# ARR001 = A320 (medium) — qua DOTEN ở FL090 theo yêu cầu
+00:00:00.00>ARR001 ADDWPT 15.601667,108.142222 7150 230
+00:00:00.00>ARR001 ADDWPT 15.618056,108.262500 5840 220
+00:00:00.00>ARR001 ADDWPT 15.700556,108.250000 4921 210
+00:00:00.00>ARR001 ADDWPT 15.788333,108.237500 4429 200
+00:00:00.00>ARR001 ADDWPT 15.873556,108.223083 2592 170
+00:00:00.00>ARR001 ADDWPT 15.947115,108.212410 1611 155
+00:00:00.00>ARR001 ADDWPT 15.957222,108.210944 1476 150
+00:00:00.00>ARR001 ADDWPT 16.030133,108.200372 0 140
+00:00:00.00>ARR001 ADDWPT 16.034580,108.199721 0 122
+00:00:00.00>ARR001 ADDWPT 16.039028,108.199071 0 102
+00:00:00.00>ARR001 ADDWPT 16.043475,108.198420 0 75
+00:00:00.00>ARR001 ADDWPT 16.046143,108.198030 0 54
+00:00:00.00>ARR001 ADDWPT 16.047922,108.197769 0 32
+00:00:00.00>ARR001 ADDWPT 16.048687,108.197658 0 15
+00:00:00.00>ARR001 ADDWPT 16.048950,108.198100 0 8
+00:00:00.00>ARR001 ADDWPT 16.0489,108.1986 0 0
+00:00:00.00>ARR001 ADDWPT 16.0489,108.2000 0 8
+00:00:00.00>ARR001 LNAV ON
+00:00:00.00>ARR001 VNAV ON
+
+# "16.0489,108.2000" là waypoint mồi — không bao giờ bay tới, chỉ để điểm dừng
+# chờ trước G4 (16.0489,108.1986) không phải waypoint cuối route (tránh bug tự
+# xoá tàu bay khi "đến" waypoint cuối).
+00:00:00.00>ARR001 ATDIST 16.0489,108.1986,0.015 PCALL _KB5v2_STOP_ARR001_G4
+
+# Trigger: chạm đất 35L (ALT=0) -> 30s sau, PCALL cho DEP001 chạy đà
+00:00:00.00>ARR001 ATALT 0 PCALL _KB5v2_DEP001_ROLL
+
+# ================================================================
+# PHẦN 4 – ARR002: giống ARR001, vào sau 3 phút, thoát ly khu vực G6
+# ================================================================
+00:03:00.00>CRE ARR002,B772,15.767222,108.118333,173,11000,250
+# ARR002 = B772 (Boeing 777-200, heavy) — qua DOTEN ở FL110 theo yêu cầu
+00:03:00.00>ARR002 ADDWPT 15.601667,108.142222 8240 230
+00:03:00.00>ARR002 ADDWPT 15.618056,108.262500 6300 220
+00:03:00.00>ARR002 ADDWPT 15.700556,108.250000 4921 210
+00:03:00.00>ARR002 ADDWPT 15.788333,108.237500 4429 200
+00:03:00.00>ARR002 ADDWPT 15.873556,108.223083 2592 180
+00:03:00.00>ARR002 ADDWPT 15.947115,108.212410 1611 160
+00:03:00.00>ARR002 ADDWPT 15.957222,108.210944 1476 155
+00:03:00.00>ARR002 ADDWPT 16.030133,108.200372 0 140
+00:03:00.00>ARR002 ADDWPT 16.034580,108.199721 0 128
+00:03:00.00>ARR002 ADDWPT 16.039028,108.199071 0 115
+00:03:00.00>ARR002 ADDWPT 16.043475,108.198420 0 100
+00:03:00.00>ARR002 ADDWPT 16.047922,108.197769 0 83
+00:03:00.00>ARR002 ADDWPT 16.052370,108.197119 0 61
+00:03:00.00>ARR002 ADDWPT 16.055927,108.196598 0 34
+00:03:00.00>ARR002 ADDWPT 16.057199,108.196412 0 15
+00:03:00.00>ARR002 ADDWPT 16.057250,108.196800 0 8
+00:03:00.00>ARR002 ADDWPT 16.0572,108.1974 0 0
+00:03:00.00>ARR002 ADDWPT 16.0572,108.1988 0 8
+00:03:00.00>ARR002 LNAV ON
+00:03:00.00>ARR002 VNAV ON
+
+# "16.0572,108.1988" là waypoint mồi — không bao giờ bay tới, chỉ để điểm dừng
+# chờ trước G6 (16.0572,108.1974) không phải waypoint cuối route.
+00:03:00.00>ARR002 ATDIST 16.0572,108.1974,0.015 PCALL _KB5v2_STOP_ARR002_G6
+
+# Trigger: chạm đất 35L (ALT=0) -> 30s sau, PCALL cho DEP002 chạy đà
+00:03:00.00>ARR002 ATALT 0 PCALL _KB5v2_DEP002_ROLL

@@ -1,0 +1,27 @@
+# Internal helper -- NOT meant to be run standalone via IC.
+# PCALLed by VVDN_35L35R_COORDINATED_OPS.scn the instant the PRECEDING
+# departure begins its takeoff roll (VDN701 clears the way for VDN702,
+# VDN702 clears the way for VDN703) -- VDN702 enters RWY 35R from its
+# pre-crossing taxiway hold and taxis to the real lineup point
+# 16.0297,108.2024 (user-specified, ~33m from the previously-used
+# 16.030000,108.202400) and stops there to await its own touchdown+30s
+# takeoff-roll trigger. VDN701 itself is NOT gated (first departure,
+# taxis straight through from pushback -- see the main file).
+# Waits an extra 8s (pinned at its pre-crossing hold position) before
+# starting to move -- the 100m minimum-separation safety margin, see the
+# ENTRY_SAFETY_DELAY note in this scenario's build.
+
+00:00:08.00>MOVE VDN702,16.029600,108.203620,0,240,14.0
+00:00:11.46>MOVE VDN702,16.029500,108.203440,0,240,13.0
+00:00:14.91>MOVE VDN702,16.029400,108.203260,0,240,12.0
+00:00:18.37>MOVE VDN702,16.029300,108.203080,0,240,11.0
+00:00:21.82>MOVE VDN702,16.029200,108.202900,0,240,10.0
+00:00:26.32>MOVE VDN702,16.029350,108.202750,0,316,10.0
+00:00:30.82>MOVE VDN702,16.029500,108.202600,0,316,10.0
+00:00:34.13>MOVE VDN702,16.029571,108.202571,0,352,8.6
+00:00:37.43>MOVE VDN702,16.029643,108.202543,0,352,7.1
+00:00:40.74>MOVE VDN702,16.029714,108.202514,0,352,5.7
+00:00:44.05>MOVE VDN702,16.029786,108.202486,0,352,4.3
+00:00:47.36>MOVE VDN702,16.029557,108.202457,0,352,4.0
+00:00:50.67>MOVE VDN702,16.029629,108.202429,0,352,4.0
+00:00:53.98>MOVE VDN702,16.029700,108.202400,0,352,0.0

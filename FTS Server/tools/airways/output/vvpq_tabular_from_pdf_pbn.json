@@ -1,0 +1,367 @@
+{
+  "_source": "vietnam_ats_routes_pack/Dữ liệu PTB + code/PTB QLBMN/PQ/2026.08.06 Dự thảo PD2 QĐ PTB PBN tại sân bay PQ.pdf, đọc bằng mắt qua ảnh render (pypdfium2)",
+  "_note": "Draft 2026.08.06. PQ có CHC song song thật: 10L/10R chia sẻ chung initial climb + từ PQ600 trở đi route giống hệt nhau (chỉ threshold khác); tương tự 28L/28R qua PQ900. Khớp với kết luận trước đó rằng cần mở rộng AirportProcedures hỗ trợ nhiều CHC độc lập ở Phase 4.",
+  "waypoints": {
+    "NUMDI": {"lat": "10°26'43.0\"N", "lon": "103°46'35.0\"E"},
+    "OSOTA": {"lat": "10°33'07.0\"N", "lon": "104°15'49.0\"E"},
+    "RG": {"lat": "09°57'34.0\"N", "lon": "105°07'59.0\"E"},
+    "ADBOP": {"lat": "08°30'00.0\"N", "lon": "104°05'00.0\"E"},
+    "VILIT": {"lat": "09°47'46.0\"N", "lon": "104°54'53.0\"E"},
+    "SAMIX": {"lat": "09°52'12.0\"N", "lon": "104°31'27.0\"E"},
+    "DOVTA": {"lat": "09°36'50.2\"N", "lon": "104°16'44.9\"E"},
+    "VIBIL": {"lat": "09°20'06.9\"N", "lon": "104°03'40.0\"E"},
+    "BUVSU": {"lat": "09°48'45.7\"N", "lon": "103°50'54.5\"E"},
+    "MEBMI": {"lat": "09°36'52.1\"N", "lon": "103°53'12.0\"E"},
+    "PQ600": {"lat": "10°09'10.2\"N", "lon": "104°09'51.8\"E"},
+    "PQ601": {"lat": "10°18'13.3\"N", "lon": "104°12'06.7\"E"},
+    "PQ602": {"lat": "10°22'08.4\"N", "lon": "104°00'21.1\"E"},
+    "PQ603": {"lat": "10°23'31.2\"N", "lon": "103°56'12.3\"E"},
+    "PQ620": {"lat": "09°54'58.0\"N", "lon": "104°16'45.0\"E"},
+    "PQ900": {"lat": "10°11'12.0\"N", "lon": "103°49'21.6\"E"},
+    "PQ901": {"lat": "10°20'50.1\"N", "lon": "103°47'38.2\"E"},
+    "PQ902": {"lat": "10°25'05.0\"N", "lon": "103°57'22.3\"E"},
+    "PQ903": {"lat": "10°29'07.2\"N", "lon": "104°06'37.9\"E"},
+    "PQ920": {"lat": "10°06'12.1\"N", "lon": "103°48'51.5\"E"},
+    "PQ921": {"lat": "10°01'50.6\"N", "lon": "104°02'09.2\"E"},
+    "PQ922": {"lat": "09°59'43.2\"N", "lon": "104°08'37.0\"E"},
+    "PQ930": {"lat": "09°57'03.0\"N", "lon": "103°49'18.6\"E"},
+    "PQ931": {"lat": "09°55'41.3\"N", "lon": "104°01'13.4\"E"},
+    "PQ932": {"lat": "09°54'41.2\"N", "lon": "104°09'56.5\"E"},
+    "GUKNU": {"lat": "10°17'50.3\"N", "lon": "103°49'08.7\"E", "_note": "IAF"},
+    "LASOV": {"lat": "10°05'07.5\"N", "lon": "103°47'52.0\"E", "_note": "IAF"},
+    "MEKAV": {"lat": "10°18'10.8\"N", "lon": "104°00'23.4\"E", "_note": "IAF"},
+    "OMGUM": {"lat": "10°14'12.2\"N", "lon": "104°12'17.7\"E", "_note": "IAF"},
+    "BOTGO": {"lat": "10°04'27.9\"N", "lon": "104°13'09.7\"E", "_note": "IAF"},
+    "TIHAN": {"lat": "10°06'24.0\"N", "lon": "104°21'09.0\"E", "_note": "IAF"},
+    "TUNPO": {"lat": "10°03'44.0\"N", "lon": "104°35'22.0\"E"},
+    "PQ400": {"lat": "10°10'41.6\"N", "lon": "103°56'29.0\"E", "_note": "MAPT RWY10L"},
+    "PQ402": {"lat": "10°11'04.4\"N", "lon": "103°52'39.6\"E", "_note": "FAF RWY10L"},
+    "PQ404": {"lat": "10°11'28.9\"N", "lon": "103°48'30.3\"E", "_note": "IF RWY10L"},
+    "PQ410": {"lat": "10°09'32.4\"N", "lon": "104°08'06.6\"E"},
+    "PQ411": {"lat": "10°15'53.8\"N", "lon": "104°08'45.4\"E"},
+    "RW10L": {"lat": "10°10'27.95\"N", "lon": "103°58'47.24\"E"},
+    "PQ401": {"lat": "10°10'30.6\"N", "lon": "103°56'21.3\"E", "_note": "MAPT RWY10R"},
+    "PQ413": {"lat": "10°10'52.9\"N", "lon": "103°52'37.8\"E", "_note": "FAF RWY10R"},
+    "PQ405": {"lat": "10°11'17.2\"N", "lon": "103°48'29.1\"E", "_note": "IF RWY10R"},
+    "RW10R": {"lat": "10°10'16.28\"N", "lon": "103°58'46.07\"E"},
+    "PQ710": {"lat": "10°11'26.0\"N", "lon": "103°48'58.9\"E"},
+    "PQ711": {"lat": "10°17'47.5\"N", "lon": "103°49'37.2\"E"},
+    "PQ712": {"lat": "10°09'30.2\"N", "lon": "104°06'30.5\"E", "_note": "FAF RWY28L"},
+    "PQ704": {"lat": "10°09'01.4\"N", "lon": "104°11'19.8\"E", "_note": "IF RWY28L"},
+    "RW28L": {"lat": "10°10'06.57\"N", "lon": "104°00'24.14\"E"},
+    "PQ703": {"lat": "10°09'41.1\"N", "lon": "104°06'40.7\"E", "_note": "FAF RWY28R"},
+    "PQ705": {"lat": "10°09'12.9\"N", "lon": "104°11'22.0\"E", "_note": "IF RWY28R"},
+    "RW28R": {"lat": "10°10'17.26\"N", "lon": "104°00'35.12\"E"},
+    "IQU_LLZ": {"lat": "10°10'29.0\"N", "lon": "103°58'36.8\"E", "_freq": "109.5"},
+    "IQU_GP_DME": {"lat": "10°10'22.1\"N", "lon": "104°00'24.7\"E", "_freq": "332.6 CH32X"}
+  },
+  "SID": {
+    "NUMDI 3D / OSOTA 3D / RG 3D / ADBOP 3D": {
+      "runway": "10L/R",
+      "_note": "RWY10L và RWY10R dùng chung toàn bộ route từ PQ600 trở đi -- initial climb khác nhau chỉ ở CA course (giống hệt 096 cho cả 2)",
+      "NUMDI_3D": {
+        "legs": [
+          {"serial": "010", "path": "CA", "course_mag": 96, "course_true": 96.2, "alt_ft": "+500", "min_cg_pct": 4.5, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "PQ600", "min_cg_pct": 4.5, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "PQ601", "course_mag": 14, "course_true": 13.8, "dist_nm": 9.28, "alt_ft": "+5000", "min_cg_pct": 4.5, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "PQ602", "course_mag": 289, "course_true": 288.6, "dist_nm": 12.23, "alt_ft": "-8000", "min_cg_pct": 4.0, "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "PQ603", "course_mag": 289, "course_true": 288.6, "dist_nm": 4.31, "alt_ft": "+9000", "min_cg_pct": 4.0, "nav_spec": "RNP 1"},
+          {"serial": "060", "path": "TF", "waypoint": "NUMDI", "course_mag": 289, "course_true": 288.6, "dist_nm": 10.00, "nav_spec": "RNP 1"}
+        ]
+      },
+      "OSOTA_3D": {
+        "legs": [
+          {"serial": "010", "path": "CA", "course_mag": 96, "course_true": 96.2, "alt_ft": "+500", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "PQ600", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "OSOTA", "course_mag": 14, "course_true": 13.8, "dist_nm": 24.55, "alt_ft": "-8000/+6000", "nav_spec": "RNP 1"}
+        ]
+      },
+      "RG_3D": {
+        "legs": [
+          {"serial": "010", "path": "CA", "course_mag": 96, "course_true": 96.2, "alt_ft": "+500", "min_cg_pct": 4.7, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "PQ600", "min_cg_pct": 4.7, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "PQ620", "course_mag": 154, "course_true": 154.3, "dist_nm": 15.69, "alt_ft": "+7000", "min_cg_pct": 4.7, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "SAMIX", "course_mag": 101, "course_true": 100.7, "dist_nm": 14.77, "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "VILIT", "course_mag": 101, "course_true": 100.8, "dist_nm": 23.55, "nav_spec": "RNP 1"},
+          {"serial": "060", "path": "TF", "waypoint": "RG", "course_mag": 53, "course_true": 53.0, "dist_nm": 16.20, "nav_spec": "RNP 1"}
+        ]
+      },
+      "ADBOP_3D": {
+        "legs": [
+          {"serial": "010", "path": "CA", "course_mag": 96, "course_true": 96.2, "alt_ft": "+500", "min_cg_pct": 4.7, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "PQ600", "min_cg_pct": 4.7, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "PQ620", "course_mag": 154, "course_true": 154.3, "dist_nm": 15.69, "alt_ft": "+7000", "min_cg_pct": 4.7, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "PIKUD", "course_mag": 180, "course_true": 180.0, "dist_nm": 6.21, "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "DOVTA", "course_mag": 180, "course_true": 180.0, "dist_nm": 11.84, "nav_spec": "RNP 1"},
+          {"serial": "060", "path": "TF", "waypoint": "VIBIL", "course_mag": 218, "course_true": 217.9, "dist_nm": 21.07, "alt_ft": "+FL135", "nav_spec": "RNP 1"},
+          {"serial": "070", "path": "TF", "waypoint": "ADBOP", "course_mag": 178, "course_true": 178.5, "dist_nm": 49.90, "nav_spec": "RNP 1"}
+        ]
+      }
+    },
+    "NUMDI 3E / OSOTA 3E / RG 3E / RG 3F / ADBOP 3E": {
+      "runway": "28L/R",
+      "NUMDI_3E": {
+        "legs": [
+          {"serial": "010", "path": "CA", "course_mag": 276, "course_true": 275.7, "alt_ft": "+500", "min_cg_pct": 5.5, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "PQ900", "min_cg_pct": 5.5, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "NUMDI", "course_mag": 350, "course_true": 350.0, "dist_nm": 15.69, "alt_ft": "+8000", "min_cg_pct": 5.5, "nav_spec": "RNP 1"}
+        ]
+      },
+      "OSOTA_3E": {
+        "legs": [
+          {"serial": "010", "path": "CA", "course_mag": 276, "course_true": 275.7, "alt_ft": "+500", "min_cg_pct": 6.3, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "PQ900", "min_cg_pct": 6.3, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "PQ901", "course_mag": 350, "course_true": 350.0, "dist_nm": 9.74, "alt_ft": "+7000", "min_cg_pct": 6.3, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "PQ902", "course_mag": 66, "course_true": 66.2, "dist_nm": 10.48, "alt_ft": "-FL100", "min_cg_pct": 4.1, "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "PQ903", "course_mag": 66, "course_true": 66.2, "dist_nm": 9.97, "alt_ft": "+FL120", "min_cg_pct": 4.1, "nav_spec": "RNP 1"},
+          {"serial": "060", "path": "TF", "waypoint": "OSOTA", "course_mag": 66, "course_true": 66.3, "dist_nm": 9.88, "nav_spec": "RNP 1"}
+        ]
+      },
+      "RG_3E": {
+        "legs": [
+          {"serial": "010", "path": "CA", "course_mag": 276, "course_true": 275.7, "alt_ft": "+500", "min_cg_pct": 4.9, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "PQ900", "min_cg_pct": 4.9, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "PQ920", "course_mag": 186, "course_true": 185.7, "dist_nm": 5.00, "speed_kt": "-230", "min_cg_pct": 4.9, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "PQ921", "course_mag": 108, "course_true": 108.3, "dist_nm": 13.81, "alt_ft": "+7000", "min_cg_pct": 4.9, "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "PQ922", "course_mag": 108, "course_true": 108.3, "dist_nm": 6.72, "alt_ft": "+9000", "min_cg_pct": 4.9, "nav_spec": "RNP 1"},
+          {"serial": "060", "path": "TF", "waypoint": "SAMIX", "course_mag": 108, "course_true": 108.3, "dist_nm": 23.74, "nav_spec": "RNP 1"},
+          {"serial": "070", "path": "TF", "waypoint": "VILIT", "course_mag": 101, "course_true": 100.8, "dist_nm": 23.55, "nav_spec": null},
+          {"serial": "080", "path": "TF", "waypoint": "RG", "course_mag": 53, "course_true": 53.0, "dist_nm": 16.20, "nav_spec": null}
+        ]
+      },
+      "RG_3F": {
+        "legs": [
+          {"serial": "010", "path": "CA", "course_mag": 276, "course_true": 275.7, "alt_ft": "+500", "min_cg_pct": 3.8, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "PQ900", "min_cg_pct": 3.8, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "PQ920", "course_mag": 186, "course_true": 185.7, "dist_nm": 5.00, "speed_kt": "-230", "min_cg_pct": 3.8, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "PQ930", "course_mag": 177, "course_true": 177.2, "dist_nm": 9.12, "min_cg_pct": 3.8, "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "PQ931", "course_mag": 97, "course_true": 96.6, "dist_nm": 11.83, "alt_ft": "+7000", "min_cg_pct": 3.8, "nav_spec": "RNP 1"},
+          {"serial": "060", "path": "TF", "waypoint": "PQ932", "course_mag": 97, "course_true": 96.6, "dist_nm": 8.66, "alt_ft": "+9000", "min_cg_pct": 3.8, "nav_spec": "RNP 1"},
+          {"serial": "070", "path": "TF", "waypoint": "SAMIX", "course_mag": 97, "course_true": 96.6, "dist_nm": 21.37, "nav_spec": "RNP 1"},
+          {"serial": "080", "path": "TF", "waypoint": "VILIT", "course_mag": 101, "course_true": 100.8, "dist_nm": 23.55, "nav_spec": "RNP 1"},
+          {"serial": "090", "path": "TF", "waypoint": "RG", "course_mag": 53, "course_true": 53.0, "dist_nm": 16.20, "nav_spec": "RNP 1"}
+        ]
+      },
+      "ADBOP_3E": {
+        "legs": [
+          {"serial": "010", "path": "CA", "course_mag": 276, "course_true": 275.7, "alt_ft": "+500", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "PQ900", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "PQ920", "course_mag": 186, "course_true": 185.7, "dist_nm": 5.00, "speed_kt": "-230", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "PQ930", "course_mag": 177, "course_true": 177.2, "dist_nm": 9.12, "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "BUVSU", "course_mag": 169, "course_true": 169.2, "dist_nm": 8.40, "nav_spec": "RNP 1"},
+          {"serial": "060", "path": "TF", "waypoint": "MEBMI", "course_mag": 169, "course_true": 169.2, "dist_nm": 12.05, "nav_spec": "RNP 1"},
+          {"serial": "070", "path": "TF", "waypoint": "VIBIL", "course_mag": 148, "course_true": 148.2, "dist_nm": 19.62, "alt_ft": "+FL135", "nav_spec": "RNP 1"},
+          {"serial": "080", "path": "TF", "waypoint": "ADBOP", "course_mag": 178, "course_true": 178.5, "dist_nm": 49.90, "nav_spec": "RNP 1"}
+        ]
+      }
+    }
+  },
+  "STAR": {
+    "NUMDI 3F / OSOTA 3F / TUNPO 3F / ADBOP 3F": {
+      "runway": "10L/R",
+      "NUMDI_3F": [
+        {"serial": "010", "path": "IF", "waypoint": "NUMDI", "alt_ft": "+8000", "speed_kt": "-230", "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "GUKNU", "course_mag": 164, "course_true": 164.1, "dist_nm": 9.19, "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP 1"}
+      ],
+      "OSOTA_3F": [
+        {"serial": "010", "path": "IF", "waypoint": "OSOTA", "alt_ft": "-FL110", "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "PQ500", "course_mag": 219, "course_true": 218.9, "dist_nm": 21.20, "alt_ft": "+9000", "speed_kt": "-230", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "GUKNU", "course_mag": 276, "course_true": 275.7, "dist_nm": 13.05, "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP 1"}
+      ],
+      "TUNPO_3F": [
+        {"serial": "010", "path": "IF", "waypoint": "TUNPO", "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "TIHAN", "course_mag": 281, "course_true": 280.7, "dist_nm": 14.27, "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "PQ500", "course_mag": 299, "course_true": 298.5, "dist_nm": 21.13, "alt_ft": "+9000", "speed_kt": "-230", "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "GUKNU", "course_mag": 276, "course_true": 275.7, "dist_nm": 13.05, "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP 1"}
+      ],
+      "ADBOP_3F": [
+        {"serial": "010", "path": "IF", "waypoint": "ADBOP", "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "VIBIL", "course_mag": 358, "course_true": 358.5, "dist_nm": 49.90, "alt_ft": "+FL135", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "MEBMI", "course_mag": 329, "course_true": 328.6, "dist_nm": 19.62, "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "BUVSU", "course_mag": 350, "course_true": 349.6, "dist_nm": 12.05, "speed_kt": "-230", "nav_spec": "RNP 1"},
+        {"serial": "050", "path": "TF", "waypoint": "LASOV", "course_mag": 350, "course_true": 349.6, "dist_nm": 16.56, "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP 1"}
+      ],
+      "holding": [
+        {"fix": "GUKNU", "inbound_course_mag": 186, "inbound_course_true": 185.7, "turn": "R", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+        {"fix": "LASOV", "inbound_course_mag": 6, "inbound_course_true": 5.7, "turn": "L", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"}
+      ]
+    },
+    "NUMDI 3G / OSOTA 3G / TUNPO 3G / ADBOP 3G": {
+      "runway": "28L/R",
+      "NUMDI_3G": [
+        {"serial": "010", "path": "IF", "waypoint": "NUMDI", "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "PQ800", "course_mag": 146, "course_true": 145.5, "dist_nm": 10.82, "alt_ft": "+FL110", "speed_kt": "-230", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "OMGUM", "course_mag": 100, "course_true": 100.4, "dist_nm": 19.55, "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP 1"}
+      ],
+      "OSOTA_3G": [
+        {"serial": "010", "path": "IF", "waypoint": "OSOTA", "alt_ft": "-FL110/+6000", "speed_kt": "-230", "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "OMGUM", "course_mag": 190, "course_true": 190.5, "dist_nm": 19.14, "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP 1"}
+      ],
+      "TUNPO_3G": [
+        {"serial": "010", "path": "IF", "waypoint": "TUNPO", "speed_kt": "-230", "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "TIHAN", "course_mag": 281, "course_true": 280.7, "dist_nm": 14.27, "alt_ft": "+7000", "speed_kt": "-200", "nav_spec": "RNP 1"}
+      ],
+      "ADBOP_3G": [
+        {"serial": "010", "path": "IF", "waypoint": "ADBOP", "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "VIBIL", "course_mag": 358, "course_true": 358.5, "dist_nm": 49.90, "alt_ft": "+FL135", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "DOVTA", "course_mag": 38, "course_true": 37.8, "dist_nm": 21.07, "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "PIKUD", "course_mag": 360, "course_true": 360.0, "dist_nm": 11.84, "alt_ft": "-8000", "nav_spec": "RNP 1"},
+        {"serial": "050", "path": "TF", "waypoint": "PQ620", "course_mag": 360, "course_true": 360.0, "dist_nm": 6.21, "speed_kt": "-230", "nav_spec": "RNP 1"},
+        {"serial": "060", "path": "TF", "waypoint": "BOTGO", "course_mag": 339, "course_true": 339.5, "dist_nm": 10.10, "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP 1"}
+      ],
+      "holding": [
+        {"fix": "OMGUM", "inbound_course_mag": 190, "inbound_course_true": 190.5, "turn": "L", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+        {"fix": "TIHAN", "inbound_course_mag": 286, "inbound_course_true": 286.2, "turn": "R", "alt_ft": "+7000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+        {"fix": "BOTGO", "inbound_course_mag": 339, "inbound_course_true": 339.5, "turn": "R", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"}
+      ]
+    }
+  },
+  "IAP": {
+    "RNP Z RWY10L": {
+      "initial_entries": [
+        [{"serial": "010", "path": "IF", "waypoint": "GUKNU", "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ404", "course_mag": 186, "course_true": 185.7, "dist_nm": 6.36, "alt_ft": "+2500", "nav_spec": "RNP APCH"}],
+        [{"serial": "010", "path": "IF", "waypoint": "LASOV", "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ404", "course_mag": 6, "course_true": 5.7, "dist_nm": 6.36, "alt_ft": "+2500", "nav_spec": "RNP APCH"}],
+        [{"serial": "010", "path": "IF", "waypoint": "MEKAV", "alt_ft": "+4000", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "GUKNU", "course_mag": 268, "course_true": 268.3, "dist_nm": 11.09, "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "030", "path": "TF", "waypoint": "PQ404", "course_mag": 186, "course_true": 185.7, "dist_nm": 6.36, "alt_ft": "+2500", "nav_spec": "RNP APCH"}]
+      ],
+      "final_and_missed": [
+        {"serial": "010", "path": "IF", "waypoint": "PQ404", "alt_ft": "+2500", "nav_spec": "RNP APCH"},
+        {"serial": "020", "path": "TF", "waypoint": "PQ402", "course_mag": 96, "course_true": 95.7, "dist_nm": 4.11, "alt_ft": "+2000", "nav_spec": "RNP APCH"},
+        {"serial": "030", "path": "TF", "waypoint": "PQ400 (MAPT)", "flyover": true, "course_mag": 96, "course_true": 95.7, "dist_nm": 3.80, "alt_ft": "@790", "vpa_tch": "-3.0/50", "nav_spec": "RNP APCH"},
+        {"serial": "050", "path": "CA", "course_mag": 96, "course_true": 95.7, "alt_ft": "+1500", "nav_spec": "RNP APCH"},
+        {"serial": "060", "path": "DF", "waypoint": "PQ410", "nav_spec": "RNP APCH"},
+        {"serial": "070", "path": "TF", "waypoint": "PQ411", "course_mag": 6, "course_true": 5.8, "dist_nm": 6.36, "speed_kt": "-210", "nav_spec": "RNP APCH"},
+        {"serial": "080", "path": "TF", "waypoint": "MEKAV", "course_mag": 285, "course_true": 285.4, "dist_nm": 8.56, "alt_ft": "@4000", "nav_spec": "RNP APCH"},
+        {"serial": "090", "path": "HM", "waypoint": "MEKAV", "course_mag": 186, "course_true": 186.2, "turn": "R", "alt_ft": "+4000", "speed_kt": "-210", "nav_spec": "RNP APCH"}
+      ],
+      "oca_h": {"LNAV_VNAV": 790, "LNAV_VNAV_h": 774, "LNAV": 790, "LNAV_h": 774},
+      "holding": [
+        {"fix": "GUKNU", "inbound_course_mag": 186, "turn": "R", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+        {"fix": "LASOV", "inbound_course_mag": 6, "turn": "L", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+        {"fix": "MEKAV", "inbound_course_mag": 186, "turn": "R", "alt_ft": "+4000", "speed_kt": "-210", "nav_spec": "RNP APCH"}
+      ]
+    },
+    "RNP Z RWY10R": {
+      "_note": "Gần như giống hệt RWY10L, chỉ khác MAPT/FAF/IF/threshold waypoint",
+      "initial_entries": [
+        [{"serial": "010", "path": "IF", "waypoint": "GUKNU", "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ405", "course_mag": 186, "course_true": 185.7, "dist_nm": 6.55, "alt_ft": "+2500", "nav_spec": "RNP APCH"}],
+        [{"serial": "010", "path": "IF", "waypoint": "LASOV", "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ405", "course_mag": 6, "course_true": 5.7, "dist_nm": 6.16, "alt_ft": "+2500", "nav_spec": "RNP APCH"}],
+        [{"serial": "010", "path": "IF", "waypoint": "MEKAV", "alt_ft": "+4000", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "GUKNU", "course_mag": 268, "course_true": 268.3, "dist_nm": 11.09, "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "030", "path": "TF", "waypoint": "PQ405", "course_mag": 186, "course_true": 185.7, "dist_nm": 6.55, "alt_ft": "+2500", "nav_spec": "RNP APCH"}]
+      ],
+      "final_and_missed": [
+        {"serial": "010", "path": "IF", "waypoint": "PQ405", "alt_ft": "+2500", "nav_spec": "RNP APCH"},
+        {"serial": "020", "path": "TF", "waypoint": "PQ413", "course_mag": 96, "course_true": 95.6, "dist_nm": 4.11, "alt_ft": "+2000", "nav_spec": "RNP APCH"},
+        {"serial": "030", "path": "TF", "waypoint": "PQ401 (MAPT)", "flyover": true, "course_mag": 96, "course_true": 95.7, "dist_nm": 3.69, "alt_ft": "@790", "vpa_tch": "-3.0/50", "nav_spec": "RNP APCH"},
+        {"serial": "050", "path": "CA", "course_mag": 96, "course_true": 95.7, "alt_ft": "+1500", "nav_spec": "RNP APCH"},
+        {"serial": "060", "path": "DF", "waypoint": "PQ410", "nav_spec": "RNP APCH"},
+        {"serial": "070", "path": "TF", "waypoint": "PQ411", "course_mag": 6, "course_true": 5.8, "dist_nm": 6.36, "speed_kt": "-210", "nav_spec": "RNP APCH"},
+        {"serial": "080", "path": "TF", "waypoint": "MEKAV", "course_mag": 285, "course_true": 285.4, "dist_nm": 8.56, "alt_ft": "@4000", "nav_spec": "RNP APCH"},
+        {"serial": "090", "path": "HM", "waypoint": "MEKAV", "course_mag": 186, "course_true": 186.2, "turn": "R", "alt_ft": "+4000", "speed_kt": "-210", "nav_spec": "RNP APCH"}
+      ],
+      "oca_h": {"LNAV_VNAV": 790, "LNAV_VNAV_h": 777, "LNAV": 790, "LNAV_h": 777},
+      "holding": [
+        {"fix": "GUKNU", "inbound_course_mag": 186, "turn": "R", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+        {"fix": "LASOV", "inbound_course_mag": 6, "turn": "L", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+        {"fix": "MEKAV", "inbound_course_mag": 186, "turn": "R", "alt_ft": "+4000", "speed_kt": "-210", "nav_spec": "RNP APCH"}
+      ]
+    },
+    "RNP Z RWY28L": {
+      "initial_entries": [
+        [{"serial": "010", "path": "IF", "waypoint": "TIHAN", "alt_ft": "+7000", "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ704", "course_mag": 285, "course_true": 285.1, "dist_nm": 10.03, "alt_ft": "+2500", "nav_spec": "RNP APCH"}],
+        [{"serial": "010", "path": "IF", "waypoint": "OMGUM", "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ704", "course_mag": 190, "course_true": 190.5, "dist_nm": 5.24, "alt_ft": "+2500", "nav_spec": "RNP APCH"}],
+        [{"serial": "010", "path": "IF", "waypoint": "BOTGO", "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ704", "course_mag": 338, "course_true": 338.3, "dist_nm": 4.88, "alt_ft": "+2500", "nav_spec": "RNP APCH"}],
+        [{"serial": "010", "path": "IF", "waypoint": "MEKAV", "alt_ft": "+4000", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "OMGUM", "course_mag": 109, "course_true": 108.6, "dist_nm": 12.39, "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "030", "path": "TF", "waypoint": "PQ704", "course_mag": 190, "course_true": 190.5, "dist_nm": 5.24, "alt_ft": "+2500", "nav_spec": "RNP APCH"}]
+      ],
+      "final_and_missed": [
+        {"serial": "010", "path": "IF", "waypoint": "PQ704", "alt_ft": "+2500", "nav_spec": "RNP APCH"},
+        {"serial": "020", "path": "TF", "waypoint": "PQ712", "course_mag": 276, "course_true": 275.7, "dist_nm": 4.78, "alt_ft": "+2000", "nav_spec": "RNP APCH"},
+        {"serial": "030", "path": "TF", "waypoint": "RW28L (MAPT)", "flyover": true, "course_mag": 276, "course_true": 275.7, "dist_nm": 6.05, "alt_ft": "@73", "vpa_tch": "-3.0/50", "nav_spec": "RNP APCH"},
+        {"serial": "050", "path": "CA", "course_mag": 276, "course_true": 275.7, "alt_ft": "+1500", "nav_spec": "RNP APCH"},
+        {"serial": "060", "path": "DF", "waypoint": "PQ710", "nav_spec": "RNP APCH"},
+        {"serial": "070", "path": "TF", "waypoint": "PQ711", "course_mag": 6, "course_true": 5.7, "dist_nm": 6.36, "speed_kt": "-210", "nav_spec": "RNP APCH"},
+        {"serial": "080", "path": "TF", "waypoint": "MEKAV", "course_mag": 88, "course_true": 87.9, "dist_nm": 10.62, "alt_ft": "@4000", "nav_spec": "RNP APCH"},
+        {"serial": "090", "path": "HM", "waypoint": "MEKAV", "course_mag": 186, "course_true": 186.2, "turn": "R", "alt_ft": "+4000", "speed_kt": "-210", "nav_spec": "RNP APCH"}
+      ],
+      "oca_h": {"LNAV_VNAV": 970, "LNAV_VNAV_h": 947, "LNAV": 1200, "LNAV_h": 1177},
+      "holding": [
+        {"fix": "TIHAN", "inbound_course_mag": 286, "turn": "R", "alt_ft": "+7000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+        {"fix": "OMGUM", "inbound_course_mag": 190, "turn": "L", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+        {"fix": "BOTGO", "inbound_course_mag": 339, "turn": "R", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+        {"fix": "MEKAV", "inbound_course_mag": 186, "turn": "R", "alt_ft": "+4000", "speed_kt": "-210", "nav_spec": "RNP APCH"}
+      ]
+    },
+    "RNP Z RWY28R": {
+      "_note": "Gần như giống hệt RWY28L, khác MAPT/FAF/IF",
+      "initial_entries": [
+        [{"serial": "010", "path": "IF", "waypoint": "TIHAN", "alt_ft": "+7000", "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ705", "course_mag": 286, "course_true": 286.2, "dist_nm": 10.05, "alt_ft": "+2500", "nav_spec": "RNP APCH"}],
+        [{"serial": "010", "path": "IF", "waypoint": "OMGUM", "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ705", "course_mag": 190, "course_true": 190.5, "dist_nm": 5.05, "alt_ft": "+2500", "nav_spec": "RNP APCH"}],
+        [{"serial": "010", "path": "IF", "waypoint": "BOTGO", "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ705", "course_mag": 339, "course_true": 339.5, "dist_nm": 5.05, "alt_ft": "+2500", "nav_spec": "RNP APCH"}],
+        [{"serial": "010", "path": "IF", "waypoint": "MEKAV", "alt_ft": "+4000", "nav_spec": "RNP APCH"},
+         {"serial": "020", "path": "TF", "waypoint": "OMGUM", "course_mag": 109, "course_true": 108.6, "dist_nm": 12.39, "speed_kt": "-200", "nav_spec": "RNP APCH"},
+         {"serial": "030", "path": "TF", "waypoint": "PQ705", "course_mag": 190, "course_true": 190.5, "dist_nm": 5.05, "alt_ft": "+2500", "nav_spec": "RNP APCH"}]
+      ],
+      "final_and_missed": [
+        {"serial": "010", "path": "IF", "waypoint": "PQ705", "alt_ft": "+2500", "nav_spec": "RNP APCH"},
+        {"serial": "020", "path": "TF", "waypoint": "PQ703", "course_mag": 276, "course_true": 275.8, "dist_nm": 4.63, "alt_ft": "+2000", "nav_spec": "RNP APCH"},
+        {"serial": "030", "path": "TF", "waypoint": "RW28R (MAPT)", "flyover": true, "course_mag": 276, "course_true": 275.7, "dist_nm": 6.05, "alt_ft": "@77", "vpa_tch": "-3.0/50", "nav_spec": "RNP APCH"},
+        {"serial": "040", "path": "CA", "course_mag": 276, "course_true": 275.7, "alt_ft": "+1500", "nav_spec": "RNP APCH"},
+        {"serial": "050", "path": "DF", "waypoint": "PQ710", "nav_spec": "RNP APCH"},
+        {"serial": "060", "path": "TF", "waypoint": "PQ711", "course_mag": 6, "course_true": 5.7, "dist_nm": 6.36, "speed_kt": "-210", "nav_spec": "RNP APCH"},
+        {"serial": "070", "path": "TF", "waypoint": "MEKAV", "course_mag": 88, "course_true": 87.9, "dist_nm": 10.62, "alt_ft": "@4000", "nav_spec": "RNP APCH"},
+        {"serial": "080", "path": "HM", "waypoint": "MEKAV", "course_mag": 186, "course_true": 186.2, "turn": "R", "alt_ft": "+4000", "speed_kt": "-210", "nav_spec": "RNP APCH"}
+      ],
+      "oca_h": {"LNAV_VNAV": 1020, "LNAV_VNAV_h": 993, "LNAV": 1200, "LNAV_h": 1173},
+      "holding": [
+        {"fix": "TIHAN", "inbound_course_mag": 286, "turn": "R", "alt_ft": "+7000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+        {"fix": "OMGUM", "inbound_course_mag": 190, "turn": "L", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+        {"fix": "BOTGO", "inbound_course_mag": 339, "turn": "R", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+        {"fix": "MEKAV", "inbound_course_mag": 186, "turn": "R", "alt_ft": "+4000", "speed_kt": "-210", "nav_spec": "RNP APCH"}
+      ]
+    },
+    "ILS Y RWY28R": {
+      "initial_approach_entries": [
+        [{"serial": "010", "path": "IF", "waypoint": "TIHAN", "alt_ft": "+7000", "speed_kt": "-200", "nav_spec": "RNP 1"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ705", "course_mag": 286, "course_true": 286.2, "dist_nm": 10.05, "alt_ft": "+2500", "nav_spec": "RNP 1"}],
+        [{"serial": "010", "path": "IF", "waypoint": "OMGUM", "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP 1"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ705", "course_mag": 190, "course_true": 190.5, "dist_nm": 5.05, "alt_ft": "+2500", "nav_spec": "RNP 1"}],
+        [{"serial": "010", "path": "IF", "waypoint": "BOTGO", "alt_ft": "+5000", "speed_kt": "-200", "nav_spec": "RNP 1"},
+         {"serial": "020", "path": "TF", "waypoint": "PQ705", "course_mag": 339, "course_true": 339.5, "dist_nm": 5.05, "alt_ft": "+2500", "nav_spec": "RNP 1"}],
+        [{"serial": "010", "path": "IF", "waypoint": "MEKAV", "alt_ft": "+4000", "nav_spec": "RNP 1"},
+         {"serial": "020", "path": "TF", "waypoint": "OMGUM", "course_mag": 109, "course_true": 108.6, "dist_nm": 12.39, "speed_kt": "-200", "nav_spec": "RNP 1"},
+         {"serial": "030", "path": "TF", "waypoint": "PQ705", "course_mag": 190, "course_true": 190.5, "dist_nm": 5.05, "alt_ft": "+2500", "nav_spec": "RNP 1"}]
+      ],
+      "missed_approach": [
+        {"serial": "010", "path": "CA", "course_mag": 276, "course_true": 275.7, "alt_ft": "+1500", "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "DF", "waypoint": "PQ710", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "PQ711", "course_mag": 6, "course_true": 5.7, "dist_nm": 6.36, "speed_kt": "-210", "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "MEKAV", "course_mag": 88, "course_true": 87.9, "dist_nm": 10.62, "alt_ft": "@4000", "nav_spec": "RNP 1"},
+        {"serial": "050", "path": "HM", "waypoint": "MEKAV", "course_mag": 186, "course_true": 186.2, "turn": "R", "alt_ft": "+4000", "speed_kt": "-210", "nav_spec": "RNP 1"}
+      ],
+      "faf_fap": {"waypoint": "PQ703", "brg_iqu": 95.69, "dist_iqu": 6.22},
+      "if_fix": {"waypoint": "PQ705", "brg_iqu": 95.71, "dist_iqu": 10.85},
+      "llz_freq": "109.5", "gp_freq": "332.6 CH32X", "rdh": 51, "glide_path": "3.0deg",
+      "oca_h": {"CAT1": 530, "CAT1_h": 503, "GP_INOP": 1200, "GP_INOP_h": 1173},
+      "holding": [
+        {"fix": "TIHAN", "inbound_course_mag": 286, "turn": "R", "alt_ft": "+7000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+        {"fix": "OMGUM", "inbound_course_mag": 190, "turn": "L", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+        {"fix": "BOTGO", "inbound_course_mag": 339, "turn": "R", "alt_ft": "+5000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+        {"fix": "MEKAV", "inbound_course_mag": 186, "turn": "R", "alt_ft": "+4000", "speed_kt": "-210", "nav_spec": "RNP 1"}
+      ]
+    }
+  }
+}

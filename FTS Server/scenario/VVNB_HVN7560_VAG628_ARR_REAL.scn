@@ -1,0 +1,128 @@
+# VVNB — 2 real Aireon/ASTERIX-derived arrivals, RWY 11L, both landing & taxiing to Gate 24 area.
+# Source: HVN7560 CR-NB.csv (Cam Ranh->Noi Bai, 2025-07-28) and VAG628 DN-NB.csv (Da Nang->Noi Bai, 2025-08-28).
+# These are two DIFFERENT real days/flights (no real-world simultaneity claim).
+#
+# TIMING NOTE / KNOWN CONFLICT RISK: VAG628 CRE is 3:00 after HVN7560's, at the user's explicit request
+# (originally 11:00 to fully respect the "never share a taxiway" rule; user asked for 2:30, was warned
+# this overlaps, then asked for 3:00 anyway). HVN7560 doesn't reach its gate until ~00:08:30 (est.), so
+# with VAG628 touching down ~00:06:30 and taxiing the same route to the same gate area, the two WILL
+# likely be on the shared taxiway at the same time around 00:06:30-00:08:30. This is a deliberate,
+# accepted risk for this run, not an oversight -- revert to a 9-11 min gap if that's not wanted anymore.
+# Ground speeds are read directly in kt (RESGVGroundSpeed once on ground); airborne AGV speed field is
+# in NM/s and converted x3600 to kt. The 10NM-1NM final leg for each is NOT in the source data (both
+# recordings start well after the real base/turn-in, so a straight-in synthetic leg is used instead,
+# same method as the VVDN scenario) -- built along the real RWY11L extended centerline
+# (thr 21.2252536,105.7925694, landing hdg 107) on a standard 3 deg glideslope (~318ft/NM).
+#
+# ROLLOUT FIX: the raw ADS-B fix just before each aircraft's right turn off the runway (VAG628's
+# 26kt point, HVN7560's 31kt point) sat close enough off the RWY11L centerline that the straight
+# segment leading into it cut across at a visible angle instead of continuing straight down the
+# runway. Both are now pinned to 21.2200,105.8110 (on-centerline) so the rollout stays straight
+# right up to the real turn point before turning right onto the taxiway.
+#
+# SPEED UNIT SAGA (final answer, see VVDN scenario header for the full story): values below are plain
+# physical knots, NOT divided. A prior edit divided by 1.94384 to fix the waypoint-label display, but
+# that made the AIRCRAFT ITSELF fly at real half-speed (confirmed unrealistic, ~90kt at 1600ft on a
+# VVDN approach) -- BlueSky's live flight dynamics track this file's SPD directly and correctly as
+# knots, so correct physics wins over a cosmetic per-waypoint label bug. The label bug (if present here
+# too) is a separate WebATM frontend issue, not something to compensate for in this file.
+#
+# WAYPOINT FIX (VAG628): removed the old "008" fix (21.220848,105.807978) -- after VAG628007
+# (21.221523,105.805618, kept as-is per real trajectory), the route now goes straight to the
+# on-centerline point 21.2200,105.8110, then turns right into what was already the next point
+# (21.220291,105.809758). Net effect: one point fewer between 007 and the turn.
+#
+# KNOWN ISSUE (not fixed, reverted): BlueSky auto-deletes any aircraft the instant it reaches the LAST
+# waypoint of its LNAV route (bluesky/traffic/autopilot.py ~line 168-175, unconditional -- ignores any
+# later DEL time in this file). Both arrivals here disappear right after reaching their gate rather
+# than at their scripted DEL time. Tried fixing this on the VVDN scenario (see that file's header for
+# the full story) with a dummy extra waypoint + "AT <lastwp> DO LNAV OFF" -- confirmed via live
+# telemetry that it does not reliably stop the aircraft and can even cause a runaway negative altitude.
+# Reverted as not worth the added risk for what's a cosmetic timing issue -- each aircraft still
+# correctly reaches and briefly sits at its gate before disappearing, just earlier than the scripted DEL.
+#
+# ---- HVN7560 arrival milestones (real trace, RWY11L, verified stop ~77m from real Gate 24) ----
+#  10:55:14  TOUCHDOWN     21.222420,105.802561  0ft   124kt  hdg107
+#  10:55:49  1st turn      21.220001,105.810063         9.5kt hdg149
+#  10:58:26  long straight 21.217090,105.803668        18kt  hdg287
+#  10:59:25  2nd turn zone 21.216834,105.800845         9.5kt hdg166
+#  11:00:40  STOP (Gate24) 21.216089,105.801112         0kt
+#
+# ---- VAG628 arrival milestones (real trace, RWY11L, verified stop ~87m from real Gate 24) ----
+#  03:17:09  TOUCHDOWN     21.222839,105.801137  0ft  124kt  hdg108
+#  03:17:50  1st turn      21.220291,105.809758        13.5kt hdg113
+#  03:20:40  long straight 21.216545,105.805406        15kt  hdg287
+#  03:22:02  2nd turn zone 21.216808,105.802247         5.5kt hdg194
+#  03:28:59  STOP (Gate24) 21.216648,105.802193         0kt
+
+00:00:00.00>TRAILS ON
+00:00:00.00>ASAS ON
+
+# ============ HVN7560 — ARRIVAL #1, 10NM final RWY11L, lands, taxi to gate ============
+00:00:00.00>CRE HVN7560 B738 21.273863 105.621645 107 3200 220.0
+00:00:00.00>HVN7560 ADDWPT 21.264155,105.655839 2600 200.0
+00:00:00.00>HVN7560 ADDWPT 21.249580,105.707121 1600 170.1
+00:00:00.00>HVN7560 ADDWPT 21.239855,105.741304 1000 150.1
+00:00:00.00>HVN7560 ADDWPT 21.230122,105.775482 350 140.0
+00:00:00.00>HVN7560 ADDWPT 21.222420,105.802561 0 124.0
+00:00:00.00>HVN7560 ADDWPT 21.220000,105.811000 0 30.9
+00:00:00.00>HVN7560 ADDWPT 21.220001,105.810063 0 9.5
+00:00:00.00>HVN7560 ADDWPT 21.219685,105.809987 0 8.0
+00:00:00.00>HVN7560 ADDWPT 21.219498,105.809763 0 5.4
+00:00:00.00>HVN7560 ADDWPT 21.219360,105.809466 0 8.9
+00:00:00.00>HVN7560 ADDWPT 21.219246,105.809001 0 11.5
+00:00:00.00>HVN7560 ADDWPT 21.219131,105.808490 0 13.0
+00:00:00.00>HVN7560 ADDWPT 21.219021,105.807953 0 14.0
+00:00:00.00>HVN7560 ADDWPT 21.218766,105.807406 0 13.4
+00:00:00.00>HVN7560 ADDWPT 21.218231,105.807203 0 12.4
+00:00:00.00>HVN7560 ADDWPT 21.217579,105.806986 0 9.5
+00:00:00.00>HVN7560 ADDWPT 21.216916,105.806770 0 11.1
+00:00:00.00>HVN7560 ADDWPT 21.216442,105.806580 0 9.9
+00:00:00.00>HVN7560 ADDWPT 21.216408,105.806043 0 11.5
+00:00:00.00>HVN7560 ADDWPT 21.216705,105.805044 0 15.0
+00:00:00.00>HVN7560 ADDWPT 21.217090,105.803668 0 18.1
+00:00:00.00>HVN7560 ADDWPT 21.217509,105.802231 0 16.9
+00:00:00.00>HVN7560 ADDWPT 21.217781,105.801299 0 11.5
+00:00:00.00>HVN7560 ADDWPT 21.217590,105.800959 0 9.9
+00:00:00.00>HVN7560 ADDWPT 21.217218,105.800845 0 9.9
+00:00:00.00>HVN7560 ADDWPT 21.216834,105.800845 0 9.5
+00:00:00.00>HVN7560 ADDWPT 21.216683,105.801252 0 8.0
+00:00:00.00>HVN7560 ADDWPT 21.216431,105.801261 0 6.4
+00:00:00.00>HVN7560 ADDWPT 21.216252,105.801175 0 3.5
+00:00:00.00>HVN7560 ADDWPT 21.216136,105.801137 0 1.6
+00:00:00.00>HVN7560 ADDWPT 21.216089,105.801112 0 0.0
+00:00:00.00>HVN7560 LNAV ON
+00:00:00.00>HVN7560 VNAV ON
+
+# ============ VAG628 — ARRIVAL #2, CRE 3:00 after HVN7560 (user-requested, overlap risk noted above) ============
+00:03:00.00>CRE VAG628 A321 21.273863 105.621645 107 3200 220.0
+00:03:00.00>VAG628 ADDWPT 21.264155,105.655839 2600 200.0
+00:03:00.00>VAG628 ADDWPT 21.249580,105.707121 1600 170.1
+00:03:00.00>VAG628 ADDWPT 21.239855,105.741304 1000 150.1
+00:03:00.00>VAG628 ADDWPT 21.230122,105.775482 350 140.0
+00:03:00.00>VAG628 ADDWPT 21.222839,105.801137 0 124.0
+00:03:00.00>VAG628 ADDWPT 21.221523,105.805618 0 77.9
+00:03:00.00>VAG628 ADDWPT 21.2200,105.8110 0 26.0
+00:03:00.00>VAG628 ADDWPT 21.220291,105.809758 0 13.4
+00:03:00.00>VAG628 ADDWPT 21.219697,105.810165 0 11.1
+00:03:00.00>VAG628 ADDWPT 21.219348,105.809657 0 10.5
+00:03:00.00>VAG628 ADDWPT 21.219109,105.808502 0 15.0
+00:03:00.00>VAG628 ADDWPT 21.218626,105.807355 0 14.0
+00:03:00.00>VAG628 ADDWPT 21.217998,105.807126 0 11.1
+00:03:00.00>VAG628 ADDWPT 21.217614,105.806999 0 0.6
+00:03:00.00>VAG628 ADDWPT 21.217415,105.806929 0 5.4
+00:03:00.00>VAG628 ADDWPT 21.217003,105.806792 0 3.5
+00:03:00.00>VAG628 ADDWPT 21.216566,105.806643 0 8.0
+00:03:00.00>VAG628 ADDWPT 21.216345,105.806262 0 10.5
+00:03:00.00>VAG628 ADDWPT 21.216545,105.805406 0 15.0
+00:03:00.00>VAG628 ADDWPT 21.216869,105.804278 0 10.5
+00:03:00.00>VAG628 ADDWPT 21.217197,105.803184 0 8.9
+00:03:00.00>VAG628 ADDWPT 21.217369,105.802510 0 7.0
+00:03:00.00>VAG628 ADDWPT 21.216808,105.802247 0 5.4
+00:03:00.00>VAG628 ADDWPT 21.216648,105.802205 0 1.0
+00:03:00.00>VAG628 ADDWPT 21.216648,105.802193 0 0.0
+00:03:00.00>VAG628 LNAV ON
+00:03:00.00>VAG628 VNAV ON
+
+00:15:00.00>DEL HVN7560
+00:24:00.00>DEL VAG628

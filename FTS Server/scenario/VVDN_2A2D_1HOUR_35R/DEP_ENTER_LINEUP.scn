@@ -1,0 +1,40 @@
+# DEP_ENTER_LINEUP.scn -- 10 giây SAU KHI tàu bay hạ cánh tương ứng vượt qua
+# đầu thềm đường CHC 35R, tàu bay cất cánh được phép lăn thật (LNAV, hiện
+# đúng tốc độ) từ điểm dừng chờ (PRE_HOLD) lên đường CHC, qua điểm
+# 16.029233,108.202824, RẼ PHẢI tới 16.029616,108.202452, tiếp tục thẳng
+# theo đúng hướng 352° thêm ~20m rồi dừng chờ tại đó, hướng mũi ĐÚNG 352°.
+#
+# SỬA LỖI (phát hiện qua headless test kịch bản 1 giờ nhiều cặp): bản trước
+# dùng lệnh HDG với độ trễ CỐ ĐỊNH 45s để xoay mũi sang 352° SAU KHI (ước
+# lượng) đã dừng hẳn tại 16.029616. Khi có nhiều tàu bay cùng lúc (SurfaceTaxi
+# có thể khiến tàu bay phải chờ/né nhau, làm trễ hơn dự kiến), HDG kích hoạt
+# TRƯỚC KHI tàu bay thực sự tới nơi -- HDG chuyển tàu bay sang chế độ giữ
+# hướng cố định (tự tắt LNAV, đúng chức năng), nhưng KHÔNG hề ép tốc độ, nên
+# tàu bay cứ trôi thẳng vô hạn theo hướng 352° mà không bao giờ dừng (đã
+# kiểm chứng: DEP005/DEP007 kẹt trôi 5kt vô hạn tại điểm chờ, không lên được
+# đường CHC).
+#
+# SỬA THEO CÁCH BỀN VỮNG HƠN: bỏ hẳn lệnh HDG cố định giờ -- thay vào đó
+# thêm 1 waypoint CUỐI (thật) nằm đúng theo hướng 352° cách 16.029616 ~20m
+# (16.029795,108.202426), để LNAV tự nhiên xoay mũi theo đúng hướng 352° khi
+# tới gần đó (turn anticipation), rồi TỰ DỪNG THẬT (không phụ thuộc mốc thời
+# gian nào) khi thực sự tới nơi -- an toàn tuyệt đối bất kể có bị trễ do
+# tránh tàu bay khác hay không. Điểm dừng lệch ~20m dọc đúng hướng CHC so
+# với toạ độ gốc người dùng cho (16.029616,108.202452) -- đánh đổi hợp lý để
+# đảm bảo hướng mũi luôn đúng 352° trong MỌI trường hợp thời gian thực tế.
+#
+# File này được gọi (PCALL) từ MỘT ATDIST Condition đăng ký sẵn trong kịch
+# bản chính -- DELRTE/ADDWPT/LNAV/VNAV/SPD không phải là Condition nên không
+# có rủi ro lồng Condition (chỉ ATDIST/ATALT/ATSPD mới có rủi ro đó). Việc
+# "chạy đà" (roll) hoàn toàn không phụ thuộc vào việc tàu bay có tới đúng
+# điểm dừng hay chưa -- nó được kích hoạt độc lập bởi ATDIST thoát ly (E4/E6)
+# cũng đăng ký trực tiếp ở kịch bản chính.
+#
+# Gọi: PCALL DEP_ENTER_LINEUP <acid>
+00:00:10.00>%0 DELRTE
+00:00:10.00>%0 ADDWPT 16.029233,108.202824 0 5.0
+00:00:10.00>%0 ADDWPT 16.029616,108.202452 0 3.0
+00:00:10.00>%0 ADDWPT 16.029795,108.202426 0 0.0
+00:00:10.00>LNAV %0 ON
+00:00:10.00>VNAV %0 ON
+00:00:10.00>SPD %0 5

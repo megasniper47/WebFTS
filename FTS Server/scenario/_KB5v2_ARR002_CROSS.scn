@@ -1,0 +1,22 @@
+# _KB5v2_ARR002_CROSS.scn
+# Được gọi bởi: "DEP002 ATDIST 16.0604,108.1980,0.15 PCALL _KB5v2_ARR002_CROSS"
+# (khi DEP002 đã bay hết chiều dài đường CHC 35R).
+# Người dùng chỉ cho "lăn thẳng hướng 82 độ về vị trí đỗ số 11" (không cho
+# waypoint trung gian cụ thể) — 3 điểm đầu do tôi tự nội suy theo đường thẳng
+# nối hold point (16.0572,108.1974) tới Gate 11 (16.057809,108.201338);
+# bearing tính được là 81.06°, khớp với "82°" người dùng nêu.
+#
+# QUAN TRỌNG: phải DELRTE xoá route cũ (còn trỏ tới waypoint mồi phía sau G6)
+# trước khi ADDWPT lại, nếu không tàu bay sẽ cố bay tới điểm mồi cũ trước.
+00:00:00.00>ARR002 DELRTE
+
+00:00:00.00>ARR002 ADDWPT 16.057402,108.198639 0 8.0
+00:00:00.00>ARR002 ADDWPT 16.057604,108.199978 0 12.0
+00:00:00.00>ARR002 ADDWPT 16.057809,108.201338 0 0.0
+00:00:00.00>ARR002 ADDWPT 16.057850,108.201800 0 5.0
+00:00:00.00>ARR002 LNAV ON
+00:00:00.00>ARR002 VNAV ON
+
+# "16.057850,108.201800" là waypoint mồi — không bao giờ bay tới, chỉ để
+# Gate 11 (16.057809,108.201338) không phải waypoint cuối route.
+00:00:00.00>ARR002 ATDIST 16.057809,108.201338,0.02 PCALL _KB5v2_STOP_ARR002_GATE11

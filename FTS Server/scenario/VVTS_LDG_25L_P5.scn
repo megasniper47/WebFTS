@@ -1,0 +1,36 @@
+# VVTS RWY 25R Landing Scenario
+# VNA401 (B738) - 5NM final 25R, land, vacate P5/S8, taxi to Stand 104
+#
+# Route:
+#   5NM FAF  25R : 10.856572, 106.747294  alt=1600ft  spd=145kt  hdg=249
+#   THR 25R      : 10.826676, 106.668000  alt=50ft    spd=100kt
+#   P5 on RWY    : 10.817729, 106.644300  ~2768m from THR, BADA rollout
+#   W4 mid       : 10.815769, 106.643132  vacate left, heading south (brg~210)
+#   S8 cross 25L : 10.813503, 106.643636  cross 07R/25L (brg~168)
+#   W7 south     : 10.812190, 106.645272  W7 taxiway SE (brg~129)
+#   Stand 104    : 10.811603, 106.650756  east to stand (brg~096)
+
+00:00:00.00>CRE VNA401 B738 10.856572 106.747294 249 1600 145
+
+# Cross 25R threshold at 50ft
+00:00:00.00>VNA401 ADDWPT 10.826676,106.668000 50 100
+
+# BADA rollout on 25R (hdg 249) to P5 vacate point
+00:00:00.00>VNA401 ADDWPT 10.817729,106.644300 0 30
+
+# Vacate left at P5, follow W4 south between runways
+00:00:00.00>VNA401 ADDWPT 10.815769,106.643132 0 15
+
+# Cross 07R/25L via S8 connector, pick up W7
+00:00:00.00>VNA401 ADDWPT 10.813503,106.643636 0 15
+
+# W7 taxiway southeast
+00:00:00.00>VNA401 ADDWPT 10.812190,106.645272 0 15
+
+# East to Stand 104
+00:00:00.00>VNA401 ADDWPT 10.811603,106.650756 0 10
+
+00:00:00.00>VNA401 LNAV ON
+00:00:00.00>VNA401 VNAV ON
+
+00:20:00.00>DEL VNA401

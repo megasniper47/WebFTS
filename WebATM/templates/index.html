@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VATM Fast-Time Simulation Platform</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+
+    <!-- Font awesome (vendored for offline support) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/fontawesome/css/all.min.css') }}" />
+
+    <!-- MapLibre GL CSS (vendored for offline support) -->
+    <link href="{{ url_for('static', filename='vendor/maplibre-gl/maplibre-gl.css') }}" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div id="react-root"></div>
+    <div class="main-container" id="legacy-simulation-container" style="display: none;">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button id="exit-sim-btn" class="control-btn" style="background-color: #d32f2f; color: white; margin-right: 15px; border-radius: 4px; font-weight: bold; padding: 0 12px; display: flex; align-items: center; gap: 6px; border: 1px solid #b71c1c;" title="Thoát Simulation và quay về Menu">
+                    <i class="fa-solid fa-arrow-left"></i> Thoát
+                </button>
+                <img src="{{ url_for('static', filename='vatm_logo.png') }}" alt="VATM Logo" style="height: 38px; margin-right: 10px; border-radius: 4px; border: 1px solid #404040; background-color: #ffffff; padding: 2px;">
+                <h1>VATM Fast-Time Simulation Platform</h1>
+                <div class="header-separator">|</div>
+                <div class="connection-statuses">
+                    <span id="bluesky-connection-status" class="status-waiting">Not Configured</span>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="airport-search-container">
+                    <i class="fa-solid fa-magnifying-glass airport-search-icon"></i>
+                    <input type="text" id="airport-search-input" class="airport-search-input" placeholder="Tìm sân bay (ICAO/IATA)..." autocomplete="off" maxlength="8">
+                </div>
+                <span id="airport-search-feedback" class="airport-search-feedback"></span>
+            </div>
+            <div class="header-right">
+                <div class="sim-info">
+                    <span id="sim-time">--:--:--</span>
+                    <span id="sim-rate">Rate: 1x</span>
+                </div>
+                <div class="header-separator">|</div>
+                <button id="play-btn" class="control-btn"><i class="fa-solid fa-play"></i></button>
+                <button id="play-pause-btn" class="control-btn"><i class="fa-solid fa-pause"></i></button>
+                <button id="reset-btn" class="control-btn"><i class="fa-solid fa-rotate-right"></i></button>
+                <select id="speed-select" class="speed-control">
+                    <option value="1" selected>1x</option>
+                    <option value="2">2x</option>
+                    <option value="4">4x</option>
+                    <option value="8">8x</option>
+                    <option value="16">16x</option>
+                    <option value="32">32x</option>
+                    <option value="64">64x</option>
+                </select>
+                <div class="header-separator">|</div>
+                <div class="dropdown-container">
+                    <button id="menu-dropdown-btn" class="control-btn dropdown-btn" title="Menu">☰</button>
+                    <div id="menu-dropdown" class="dropdown-menu" style="display: none;">
+                        <a href="#" id="upload-files-btn" class="dropdown-item">Upload Files</a>
+                        <a href="#" id="modify-settings-btn" class="dropdown-item">Modify settings.cfg</a>
+                        <a href="#" id="download-logs-btn" class="dropdown-item">Download Simulation Logs</a>
+                    </div>
+                </div>
+                <button id="reset-layout-btn" class="control-btn" title="Reset Panel Layout">📐</button>
+                <button id="settings-btn" class="control-btn" title="Settings">⚙️</button>
+            </div>
+        </header>
+
+        <!-- Main content area -->
+        <div class="content-area">
+            <!-- Left panel -->
+            <div class="left-panel">
+                <!-- Node selection -->
+                <div class="panel node-panel">
+                    <div class="panel-header">
+                        <h3>Simulation Nodes</h3>
+                        <button class="collapse-btn" data-target="simulation-nodes-content">▼</button>
+                    </div>
+                    <div class="panel-content" id="simulation-nodes-content">
+                        <div class="node-controls">
+                            <div class="node-info">
+                                <div>Total Nodes: <span id="total-nodes">0</span></div>
+                                <div>Server ID: <span id="active-node-display">None</span></div>
+                            </div>
+                            <div class="node-selector-container">
+                                <label for="node-selector">Select Node:</label>
+                                <select id="node-selector" disabled>
+                                    <option value="">No nodes available</option>
+                                </select>
+                            </div>
+                            <div class="node-actions">
+                                <button id="refresh-nodes" class="nav-btn">Refresh</button>
+                            </div>
+                            <div class="node-list" id="node-list">
+                                <!-- Node details will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map controls -->
+                <div class="panel nav-panel">
+                    <div class="panel-header">
+                        <h3>Map</h3>
+                        <button class="collapse-btn" data-target="map-view-content">▼</button>
+                    </div>
+                    <div class="panel-content" id="map-view-content">
+                        <div class="drawing-controls">
+                            <button id="create-aircraft-btn" class="nav-btn">Create Aircraft</button>
+                            <button id="draw-shape-btn" class="nav-btn">Draw Shape</button>
+                            <span class="draw-route-btn-wrapper">
+                                <button id="draw-route-btn" class="nav-btn disabled" disabled>Draw Route</button>
+                                <span class="draw-route-disabled-tooltip" role="tooltip">Please select an aircraft before adding a route</span>
+                            </span>
+                            <button id="range-bearing-btn" class="nav-btn" title="Measure Distance and Bearing (Shortcut: R)">Range & Bearing</button>
+                        </div>
+                        <div class="nav-controls" style="margin-top: 20px;">
+                            <button class="nav-btn" onclick="zoomIn()">Zoom In</button>
+                            <button class="nav-btn" onclick="zoomOut()">Zoom Out</button>
+                            <button class="nav-btn" onclick="resetView()">Reset View</button>
+                        </div>
+                        <div class="custom-map-controls" style="margin-top: 10px; display: flex; gap: 8px;">
+                            <button id="toggle-ats-routes-btn" class="nav-btn" style="flex: 1; display: none;"><i class="fa-solid fa-route"></i> Vietnam ATS Routes</button>
+                            <button id="toggle-fullscreen-btn" class="nav-btn" style="flex: 1;"><i class="fa-solid fa-expand"></i> Fullscreen Map</button>
+                        </div>
+
+                        <div class="map-info-toggle-control" style="margin-top: 8px;">
+                            <button id="map-info-toggle" class="nav-btn">Map Info ▼</button>
+                        </div>
+                        <div class="map-info-controls" id="map-info-controls" style="display: none;">
+                            <div class="zoom-info" style="margin-bottom: 12px;">
+                                <div style="margin-bottom: 4px; font-weight: bold;">Zoom Level:</div>
+                                <div>Current: <span id="current-zoom">1.0</span></div>
+                            </div>
+                            <div class="bbox-info">
+                                <div style="margin-bottom: 8px; font-weight: bold;">Bounding Box:</div>
+                                <div class="bbox-coordinates">
+                                    <div class="bbox-row">
+                                        <span>N: <span id="bbox-north">--</span>°</span>
+                                        <span>S: <span id="bbox-south">--</span>°</span>
+                                    </div>
+                                    <div class="bbox-row">
+                                        <span>E: <span id="bbox-east">--</span>°</span>
+                                        <span>W: <span id="bbox-west">--</span>°</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Display options -->
+                <div class="panel display-panel">
+                    <div class="panel-header">
+                        <h3>Display</h3>
+                        <button class="collapse-btn" data-target="display-content">▼</button>
+                    </div>
+                    <div class="panel-content" id="display-content">
+                        <div class="display-controls">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="show-aircraft" checked>
+                                Aircraft Icon
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="show-aircraft-labels" checked>
+                                Aircraft Labels
+                            </label>
+                            <label class="checkbox-label route-sub-option" id="show-aircraft-id-container">
+                                <input type="checkbox" id="show-aircraft-id" checked>
+                                Aircraft ID
+                            </label>
+                            <label class="checkbox-label route-sub-option" id="show-aircraft-speed-container">
+                                <input type="checkbox" id="show-aircraft-speed" checked>
+                                Aircraft Speed
+                            </label>
+                            <label class="checkbox-label route-sub-option" id="show-aircraft-altitude-container">
+                                <input type="checkbox" id="show-aircraft-altitude" checked>
+                                Aircraft Altitude
+                            </label>
+                            <label class="checkbox-label route-sub-option" id="show-aircraft-type-container">
+                                <input type="checkbox" id="show-aircraft-type" checked>
+                                Aircraft Type
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="show-aircraft-trails">
+                                Aircraft Trails
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="show-protected-zones">
+                                Protected Zones
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="show-routes" checked>
+                                Aircraft Routes
+                            </label>
+                            <label class="checkbox-label route-sub-option" id="show-route-lines-container">
+                                <input type="checkbox" id="show-route-lines" checked>
+                                Route Lines
+                            </label>
+                            <label class="checkbox-label route-sub-option" id="show-route-labels-container">
+                                <input type="checkbox" id="show-route-labels" checked>
+                                Route Labels
+                            </label>
+                            <label class="checkbox-label route-sub-option" id="show-route-points-container">
+                                <input type="checkbox" id="show-route-points" checked>
+                                Route Points
+                            </label>
+
+                            <!-- Aircraft Display Options -->
+                            <div class="aircraft-appearance-controls">
+                                <div class="unit-controls" style="margin-bottom: 8px;">
+                                    <label for="aircraft-shape-select">Aircraft Shape:</label>
+                                    <select id="aircraft-shape-select">
+                                        <option value="chevron" selected>Chevron</option>
+                                        <option value="drone">Drone</option>
+                                        <option value="triangle">Triangle</option>
+                                        <option value="aircraft">Aircraft</option>
+                                        <option value="aircraft3d">Aircraft (3D look)</option>
+                                    </select>
+                                </div>
+                                <div class="unit-controls" style="margin-bottom: 8px;">
+                                    <label for="aircraft-speed-type-select">Speed Type:</label>
+                                    <select id="aircraft-speed-type-select">
+                                        <option value="cas" selected>IAS (Indicated Airspeed)</option>
+                                        <option value="tas">TAS (True Airspeed)</option>
+                                        <option value="gs">GS (Ground Speed)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="size-controls-group">
+                                <div class="icon-size-control">
+                                    <label for="aircraft-icon-size">Aircraft Size:</label>
+                                    <input type="range" id="aircraft-icon-size" min="0.6" max="1.4" value="0.8"
+                                        step="0.1">
+                                    <span id="icon-size-value">0.8</span>x
+                                </div>
+                                <div class="icon-size-control">
+                                    <label for="map-labels-text-size">Map Labels Size:</label>
+                                    <input type="range" id="map-labels-text-size" min="8" max="20" value="12" step="1">
+                                    <span id="labels-size-value">12</span>px
+                                </div>
+                            </div>
+                            <!-- 3D Display Options Section (Pro Only) -->
+                            <div class="threeD-toggle-control">
+                                <button id="threeD-toggle" class="nav-btn">3D ▼</button>
+                            </div>
+                            <div class="threeD-controls" id="threeD-controls" style="display: none;">
+                                <div class="threeD-display-controls">
+                                    <div id="show-3d-overlay-container" class="checkbox-control" style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" id="show-3d-overlay">
+                                        <label for="show-3d-overlay">Show 3D aircraft</label>
+                                    </div>
+                                    <div id="aircraft-3d-auto-size-container" class="checkbox-control" style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" id="aircraft-3d-auto-size">
+                                        <label for="aircraft-3d-auto-size" title="Keep the 3D model's on-screen size constant at every zoom level, the same way the 2D icon behaves. Turn off to have it scale with true map distance/zoom instead.">Auto Size (constant, like 2D)</label>
+                                    </div>
+                                    <div id="aircraft-3d-scale-container" class="color-controls" style="display: none;">
+                                        <label for="aircraft-3d-scale">3D Aircraft Scale:</label>
+                                        <div>
+                                            <input type="text" id="aircraft-3d-scale" value="2.0" style="width: 60px;"
+                                                   placeholder="2.0" pattern="[0-9]*\.?[0-9]*" title="Enter positive number (e.g., 2.0)">
+                                            <span>x</span>
+                                        </div>
+                                    </div>
+                                    <div id="aircraft-model-container" class="unit-controls" style="display: none;">
+                                        <label for="aircraft-model-select">Aircraft Model:</label>
+                                        <select id="aircraft-model-select"></select>
+                                    </div>
+                                    <div id="show-4d-corridor-container" class="checkbox-control" style="margin-top: 8px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                                        <input type="checkbox" id="show-4d-corridor">
+                                        <label for="show-4d-corridor">Show 4D Corridor</label>
+                                    </div>
+                                    <button id="show-all-4d-trajectories-btn" class="nav-btn" style="width: 100%;" title="Show 4D trajectories (past + predicted) for every aircraft, not just the selected one(s)">
+                                        Show All 4D Trajectories
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="sizes-toggle-control">
+                                <button id="sizes-toggle" class="nav-btn">Text Sizes ▼</button>
+                            </div>
+                            <div class="sizes-controls" id="sizes-controls" style="display: none;">
+                                <div class="font-size-controls">
+                                    <label for="header-font-size">Header Size:</label>
+                                    <input type="range" id="header-font-size" min="14" max="32" value="20" step="1">
+                                    <span id="header-font-size-value">20</span>px
+                                </div>
+                                <div class="font-size-controls">
+                                    <label for="console-font-size">Console & Echo Size:</label>
+                                    <input type="range" id="console-font-size" min="8" max="20" value="11" step="1">
+                                    <span id="console-font-size-value">11</span>px
+                                </div>
+                                <div class="font-size-controls">
+                                    <label for="panel-font-size">Panel Font Size:</label>
+                                    <input type="range" id="panel-font-size" min="8" max="20" value="11" step="1">
+                                    <span id="panel-font-size-value">11</span>px
+                                </div>
+                            </div>
+                            <div class="colors-toggle-control">
+                                <button id="colors-toggle" class="nav-btn">Colors ▼</button>
+                            </div>
+                            <div class="colors-controls" id="colors-controls" style="display: none;">
+                                <div class="color-controls">
+                                    <label for="aircraft-icon-color">Aircraft Icon:</label>
+                                    <input type="color" id="aircraft-icon-color" value="#00ff00">
+                                </div>
+                                <div class="color-controls">
+                                    <label for="aircraft-labels-color">Aircraft Labels:</label>
+                                    <input type="color" id="aircraft-labels-color" value="#0066cc">
+                                </div>
+                                <div class="color-controls">
+                                    <label for="aircraft-trails-color">Aircraft Trails:</label>
+                                    <input type="color" id="aircraft-trails-color" value="#0066cc">
+                                </div>
+                                <div class="color-controls">
+                                    <label for="aircraft-selected-color">Selected Aircraft:</label>
+                                    <input type="color" id="aircraft-selected-color" value="#ff6600">
+                                </div>
+                                <div class="color-controls">
+                                    <label for="aircraft-conflict-color">Conflict Aircraft:</label>
+                                    <input type="color" id="aircraft-conflict-color" value="#ffa000">
+                                </div>
+                                <div class="color-controls">
+                                    <label for="trail-conflict-color">Conflict Trails:</label>
+                                    <input type="color" id="trail-conflict-color" value="#ffa000">
+                                </div>
+                                <div class="color-controls">
+                                    <label for="protected-zones-color">Protected Zones:</label>
+                                    <input type="color" id="protected-zones-color" value="#00ff00">
+                                </div>
+                                <div class="color-controls">
+                                    <label for="route-labels-color">Route Labels:</label>
+                                    <input type="color" id="route-labels-color" value="#ff00ff">
+                                </div>
+                                <div class="color-controls">
+                                    <label for="route-points-color">Route Points:</label>
+                                    <input type="color" id="route-points-color" value="#ff00ff">
+                                </div>
+                                <div class="color-controls">
+                                    <label for="route-lines-color">Route Lines:</label>
+                                    <input type="color" id="route-lines-color" value="#ff00ff">
+                                </div>
+                                <div class="color-controls" style="margin-top: 10px;">
+                                    <button id="reset-colors-btn" class="nav-btn" style="width: 100%;">Reset to
+                                        Defaults</button>
+                                </div>
+                            </div>
+                            <div class="units-toggle-control">
+                                <button id="units-toggle" class="nav-btn">Units ▼</button>
+                            </div>
+                            <div class="units-controls" id="units-controls" style="display: none;">
+                                <div class="unit-controls">
+                                    <label for="speed-unit-select">Speed:</label>
+                                    <select id="speed-unit-select">
+                                        <option value="m/s">m/s</option>
+                                        <option value="km/h">km/h</option>
+                                        <option value="mph">mph</option>
+                                        <option value="knots" selected>knots</option>
+                                    </select>
+                                </div>
+                                <div class="unit-controls">
+                                    <label for="altitude-unit-select">Altitude:</label>
+                                    <select id="altitude-unit-select">
+                                        <option value="m">meters</option>
+                                        <option value="km">kilometers</option>
+                                        <option value="ft">feet</option>
+                                        <option value="fl" selected>flight levels</option>
+                                    </select>
+                                </div>
+                                <div class="unit-controls">
+                                    <label for="vertical-speed-unit-select">Vertical Speed:</label>
+                                    <select id="vertical-speed-unit-select">
+                                        <option value="m/s">m/s</option>
+                                        <option value="m/min">m/min</option>
+                                        <option value="ft/min" selected>ft/min</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="developer-toggle-control">
+                                <button id="developer-toggle" class="nav-btn">Developer ▼</button>
+                            </div>
+                            <div class="developer-controls" id="developer-controls" style="display: none;">
+                                <div class="developer-section">
+                                    <label for="log-level-select">Log Level:</label>
+                                    <select id="log-level-select">
+                                        <option value="0">ERROR</option>
+                                        <option value="1">WARN</option>
+                                        <option value="2" selected>INFO</option>
+                                        <option value="3">DEBUG</option>
+                                        <option value="4">VERBOSE</option>
+                                    </select>
+                                </div>
+                                <div class="developer-section">
+                                    <label>
+                                        <input type="checkbox" id="log-timestamps">
+                                        Show Timestamps
+                                    </label>
+                                </div>
+                                <div class="developer-section">
+                                    <label>
+                                        <input type="checkbox" id="log-component-prefixes" checked>
+                                        Component Prefixes
+                                    </label>
+                                </div>
+                                <div class="developer-section" style="margin-top: 10px;">
+                                    <button id="reset-logging-btn" class="nav-btn" style="width: 100%;">Reset Logging</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Horizontal resize handle between left panel and map -->
+            <div class="resize-handle horizontal-resize" data-direction="horizontal" data-target="left-map"></div>
+
+            <!-- Center map display -->
+            <div class="map-container">
+                <div id="map" class="map"></div>
+
+                <!-- Drawing mode banner -->
+                <div id="drawing-banner" class="drawing-banner" style="display: none;">
+                    <div class="drawing-banner-content">
+                        <span id="drawing-banner-text"></span>
+                    </div>
+                </div>
+
+                <div id="map-style-message" class="map-overlay-message">
+                    <div class="message-content">
+                        <h3>🗺️ Select a Map Style</h3>
+                        <p>Choose a map style from Settings (⚙️) to display the radar view</p>
+                    </div>
+                </div>
+                <div class="map-overlay">
+                    <div class="map-info">
+                        <div>Aircraft: <span id="aircraft-count">0</span></div>
+                        <div>Conflicts: <span id="conflict-count">0</span> current, <span id="conflict-total">0</span>
+                            total</div>
+                        <div>Intrusions: <span id="intrusion-count">0</span> current, <span
+                                id="intrusion-total">0</span> total</div>
+                        <div>Cursor: <span id="cursor-position" title="Nhấn phím C để copy tọa độ này">--</span></div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button id="projection-toggle" class="projection-toggle-btn"
+                            title="Toggle 2D/Globe View">🌐</button>
+                        <button id="map-fullscreen-floating-btn" class="projection-toggle-btn"
+                            title="Toggle Fullscreen Map"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                </div>
+
+                <!-- Floating sim controls bar — visible only in fullscreen mode -->
+                <div id="fullscreen-sim-bar">
+                    <span id="fs-sim-time">--:--:--</span>
+                    <span id="fs-sim-rate">Rate: 1x</span>
+                    <div class="fs-sep"></div>
+                    <button id="fs-play-btn" class="fs-ctrl-btn" title="Start"><i class="fa-solid fa-play"></i></button>
+                    <button id="fs-play-pause-btn" class="fs-ctrl-btn" title="Pause/Resume"><i class="fa-solid fa-pause"></i></button>
+                    <button id="fs-reset-btn" class="fs-ctrl-btn" title="Reset"><i class="fa-solid fa-rotate-right"></i></button>
+                    <select id="fs-speed-select" class="fs-speed-select">
+                        <option value="1" selected>1x</option>
+                        <option value="2">2x</option>
+                        <option value="4">4x</option>
+                        <option value="8">8x</option>
+                        <option value="16">16x</option>
+                        <option value="32">32x</option>
+                        <option value="64">64x</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- Horizontal resize handle between map and right panel -->
+            <div class="resize-handle horizontal-resize" data-direction="horizontal" data-target="map-right"></div>
+
+            <!-- Right panel -->
+            <div class="right-panel">
+                <!-- Traffic list -->
+                <div class="panel traffic-panel">
+                    <div class="panel-header">
+                        <h3>Traffic</h3>
+                        <button class="collapse-btn" data-target="traffic-content">▼</button>
+                    </div>
+                    <div class="panel-content" id="traffic-content">
+                        <div class="traffic-list" id="traffic-list">
+                            <!-- Traffic items will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selected aircraft info -->
+                <div class="panel aircraft-panel">
+                    <div class="panel-header">
+                        <h3>Aircraft Info</h3>
+                        <button class="collapse-btn" data-target="aircraft-info-content">▼</button>
+                    </div>
+                    <div class="panel-content" id="aircraft-info-content">
+                        <div id="aircraft-info">
+                            <div class="no-selection">No aircraft selected</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conflicts section -->
+                <div class="panel conflicts-panel">
+                    <div class="panel-header">
+                        <h3>Conflicts</h3>
+                        <button class="collapse-btn" data-target="conflicts-content">▼</button>
+                    </div>
+                    <div class="panel-content" id="conflicts-content">
+                        <div id="conflicts-info">
+                            <div class="no-conflicts">No conflicts detected</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Vertical resize handle between content and console -->
+        <div class="resize-handle vertical-resize" data-direction="vertical" data-target="content-console"></div>
+
+        <!-- Bottom console and echo -->
+        <div class="console-container">
+            <div class="console-section">
+                <div class="console-header">
+                    <h3>Command Console</h3>
+                    <button id="open-command-palette" class="console-btn" title="Browse commands (Ctrl+K)">Commands</button>
+                    <button id="clear-console" class="console-btn">Clear</button>
+                </div>
+                <div class="console-output" id="console-output">
+                </div>
+                <div class="console-input-container">
+                    <span class="console-prompt">VATM></span>
+                    <input type="text" id="console-input" placeholder="Enter command… (Ctrl+K to browse)" autocomplete="off">
+                    <button id="send-command" class="console-btn">Send</button>
+                </div>
+            </div>
+
+            <!-- Horizontal resize handle between console and echo -->
+            <div class="resize-handle horizontal-resize" data-direction="horizontal" data-target="console-echo"></div>
+
+            <div class="echo-section">
+                <div class="echo-header">
+                    <h3>Echo Messages</h3>
+                    <button id="clear-echo" class="console-btn">Clear</button>
+                </div>
+                <div class="echo-output" id="echo-output">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Command Palette Modal (Ctrl+K / Ctrl+Shift+P) -->
+    <div id="command-palette-modal" class="modal" style="display: none;">
+        <div class="modal-content command-palette-content">
+            <div class="modal-header">
+                <h3>Command Palette</h3>
+                <button class="modal-close" id="command-palette-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="command-palette-list-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="modal-close" id="settings-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- VATM Server Connectivity Section -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h4>🌐 VATM Server Connectivity</h4>
+                        <div class="section-description">Configure connection to the VATM simulation server</div>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="server-ip-input">VATM Server hostname/IP address:</label>
+                        <input type="text" id="server-ip-input" placeholder="localhost" value="localhost">
+                        <small class="setting-help">
+                            Enter the hostname or IP address of your VATM simulation server.
+                        </small>
+                    </div>
+
+                    <!-- Server Status Section -->
+                    <div class="setting-group">
+                        <label>VATM Server Status:</label>
+                        <div class="server-status-modal" style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                            <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0;">
+                                <span id="server-status-indicator-modal" class="status-indicator status-unknown"></span>
+                                <span id="server-status-text-modal" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Server Status: Checking...</span>
+                            </div>
+                            <button id="check-server-status" class="btn-secondary" style="flex-shrink: 0;">Check Status</button>
+                        </div>
+                        <small class="setting-help">Current status of the VATM server. Click "Check Status" to verify server availability.</small>
+                    </div>
+
+                    <!-- Connection self-repair -->
+                    <div class="setting-group">
+                        <label>Connection trouble?</label>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button id="reconnect-engine-btn" class="btn-secondary">Reconnect</button>
+                            <button id="restart-engine-btn" class="btn-secondary" style="border-color: #ffc107; color: #ffc107;">Restart Vatm-Engine</button>
+                        </div>
+                        <small class="setting-help">
+                            <strong>Reconnect</strong>: rebuilds just the web app's connection, safe at any time (does not affect a running scenario).
+                            <strong>Restart Vatm-Engine</strong>: kills and relaunches the whole simulation engine — use only if Reconnect doesn't help. This <strong>discards any scenario currently running</strong>, and only works when the engine runs on this same machine.
+                        </small>
+                        <div id="engine-repair-status" style="margin-top: 6px; font-size: 12px; display: none;"></div>
+                    </div>
+
+                </div>
+
+                <!-- VATM File Management Section -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h4>🗂️ VATM File Management</h4>
+                        <div class="section-description">Configure VATM base directory for file uploads and management</div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="bluesky-base-path-input-settings">VATM Base Directory:</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="bluesky-base-path-input-settings" placeholder="e.g., /path/to/vatm or C:\vatm" style="flex: 1;">
+                            <button id="configure-base-path-btn-settings" class="btn-secondary">Configure</button>
+                        </div>
+                        <small class="setting-help">
+                            Enter the base directory where VATM is installed. Files will be uploaded to subdirectories (scenario/, plugins/, settings.cfg).
+                        </small>
+                        
+                        <div style="margin-top: 8px; padding: 8px; border-radius: 4px; background-color: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3);">
+                            <div style="color: #ffc107; font-size: 11px; font-weight: bold;">⚠️ File Upload Requirements:</div>
+                            <ul style="margin: 4px 0 0 16px; padding: 0; font-size: 11px; color: #cccccc;">
+                                <li>WebATM backend must have file system access to this VATM directory</li>
+                                <li>If WebATM and VATM run on different machines/containers, file uploads won't work</li>
+                                <li>VATM simulation works normally without file upload capability</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="base-path-status-settings" style="margin-top: 8px; display: none;">
+                        <div style="padding: 8px; border-radius: 4px; background-color: #333;">
+                            <strong>Configured paths:</strong>
+                            <div style="margin-top: 4px; font-family: monospace; font-size: 11px;">
+                                <div>📁 Scenarios: <span id="scenario-path-display-settings">-</span></div>
+                                <div>🧩 Plugins: <span id="plugins-path-display-settings">-</span></div>
+                                <div>⚙️ Settings: <span id="settings-path-display-settings">-</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Display Section -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h4>🗺️ Map Display Configuration</h4>
+                        <div class="section-description">Configure the map visualization and styling</div>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="maptiler-api-key-input">MapTiler API Key (optional):</label>
+                        <input type="text" id="maptiler-api-key-input"
+                            placeholder="Enter your MapTiler API key" value="r7j9fOc6Pmz3zl0yllGI">
+                        <small class="setting-help">Required for MapTiler styles.</small>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="map-style-select-modal">Map Style:</label>
+                        <select id="map-style-select-modal">
+                            <option value="">Select a map style...</option>
+                            <option value="https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json">Dark Matter (No Labels)</option>
+                            <option value="/static/map/offline-style.json">Offline Dark (Local PMTiles)</option>
+                            <option value="/static/map/offline-style-light.json">Offline Light (Local PMTiles)</option>
+                            <option value="https://demotiles.maplibre.org/style.json">MapLibre Demo</option>
+                            <option value="https://api.maptiler.com/maps/streets/style.json?key=">MapTiler Streets (Key Required)</option>
+                            <option value="/static/map/esri-satellite.json">Esri Satellite (Free / No Key)</option>
+                            <option value="https://api.maptiler.com/maps/satellite/style.json?key=" selected>MapTiler Satellite (Key Required)</option>
+                            <option value="https://api.maptiler.com/maps/hybrid/style.json?key=">MapTiler Hybrid (Key Required)</option>
+                            <option value="https://api.maptiler.com/maps/basic/style.json?key=">MapTiler Basic (Key Required)</option>
+                            <option value="custom">Custom Style JSON...</option>
+                        </select>
+                        <button id="apply-map-style-btn" class="btn-secondary"
+                            style="width: 100%; margin-top: 8px;">Apply Map Style</button>
+                        <small class="setting-help">Select a style above and click Apply to change the map.</small>
+                    </div>
+
+                    <div class="setting-group" id="custom-style-control-modal" style="display: none;">
+                        <label for="custom-style-url-modal">Custom Style URL:</label>
+                        <input type="text" id="custom-style-url-modal" placeholder="Enter custom style JSON URL"
+                            style="width: 100%; margin-bottom: 5px;">
+                        <button id="apply-custom-style-modal" class="btn-secondary"
+                            style="width: 100%;">Apply Style</button>
+                        <small class="setting-help">Enter a URL to a MapLibre GL style JSON file.</small>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button id="connect-server" class="btn-primary">Connect</button>
+                <button id="disconnect-server" class="btn-secondary">Disconnect</button>
+                <button id="cancel-server-settings" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Area Drawing Modal -->
+    <div id="polygon-name-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="polygon-modal-title">Draw Area</h3>
+                <button class="modal-close" id="polygon-name-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="shape-type-select">Shape Type:</label>
+                    <select id="shape-type-select">
+                        <option value="area">Area (Polygon)</option>
+                        <option value="line">Line (Polyline)</option>
+                    </select>
+                    <small class="setting-help">Choose the type of shape to draw</small>
+                </div>
+                <div class="setting-group">
+                    <label for="polygon-name-input" id="shape-name-label">Shape Name:</label>
+                    <input type="text" id="polygon-name-input" placeholder="Enter shape name" maxlength="50">
+                    <small class="setting-help" id="shape-name-help">Enter a unique name for your shape (no spaces
+                        allowed)</small>
+                </div>
+                <div class="setting-group" id="altitude-fields">
+                    <label for="polygon-bottom-input">Bottom Altitude (ft):</label>
+                    <input type="number" id="polygon-bottom-input" placeholder="e.g. 5000" min="0" max="99999" step="1">
+                    <label for="polygon-top-input">Top Altitude (ft):</label>
+                    <input type="number" id="polygon-top-input" placeholder="e.g. 10000" min="1" max="99999" step="1">
+                    <small class="setting-help">Leave altitudes blank for 2D area, or fill both for 3D altitude
+                        area</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="create-polygon-btn" class="btn-primary">Start Drawing</button>
+                <button id="cancel-polygon-btn" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aircraft Creation Modal -->
+    <div id="create-aircraft-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Aircraft</h3>
+                <button class="modal-close" id="create-aircraft-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="aircraft-creation-mode">Creation Mode:</label>
+                    <select id="aircraft-creation-mode">
+                        <option value="manual">Manual Input</option>
+                        <option value="map">Draw on Map</option>
+                    </select>
+                    <small class="setting-help">Choose how to specify aircraft position and heading</small>
+                </div>
+                <div class="setting-group">
+                    <label for="aircraft-id-input">Aircraft ID:</label>
+                    <input type="text" id="aircraft-id-input" placeholder="e.g. KL1234" maxlength="10" required>
+                    <small class="setting-help">Unique aircraft identifier (callsign)</small>
+                </div>
+                <div class="setting-group">
+                    <label for="aircraft-type-input">Aircraft Type:</label>
+                    <div class="actype-input-wrapper">
+                        <input type="text" id="aircraft-type-input" placeholder="e.g. A320" maxlength="10" autocomplete="off" required>
+                        <div id="aircraft-type-dropdown" class="modal-actype-dropdown" style="display: none;"></div>
+                    </div>
+                    <small id="aircraft-type-warning" class="modal-actype-warning" style="display: none;">openap library does not include this type</small>
+                    <small class="setting-help">Aircraft type (e.g. A320, B737, etc.)</small>
+                </div>
+                <div id="manual-position-fields">
+                    <div class="setting-group">
+                        <label for="aircraft-lat-input">Latitude:</label>
+                        <input type="number" id="aircraft-lat-input" placeholder="e.g. 52.3676" step="0.000001"
+                            min="-90" max="90" required>
+                        <small class="setting-help">Latitude in decimal degrees (-90 to 90)</small>
+                    </div>
+                    <div class="setting-group">
+                        <label for="aircraft-lon-input">Longitude:</label>
+                        <input type="number" id="aircraft-lon-input" placeholder="e.g. 4.9041" step="0.000001"
+                            min="-180" max="180" required>
+                        <small class="setting-help">Longitude in decimal degrees (-180 to 180)</small>
+                    </div>
+                    <div class="setting-group" style="margin-top: 15px;">
+                        <label for="aircraft-hdg-input">Heading (°):</label>
+                        <input type="number" id="aircraft-hdg-input" placeholder="e.g. 90" step="1" min="0" max="360"
+                            required>
+                        <small class="setting-help">Initial heading in degrees (0-360)</small>
+                    </div>
+                </div>
+                <!-- Common fields shown in both modes (always visible with proper spacing) -->
+                <div style="display: block;">
+                    <div class="setting-group" style="margin-top: 15px;">
+                        <label for="aircraft-alt-input" id="aircraft-alt-label">Altitude:</label>
+                        <input type="number" id="aircraft-alt-input" placeholder="e.g. 10000" step="1" min="0" required>
+                        <small class="setting-help" id="aircraft-alt-help">Initial altitude</small>
+                    </div>
+                    <div class="setting-group">
+                        <label for="aircraft-spd-input" id="aircraft-spd-label">Calibrated Airspeed:</label>
+                        <input type="number" id="aircraft-spd-input" placeholder="e.g. 250" step="1" min="0" required>
+                        <small class="setting-help" id="aircraft-spd-help">Initial speed</small>
+                    </div>
+                </div>
+                <div id="map-drawing-instruction" style="display: none;">
+                    <div class="setting-group">
+                        <div class="setting-help"
+                            style="background-color: #333; padding: 10px; border-radius: 4px; margin: 10px 0;">
+                            <strong>Map Drawing Instructions:</strong><br>
+                            <em>⚠️ Fill in ALL fields (ID, Type, Altitude, Speed) first!</em><br><br>
+                            1. Complete all aircraft details above<br>
+                            2. Click "Start Drawing" to begin map mode<br>
+                            3. Click on map to place aircraft (shows orange circle)<br>
+                            4. Move mouse to see heading guide line, click to confirm<br>
+                            Circle marks position and guide line shows heading direction.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="create-aircraft-submit" class="btn-primary">Create Aircraft</button>
+                <button id="start-aircraft-drawing" class="btn-primary" style="display: none;">Start Drawing</button>
+                <button id="cancel-aircraft-btn" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Route Constraints Modal (opened after drawing waypoints on the map) -->
+    <div id="route-constraints-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 720px;">
+            <div class="modal-header">
+                <h3>Route Constraints (optional)</h3>
+                <button class="modal-close" id="route-constraints-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <div class="setting-help">
+                        Route for aircraft <strong id="route-constraints-target"></strong>.
+                        Leave altitude and speed blank for unconstrained waypoints. Values are in
+                        your current display units and will be converted to feet/knots before
+                        being sent to VATM.
+                    </div>
+                </div>
+                <div class="setting-group" id="route-constraints-bulk-section">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="route-constraints-bulk-toggle" checked>
+                        Set the same altitude &amp; speed for all waypoints
+                    </label>
+                    <div id="route-constraints-bulk-inputs" style="overflow-x: auto; margin-top: 8px;">
+                        <table class="route-constraints-bulk-table" style="border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: left; padding: 4px 6px;" id="route-constraints-bulk-alt-label">Altitude (ft)</th>
+                                    <th style="text-align: left; padding: 4px 6px;" id="route-constraints-bulk-spd-label">Speed (kt)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 4px 6px;"><input type="number" id="route-constraints-bulk-alt" placeholder="optional" style="width: 160px;"></td>
+                                    <td style="padding: 4px 6px;"><input type="number" id="route-constraints-bulk-spd" placeholder="optional" style="width: 160px;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="setting-group" style="overflow-x: auto;">
+                    <table id="route-constraints-table" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left; padding: 4px 6px;">WP</th>
+                                <th style="text-align: left; padding: 4px 6px;">Position (lat, lon)</th>
+                                <th style="text-align: left; padding: 4px 6px;" id="route-constraints-alt-header">Altitude (ft)</th>
+                                <th style="text-align: left; padding: 4px 6px;" id="route-constraints-spd-header">Speed (kt)</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submit-route-constraints-btn" class="btn-primary">Submit Route</button>
+                <button id="cancel-route-constraints-btn" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Version Dialog -->
+    <div id="demo-version-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Demo Version Feature</h3>
+                <button class="modal-close" id="demo-version-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="confirmation-message">
+                    <p><strong>This feature is available in the full version</strong></p>
+                    <p>In the full version of WebATM for VATM, you can:</p>
+                    <ul style="margin: 10px 0; padding-left: 20px; color: #cccccc;">
+                        <li>Use any compatible MapLibre GL style JSON</li>
+                        <li>Access MapTiler styles with your own API key</li>
+                        <li>Load custom map styles from URLs</li>
+                        <li>Save and manage multiple style preferences</li>
+                    </ul>
+                    <p style="color: #4CAF50;"><em>This demo version includes the Demo Style for evaluation
+                            purposes.</em></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="demo-version-ok" class="btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Files Modal -->
+    <div id="upload-files-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Upload Files</h3>
+                <button class="modal-close" id="upload-files-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Configuration Notice -->
+                <div class="setting-group">
+                    <div class="section-header">
+                        <h4>📤 File Upload and Management</h4>
+                        <div class="section-description">Upload and manage scenario files, plugins, and settings</div>
+                    </div>
+                    
+                    <div id="base-path-not-configured" class="setting-group">
+                        <div style="padding: 8px; border-radius: 4px; background-color: #333; border: 1px solid #666;">
+                            <p style="margin: 0; color: #ffa500;">
+                                ⚠️ <strong>VATM base directory not configured</strong><br>
+                                Please configure the VATM base directory in <strong>Settings</strong> before uploading files.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="base-path-status" style="margin-top: 8px; display: none;">
+                        <div style="padding: 8px; border-radius: 4px; background-color: #333;">
+                            <strong>Configured paths:</strong>
+                            <div style="margin-top: 4px; font-family: monospace; font-size: 11px;">
+                                <div>📁 Scenarios: <span id="scenario-path-display">-</span></div>
+                                <div>🧩 Plugins: <span id="plugins-path-display">-</span></div>
+                                <div>⚙️ Settings: <span id="settings-path-display">-</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Upload Section -->
+                <div class="setting-group" id="file-upload-section" style="display: none;">
+                    <div class="section-header">
+                        <h4>📤 Upload Files</h4>
+                        <div class="section-description">Upload scenario (.scn), plugin (.py), or settings (.cfg) files</div>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="file-type-select">File Type:</label>
+                        <select id="file-type-select">
+                            <option value="scenario">Scenario Files (.scn)</option>
+                            <option value="plugins">Plugin Files (.py)</option>
+                            <option value="settings">Settings File (.cfg)</option>
+                        </select>
+                        <small class="setting-help">Select the type of file you want to upload</small>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="file-input">Select File:</label>
+                        <input type="file" id="file-input" accept=".scn" style="width: 100%; margin-bottom: 5px;">
+                        <div id="file-drop-zone" style="
+                            border: 2px dashed #555;
+                            border-radius: 4px;
+                            padding: 20px;
+                            text-align: center;
+                            color: #888;
+                            margin-top: 8px;
+                            background-color: #222;
+                            transition: all 0.2s;
+                            cursor: pointer;
+                        ">
+                            📁 Click here or drag and drop files
+                        </div>
+                        <small class="setting-help">Choose a file to upload to the selected directory</small>
+                    </div>
+
+                    <div class="setting-group">
+                        <button id="upload-file-btn" class="btn-primary" style="width: 100%;" disabled>Upload File</button>
+                        <button id="upload-and-run-scenario-btn" class="btn-primary" style="width: 100%; margin-top: 8px; display: none;" disabled>Upload File and run scenario</button>
+                        <div id="upload-progress" style="display: none; margin-top: 8px;">
+                            <div style="background-color: #333; border-radius: 4px; padding: 4px;">
+                                <div id="upload-progress-bar" style="
+                                    background-color: #4CAF50;
+                                    height: 20px;
+                                    border-radius: 2px;
+                                    width: 0%;
+                                    transition: width 0.3s;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    color: white;
+                                    font-size: 12px;
+                                ">0%</div>
+                            </div>
+                        </div>
+                        <div id="upload-status" style="margin-top: 8px;"></div>
+                    </div>
+                </div>
+
+                <!-- File Management Section -->
+                <div class="setting-group" id="file-management-section" style="display: none;">
+                    <div class="section-header">
+                        <h4>📋 Uploaded Files</h4>
+                        <div class="section-description">Manage files that have been uploaded</div>
+                    </div>
+
+                    <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                        <button id="refresh-files-btn" class="btn-secondary">🔄 Refresh</button>
+                        <select id="view-file-type-select" style="flex: 1;">
+                            <option value="scenario">Scenario Files</option>
+                            <option value="plugins">Plugin Files</option>
+                            <option value="settings">Settings File</option>
+                        </select>
+                    </div>
+
+                    <div id="file-list" style="
+                        max-height: 200px;
+                        overflow-y: auto;
+                        border: 1px solid #444;
+                        border-radius: 4px;
+                        background-color: #1a1a1a;
+                    ">
+                        <div style="padding: 16px; text-align: center; color: #666;">
+                            Configure base path first
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="upload-files-close-footer" class="btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modify Settings Modal -->
+    <div id="modify-settings-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Modify settings.cfg</h3>
+                <button class="modal-close" id="modify-settings-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <div class="demo-message">
+                        <span class="demo-badge">UNDER DEVELOPMENT</span>
+                        <p><strong>Settings modification is currently under development.</strong></p>
+                        <p>Example settings configuration:</p>
+                    </div>
+                    <div class="settings-content">
+                        <pre id="settings-text" readonly># Network ports used by Vatm-Engine
+event_port=11000
+stream_port=11001
+
+# Select the performance model. options: 'openap', 'bada', 'legacy'
+performance_model = 'openap'
+
+# Verbose internal logging
+verbose = False
+
+# Indicate the logfile path
+log_path = 'output'
+
+# Indicate the scenario path
+scenario_path = 'scenario'
+
+# Indicate the graphics data path
+gfx_path = 'graphics'
+
+# Indicate the path for cache data
+cache_path = 'cache'
+
+# Indicate the path for navigation data
+navdata_path = 'navdata'
+
+# Indicate the path for the aircraft performance data
+perf_path = 'performance'
+
+# Indicate the path for the BADA aircraft performance data (leave empty if BADA is not available)
+perf_path_bada = 'performance/BADA'
+
+# Indicate the plugins path
+plugin_path = 'plugins'
+
+# Specify a list of plugins that need to be enabled by default
+enabled_plugins = ['area', 'datafeed']
+
+# Indicate the start location of the radar screen (e.g. [lat, lon], or airport ICAO code)
+start_location = 'EHAM'
+
+# Simulation timestep [seconds]
+simdt = 0.05
+
+# Performance timestep [seconds]
+performance_dt = 1.0
+
+# FMS timestep [seconds]
+fms_dt = 1.0
+
+# Prefer compiled Vatm-Engine modules (cgeo, casas)
+prefer_compiled = True
+
+# Limit the max number of cpu nodes for parallel simulation
+max_nnodes = 999
+
+#=========================================================================
+#=  ASAS default settings
+#=========================================================================
+
+# ASAS lookahead time [sec]
+asas_dtlookahead = 300.0
+
+# ASAS update interval [sec]
+asas_dt = 1.0
+
+# ASAS horizontal PZ margin [nm]
+asas_pzr = 5.0
+
+# ASAS vertical PZ margin [ft]
+asas_pzh = 1000.0
+
+# ASAS factors applied on protected zone for resolution horizontally and vertically [-]
+asas_marh = 1.05
+asas_marv = 1.05
+#=============================================================================
+#=   QTGL Gui specific settings below
+#=   Pygame Gui options in graphics/scr_cfg.dat
+#=============================================================================
+
+# Radarscreen font size in pixels
+text_size = 13
+
+# Radarscreen airport symbol size in pixels
+apt_size = 10
+
+# Radarscreen waypoint symbol size in pixels
+wpt_size = 10
+
+# Radarscreen aircraft symbol size in pixels
+ac_size = 16
+
+# Stack and command line text color
+stack_text_color = 0, 255, 0
+
+# Stack and command line background color
+stack_background_color = 102, 102, 102</pre>
+                    </div>
+                    <div class="demo-buttons">
+                        <button class="btn-secondary" disabled style="opacity: 0.6;">Upload New Settings</button>
+                        <button class="btn-secondary" disabled style="opacity: 0.6;">Modify Settings</button>
+                    </div>
+                    <div class="demo-note">
+                        <p><em>When fully developed, you will be able to upload new settings files and modify
+                                configurations directly through the editor.</em></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modify-settings-ok" class="btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Logs Modal -->
+    <div id="download-logs-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 460px; border-radius: 12px; border: 1px solid rgba(0, 102, 204, 0.3); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+            <div class="modal-header" style="background-color: #0d1b2a; border-bottom: 1px solid rgba(0, 102, 204, 0.2); padding: 14px 16px;">
+                <h3 style="color: #00ccff; display: flex; align-items: center; gap: 8px; margin: 0; font-size: 16px;">
+                    <i class="fa-solid fa-file-word"></i> Xuất Báo Cáo Kết Quả Mô Phỏng
+                </h3>
+                <button class="modal-close" id="download-logs-close" style="color: #00ccff;">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 20px; color: #e0e0e0; font-size: 13px; line-height: 1.5; background-color: #161616;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 48px; color: #00ccff; margin-bottom: 10px;"><i class="fa-regular fa-file-word"></i></div>
+                    <p style="color: #aaaaaa; margin: 5px 0 15px 0;">Hệ thống FTS sẽ tự động thu thập nhật ký bay (FLSTLOG) và nhật ký xung đột phân cách (CONFLOG) mới nhất để xuất thành báo cáo Microsoft Word chuyên nghiệp.</p>
+                </div>
+                
+                <button id="download-word-report-btn" class="btn-primary" style="width: 100%; padding: 12px; font-weight: bold; background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc); border: none; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; color: white;">
+                    <i class="fa-solid fa-download"></i> Tải Báo Cáo Kết Quả Word (.docx)
+                </button>
+                <div id="download-report-status" style="margin-top: 12px; font-size: 12px; text-align: center; color: #00ffcc;"></div>
+            </div>
+            <div class="modal-footer" style="background-color: #1a1a1a; border-top: 1px solid #333; padding: 12px 16px; display: flex; justify-content: flex-end;">
+                <button id="download-logs-ok" class="btn-secondary" style="padding: 6px 16px; font-size: 12px;">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Plugin Modal -->
+    <div id="upload-plugin-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Upload a Plugin</h3>
+                <button class="modal-close" id="upload-plugin-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <div class="demo-message">
+                        <span class="demo-badge">UNDER DEVELOPMENT</span>
+                        <p><strong>Plugin uploading is currently under development.</strong></p>
+                        <p>Current loaded plugins: <strong>area</strong> and <strong>datafeed</strong></p>
+                        <p>Other plugins can be loaded in this demo by running:</p>
+                        <div class="demo-commands">
+                            <code>PLUGIN LOAD PLUGIN_NAME</code>
+                        </div>
+                        <p>See <a href="https://github.com/TUDelft-CNS-ATM/bluesky/tree/master/bluesky/plugins"
+                                target="_blank" style="color: #4CAF50;">here</a> for the rest of the plugins included.
+                        </p>
+                        <p>When fully developed, you will be able to:</p>
+                        <ul style="margin: 10px 0; padding-left: 20px; color: #cccccc;">
+                            <li>Upload custom Python plugin files (.py)</li>
+                            <li>Enable/disable plugins dynamically</li>
+                            <li>Configure plugin-specific settings</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="upload-plugin-ok" class="btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Add Node Demo Restriction Modal -->
+    <div id="add-node-demo-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Node</h3>
+                <button class="modal-close" id="add-node-demo-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <div class="demo-message">
+                        <span class="demo-badge">DEMO MODE</span>
+                        <p><strong>This feature is not available in Demo mode</strong></p>
+                        <p>In the full version of WebATM for VATM, you can:</p>
+                        <ul style="margin: 10px 0; padding-left: 20px; color: #cccccc;">
+                            <li>Add multiple simulation nodes for distributed computing</li>
+                            <li>Manage node configurations and resources</li>
+                            <li>Monitor individual node performance</li>
+                        </ul>
+                        <p style="color: #4CAF50;"><em>This demo is limited to a single simulation node.</em></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="add-node-demo-ok" class="btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Beautiful Confirmation Modal -->
+    <div id="confirm-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 400px; border-radius: 12px; border: 1px solid rgba(255, 77, 77, 0.3); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+            <div class="modal-header" style="background-color: #1a0f0f; border-bottom: 1px solid rgba(255, 77, 77, 0.2); padding: 14px 16px;">
+                <h3 style="color: #ff4d4d; display: flex; align-items: center; gap: 8px; margin: 0; font-size: 16px;">
+                    <i class="fas fa-exclamation-triangle"></i> Xác nhận xóa Node
+                </h3>
+                <button class="modal-close" id="confirm-modal-close" style="color: #ff4d4d;">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 20px; color: #e0e0e0; font-size: 13px; line-height: 1.5; background-color: #161616;">
+                <p id="confirm-modal-message" style="margin: 0;"></p>
+                <div style="margin-top: 10px; padding: 8px; background-color: rgba(255, 77, 77, 0.05); border-left: 3px solid #ff4d4d; border-radius: 4px; font-size: 11px; color: #ff9999;">
+                    Lưu ý: Hành động này sẽ loại bỏ Node khỏi danh sách theo dõi.
+                </div>
+            </div>
+            <div class="modal-footer" style="background-color: #1a1a1a; border-top: 1px solid #333; padding: 12px 16px;">
+                <button id="confirm-modal-cancel" class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">Hủy bỏ</button>
+                <button id="confirm-modal-submit" class="btn-primary" style="background-color: #ff4d4d; border-color: #ff4d4d; padding: 6px 12px; font-size: 12px;">Đồng ý xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- maplibre-gl and socket.io-client are bundled by webpack via npm imports;
+         no CDN script tags needed (keeps the app functional without internet). -->
+
+    <!-- Webpack Bundles (dynamically injected with content hashes) -->
+    {% for script_tag in webpack_scripts %}
+        {{ script_tag|safe }}
+    {% endfor %}
+
+</body>
+
+</html>

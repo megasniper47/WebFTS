@@ -1,0 +1,88 @@
+# ==========================================
+# VVDN Da Nang - Separation Assessment Scenario
+# ==========================================
+#
+# Airport: Da Nang International (VVDN)
+# Ref:  16.0439N 108.1992E  Elev: 33ft MSL
+# RWY 35L (West): Threshold 16.0372N 108.1978E  HDG 353
+# RWY 35R (East): Threshold 16.0372N 108.2025E  HDG 353
+# Runway centerline separation: ~420m (0.23NM) - Dependent parallel runways
+#
+# CASE 1 (T+00:00 to T+08:00): Normal Simultaneous Operations
+#   HVN203 (A321): Departs RWY 35R - just airborne at T=0
+#   VJC501 (A320): ILS/PBN approach to RWY 35L - at FAF (5NM) at T+1:00
+#   Expected: separation >3NM throughout
+#
+# CASE 2 (T+10:00 to T+18:00): Go-around Scenario
+#   TVJ401 (A320): Departs RWY 35R - just airborne at T+10:00
+#   BAV305 (A321): Short final 35L -> executes go-around at Decision Altitude
+#   Both then heading north on near-parallel tracks (~0.23NM apart)
+#   Expected: separation drops to ~2.8NM -> SEPARATION WARNING (<3NM)
+#
+# Approach profile (35L ILS, 3deg glide path):
+#   FAF  5.0NM  15.9540N 108.1978E  2200ft
+#   IF   2.0NM  16.0041N 108.1978E  1300ft
+#   DA   0.7NM  16.0256N 108.1978E   300ft  (Decision Altitude ~220ft AGL)
+#   THR  0.0NM  16.0372N 108.1978E    50ft
+#
+# Missed approach: climb straight ahead HDG 353 to 4000ft
+# Load in BlueSky: IC VVDN_SEPARATION_35LR
+# ==========================================
+
+0:00:00.00>DT 1
+
+# Reference waypoints
+0:00:00.00>DEFWPT VVDN35L 16.0372 108.1978
+0:00:00.00>DEFWPT VVDN35R 16.0372 108.2025
+
+# ============================================================
+# CASE 1 - Normal Ops: ARR on 35L + DEP on 35R
+# ============================================================
+
+# HVN203 (A321) - Departure RWY 35R
+# Created just airborne, climbing north. 60s lead before ARR appears.
+0:00:00.00>CRE HVN203 A321 16.0420 108.2025 353 200 165
+0:00:00.00>ADDWPT HVN203 16.0700 108.2025 3000
+0:00:00.00>ADDWPT HVN203 16.1200 108.2025 5000
+0:00:00.00>ADDWPT HVN203 16.2500 108.2200 8000
+0:00:00.00>ADDWPT HVN203 16.4500 108.3800 10000
+0:00:00.00>LNAV HVN203 ON
+0:00:00.00>VNAV HVN203 ON
+
+# VJC501 (A320) - ILS Approach RWY 35L
+# At FAF (5NM) at T=1:00. HVN203 has 60s head start.
+0:01:00.00>CRE VJC501 A320 15.9540 108.1978 353 2200 160
+0:01:00.00>ADDWPT VJC501 16.0041 108.1978 1300
+0:01:00.00>ADDWPT VJC501 16.0256 108.1978 400
+0:01:00.00>ADDWPT VJC501 16.0372 108.1978 50
+0:01:00.00>LNAV VJC501 ON
+0:01:00.00>VNAV VJC501 ON
+0:01:00.00>SPD VJC501 140
+
+# ============================================================
+# CASE 2 - Go-around Scenario (SEPARATION INFRINGEMENT)
+#   At go-around initiation (T~10:34): TVJ401 only ~2.8NM ahead of BAV305.
+#   Both fly northbound in near-parallel corridor -> <3NM warning.
+# ============================================================
+
+# TVJ401 (A320) - Departure RWY 35R at T=10:00
+0:10:00.00>CRE TVJ401 A320 16.0420 108.2025 353 200 155
+0:10:00.00>ADDWPT TVJ401 16.0700 108.2025 3000
+0:10:00.00>ADDWPT TVJ401 16.1200 108.2025 5000
+0:10:00.00>ADDWPT TVJ401 16.2500 108.2200 8000
+0:10:00.00>ADDWPT TVJ401 16.4500 108.3800 10000
+0:10:00.00>LNAV TVJ401 ON
+0:10:00.00>VNAV TVJ401 ON
+
+# BAV305 (A321) - Short final RWY 35L -> executes go-around at DA
+# Starts at IF (2NM), 800ft, 140kt.
+# Descends to 300ft at DA (16.0256N) then climbs north on missed approach.
+# Aircraft does NOT land - goes around, converges on same corridor as TVJ401.
+0:10:00.00>CRE BAV305 A321 16.0041 108.1978 353 800 140
+0:10:00.00>ADDWPT BAV305 16.0256 108.1978 300
+0:10:00.00>ADDWPT BAV305 16.0450 108.1978 1500
+0:10:00.00>ADDWPT BAV305 16.0700 108.1978 3000
+0:10:00.00>ADDWPT BAV305 16.1200 108.1940 4000
+0:10:00.00>LNAV BAV305 ON
+0:10:00.00>VNAV BAV305 ON
+0:10:00.00>SPD BAV305 140

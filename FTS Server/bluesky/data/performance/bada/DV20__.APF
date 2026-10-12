@@ -1,0 +1,25 @@
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC DV20__.APF CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC/
+CC                                                                                                 /
+CC                 AIRLINES PROCEDURES FILE                                                        /
+CC                                                                                                 /
+CC      File_name: DV20__.APF                                                                      /
+CC                                                                                                 /
+CC      Creation_date: Jan 14 2022                                                                 /
+CC                                                                                                 /
+CC      Modification_date: Jan 14 2022                                                             /
+CC                                                                                                 /
+CC                                                                                                 /
+CC                                                                                                 /
+CC   LO= 000.52 to ---.--  /  AV= ---.-- to ---.--  /  HI= ---.-- to 000.80                        /
+CC                                                                                                 /
+CC=================================================================================================/
+CC  COM CO    Company name ------climb-------  --cruise--  -----descent------  --approach-  model- /
+CC                    mass  lo  hi              lo  hi         hi  lo            (unused)          /
+CC    version engines  ma  cas cas mc xxxx xx  cas cas mc  mc cas cas xxxx xx  xxx xxx xxx  opf___ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CD  *** **    Default Company                                                                      /
+CD    20E              LO   75  75 15           96  81 15  20 100 100            0   0   0  DV20__ /
+CD    20E              AV   75  75 15           96  81 15  20 100 100            0   0   0  DV20__ /
+CD    20E              HI   75  75 15           96  81 15  20 100 100            0   0   0  DV20__ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CC/////////////////////////////////////////////THE END/////////////////////////////////////////////

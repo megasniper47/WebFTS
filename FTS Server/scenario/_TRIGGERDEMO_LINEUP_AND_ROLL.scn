@@ -1,0 +1,12 @@
+# _TRIGGERDEMO_LINEUP_AND_ROLL.scn -- snap EXACTLY onto the real RWY 35R
+# centerline/heading (same MOVE used by _TRIGGERDEMO_STOP_HOLD for aircraft
+# that actually hold), then immediately roll -- for the FIRST departure,
+# which has nobody to wait for and so never went through STOP_HOLD. Without
+# this exact lineup, the aircraft begins its climb-out route from whatever
+# position/heading the taxi ADDWPT chain happened to leave it at, which is
+# not guaranteed to be precisely on the runway centerline/true heading.
+# Call: PCALL _TRIGGERDEMO_LINEUP_AND_ROLL <acid> <lat> <lon> <hdg>
+00:00:00.00>%0 LNAV OFF
+00:00:00.00>%0 VNAV OFF
+00:00:00.00>MOVE %0,%1,%2,0,%3,0.0
+00:00:00.00>PCALL _TRIGGERDEMO_DEP_ROLL %0

@@ -1,0 +1,25 @@
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC EA50__.APF CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC/
+CC                                                                                                 /
+CC                 AIRLINES PROCEDURES FILE                                                        /
+CC                                                                                                 /
+CC      File_name: EA50__.APF                                                                      /
+CC                                                                                                 /
+CC      Creation_date: Jul 21 2008                                                                 /
+CC                                                                                                 /
+CC      Modification_date: Jan 04 2022                                                             /
+CC                                                                                                 /
+CC                                                                                                 /
+CC                                                                                                 /
+CC   LO= 001.64 to ---.--  /  AV= ---.-- to ---.--  /  HI= ---.-- to 002.72                        /
+CC                                                                                                 /
+CC=================================================================================================/
+CC  COM CO    Company name ------climb-------  --cruise--  -----descent------  --approach-  model- /
+CC                    mass  lo  hi              lo  hi         hi  lo            (unused)          /
+CC    version engines  ma  cas cas mc xxxx xx  cas cas mc  mc cas cas xxxx xx  xxx xxx xxx  opf___ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CD  *** **    Default Company                                                                      /
+CD    500              LO  170 170 50          220 200 61  64 200 220            0   0   0  EA50__ /
+CD    500              AV  170 170 50          220 200 61  64 200 220            0   0   0  EA50__ /
+CD    500              HI  170 170 50          220 200 61  64 200 220            0   0   0  EA50__ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CC/////////////////////////////////////////////THE END/////////////////////////////////////////////

@@ -1,0 +1,240 @@
+from pathlib import Path
+import json
+import zipfile
+import datetime
+
+OUT = Path("vvnb_parallel_52_movements_1h_test_output")
+OUT.mkdir(exist_ok=True)
+
+SCN_NAME = "vvnb_parallel_52_movements_1h_test.scn"
+interval = 3600 / 52
+start_offset = 60
+
+def hms(sec):
+    sec = int(round(sec))
+    return f"{sec//3600:02d}:{(sec%3600)//60:02d}:{sec%60:02d}"
+
+wpts = {
+    "VVNB_11L_F10": (21.2710, 105.6100),
+    "VVNB_11L_F08": (21.2620, 105.6450),
+    "VVNB_11L_F06": (21.2520, 105.6800),
+    "VVNB_11L_F05": (21.2470, 105.6970),
+    "VVNB_11L_F04": (21.2420, 105.7140),
+    "VVNB_11L_F03": (21.2370, 105.7310),
+    "VVNB_11L_THR": (21.2252536, 105.7925694),
+    "VVNB_11L_ROLL_END": (21.2167376, 105.8220312),
+    "VVNB_11L_VACATE": (21.2155, 105.8270),
+
+    "VVNB_11R_THR": (21.2200, 105.7900),
+    "VVNB_11R_ROLL_MID": (21.2160, 105.8050),
+    "VVNB_11R_AIRBORNE": (21.2140, 105.8150),
+    "VVNB_11R_CLIMB_03": (21.2030, 105.8450),
+    "VVNB_11R_CLIMB_06": (21.1900, 105.8800),
+    "VVNB_11R_CLIMB_10": (21.1720, 105.9300),
+}
+
+origins = ["VVTS", "VVDN", "VVCR", "VVPB", "VVVH", "VVCI", "WSSS", "VHHH"]
+dests = ["VVTS", "VVDN", "VVCR", "VVPB", "VVVH", "VVCI", "WSSS", "VHHH"]
+
+lines = [
+    "# ============================================================",
+    "# WebFTS / FTS Scenario",
+    f"# File name: {SCN_NAME}",
+    "# Scenario: VVNB Parallel Dependent Runway 52 Movements / 1 Hour Test",
+    "# Airport: VVNB - Noi Bai",
+    "# Configuration: RWY 11L arrivals / RWY 11R departures",
+    "# Operation mode: dependent parallel runway operation",
+    "# Traffic: 52 movements/hour = 26 arrivals + 26 departures",
+    "# Average movement interval: 69.23 seconds",
+    "# Alert threshold: horizontal distance < 3 NM",
+    "# ============================================================",
+    "",
+    "00:00:00>TRAILS ON",
+    "00:00:00>ASAS ON",
+    "00:00:00>SETPAN 21.2250,105.8000",
+    "00:00:00>ZOOM 2.0",
+    "",
+    "# WEBFTS_STUDY id=study-vvnb-parallel-runway-optimization name=\"VVNB Parallel Runway Optimization Study\"",
+    "# WEBFTS_SCENARIO id=scenario-vvnb-parallel-52-movements-1h name=\"VVNB 52 Movements 1H Parallel Dependent Runway Test\" movements=52 durationMin=60 arrivals=26 departures=26 arrRunway=11L depRunway=11R",
+    "# WEBFTS_BASELINE_RULE regulation=\"current_VVNB_dependent_parallel_runway_regulation\" arrRunway=11L depRunway=11R mode=dependent_parallel",
+    "# WEBFTS_DATASET_REQUIREMENT source=ADSB airport=VVNB condition=\"good_weather_peak_hour\" trafficDemand=\"52_movements_per_hour\"",
+    "# WEBFTS_SEPARATION_THRESHOLD thresholdNm=3.0",
+    "# WEBFTS_WAKE_CHECKER enabled=true categories=\"Light,Medium,Heavy,Super\"",
+    "# WEBFTS_RUNWAY_OCCUPANCY_CHECKER enabled=true touchdown=true vacate=true lineUp=true takeoffRoll=true",
+    "# WEBFTS_KPI_ENABLE minimumSeparation=true timeBelow3Nm=true wakeCompliance=true runwayOccupancy=true touchdownInterval=true departureAirborneTime=true takeoffClearanceTime=true arrivalDelay=true departureDelay=true runwayThroughput=true goAroundTrigger=true atwi=true alertCount=true",
+    "",
+    "# ============================================================",
+    "# REFERENCE WAYPOINTS",
+    "# Replace approximate coordinates by verified AIXM/AIP points when available.",
+    "# ============================================================",
+]
+
+for name, (lat, lon) in wpts.items():
+    lines.append(f"00:00:00>DEFWPT {name},{lat:.7f},{lon:.7f}")
+
+lines += [
+    "",
+    "# ============================================================",
+    "# 52 MOVEMENTS / 1 HOUR",
+    "# 26 ARR RWY 11L + 26 DEP RWY 11R",
+    "# ============================================================",
+    "",
+]
+
+monitors = []
+arrivals = []
+
+for i in range(26):
+    arr_t = start_offset + (2 * i) * interval
+    dep_t = start_offset + (2 * i + 1) * interval
+
+    arr_cs = f"HVN{100+i:03d}"
+    dep_cs = f"VJC{200+i:03d}"
+
+    start_wpt = ["VVNB_11L_F10", "VVNB_11L_F08", "VVNB_11L_F06"][i % 3]
+    lat, lon = wpts[start_wpt]
+
+    # Arrival
+    lines += [
+        "",
+        f"# ------------------------------------------------------------",
+        f"# Movement {2*i+1:02d}/52 - ARRIVAL RWY 11L - {arr_cs}",
+        f"# ------------------------------------------------------------",
+        f"{hms(arr_t)}>CRE {arr_cs},A321,{lat:.7f},{lon:.7f},110,3000,180",
+        f"{hms(arr_t)}>ORIG {arr_cs},{origins[i % len(origins)]}",
+        f"{hms(arr_t)}>DEST {arr_cs},VVNB",
+    ]
+
+    seq = [
+        "VVNB_11L_F08",
+        "VVNB_11L_F06",
+        "VVNB_11L_F05",
+        "VVNB_11L_F04",
+        "VVNB_11L_F03",
+        "VVNB_11L_THR",
+        "VVNB_11L_ROLL_END",
+        "VVNB_11L_VACATE",
+    ]
+
+    if start_wpt == "VVNB_11L_F08":
+        seq = seq[1:]
+    elif start_wpt == "VVNB_11L_F06":
+        seq = seq[3:]
+
+    profile = {
+        "VVNB_11L_F08": (2500, 175),
+        "VVNB_11L_F06": (2000, 170),
+        "VVNB_11L_F05": (1600, 165),
+        "VVNB_11L_F04": (1300, 160),
+        "VVNB_11L_F03": (1000, 155),
+        "VVNB_11L_THR": (50, 145),
+        "VVNB_11L_ROLL_END": (0, 80),
+        "VVNB_11L_VACATE": (0, 30),
+    }
+
+    for wp in seq:
+        alt, spd = profile[wp]
+        lines.append(f"{hms(arr_t)}>ADDWPT {arr_cs},{wp},{alt},{spd}")
+
+    lines += [
+        f"{hms(arr_t)}>LNAV {arr_cs},ON",
+        f"{hms(arr_t)}>VNAV {arr_cs},ON",
+        f"# WEBFTS_MOVEMENT idx={2*i+1} callsign={arr_cs} type=ARR runway=11L scheduledTime={hms(arr_t)}",
+    ]
+
+    arrivals.append(arr_cs)
+
+    # Departure
+    lines += [
+        "",
+        f"# ------------------------------------------------------------",
+        f"# Movement {2*i+2:02d}/52 - DEPARTURE RWY 11R - {dep_cs}",
+        f"# ------------------------------------------------------------",
+        f"{hms(dep_t)}>CRE {dep_cs},A321,21.2200000,105.7900000,110,0,0",
+        f"{hms(dep_t)}>ORIG {dep_cs},VVNB",
+        f"{hms(dep_t)}>DEST {dep_cs},{dests[i % len(dests)]}",
+        f"{hms(dep_t+10)}>SPD {dep_cs},35",
+        f"{hms(dep_t+10)}>ADDWPT {dep_cs},VVNB_11R_ROLL_MID,0,90",
+        f"{hms(dep_t+10)}>ADDWPT {dep_cs},VVNB_11R_AIRBORNE,500,160",
+        f"{hms(dep_t+10)}>ADDWPT {dep_cs},VVNB_11R_CLIMB_03,1500,190",
+        f"{hms(dep_t+10)}>ADDWPT {dep_cs},VVNB_11R_CLIMB_06,3000,220",
+        f"{hms(dep_t+10)}>ADDWPT {dep_cs},VVNB_11R_CLIMB_10,6000,250",
+        f"{hms(dep_t+10)}>LNAV {dep_cs},ON",
+        f"{hms(dep_t+10)}>VNAV {dep_cs},ON",
+        f"# WEBFTS_MOVEMENT idx={2*i+2} callsign={dep_cs} type=DEP runway=11R scheduledTime={hms(dep_t)}",
+    ]
+
+    monitors += [
+        f"# WEBFTS_SEPARATION_MONITOR pair={arr_cs},{dep_cs} thresholdNm=3.0 alertType=ARR_DEP_11L_11R case=FLOW52_{i+1:02d}",
+        f"# WEBFTS_WAKE_MONITOR leader={arr_cs} follower={dep_cs} leaderCategory=Medium followerCategory=Medium case=FLOW52_{i+1:02d}",
+        f"# WEBFTS_RUNWAY_OCCUPANCY_MONITOR arrAircraft={arr_cs} depAircraft={dep_cs} arrRunway=11L depRunway=11R mode=dependent_parallel case=FLOW52_{i+1:02d}",
+    ]
+
+    if i > 0:
+        monitors += [
+            f"# WEBFTS_SEPARATION_MONITOR pair={arrivals[i-1]},{arr_cs} thresholdNm=3.0 alertType=ARR_ARR_11L case=ARRSEQ_{i:02d}",
+            f"# WEBFTS_RUNWAY_OCCUPANCY_MONITOR leadArrival={arrivals[i-1]} followerArrival={arr_cs} runway=11L mode=single_runway_equivalent case=ARRSEQ_{i:02d}",
+        ]
+
+lines += [
+    "",
+    "# ============================================================",
+    "# WEBFTS MONITOR DEFINITIONS",
+    "# ============================================================",
+]
+lines += monitors
+
+lines += [
+    "",
+    "# ============================================================",
+    "# EXPECTED OUTPUT",
+    "# ============================================================",
+    "# 1. Actual movements/hour.",
+    "# 2. Minimum separation.",
+    "# 3. Number of events where distance < 3 NM.",
+    "# 4. Total time below 3 NM.",
+    "# 5. Wake turbulence compliance.",
+    "# 6. Runway occupancy conflict.",
+    "# 7. Touchdown interval.",
+    "# 8. Departure airborne time.",
+    "# 9. Arrival delay.",
+    "# 10. Departure delay.",
+    "# 11. Runway throughput.",
+    "# 12. ATWI workload.",
+    "# 13. Alert count.",
+    "",
+    "# Interpretation:",
+    "# Do not conclude simply that 3 NM is optimal.",
+    "# Compare regulatory minimum, operational optimum, wake buffer,",
+    "# runway occupancy buffer, throughput optimum and workload optimum.",
+    "",
+    "01:05:00>HOLD",
+]
+
+scn_path = OUT / SCN_NAME
+scn_path.write_text("\n".join(lines), encoding="utf-8")
+
+metadata = {
+    "scenarioFileName": SCN_NAME,
+    "icCommand": "IC vvnb_parallel_52_movements_1h_test",
+    "airport": "VVNB",
+    "arrivalRunway": "11L",
+    "departureRunway": "11R",
+    "operationMode": "dependent_parallel",
+    "durationMinutes": 60,
+    "movements": 52,
+    "arrivals": 26,
+    "departures": 26,
+    "intervalSeconds": round(interval, 2),
+    "alertThresholdNm": 3.0,
+    "createdAt": datetime.datetime.utcnow().isoformat() + "Z",
+}
+
+(OUT / "vvnb_parallel_52_movements_1h_test_metadata.json").write_text(
+    json.dumps(metadata, ensure_ascii=False, indent=2),
+    encoding="utf-8"
+)
+
+print(f"Created: {scn_path}")
+print("Run command:")
+print("IC vvnb_parallel_52_movements_1h_test")

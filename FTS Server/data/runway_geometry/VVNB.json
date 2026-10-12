@@ -1,0 +1,61 @@
+{
+  "airport": "VVNB",
+  "geometryStatus": "verified",
+  "runways": [
+    {
+      "designator": "11L",
+      "oppositeDesignator": "29R",
+      "thresholdLat": 21.2252536,
+      "thresholdLon": 105.7925694,
+      "oppositeThresholdLat": 21.2167376,
+      "oppositeThresholdLon": 105.8220312,
+      "trueHeadingDeg": 107.22,
+      "oppositeTrueHeadingDeg": 287.23,
+      "source": "runways.geojson:RWY 11L/29R centerline"
+    },
+    {
+      "designator": "29R",
+      "oppositeDesignator": "11L",
+      "thresholdLat": 21.2167376,
+      "thresholdLon": 105.8220312,
+      "oppositeThresholdLat": 21.2252536,
+      "oppositeThresholdLon": 105.7925694,
+      "trueHeadingDeg": 287.23,
+      "oppositeTrueHeadingDeg": 107.22,
+      "source": "runways.geojson:RWY 11L/29R centerline"
+    },
+    {
+      "designator": "11R",
+      "oppositeDesignator": "29L",
+      "thresholdLat": 21.2246888,
+      "thresholdLon": 105.7863528,
+      "oppositeThresholdLat": 21.2145774,
+      "oppositeThresholdLon": 105.8213339,
+      "trueHeadingDeg": 107.22,
+      "oppositeTrueHeadingDeg": 287.23,
+      "source": "runways.geojson:RWY 11R/29L centerline"
+    },
+    {
+      "designator": "29L",
+      "oppositeDesignator": "11R",
+      "thresholdLat": 21.2145774,
+      "thresholdLon": 105.8213339,
+      "oppositeThresholdLat": 21.2246888,
+      "oppositeThresholdLon": 105.7863528,
+      "trueHeadingDeg": 287.23,
+      "oppositeTrueHeadingDeg": 107.22,
+      "source": "runways.geojson:RWY 11R/29L centerline"
+    }
+  ],
+  "runwayModes": [
+    { "mode": "Che_do_1: 11L-ARR/11R-DEP", "arrivalRunway": "11L", "departureRunway": "11R" },
+    { "mode": "Che_do_2: 11R-ARR/11L-DEP", "arrivalRunway": "11R", "departureRunway": "11L" },
+    { "mode": "Che_do_3: 29R-ARR/29L-DEP", "arrivalRunway": "29R", "departureRunway": "29L" },
+    { "mode": "Che_do_4: 29L-ARR/29R-DEP", "arrivalRunway": "29L", "departureRunway": "29R" },
+    { "mode": "Che_do_5: 11L+11R-DEP (restricted, both runways depart)", "arrivalRunway": null, "departureRunway": "11L,11R" },
+    { "mode": "Che_do_6: 11L+11R-ARR (restricted, both runways arrive)", "arrivalRunway": "11L,11R", "departureRunway": null },
+    { "mode": "Che_do_7: 29L+29R-DEP (restricted, both runways depart)", "arrivalRunway": null, "departureRunway": "29L,29R" },
+    { "mode": "Che_do_8: 29L+29R-ARR (restricted, both runways arrive)", "arrivalRunway": "29L,29R", "departureRunway": null }
+  ],
+  "notes": "Runway centerlines confirmed clean, correctly labeled 'RWY 11L/29R centerline' and 'RWY 11R/29L centerline' LineStrings in runways.geojson. Bearing 107.22deg matches the known real AIP ILS true heading of 107.0deg T for this runway almost exactly, and the 11L/11R threshold coordinates match the known AIP thresholds within ~100m (runway-edge-vs-threshold offset, not a data error). The 8 runwayModes now match the real VVNB parallel-runway procedure doc (CHC song song VVNB 599.pdf, section 3.3, Che do 1-8) exactly -- modes 3/4 were previously swapped in an earlier version of this file (Che do 3 is 29R-ARR/29L-DEP, not 29L-ARR/29R-DEP). Modes 5-8 are dual-same-role restricted modes ('han che su dung che do nay' per the doc) and are not reliably detectable by detect_runway_mode()'s single-arrival/single-departure heuristic; they exist here for completeness/documentation only."
+}

@@ -1,0 +1,46 @@
+# _KB5v2_DEP001_ROLL.scn
+# Được gọi bởi: "ARR001 ATALT 0 PCALL _KB5v2_DEP001_ROLL" (khi ARR001 chạm đất 35L).
+# PCALL mặc định REL: mọi timestamp dưới đây được CỘNG THÊM thời điểm gọi,
+# nên "00:00:30.00" nghĩa là "30 giây sau khi ARR001 chạm đất".
+#
+# Vật lý chạy đà: gia tốc đều 1.3084 m/s^2 từ V=0 tại điểm chờ (16.029200,
+# 108.202500) tới Vr=150kt, NHẤC BÁNH MŨI đúng tại toạ độ người dùng cho
+# (16.049442,108.199582) — cách điểm chờ 2276.1m theo hướng 352.1°, mất 59.0s.
+# Sau đó tiếp tục leo lên 1500ft trong 36s (rate ~2500ft/min) trong khi tăng
+# tốc 150->180kt, rồi giao lại cho ADDWPT/LNAV/VNAV bay SID BUNTA 2G thực tế
+# (DN456-HOKIN-BINKU-BUNTA, nguồn AIP: SID_RNAV_RWY35LR_BUNTA_2G.pdf).
+#
+# GHI CHÚ: việc cho phép DEP002 vào đường CHC 35R KHÔNG còn gắn với thời điểm
+# nhấc bánh mũi ở file này nữa — đã chuyển sang trigger ATDIST riêng "DEP001 đã
+# bay hết toàn bộ chiều dài đường CHC 35R" trong _KB5v2_DEP001_RUNWAY_CLEARED.scn
+# (gọi từ file kịch bản chính), theo phản hồi mới nhất của người dùng.
+
+00:00:30.00>DEP001 LNAV OFF
+00:00:30.00>DEP001 VNAV OFF
+
+00:00:30.00>MOVE DEP001,16.029200,108.202500,0,352.1,0.0
+00:00:38.00>MOVE DEP001,16.029573,108.202446,0,352.1,20.4
+00:00:46.00>MOVE DEP001,16.030690,108.202285,0,352.1,40.7
+00:00:54.00>MOVE DEP001,16.032553,108.202016,0,352.1,61.0
+00:01:02.00>MOVE DEP001,16.035159,108.201640,0,352.1,81.4
+00:01:10.00>MOVE DEP001,16.038514,108.201155,0,352.1,101.7
+00:01:18.00>MOVE DEP001,16.042616,108.200563,0,352.1,122.0
+00:01:26.00>MOVE DEP001,16.047469,108.199862,0,352.1,142.4
+00:01:29.00>MOVE DEP001,16.049442,108.199582,0,352.1,150.0
+00:01:38.00>MOVE DEP001,16.055778,108.198667,375,352.1,157.5
+00:01:47.00>MOVE DEP001,16.062422,108.197708,750,352.1,165.0
+00:01:56.00>MOVE DEP001,16.069382,108.196704,1125,352.1,172.5
+00:02:05.00>MOVE DEP001,16.076637,108.195656,1500,352.1,180.0
+
+# QUAN TRỌNG: route cũ (từ lúc lăn ra Gate 26 vào đường CHC 35R) vẫn còn con
+# trỏ waypoint trỏ tới waypoint "mồi" gần điểm đầu 35R — nếu chỉ ADDWPT thêm
+# SID rồi bật LNAV, DEP001 sẽ cố bay VỀ điểm mồi đó trước (quay lại đầu 35R)
+# thay vì bay thẳng theo SID. Phải DELRTE xoá sạch route cũ trước.
+00:02:05.00>DEP001 DELRTE
+
+00:02:05.00>DEP001 ADDWPT 16.334167,108.192500 7500 250
+00:02:05.00>DEP001 ADDWPT 16.451111,108.578611 10500 280
+00:02:05.00>DEP001 ADDWPT 16.559722,108.973056 24000 310
+00:02:05.00>DEP001 ADDWPT 16.833333,109.395000 34000 320
+00:02:05.00>DEP001 LNAV ON
+00:02:05.00>DEP001 VNAV ON

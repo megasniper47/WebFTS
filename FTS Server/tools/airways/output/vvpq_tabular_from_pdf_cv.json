@@ -1,0 +1,69 @@
+{
+  "_source": "vietnam_ats_routes_pack/Dữ liệu PTB + code/PTB QLBMN/PQ/2026.08.06 Dự thảo PD1 QĐ PTB truyền thống tại sân bay PQ.pdf, đọc bằng mắt qua ảnh render (pypdfium2)",
+  "_note": "Draft (dự thảo 2026.08.06), conventional VOR/DME radial procedures. Runway labeling trong PDF dùng 10L/28R là 1 cặp CHC (không phải 2 CHC song song riêng) -- cần đối chiếu với KML mới khi build Phase 4/5.",
+  "waypoints": {
+    "PQU": {"lat": "10°09'55\"N", "lon": "104°02'20\"E", "_note": "VOR/DME PQU 113.0, 0ft, cũng gần ARP"},
+    "NUMDI": {"lat": "10°26'43\"N", "lon": "103°46'35\"E"},
+    "OSOTA": {"lat": "10°33'07\"N", "lon": "104°15'49\"E"},
+    "TIHAN": {"lat": "10°06'24\"N", "lon": "104°21'09\"E"},
+    "TUNPO": {"lat": "10°03'44\"N", "lon": "104°35'22\"E"},
+    "HOTUN": {"lat": "09°48'44\"N", "lon": "104°02'56\"E"},
+    "VIBIL": {"lat": "09°20'07\"N", "lon": "104°03'40\"E"},
+    "ADBOP": {"lat": "08°30'00\"N", "lon": "104°05'00\"E"},
+    "ILQ_LLZ_RWY28R": {"lat": null, "lon": null, "_freq": "109.5", "_note": "LLZ IQU for ILS Z RWY28R"},
+    "ILQ_GP_RWY28R": {"_freq": "332.6 CH32X"}
+  },
+  "SID": {
+    "NUMDI 3A / OSOTA 3A / TUNPO 3A / ADBOP 3A": {
+      "runway": "10L/R",
+      "NUMDI_3A": "Giữ hướng đường CHC bay lên 500ft, tiến nhập R-096 PQU đến D5.0 PQU, vòng phải về đài VOR/DME PQU (MAX IAS 250KT), tiến nhập R-317 PQU đến NUMDI đạt 8000ft hoặc cao hơn",
+      "OSOTA_3A": "Giữ hướng đường CHC bay lên 500ft, tiến nhập R-096 PQU đến D5.0 PQU, vòng trái hướng mũi 335° để tiến nhập R-030 PQU đến OSOTA đạt 6000ft hoặc cao hơn",
+      "TUNPO_3A": "Giữ hướng đường CHC bay lên 500ft, tiến nhập R-096 PQU đến D5.0 PQU, vòng phải hướng tiến nhập R-101 PQU đến TIHAN đạt 5000ft hoặc cao hơn, tiếp tục đến TUNPO (PDG tối thiểu 4.0% đến 5000ft do khống chế độ cao tại TIHAN)",
+      "ADBOP_3A": "Giữ hướng đường CHC bay lên 500ft, tiến nhập R-096 PQU đến D5.0 PQU, vòng phải hướng mũi 249° (MAX IAS 250KT) để tiến nhập R-178 PQU đến HOTUN, VIBIL đạt FL135 hoặc cao hơn, sau đó đến ADBOP (PDG tối thiểu 3.6% đến FL135 do khống chế độ cao tại VIBIL)"
+    },
+    "NUMDI 3B / OSOTA 3B / TUNPO 3B / ADBOP 3B": {
+      "runway": "28L/R",
+      "NUMDI_3B": "Giữ hướng đường CHC bay lên 500ft, tiến nhập R-276 PQU đến D7.5 PQU (MAX IAS 250KT), vòng phải hướng mũi 008° để tiến nhập R-317 PQU đến NUMDI đạt 8000ft hoặc cao hơn (PDG tối thiểu 5.4% đến 8000ft do khống chế độ cao tại NUMDI)",
+      "OSOTA_3B": "Giữ hướng đường CHC bay lên 500ft, tiến nhập R-276 PQU đến D7.5 PQU (MAX IAS 250KT), vòng trái về đài VOR/DME PQU, tiến nhập R-030 PQU đến OSOTA đạt 6000ft hoặc cao hơn",
+      "TUNPO_3B": "Giữ hướng đường CHC bay lên 500ft, tiến nhập R-276 PQU đến D7.5 PQU (MAX IAS 250KT), vòng trái về đài VOR/DME PQU, tiến nhập R-101 PQU đến TIHAN đạt 5000ft hoặc cao hơn, tiếp tục đến TUNPO",
+      "ADBOP_3B": "Giữ hướng đường CHC bay lên 500ft, tiến nhập R-276 PQU đến D7.5 PQU (MAX IAS 250KT), vòng trái hướng mũi 089° để tiến nhập R-178 PQU đến HOTUN, VIBIL đạt FL135 hoặc cao hơn, sau đó đến ADBOP"
+    }
+  },
+  "STAR": {
+    "NUMDI 3C / OSOTA 3C / TUNPO 3C / ADBOP 3C": {
+      "runway": "10L / 28R chung",
+      "NUMDI_3C": "Từ NUMDI tại 8000ft hoặc cao hơn tiến nhập R-317 PQU về đài VOR/DME PQU tại 4000ft hoặc cao hơn",
+      "OSOTA_3C": "Từ OSOTA tại 6000ft hoặc cao hơn tiến nhập R-030 PQU về đài VOR/DME PQU tại 4000ft hoặc cao hơn",
+      "TUNPO_3C": "Từ TUNPO tiến nhập R-101 PQU về TIHAN tại 5000ft hoặc cao hơn, tiếp tục về đài VOR/DME PQU tại 4000ft hoặc cao hơn",
+      "ADBOP_3C": "Từ ADBOP tiến nhập R-178 PQU về VIBIL tại FL135 hoặc cao hơn, tiếp tục về HOTUN và đài VOR/DME PQU tại 4000ft hoặc cao hơn",
+      "holding_rwy10L": {"fix": "PQU", "inbound": 257, "turn": "?", "min_alt": 4000, "time_min": 1},
+      "holding_rwy28R": {"fix": "PQU", "inbound": 67, "turn": "?", "min_alt": 4000, "time_min": 1, "max_ias": 205}
+    }
+  },
+  "IAP": {
+    "VOR Z RWY10L": {
+      "iaf": "VOR/DME PQU", "if_dist": 14.7, "faf_dist": 9.6, "mapt_dist": 5.4,
+      "faf_coords": {"lat": "10°11'11\"N", "lon": "103°52'40\"E"},
+      "dme_altitude_table": {"5.4": 670, "6.0": 850, "7.0": 1160, "8.0": 1480, "9.0": 1800, "9.6": 2000},
+      "oca_h_straight_in": 670, "oca_h_height": 654,
+      "faf_course": 98, "if_course_options": [260, 98],
+      "missed_approach": "Tiến nhập R-098 PQU bay lên 2500ft, vòng trái về đài VOR/DME PQU tại 4000ft hoặc cao hơn"
+    },
+    "VOR Z RWY28R": {
+      "iaf": "VOR/DME PQU", "if_dist": 9.4, "faf_dist": 4.3, "mapt_dist": 1.2,
+      "faf_coords": {"lat": "10°08'42\"N", "lon": "104°06'30\"E"},
+      "dme_altitude_table": {"1.2": 1030, "2.0": 1270, "3.0": 1600, "4.3": 2000},
+      "oca_h_straight_in": 1030, "oca_h_height": 1003,
+      "faf_course": 287, "if_course": 79,
+      "missed_approach": "Tiến nhập R-276 PQU bay lên 2500ft, vòng trái về đài VOR/DME PQU tại 4000ft hoặc cao hơn"
+    },
+    "ILS Z RWY28R": {
+      "iaf": "VOR/DME PQU", "if_dist_iqu": 10.8, "faf_dist_iqu": 6.2, "mapt_dist_iqu": 3.2,
+      "faf_coords": {"lat": "10°09'41\"N", "lon": "104°06'41\"E"},
+      "llz_freq": "109.5", "gp_freq": "332.6 CH32X", "rdh": 51, "glide_path": "3.0deg",
+      "dme_altitude_table_iqu": {"1.6": 530, "2.0": 660, "3.0": 980, "4.0": 1290, "5.0": 1610, "6.2": 2000},
+      "oca_h": {"CAT1": 530, "CAT1_h": 503, "GP_INOP": 1030, "GP_INOP_h": 1003},
+      "missed_approach": "Giữ hướng tiếp cận chót bay lên 1500ft, tiến nhập R-276 PQU bay lên 2500ft, vòng trái về đài VOR/DME PQU tại 4000ft hoặc cao hơn"
+    }
+  }
+}

@@ -1,0 +1,201 @@
+# VVDN — 2 real Aireon/ASTERIX-derived aircraft, RWY 35 operations, 2025-12-22
+# HVN337 (B738-like): 10NM final RWY35L, lands, taxis in, stops at real Gate 24 (verified match, 1.6m).
+# EVA384 (widebody): pushes back FROM real Gate 15, taxis out, holds short of RWY35R, lines up, departs.
+# Ground/taxi positions+speeds/headings below are read directly from the real ground-bit + ADS-B trace
+# (ground speed already in kt while on the ground; airborne ground-speed field converted x1.94384/x3600 to kt).
+# The 10NM-1NM approach leg for HVN337 is NOT in the source data (source only started at short final);
+# it is reconstructed along the real RWY35L extended centerline (thr 16.030125,108.200392, hdg352)
+# on a standard 3 deg glideslope (~318ft/NM) so the aircraft visibly flies the approach before landing.
+#
+# SAFETY NOTE: HVN337's real inbound taxi and EVA384's real outbound taxi both use the SAME physical
+# N-S taxiway link (real fix points only ~2m apart, e.g. 16.052759,108.200508 vs 16.052841,108.200496).
+# In reality this was safe because the two aircraft crossed that point ~2m39s apart (06:06:24 vs 06:09:03).
+# That gap is too small to trust once one leg (HVN337's 10NM approach) is a *simulated estimate* rather
+# than measured data -- a small timing error would put both aircraft on that taxiway at once.
+# Rule from now on: never rely on a tight real-world timing gap across a synthetic+real timing seam to
+# keep two ground aircraft apart. EVA384 does not start moving until HVN337 has fully vacated onto its
+# stand -- full temporal separation, not just whatever gap the source data happened to have.
+#
+# KNOWN ISSUE (not fixed, reverted): BlueSky auto-deletes any aircraft the instant it reaches the LAST
+# waypoint of its LNAV route (bluesky/traffic/autopilot.py ~line 168-175, unconditional -- ignores any
+# later DEL time in this file). HVN337 disappears from the map around simt=430-440, right after
+# reaching Gate 24, rather than at its scripted 00:20:00 DEL. Tried fixing this twice: (1) a co-located
+# duplicate final ADDWPT so the real stop point is no longer structurally "last" -- but a 0m-away dummy
+# gets "reached" on the very next tick too and deletes just as fast; (2) the same duplicate placed
+# ~550m away plus "AT HVN337029 DO HVN337 LNAV OFF" so LNAV would switch off on arrival -- confirmed
+# via live telemetry test that this did NOT reliably fire (the aircraft kept drifting toward the dummy
+# waypoint after "arriving", and even developed a runaway negative altitude in the process). Reverted
+# both attempts as not worth the added risk for what's a cosmetic timing issue -- the aircraft still
+# correctly reaches and briefly sits at Gate 24 before disappearing, just earlier than the scripted DEL.
+#
+# ---- HVN337 arrival milestones ----
+#  (synthetic) 10NM final  15.865190,108.224490 3200ft 220kt hdg352
+#  (synthetic)  8NM final  15.898177,108.219673 2600ft 200kt hdg352
+#  (synthetic)  5NM final  15.947658,108.212446 1600ft 170kt hdg352
+#  (synthetic)  3NM final  15.980645,108.207626 1000ft 150kt hdg352
+#  (synthetic)  1NM final  16.013632,108.202804  350ft 140kt hdg352
+#  06:05:03 (real) short final   16.029556,108.200443  75ft   133kt  hdg352
+#  06:05:14 (real) TOUCHDOWN     16.036501,108.199490   0ft   134kt  hdg352
+#  06:05:54 (real) turn off RWY  16.048622,108.197792         21kt  hdg014->070
+#  06:06:37 (real) HOLD (35s)    16.049126,108.200491          0kt
+#  06:07:55 (real) resume, turn  16.049801,108.200936          7kt  hdg352
+#  06:09:13 (real) 2nd turn      16.053155,108.200569          8kt  hdg020->082
+#  06:10:10 (real) STOP = GATE24 16.053376,108.201881          0kt  (1.6m from real Gate 24)
+#
+# ---- EVA384 departure milestones ----
+# TAXI-OUT FIX: earlier version free-routed straight-line through raw ADS-B fixes, which cut across
+# the apron at an angle instead of following taxiway E. Ground path below now follows the real named
+# taxiway E centerline end to end (from parse_apt_dat.py output, VVDN taxiway_centerlines.geojson),
+# found via shortest-path search on the taxiway graph from Gate 15 to the RWY35R hold point. E runs
+# almost due N-S right past the gate row (see screenshot), so this is a straight, single-taxiway taxi.
+#  (synthetic) CRE at real Gate 15 16.056590,108.201381   0kt   (stand, engine start/pushback)
+#  taxiway E, Gate15 -> hold, 14 vertices, real named taxiway centerline (not raw ADS-B fixes)
+#  06:11:16 (real) HOLD SHORT RWY35R (63s) 16.029430,108.203587  0kt  (121m from real THR 35R)
+#  06:12:45 (real) turn onto RWY   16.029190,108.203141   5.5kt hdg248
+#  06:13:24 (real) lined up        16.029821,108.202408    8kt  hdg352
+#  06:13:49 (real) takeoff roll    16.034185,108.201795   84kt  hdg352
+#  06:14:16 (real) liftoff        16.051163,108.199286  200ft 164kt hdg352
+# CLIMB FIX: earlier version stopped 4 waypoints after liftoff (aircraft vanished on the runway once
+# the route ended). Now continues on the real recorded climb all the way to cruise (FL250, 06:30:20),
+# matching the initial track of VVDN's RWY35 "G"-series SIDs (KONCO/PHULU/VIDEN 1G via DN456-LAIKA,
+# initial track ~352-359) before the real right turn onto the enroute airway toward FL250 cruise.
+#
+# SPEED UNIT SAGA (final answer -- values are plain, physical knots, no division): confirmed via
+# bluesky/tools/misc.py txt2spd() that unitless SPD is correctly parsed as knots (x kts=0.514444 ->
+# internal m/s). Earlier this file was changed to SPD/1.94384 to compensate for waypoint-label dots
+# appearing to show ~1.94x the file's value. That "fix" was reverted because it broke something worse:
+# with the halved SPD actually driving BlueSky's real flight dynamics, the AIRCRAFT ITSELF flew the
+# approach at real ~90kt at 1600ft -- an unrealistic, near-stall speed, confirmed by a live screenshot.
+# Conclusion: there are two independent displays here -- (1) the per-waypoint dot label, which seems to
+# apply its own x1.94384 on top of an already-correct value (a cosmetic WebATM display bug, separate
+# issue, NOT fixed by editing this file), and (2) the aircraft's own live speed readout, which reflects
+# BlueSky's real simulated speed and DOES track this file's SPD directly and correctly as knots. Correct
+# flight dynamics matter more than a cosmetic label, so this file keeps plain physical knots. If the
+# waypoint-label bug needs fixing, that's a WebATM frontend issue to chase separately, not a scn change.
+#
+# SCHEDULING FIX (v2, verified live): earlier estimate (EVA384 CRE 00:08:40, based on a hand guess of
+# HVN337's touchdown+taxi timing) was replaced by measuring the ACTUAL running scenario. Launched the
+# real WebATM app, reloaded this scn, and polled live Socket.IO telemetry (lat/lon/tas per aircraft)
+# every few seconds through the whole HVN337 arrival. Result: HVN337 (CRE 00:00:00) reaches Gate 24
+# (16.053376,108.201881) and is essentially stopped there by simt=430-435s (00:07:10-00:07:15), decel
+# from tas=3.1 to 2.6kt within ~6m of the gate at simt=419-431 and gone from traffic by simt=441.
+# EVA384 CRE is therefore set to simt=440 (00:07:20) = HVN337 gate-arrival + 10s, replacing the old
+# 00:08:40 guess. DEL EVA384 shifted by the same -80s delta (00:38:00 -> 00:36:40) to keep the same
+# on-scenario duration.
+#
+# PUSHBACK FIX v2 (verified live -- root cause was NOT the heading, it was zero initial speed):
+# v1 set CRE heading 083 (nose-in at the gate) with the first taxi waypoint at bearing ~262 from the
+# gate, intending a real-style pushback. Live-tested by running the actual scenario and polling
+# EVA384's telemetry from its CRE time: TAS stayed exactly 0.0 forever, matching the user's report of
+# EVA384 never moving. First hypothesis was a ~180 degree heading-reversal deadlock, so CRE heading
+# was changed 083 -> 262 (matching the WP1 bearing, no turn needed at t=0) -- but on a fresh live
+# retest EVA384 STILL never moved, proving heading was not the cause. Read bluesky/traffic/autopilot.py:
+# selspdcmd()/setVNAV() show that VNAV's speed control (bs.traf.selspd) only gets updated to a
+# waypoint's target speed on WAYPOINT-TRANSITION events; an aircraft CRE'd with spd=0.0 never reaches
+# its first waypoint (it isn't moving), so it never transitions, so selspd is never seeded away from 0
+# -- a chicken-and-egg deadlock, independent of heading. Confirmed the fix live: manually sending
+# "EVA384 SPD 10" while it sat stuck immediately made it accelerate and correctly fly the LNAV route --
+# but it then held that one fixed speed forever through many later waypoints with higher spd targets
+# (18-20kt) instead of following the route's speed profile. Root cause of THAT: selspdcmd() (the SPD
+# command) sets swvnavspd=False (manual speed override); the waypoint-transition code that updates
+# selspd to match each new waypoint's target speed (autopilot.py ~line 239) only fires when
+# swvnavspd is True, so issuing SPD after VNAV ON re-locks it. FINAL FIX: LNAV ON, then "EVA384 SPD 8"
+# as a one-time kickstart (escapes the zero-speed deadlock, seeded at WP1's own target speed), then
+# VNAV ON *last* so swvnavspd is back on before the aircraft reaches WP2 onward -- each subsequent
+# waypoint transition then correctly re-targets selspd per that waypoint's spd value, all the way
+# through the takeoff roll and climb. CRE heading is left at 262 (matching the real initial
+# pushback/taxi bearing) rather than reverted to 083, since a literal opposite-heading
+# pushback-then-reversal is not something BlueSky's forward-motion flight model represents cleanly.
+
+00:00:00.00>TRAILS ON
+00:00:00.00>ASAS ON
+
+# ============ HVN337 — ARRIVAL, 10NM final RWY35L, lands, taxi to Gate 24 ============
+00:00:00.00>CRE HVN337 B738 15.865190 108.224490 352 3200 220.0
+00:00:00.00>HVN337 ADDWPT 15.898177,108.219673 2600 200.0
+00:00:00.00>HVN337 ADDWPT 15.947658,108.212446 1600 170.1
+00:00:00.00>HVN337 ADDWPT 15.980645,108.207626 1000 150.1
+00:00:00.00>HVN337 ADDWPT 16.013632,108.202804 350 140.0
+00:00:00.00>HVN337 ADDWPT 16.029556,108.200443 75 133.0
+00:00:00.00>HVN337 ADDWPT 16.033522,108.199931 25 136.1
+00:00:00.00>HVN337 ADDWPT 16.036501,108.199490 0 133.9
+00:00:00.00>HVN337 ADDWPT 16.039032,108.199093 0 127.9
+00:00:00.00>HVN337 ADDWPT 16.044353,108.198310 0 70.0
+00:00:00.00>HVN337 ADDWPT 16.046219,108.198043 0 56.0
+00:00:00.00>HVN337 ADDWPT 16.048116,108.197761 0 36.9
+00:00:00.00>HVN337 ADDWPT 16.048622,108.197792 0 21.0
+00:00:00.00>HVN337 ADDWPT 16.048840,108.198226 0 18.1
+00:00:00.00>HVN337 ADDWPT 16.048874,108.198588 0 16.9
+00:00:00.00>HVN337 ADDWPT 16.048989,108.199515 0 16.9
+00:00:00.00>HVN337 ADDWPT 16.049068,108.200069 0 15.9
+00:00:00.00>HVN337 ADDWPT 16.049103,108.200334 0 12.1
+00:00:00.00>HVN337 ADDWPT 16.049126,108.200491 0 0.0
+00:00:00.00>HVN337 ADDWPT 16.049149,108.200611 0 4.1
+00:00:00.00>HVN337 ADDWPT 16.049263,108.200888 0 6.0
+00:00:00.00>HVN337 ADDWPT 16.049801,108.200936 0 7.0
+00:00:00.00>HVN337 ADDWPT 16.050431,108.200851 0 8.9
+00:00:00.00>HVN337 ADDWPT 16.052090,108.200611 0 12.1
+00:00:00.00>HVN337 ADDWPT 16.052759,108.200508 0 11.1
+00:00:00.00>HVN337 ADDWPT 16.053155,108.200569 0 8.0
+00:00:00.00>HVN337 ADDWPT 16.053257,108.200936 0 8.9
+00:00:00.00>HVN337 ADDWPT 16.053280,108.201177 0 6.0
+00:00:00.00>HVN337 ADDWPT 16.053349,108.201707 0 5.1
+00:00:00.00>HVN337 ADDWPT 16.053376,108.201881 0 0.0
+00:00:00.00>HVN337 LNAV ON
+00:00:00.00>HVN337 VNAV ON
+
+# ============ EVA384 — DEPARTURE, CRE at real Gate 15 (stand), pushback+taxi out, holds short RWY35R, departs ============
+00:07:20.00>CRE EVA384 A333 16.056590 108.201381 262 0 0.0
+00:07:20.00>EVA384 ADDWPT 16.0564,108.2000 0 8.0
+00:07:20.00>EVA384 ADDWPT 16.0535423,108.20038282 0 18.1
+00:07:20.00>EVA384 ADDWPT 16.05152836,108.2006715 0 20.0
+00:07:20.00>EVA384 ADDWPT 16.04920093,108.20100567 0 20.0
+00:07:20.00>EVA384 ADDWPT 16.04717653,108.20131673 0 20.0
+00:07:20.00>EVA384 ADDWPT 16.04408258,108.20175802 0 20.0
+00:07:20.00>EVA384 ADDWPT 16.043103,108.20190445 0 18.1
+00:07:20.00>EVA384 ADDWPT 16.04034858,108.20231616 0 20.0
+00:07:20.00>EVA384 ADDWPT 16.03856537,108.20258722 0 20.0
+00:07:20.00>EVA384 ADDWPT 16.03827662,108.20262587 0 18.1
+00:07:20.00>EVA384 ADDWPT 16.03614169,108.20292956 0 20.0
+00:07:20.00>EVA384 ADDWPT 16.03083542,108.20368438 0 20.0
+00:07:20.00>EVA384 ADDWPT 16.02936207,108.2038791 0 12.1
+00:07:20.00>EVA384 ADDWPT 16.029430,108.203587 0 0.0
+00:07:20.00>EVA384 ADDWPT 16.029327,108.203514 0 2.9
+00:07:20.00>EVA384 ADDWPT 16.029190,108.203141 0 5.4
+00:07:20.00>EVA384 ADDWPT 16.029213,108.202611 0 6.0
+00:07:20.00>EVA384 ADDWPT 16.029402,108.202433 0 7.0
+00:07:20.00>EVA384 ADDWPT 16.029821,108.202408 0 8.0
+00:07:20.00>EVA384 ADDWPT 16.030822,108.202298 0 29.9
+00:07:20.00>EVA384 ADDWPT 16.034185,108.201795 0 84.0
+00:07:20.00>EVA384 ADDWPT 16.040830,108.200814 0 119.9
+00:07:20.00>EVA384 ADDWPT 16.046951,108.199913 50 153.0
+00:07:20.00>EVA384 ADDWPT 16.051163,108.199286 200 164.1
+00:07:20.00>EVA384 ADDWPT 16.054962,108.198708 400 161.9
+00:07:20.00>EVA384 ADDWPT 16.064153,108.197332 975 157.1
+00:07:20.00>EVA384 ADDWPT 16.075605,108.196547 1525 154.0
+00:07:20.00>EVA384 ADDWPT 16.086033,108.196204 1800 170.1
+00:07:20.00>EVA384 ADDWPT 16.096756,108.196154 1975 186.0
+00:07:20.00>EVA384 ADDWPT 16.112567,108.196400 2250 212.1
+00:07:20.00>EVA384 ADDWPT 16.133190,108.196498 2875 237.0
+00:07:20.00>EVA384 ADDWPT 16.152100,108.196154 3850 240.1
+00:07:20.00>EVA384 ADDWPT 16.175171,108.195528 4900 247.1
+00:07:20.00>EVA384 ADDWPT 16.199341,108.194949 5975 254.1
+00:07:20.00>EVA384 ADDWPT 16.223144,108.194468 7000 260.1
+00:07:20.00>EVA384 ADDWPT 16.250564,108.193938 8150 265.9
+00:07:20.00>EVA384 ADDWPT 16.278717,108.193504 9425 267.1
+00:07:20.00>EVA384 ADDWPT 16.299911,108.195528 10225 271.0
+00:07:20.00>EVA384 ADDWPT 16.316000,108.206406 10875 272.9
+00:07:20.00>EVA384 ADDWPT 16.324240,108.219697 11175 285.0
+00:07:20.00>EVA384 ADDWPT 16.392253,108.426328 15175 145.0
+00:07:20.00>EVA384 ADDWPT 16.410362,108.576753 18975 181.0
+00:07:20.00>EVA384 ADDWPT 16.423769,108.790054 21325 213.0
+00:07:20.00>EVA384 ADDWPT 16.429728,109.006397 24300 230.0
+00:07:20.00>EVA384 ADDWPT 16.507141,109.202030 26225 248.0
+00:07:20.00>EVA384 ADDWPT 16.679248,109.468215 26450 250.0
+00:07:20.00>EVA384 ADDWPT 16.705131,109.508286 26450 250.0
+00:07:20.00>EVA384 LNAV ON
+00:07:20.00>EVA384 SPD 8
+00:07:20.00>EVA384 VNAV ON
+
+00:20:00.00>DEL HVN337
+00:36:40.00>DEL EVA384

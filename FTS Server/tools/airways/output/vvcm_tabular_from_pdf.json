@@ -1,0 +1,185 @@
+{
+  "_source": "vietnam_ats_routes_pack/Dữ liệu PTB + code/PTB QLBMN/CM/PD01 CV.pdf + PD02 PBN.pdf, đọc bằng mắt qua ảnh render (pypdfium2), không OCR tự động",
+  "_note": "Toạ độ giữ nguyên định dạng DMS như trong PDF gốc, chưa đổi sang decimal. Altitude/Speed giữ nguyên ký hiệu +/-/@ của PDF (+ là tối thiểu, - là tối đa, @ là đúng giá trị).",
+  "waypoints": {
+    "ATSUK": {"lat": "09°24'56.0\"N", "lon": "105°20'41.0\"E"},
+    "CM600": {"lat": "09°10'51.1\"N", "lon": "105°03'08.4\"E", "_note_from_DL_not_CM": false},
+    "CM601": {"lat": "09°17'44.0\"N", "lon": "105°03'19.5\"E"},
+    "CM602": {"lat": "09°21'42.6\"N", "lon": "105°12'54.5\"E"},
+    "CM700": {"lat": null, "lon": null, "_todo": "RWY27 departure equivalent waypoints not yet captured in detail -- see ATSUK 1D table p3-4"},
+    "CM723": {"lat": "09°16'22.7\"N", "lon": "105°21'56.5\"E"},
+    "CM900": {"lat": "09°01'00.6\"N", "lon": "105°10'16.5\"E"},
+    "CM921": {"lat": "09°10'46.1\"N", "lon": "105°06'16.7\"E"},
+    "CM922": {"lat": "09°10'54.1\"N", "lon": "105°01'13.5\"E"},
+    "CM923": {"lat": "09°16'55.7\"N", "lon": "105°01'23.1\"E"},
+    "CM924": {"lat": "09°04'52.6\"N", "lon": "105°01'03.9\"E"},
+    "CM721": {"lat": "09°10'29.4\"N", "lon": "105°16'44.1\"E"},
+    "CM722": {"lat": "09°10'21.2\"N", "lon": "105°21'46.6\"E"},
+    "CM724": {"lat": "09°04'19.6\"N", "lon": "105°21'36.6\"E"},
+    "RWY09": {"lat": "09°10'38.82\"N", "lon": "105°10'51.12\"E"},
+    "RWY27": {"lat": "09°10'36.72\"N", "lon": "105°12'09.70\"E"},
+    "ICM_LLZ": {"lat": "09°10'39.1\"N", "lon": "105°10'41.6\"E"},
+    "ICM_GP_DME": {"lat": "09°10'33.1\"N", "lon": "105°11'59.1\"E"},
+    "CMA_VORDME": {"lat": "09°10'35\"N", "lon": "105°12'57\"E", "_freq": "112.2"}
+  },
+  "PBN": {
+    "SID": {
+      "ATSUK 1C": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "CA", "waypoint": null, "course_mag": 92, "course_true": 91.5, "dist_nm": null, "alt_ft": "+700", "speed_kt": null, "min_cg_pct": null, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "ATSUK", "course_mag": null, "course_true": null, "dist_nm": null, "alt_ft": "-5000/+3000", "speed_kt": null, "min_cg_pct": null, "nav_spec": "RNP 1"}
+        ]
+      },
+      "ATSUK 1D": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "CF", "waypoint": "CM600", "course_mag": 272, "course_true": 271.5, "dist_nm": null, "alt_ft": null, "speed_kt": null, "min_cg_pct": "5.0", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "CM601", "course_mag": 3, "course_true": 2.5, "dist_nm": 6.85, "alt_ft": null, "speed_kt": "-250", "min_cg_pct": "5.0", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "CM602", "course_mag": 67, "course_true": 67.3, "dist_nm": 10.27, "alt_ft": "+7000", "speed_kt": null, "min_cg_pct": "5.0", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "ATSUK", "course_mag": 67, "course_true": 67.3, "dist_nm": 8.33, "alt_ft": null, "speed_kt": null, "min_cg_pct": null, "nav_spec": "RNP 1"}
+        ]
+      }
+    },
+    "STAR": {
+      "ATSUK 1E": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "ATSUK", "course_mag": null, "alt_ft": null, "speed_kt": null, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "CM930", "course_mag": 247, "course_true": 247.4, "dist_nm": 12.55, "alt_ft": "+6000", "speed_kt": null, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "CM923", "course_mag": 247, "course_true": 247.3, "dist_nm": 8.13, "alt_ft": "+3000", "speed_kt": "-210", "nav_spec": "RNP 1"}
+        ],
+        "holding": {"fix": "CM923", "inbound_course_mag": 182, "inbound_course_true": 181.5, "turn": "R", "alt_ft": "+3000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"}
+      },
+      "ATSUK 1F": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "ATSUK", "course_mag": null, "alt_ft": null, "speed_kt": null, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "CM723", "course_mag": 172, "course_true": 171.7, "dist_nm": 8.61, "alt_ft": "+3000", "speed_kt": "-210", "nav_spec": "RNP 1"}
+        ],
+        "holding": {"fix": "CM723", "inbound_course_mag": 182, "inbound_course_true": 181.6, "turn": "L", "alt_ft": "+3000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"}
+      }
+    },
+    "IAP": {
+      "RNP Z RWY09": {
+        "_note": "3 alternate initial-approach entries converging, then shared final+missed approach -- matches the leaf-collision diagnostic already seen from the KML-graph extraction for CM's LNAV/NDB documents",
+        "initial_entries": [
+          [
+            {"serial": "010", "path": "IF", "waypoint": "CM923", "alt_ft": "+3000", "speed_kt": "-210", "nav_spec": "RNP APCH"},
+            {"serial": "020", "path": "TF", "waypoint": "CM922", "course_mag": 182, "course_true": 181.5, "dist_nm": 6.00, "alt_ft": "+2000", "nav_spec": "RNP APCH"}
+          ],
+          [
+            {"serial": "010", "path": "IF", "waypoint": "CM900", "alt_ft": "+2000", "nav_spec": "RNP APCH"},
+            {"serial": "020", "path": "TF", "waypoint": "CM924", "course_mag": 293, "course_true": 292.9, "dist_nm": 9.89, "alt_ft": null, "nav_spec": "RNP APCH"},
+            {"serial": "030", "path": "TF", "waypoint": "CM922", "course_mag": 2, "course_true": 1.5, "dist_nm": 6.00, "alt_ft": "+2000", "nav_spec": "RNP APCH"}
+          ]
+        ],
+        "final_and_missed": [
+          {"serial": "010", "path": "IF", "waypoint": "CM922", "alt_ft": "+2000", "nav_spec": "RNP APCH"},
+          {"serial": "020", "path": "TF", "waypoint": "CM921", "course_mag": 92, "course_true": 91.5, "dist_nm": 5.00, "alt_ft": "+1500", "nav_spec": "RNP APCH"},
+          {"serial": "030", "path": "TF", "waypoint": "RWY09 (MAPT)", "flyover": true, "course_mag": 92, "course_true": 91.5, "dist_nm": 4.53, "alt_ft": "@59", "vpa_tch": "-3.0/50", "nav_spec": "RNP APCH"},
+          {"serial": "040", "path": "CA", "course_mag": 92, "course_true": 91.5, "alt_ft": "+1000", "nav_spec": "RNP APCH"},
+          {"serial": "050", "path": "DF", "waypoint": "CM900", "alt_ft": "@2000", "nav_spec": "RNP APCH"},
+          {"serial": "060", "path": "HM", "waypoint": "CM900", "course_mag": 293, "course_true": 292.9, "turn": "L", "alt_ft": "+2000", "nav_spec": "RNP APCH"}
+        ],
+        "holding": [
+          {"fix": "CM923", "inbound_course_mag": 182, "inbound_course_true": 181.5, "turn": "R", "alt_ft": "+3000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+          {"fix": "CM900", "inbound_course_mag": 293, "inbound_course_true": 292.9, "turn": "L", "alt_ft": "+2000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"}
+        ]
+      },
+      "RNP Z RWY27": {
+        "_note": "mirror of RWY09 version, runway-27-specific waypoints",
+        "initial_entries": [
+          [
+            {"serial": "010", "path": "IF", "waypoint": "CM723", "alt_ft": "+3000", "speed_kt": "-210", "nav_spec": "RNP APCH"},
+            {"serial": "020", "path": "TF", "waypoint": "CM722", "course_mag": 182, "course_true": 181.6, "dist_nm": 6.00, "alt_ft": "+2000", "nav_spec": "RNP APCH"}
+          ],
+          [
+            {"serial": "010", "path": "IF", "waypoint": "CM900", "alt_ft": "+2000", "nav_spec": "RNP APCH"},
+            {"serial": "020", "path": "TF", "waypoint": "CM724", "course_mag": 74, "course_true": 73.6, "dist_nm": 11.69, "alt_ft": null, "nav_spec": "RNP APCH"},
+            {"serial": "030", "path": "TF", "waypoint": "CM722", "course_mag": 2, "course_true": 1.6, "dist_nm": 6.00, "alt_ft": "+2000", "nav_spec": "RNP APCH"}
+          ]
+        ],
+        "final_and_missed": [
+          {"serial": "010", "path": "IF", "waypoint": "CM722", "alt_ft": "+2000", "nav_spec": "RNP APCH"},
+          {"serial": "020", "path": "TF", "waypoint": "CM721", "course_mag": 272, "course_true": 271.6, "dist_nm": 4.99, "alt_ft": "+1500", "nav_spec": "RNP APCH"},
+          {"serial": "030", "path": "TF", "waypoint": "RWY27 (MAPT)", "flyover": true, "course_mag": 272, "course_true": 271.6, "dist_nm": 4.52, "alt_ft": "@59", "vpa_tch": "-3.0/50", "nav_spec": "RNP APCH"},
+          {"serial": "040", "path": "CA", "course_mag": 272, "course_true": 271.6, "alt_ft": "+1000", "nav_spec": "RNP APCH"},
+          {"serial": "050", "path": "DF", "waypoint": "CM900", "alt_ft": "@2000", "nav_spec": "RNP APCH"},
+          {"serial": "060", "path": "HM", "waypoint": "CM900", "course_mag": 74, "course_true": 73.6, "turn": "R", "alt_ft": "+2000", "nav_spec": "RNP APCH"}
+        ],
+        "holding": [
+          {"fix": "CM900", "inbound_course_mag": 74, "inbound_course_true": 73.6, "turn": "R", "alt_ft": "+2000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+          {"fix": "CM723", "inbound_course_mag": 182, "inbound_course_true": 181.6, "turn": "L", "alt_ft": "+3000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"}
+        ]
+      },
+      "ILS Y RWY27": {
+        "initial_approach_entries": [
+          [
+            {"serial": "010", "path": "IF", "waypoint": "CM723", "alt_ft": "+3000", "speed_kt": "-210", "nav_spec": "RNP 1"},
+            {"serial": "020", "path": "TF", "waypoint": "CM722", "course_mag": 182, "course_true": 181.6, "dist_nm": 6.00, "alt_ft": "+2000", "nav_spec": "RNP 1"}
+          ],
+          [
+            {"serial": "010", "path": "IF", "waypoint": "CM900", "alt_ft": "+2000", "nav_spec": "RNP 1"},
+            {"serial": "020", "path": "TF", "waypoint": "CM724", "course_mag": 74, "course_true": 73.6, "dist_nm": 11.69, "alt_ft": null, "nav_spec": "RNP 1"},
+            {"serial": "030", "path": "TF", "waypoint": "CM722", "course_mag": 2, "course_true": 1.6, "dist_nm": 6.00, "alt_ft": "+2000", "nav_spec": "RNP 1"}
+          ]
+        ],
+        "missed_approach": [
+          {"serial": "010", "path": "CA", "course_mag": 272, "course_true": 271.5, "alt_ft": "+1000", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "CM900", "alt_ft": "@2000", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "HM", "waypoint": "CM900", "course_mag": 74, "course_true": 73.6, "turn": "R", "alt_ft": "+2000", "nav_spec": "RNP 1"}
+        ],
+        "holding": [
+          {"fix": "CM900", "inbound_course_mag": 74, "inbound_course_true": 73.6, "turn": "R", "alt_ft": "+2000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+          {"fix": "CM723", "inbound_course_mag": 182, "inbound_course_true": 181.6, "turn": "L", "alt_ft": "+3000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"}
+        ],
+        "final_approach_waypoints": {"ICM_LLZ": true, "ICM_GP_DME": true}
+      }
+    }
+  },
+  "CV": {
+    "SID": {
+      "ATSUK 1A": {
+        "runway": "09",
+        "_note": "Conventional VOR/DME radial-based procedure, no ARINC tabular description -- transcribed from chart instruction text",
+        "instruction": "Bay lên trên R-092 CMA đến 700ft hoặc cao hơn, vòng trái hướng mũi 330° để tiến nhập R-028 CMA đến ATSUK đạt 3000ft hoặc cao hơn.",
+        "legs": [
+          {"course_mag": 92, "alt_ft": "+700", "ref": "R-092 CMA"},
+          {"heading": 330, "ref": "turn left to intercept R-028 CMA"},
+          {"course_mag": 28, "to_fix": "ATSUK", "alt_ft": "+3000", "ref": "R-028.2/D16.2 CMA"}
+        ]
+      },
+      "ATSUK 1B": {
+        "runway": "27",
+        "instruction": "Bay lên trên R-272 CMA đến 1000ft hoặc cao hơn, vòng phải hướng mũi 115° để tiến nhập R-028 CMA đến ATSUK đạt 3000ft hoặc cao hơn.",
+        "legs": [
+          {"course_mag": 272, "alt_ft": "+1000", "ref": "R-272 CMA"},
+          {"heading": 115, "ref": "turn right to intercept R-028 CMA"},
+          {"course_mag": 28, "to_fix": "ATSUK", "alt_ft": "+3000", "ref": "R-028.2/D16.2 CMA"}
+        ]
+      }
+    },
+    "IAP": {
+      "VOR Z RWY09": {
+        "_note": "Conventional VOR/DME-based approach, DME-step descent table, no ARINC tabular description",
+        "iaf": "VOR/DME CMA", "if_dist_cma": 11.6, "faf_dist_cma": 6.6, "mapt_dist_cma": 3.5,
+        "dme_altitude_table": {"6.6": 1500, "6.0": 1310, "5.0": 990, "4.0": 670, "3.5": 520},
+        "oca_h_straight_in": 520,
+        "missed_approach": "Bay lên trên R-092 CMA đến 2000ft hoặc cao hơn, vòng trái về đài VOR/DME CMA đạt 3000ft hoặc cao hơn."
+      },
+      "VOR Z RWY27": {
+        "iaf": "VOR/DME CMA", "if_dist_cma": 8.8, "faf_dist_cma": 3.7, "mapt_dist_cma": null,
+        "dme_altitude_table": {"3.7": 1500, "3.0": 1260, "2.0": 940, "1.0": 630, "0.5": 450},
+        "oca_h_straight_in": 450,
+        "missed_approach": "Bay lên trên R-272 CMA đến 2000ft hoặc cao hơn, vòng trái về đài VOR/DME CMA đạt 3000ft hoặc cao hơn."
+      },
+      "ILS Z RWY27": {
+        "iap_dist_cma": 9.7, "faf_dist_icm": 4.7, "glide_path": "3.00 deg", "rdh": 54,
+        "dme_altitude_table_icm": {"4.7": 1500, "4.0": 1280, "3.0": 960, "2.0": 640, "1.6": 520},
+        "oca_h_cat1_straight_in": 245, "oca_h_gp_inop": 520,
+        "missed_approach": "Bay lên trên R-272 CMA đến 1500ft hoặc cao hơn, vòng trái về đài VOR/DME CMA đạt 3000ft hoặc cao hơn."
+      }
+    }
+  }
+}

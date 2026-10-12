@@ -1,0 +1,31 @@
+# ARR_EXIT_E4.scn -- sau chạm đất, GIỮ NGUYÊN hướng đường CHC 352° (không rẽ)
+# dọc tim đường CHC, giảm tốc dần tới đúng điểm vacate (giao đường lăn E4 với
+# 35R, 16.049011,108.199650), CHỈ rẽ phải sang E4 SAU điểm đó, theo đúng lộ
+# trình rẽ do người dùng cung cấp (3 điểm đầu 16.049263/16.049801/16.050431),
+# rồi tiếp tục lăn về vị trí đỗ số 26, dừng cứng và xoá sau 10s.
+#
+# SỬA LỖI: 3 điểm nội suy giữa (40/20/12kt) trước đó bị lệch tay ~15m ra
+# ngoài trục tim CHC (sai số nhập liệu, không phải sai công thức) tạo ra 1
+# đoạn cong nhẹ ngay sau ngưỡng -- đúng như người dùng phát hiện qua ảnh
+# chụp màn hình. Đã tính lại chính xác bằng nội suy tuyến tính DN010->điểm
+# vacate (đã kiểm tra cross-track = 0 cho toàn bộ 6 điểm).
+# Gọi: PCALL ARR_EXIT_E4 <acid>
+00:00:00.00>%0 ADDWPT 16.034038,108.201823 0 100
+00:00:00.00>%0 ADDWPT 16.039029,108.201099 0 70
+00:00:00.00>%0 ADDWPT 16.043022,108.200519 0 40
+00:00:00.00>%0 ADDWPT 16.046016,108.200085 0 20
+00:00:00.00>%0 ADDWPT 16.048013,108.199795 0 12
+00:00:00.00>%0 ADDWPT 16.049011,108.199650 0 8.0
+00:00:00.00>%0 ADDWPT 16.049263,108.200888 0 6.0
+00:00:00.00>%0 ADDWPT 16.049801,108.200936 0 7.0
+00:00:00.00>%0 ADDWPT 16.050431,108.200851 0 8.9
+00:00:00.00>%0 ADDWPT 16.052090,108.200611 0 12.1
+00:00:00.00>%0 ADDWPT 16.052759,108.200508 0 11.1
+00:00:00.00>%0 ADDWPT 16.053155,108.200569 0 8.0
+00:00:00.00>%0 ADDWPT 16.053257,108.200936 0 8.9
+00:00:00.00>%0 ADDWPT 16.053280,108.201177 0 6.0
+00:00:00.00>%0 ADDWPT 16.053349,108.201707 0 5.1
+00:00:00.00>%0 ADDWPT 16.053376,108.201881 0 0.0
+00:00:00.00>LNAV %0 ON
+00:00:00.00>VNAV %0 ON
+00:00:00.00>%0 ATDIST 16.053376,108.201881,0.05 PCALL STOP_AND_DEL %0 16.053376 108.201881 80.9

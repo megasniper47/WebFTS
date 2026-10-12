@@ -1,0 +1,15 @@
+# DEP_ROLL.scn -- chạy đà cất cánh trên 35R và bay SID rời khu vực (đường
+# bay sau cất cánh chỉ mang tính minh hoạ, không do đề bài chỉ định cụ thể;
+# tái sử dụng đúng mẫu climb-out đã kiểm chứng trong _KB5GEN_DEP_ROLL_*.scn).
+# Gọi: PCALL DEP_ROLL <acid>
+00:00:00.00>TAXIOFF %0
+00:00:00.00>%0 DELRTE
+00:00:00.00>%0 ADDWPT 16.076637,108.195656 1500 180
+00:00:00.00>%0 ADDWPT 16.334167,108.192500 8038 250
+00:00:00.00>%0 ADDWPT 16.586667,108.135278 11000 260
+00:00:00.00>%0 LNAV ON
+00:00:00.00>%0 VNAV OFF
+00:00:00.00>%0 SPD 250
+00:00:00.00>%0 VS 2000
+00:00:00.00>%0 ALT 10000
+00:00:00.00>%0 ATALT 1500 PCALL VNAV_ON %0

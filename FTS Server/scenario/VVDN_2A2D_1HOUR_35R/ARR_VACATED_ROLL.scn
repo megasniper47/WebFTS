@@ -1,0 +1,4 @@
+# ARR_VACATED_ROLL.scn -- 30 giây SAU KHI ARR thoát ly hoàn toàn khỏi 35R,
+# PCALL đúng file DEP_ROLL riêng (SID riêng) của DEP tương ứng.
+# Gọi: ATDIST ... PCALL ARR_VACATED_ROLL <acid_DEP> <ten_file_DEP_ROLL>
+00:00:30.00>PCALL %1 %0

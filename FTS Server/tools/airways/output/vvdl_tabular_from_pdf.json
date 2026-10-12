@@ -1,0 +1,396 @@
+{
+  "_source": "vietnam_ats_routes_pack/Dữ liệu PTB + code/PTB QLBMN/LK/PĐ1 Chart Truyền Thống.pdf + PĐ2 Chart PBN.pdf, đọc bằng mắt qua ảnh render (pypdfium2)",
+  "_note": "Toạ độ giữ nguyên DMS gốc PDF. Altitude +/-/@ = tối thiểu/tối đa/đúng giá trị. KML-graph-name extraction (phiên trước) khớp đúng với tên PDF chính thức cho SID (CRA/BMT/VETOM) -- khác với CM nơi KML gộp sai.",
+  "waypoints": {
+    "BMT": {"lat": "12°39'59.5\"N", "lon": "108°07'22.8\"E", "_note": "VOR/DME BMT, 1800ft"},
+    "CRA": {"lat": "11°59'40.3\"N", "lon": "109°13'11.9\"E", "_note": "VOR/DME CRA Cam Ranh"},
+    "LKH": {"lat": "11°45'14.9\"N", "lon": "108°21'18.7\"E", "_note": "VOR/DME LKH Lien Khuong 112.3, cũng là toạ độ VOR station; ARP riêng"},
+    "PANSO": {"lat": "12°00'48.0\"N", "lon": "108°17'22.0\"E"},
+    "SOSPA": {"lat": "11°50'02.0\"N", "lon": "108°38'27.0\"E"},
+    "BIXEX": {"lat": "11°36'13.0\"N", "lon": "108°08'19.0\"E"},
+    "VETOM": {"lat": "11°13'59.0\"N", "lon": "107°36'27.0\"E"},
+    "KADUM": {"lat": "11°21'26.0\"N", "lon": "107°03'34.0\"E"},
+    "LUTRI": {"lat": "11°09'41.4\"N", "lon": "107°14'10.5\"E"},
+    "SAKOD": {"lat": "10°42'54.6\"N", "lon": "107°19'25.0\"E"},
+    "SALUV": {"lat": "12°23'40.0\"N", "lon": "108°08'02.0\"E"},
+    "SANIV": {"lat": "11°52'50.0\"N", "lon": "108°48'29.0\"E"},
+    "BOGOK": {"lat": "12°24'16.0\"N", "lon": "108°11'24.0\"E"},
+    "KILEN": {"lat": "12°01'16.0\"N", "lon": "108°24'36.0\"E"},
+    "OSURA": {"lat": "12°12'18.0\"N", "lon": "108°21'49.0\"E"},
+    "ODIXI": {"lat": "12°25'14.0\"N", "lon": "108°13'58.0\"E"},
+    "LUXUM": {"lat": "11°55'19.0\"N", "lon": "108°09'09.0\"E"},
+    "DL209": {"lat": "11°45'37.0\"N", "lon": "108°29'45.0\"E"},
+    "DL219": {"lat": "11°52'38.0\"N", "lon": "108°29'21.0\"E"},
+    "DL239": {"lat": "11°38'35.0\"N", "lon": "108°30'07.0\"E"},
+    "DL259": {"lat": "11°35'37.0\"N", "lon": "108°24'03.0\"E"},
+    "DL027": {"lat": "11°44'53.0\"N", "lon": "108°15'57.0\"E"},
+    "DL127": {"lat": "11°37'11.0\"N", "lon": "108°14'06.0\"E"},
+    "DL227": {"lat": "11°30'28.0\"N", "lon": "108°16'15.0\"E"},
+    "LIGTA": {"lat": "11°33'27.0\"N", "lon": "108°33'29.0\"E"},
+    "DL901": {"lat": "11°49'33.3\"N", "lon": "108°09'22.6\"E"},
+    "DL902": {"lat": "11°39'31.5\"N", "lon": "108°09'55.9\"E"},
+    "DL903": {"lat": "11°39'51.0\"N", "lon": "108°16'02.0\"E"},
+    "DL904": {"lat": "12°04'49.0\"N", "lon": "108°16'21.0\"E"},
+    "DL905": {"lat": "12°11'34.0\"N", "lon": "108°08'31.0\"E"},
+    "DL610": {"lat": "11°32'50.0\"N", "lon": "107°53'25.0\"E"},
+    "DL620": {"lat": "11°29'32.0\"N", "lon": "107°54'37.0\"E"},
+    "DL630": {"lat": "11°27'31.0\"N", "lon": "107°55'50.0\"E"},
+    "DL640": {"lat": "11°25'04.0\"N", "lon": "107°58'03.0\"E"},
+    "DL273": {"lat": "11°38'49.0\"N", "lon": "108°22'04.0\"E"},
+    "DL382": {"lat": "11°41'03.8\"N", "lon": "108°36'18.5\"E"},
+    "DL383": {"lat": "11°51'57.1\"N", "lon": "108°35'43.6\"E"},
+    "DL900": {"lat": "11°44'32.4\"N", "lon": "108°09'39.3\"E"},
+    "DL911": {"lat": "11°44'48.5\"N", "lon": "108°14'44.2\"E"},
+    "DL922": {"lat": "11°45'01.5\"N", "lon": "108°18'45.8\"E"},
+    "DL380": {"lat": "11°45'41.6\"N", "lon": "108°31'34.3\"E"},
+    "DL381": {"lat": "11°45'55.9\"N", "lon": "108°36'02.9\"E"},
+    "DL400": {"lat": "11°45'02.5\"N", "lon": "108°19'02.6\"E"},
+    "DL401": {"lat": "11°29'37.6\"N", "lon": "108°24'09.7\"E"},
+    "SDF_LNAV": {"lat": "11°45'27.7\"N", "lon": "108°27'04.6\"E"},
+    "RWY09": {"lat": "11°45'08.07\"N", "lon": "108°20'48.96\"E"},
+    "RWY27": {"lat": "11°45'13.76\"N", "lon": "108°22'36.13\"E"},
+    "ILK_LLZ": {"lat": "11°45'14.3\"N", "lon": "108°22'45.7\"E", "_freq": "110.9"},
+    "ILK_GP_DME": {"lat": "11°45'10.1\"N", "lon": "108°20'58.0\"E", "_freq": "330.8"}
+  },
+  "CV": {
+    "SID": {
+      "BMT 2E / CRA 2A / VETOM 2A": {
+        "runway": "09",
+        "_note": "3 conventional routes sharing common initial leg via R-088 LKH",
+        "common_initial": "R-088 LKH to D5.0/D9.0 LKH (MAX IAS 250KT circling)",
+        "BMT_2E": "Bay lên trên R-088 LKH đến D5.0 LKH, vòng phải về đài VOR/DME LKH (MAX IAS 250KT), tiến nhập R-347 LKH đến PANSO đạt độ cao 9000FT hoặc cao hơn, tiến nhập R-167 BMT đến đài VOR/DME BMT (PDG tối thiểu 9.1% đến 4100ft, sau đó 5.5% đến 5600ft và 3.5% đến 8500ft)",
+        "CRA_2A": "Bay lên trên R-088 LKH đến D9.0 LKH, vòng trái tiến nhập R-075 LKH đến SOSPA, tiến nhập R-255 CRA đến đài VOR/DME CRA đạt FL135 hoặc cao hơn (PDG tối thiểu 9.1% đến 4100ft, sau đó 5.1% đến 6600ft)",
+        "VETOM_2A": "Bay lên trên R-088 LKH đến D5.0 LKH, vòng phải về đài VOR/DME LKH (MAX IAS 250KT), vòng trái tiến nhập R-236 LKH đến BIXEX đạt FL100 hoặc cao hơn, tiếp tục đến VETOM (PDG tối thiểu 9.1% đến 4100ft, sau đó 5.5% đến 5600ft)"
+      },
+      "BMT 2F / SOSPA 3A / VETOM 2B": {
+        "runway": "27",
+        "BMT_2F": "Bay lên trên R-268 LKH đến D4.0 LKH, vòng phải hướng mũi 046° để tiến nhập R-347 LKH (MAX IAS 240KT) đến PANSO đạt độ cao 9000FT hoặc cao hơn, tiến nhập R-167 BMT đến đài VOR/DME BMT (PDG tối thiểu 5.8% đến 7000ft, sau đó 5.2% đến 8200ft)",
+        "SOSPA_3A": "Bay lên trên R-268 LKH đến D4.0 LKH, vòng trái về đài VOR/DME LKH, vòng phải tiến nhập R-075 LKH đến SOSPA đạt FL135 hoặc cao hơn (PDG tối thiểu 5.7% đến 7400ft)",
+        "VETOM_2B": "Bay lên trên R-268 LKH đến D4.0 LKH, vòng trái tiến nhập R-236 LKH đến BIXEX, tiếp tục đến VETOM đạt FL100 hoặc cao hơn (PDG tối thiểu 3.6% đến 6300ft)"
+      }
+    },
+    "STAR": {
+      "BMT 3G / SOSPA 3B / VETOM 3C": {
+        "runway": "09/27 chung",
+        "BMT_3G": "Từ đài VOR/DME BMT bay theo R-167 BMT đến PANSO, tiến nhập R-347 LKH đến D9.0 LKH giữ độ cao 9000ft hoặc cao hơn, tiếp tục đến đài VOR/DME LKH đạt độ cao 8000ft hoặc cao hơn",
+        "SOSPA_3B": "Từ SOSPA FL135 hoặc cao hơn tiến nhập R-075 LKH đến đài VOR/DME LKH đạt độ cao 8000ft hoặc cao hơn",
+        "VETOM_3C": "Từ VETOM FL100 hoặc cao hơn tiến nhập R-236 LKH đến BIXEX, tiếp tục đến đài VOR/DME LKH đạt độ cao 8000ft hoặc cao hơn",
+        "holding_rwy09": {"fix": "LKH", "inbound": 241, "turn": "?", "min_alt": 8000, "time_min": 1},
+        "holding_rwy27": {"fix": "LKH", "inbound": 110, "turn": "?", "min_alt": 8000, "time_min": 1}
+      }
+    },
+    "IAP": {
+      "VOR Z RWY09": {
+        "iaf": "VOR/DME LKH", "if_dist": 11.3, "faf_dist": 6.5, "mapt_dist": 2.5,
+        "dme_altitude_table": {"2.5": 3750, "3.0": 3900, "4.0": 4210, "5.0": 4530, "6.5": 5000},
+        "oca_h_straight_in": {"A": 3750, "H_A": 699},
+        "faf_course": 239, "final_course": 85,
+        "missed_approach": "Bay lên hướng tiếp cận chót, qua đài VOR/DME LKH tiến nhập R-085 LKH đến D3.5 LKH, vòng phải tiến nhập R-105 LKH đến D11.5 LKH, vòng phải về đài VOR/DME LKH đạt độ cao 8000ft hoặc cao hơn"
+      },
+      "VOR Z RWY27": {
+        "iaf": "VOR/DME LKH", "if_dist": 14.7, "faf_dist": 9.7, "mapt_dist": 3.8,
+        "dme_altitude_table": {"4.4": 4340, "5.0": 4550, "6.0": 4900, "7.0": 5240, "8.0": 5590, "9.0": 5950, "9.7": 6200},
+        "oca_h_straight_in": {"A": 4340, "H_A": 1183},
+        "faf_course": 270, "final_course": 270,
+        "missed_approach": "Bay lên hướng tiếp cận chót, qua đài VOR/DME LKH tiến nhập R-270 LKH đến độ cao 6000ft, vòng trái về đài VOR/DME LKH đạt độ cao 8000ft hoặc cao hơn"
+      },
+      "ILS Z RWY09": {
+        "iaf": "VOR/DME LKH", "if_dist_lkh": 11.3, "faf_dist_ilk": 6.1, "mapt_dist_ilk": 2.2,
+        "glide_path": "3.0deg", "rdh": 52, "llz_freq": "110.9", "gp_freq": "330.8",
+        "dme_altitude_table_ilk": {"1.9": 3660, "3.0": 4010, "4.0": 4330, "5.0": 4650, "6.1": 5000},
+        "oca_h": {"CAT1_A": 3630, "CAT1_B": 3640, "CAT1_C": 3650, "CAT1_D": 3660, "GP_INOP": 3750},
+        "oca_h_height": {"CAT1_A": 579, "CAT1_B": 589, "CAT1_C": 599, "CAT1_D": 609, "GP_INOP": 699},
+        "missed_approach": "Bay lên hướng tiếp cận chót đến D4.0 ILK, vòng phải tiến nhập R-105 LKH đến D11.5 LKH, vòng phải về đài VOR/DME LKH đạt độ cao 8000ft hoặc cao hơn"
+      }
+    }
+  },
+  "PBN": {
+    "SID": {
+      "BMT 2J": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "CF", "waypoint": "DL209", "course_mag": 88, "course_true": 87.0, "dist_nm": null, "alt_ft": null, "speed_kt": null, "min_cg_pct": 4.2, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL219", "course_mag": 358, "course_true": 356.8, "dist_nm": 7.00, "alt_ft": null, "speed_kt": "-230", "min_cg_pct": 4.2, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "KILEN", "course_mag": 333, "course_true": 331.6, "dist_nm": 9.77, "alt_ft": "-FL110/+9000", "speed_kt": null, "min_cg_pct": 4.2, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "OSURA", "course_mag": 347, "course_true": 346.1, "dist_nm": 11.32, "alt_ft": null, "speed_kt": null, "min_cg_pct": null, "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "BMT", "course_mag": 334, "course_true": 332.9, "dist_nm": 30.98, "alt_ft": null, "speed_kt": null, "min_cg_pct": null, "nav_spec": "RNP 1"}
+        ]
+      },
+      "CRA 2B": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "CF", "waypoint": "DL209", "course_mag": 88, "course_true": 87.0, "dist_nm": null, "alt_ft": null, "speed_kt": null, "min_cg_pct": 4.9, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "SOSPA", "course_mag": 64, "course_true": 62.7, "dist_nm": 9.60, "alt_ft": "+8000", "speed_kt": null, "min_cg_pct": 4.9, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "SANIV", "course_mag": 75, "course_true": 74.2, "dist_nm": 10.23, "alt_ft": "@FL110", "speed_kt": null, "min_cg_pct": 4.8, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "CRA", "course_mag": 75, "course_true": 74.3, "dist_nm": 25.17, "alt_ft": "+FL135", "speed_kt": null, "min_cg_pct": null, "nav_spec": "RNP 1"}
+        ]
+      },
+      "VETOM 2F": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "CF", "waypoint": "DL209", "course_mag": 88, "course_true": 87.0, "dist_nm": null, "alt_ft": null, "speed_kt": null, "min_cg_pct": 7.5, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL239", "course_mag": 178, "course_true": 177.1, "dist_nm": 7.01, "alt_ft": "-FL110/+9000", "speed_kt": "-230", "min_cg_pct": 7.5, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "DL259", "course_mag": 245, "course_true": 243.6, "dist_nm": 6.65, "alt_ft": "+FL110", "speed_kt": null, "min_cg_pct": 5.1, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "GIVIK", "course_mag": 245, "course_true": 243.5, "dist_nm": 10.64, "alt_ft": "+FL130", "speed_kt": null, "min_cg_pct": null, "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "VETOM", "course_mag": 247, "course_true": 245.8, "dist_nm": 40.84, "alt_ft": null, "speed_kt": null, "min_cg_pct": null, "nav_spec": "RNP 1"}
+        ]
+      },
+      "BMT 2K": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "CA", "waypoint": null, "course_mag": 268, "course_true": 267.0, "alt_ft": "+4000", "min_cg_pct": 4.5, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "DF", "waypoint": "PANSO", "alt_ft": "-FL110/+9000", "min_cg_pct": 4.5, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "BMT", "course_mag": 347, "course_true": 346.0, "dist_nm": 40.22, "nav_spec": "RNP 1"}
+        ]
+      },
+      "CRA 2C": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "CF", "waypoint": "DL027", "course_mag": 268, "course_true": 267.0, "speed_kt": "-230", "min_cg_pct": 5.4, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL127", "course_mag": 194, "course_true": 193.3, "dist_nm": 7.88, "alt_ft": "+7000", "min_cg_pct": 5.4, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "DL227", "flyover": true, "course_mag": 163, "course_true": 162.5, "dist_nm": 7.01, "alt_ft": "-9000/+8000", "speed_kt": "-240", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "LIGTA", "flyover": true, "course_mag": 81, "course_true": 80.0, "dist_nm": 17.18, "alt_ft": "+FL110", "speed_kt": "-250", "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "CRA", "course_mag": 57, "course_true": 56.1, "dist_nm": 46.89, "alt_ft": "+FL135", "nav_spec": "RNP 1"}
+        ]
+      },
+      "VETOM 2G": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "CF", "waypoint": "DL027", "course_mag": 268, "course_true": 267.0, "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "SAGUL", "course_mag": 268, "course_true": 266.9, "dist_nm": 10.16, "alt_ft": "-FL100/+6000", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "VETOM", "course_mag": 225, "course_true": 223.5, "dist_nm": 41.61, "alt_ft": "+FL100", "nav_spec": "RNP 1"}
+        ]
+      }
+    },
+    "STAR": {
+      "BMT 2L": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "BMT", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "SALUV", "course_mag": 179, "course_true": 177.8, "dist_nm": 16.26, "alt_ft": "+FL160", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "DL905", "course_mag": 179, "course_true": 177.8, "dist_nm": 12.06, "alt_ft": "+FL120", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "LUXUM", "course_mag": 179, "course_true": 177.8, "dist_nm": 16.19, "alt_ft": "+8500", "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "DL901", "course_mag": 179, "course_true": 177.8, "dist_nm": 5.74, "alt_ft": "+7100", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "BMT 2M": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "BMT", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "BOGOK", "course_mag": 167, "course_true": 165.9, "dist_nm": 16.14, "alt_ft": "+FL160", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "DL904", "course_mag": 167, "course_true": 165.9, "dist_nm": 19.96, "alt_ft": "+FL120", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "PANSO", "course_mag": 167, "course_true": 166.0, "dist_nm": 4.12, "alt_ft": "+FL110", "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "DL903", "course_mag": 185, "course_true": 183.6, "dist_nm": 20.90, "alt_ft": "+8000", "nav_spec": "RNP 1"},
+          {"serial": "060", "path": "TF", "waypoint": "DL902", "course_mag": 268, "course_true": 266.9, "dist_nm": 6.00, "alt_ft": "+7000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "SOSPA 3C": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "SOSPA", "alt_ft": "+FL135", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "LKH", "course_mag": 255, "course_true": 254.2, "dist_nm": 17.47, "alt_ft": "+FL120", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "DL903", "course_mag": 225, "course_true": 223.9, "dist_nm": 7.46, "alt_ft": "+8000", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "DL902", "course_mag": 268, "course_true": 266.9, "dist_nm": 6.00, "alt_ft": "+7000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "KADUM 2B": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "KADUM", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL610", "course_mag": 78, "course_true": 76.9, "dist_nm": 50.25, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "BIXEX", "course_mag": 78, "course_true": 77.0, "dist_nm": 15.01, "alt_ft": "+8100", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "DL902", "course_mag": 27, "course_true": 25.7, "dist_nm": 3.65, "alt_ft": "+7000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "LUTRI 2G": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "LUTRI", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL620", "course_mag": 64, "course_true": 63.5, "dist_nm": 44.37, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "BIXEX", "course_mag": 65, "course_true": 63.7, "dist_nm": 15.00, "alt_ft": "+8100", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "DL902", "course_mag": 27, "course_true": 25.7, "dist_nm": 3.65, "alt_ft": "+7000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "VETOM 3H": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "VETOM", "alt_ft": "+FL100", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL630", "course_mag": 56, "course_true": 54.7, "dist_nm": 23.33, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "BIXEX", "course_mag": 56, "course_true": 54.7, "dist_nm": 15.01, "alt_ft": "+8100", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "DL902", "course_mag": 27, "course_true": 25.7, "dist_nm": 3.65, "alt_ft": "+7000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "SAKOD 2G": {
+        "runway": "09",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "SAKOD", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL640", "course_mag": 43, "course_true": 42.1, "dist_nm": 56.60, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "BIXEX", "course_mag": 43, "course_true": 42.2, "dist_nm": 14.99, "alt_ft": "+8100", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "DL902", "course_mag": 27, "course_true": 25.7, "dist_nm": 3.65, "alt_ft": "+7000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "BMT 2N": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "BMT", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "ODIXI", "course_mag": 157, "course_true": 156.3, "dist_nm": 16.04, "alt_ft": "+FL180", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "KILEN", "course_mag": 157, "course_true": 156.4, "dist_nm": 26.03, "alt_ft": "+FL120", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "DL383", "course_mag": 131, "course_true": 130.4, "dist_nm": 14.32, "alt_ft": "+9000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "CRA 3D": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "CRA", "alt_ft": "+FL135", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "SANIV", "course_mag": 255, "course_true": 254.4, "dist_nm": 25.17, "alt_ft": "+FL110", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "SOSPA", "course_mag": 255, "course_true": 254.2, "dist_nm": 10.23, "alt_ft": "+9000", "nav_spec": "RNP 1"}
+        ]
+      },
+      "KADUM 2C": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "KADUM", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL610", "course_mag": 78, "course_true": 76.9, "dist_nm": 50.25, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "BIXEX", "course_mag": 78, "course_true": 77.0, "dist_nm": 15.01, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "DL273", "course_mag": 80, "course_true": 79.1, "dist_nm": 13.74, "alt_ft": "+FL110", "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "DL382", "course_mag": 82, "course_true": 80.9, "dist_nm": 14.15, "alt_ft": "+8000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "LUTRI 2H": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "LUTRI", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL620", "course_mag": 65, "course_true": 63.5, "dist_nm": 44.37, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "BIXEX", "course_mag": 65, "course_true": 63.7, "dist_nm": 15.00, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "DL273", "course_mag": 80, "course_true": 79.1, "dist_nm": 13.74, "alt_ft": "+FL110", "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "DL382", "course_mag": 82, "course_true": 80.9, "dist_nm": 14.15, "alt_ft": "+8000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "VETOM 2J": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "VETOM", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL630", "course_mag": 56, "course_true": 54.7, "dist_nm": 23.33, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "BIXEX", "course_mag": 56, "course_true": 54.7, "dist_nm": 15.01, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "DL273", "course_mag": 80, "course_true": 79.1, "dist_nm": 13.74, "alt_ft": "+FL110", "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "DL382", "course_mag": 82, "course_true": 80.9, "dist_nm": 14.15, "alt_ft": "+8000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "SAKOD 2H": {
+        "runway": "27",
+        "legs": [
+          {"serial": "010", "path": "IF", "waypoint": "SAKOD", "nav_spec": "RNP 1"},
+          {"serial": "020", "path": "TF", "waypoint": "DL640", "course_mag": 43, "course_true": 42.1, "dist_nm": 56.60, "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "TF", "waypoint": "BIXEX", "course_mag": 43, "course_true": 42.2, "dist_nm": 14.99, "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "TF", "waypoint": "DL273", "course_mag": 80, "course_true": 79.1, "dist_nm": 13.74, "alt_ft": "+FL110", "nav_spec": "RNP 1"},
+          {"serial": "050", "path": "TF", "waypoint": "DL382", "course_mag": 82, "course_true": 80.9, "dist_nm": 14.15, "alt_ft": "+8000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+        ]
+      },
+      "holding_rwy09": [
+        {"fix": "LUXUM", "inbound_course_mag": 179, "inbound_course_true": 178.0, "turn": "R", "alt_ft": "+8500", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+        {"fix": "PANSO", "inbound_course_mag": 185, "inbound_course_true": 184.0, "turn": "L", "alt_ft": "+FL110", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+        {"fix": "LKH", "inbound_course_mag": 255, "inbound_course_true": 254.0, "turn": "R", "alt_ft": "+FL120", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+        {"fix": "BIXEX", "inbound_course_mag": 27, "inbound_course_true": 26.0, "turn": "L", "alt_ft": "+8100", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"}
+      ],
+      "holding_rwy27": [
+        {"fix": "DL382", "inbound_course_mag": 358, "inbound_course_true": 357.0, "turn": "R", "alt_ft": "+8000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"},
+        {"fix": "DL383", "inbound_course_mag": 163, "inbound_course_true": 162.0, "turn": "R", "alt_ft": "+9000", "speed_kt": "-210", "nav_spec": "RNP 1"},
+        {"fix": "SOSPA", "inbound_course_mag": 211, "inbound_course_true": 210.0, "turn": "L", "alt_ft": "+9000", "speed_kt": "-220", "nav_spec": "RNP 1"}
+      ]
+    },
+    "IAP": {
+      "RNP Z RWY09": {
+        "initial_entries": [
+          [{"serial": "010", "path": "IF", "waypoint": "DL901", "alt_ft": "+7100", "speed_kt": "-230", "nav_spec": "RNP APCH"},
+           {"serial": "020", "path": "TF", "waypoint": "DL900", "course_mag": 178, "course_true": 176.9, "dist_nm": 5.00, "alt_ft": "+6200", "nav_spec": "RNP APCH"}],
+          [{"serial": "010", "path": "IF", "waypoint": "DL902", "alt_ft": "+7000", "speed_kt": "-230", "nav_spec": "RNP APCH"},
+           {"serial": "020", "path": "TF", "waypoint": "DL900", "course_mag": 358, "course_true": 356.9, "dist_nm": 5.00, "alt_ft": "+6200", "nav_spec": "RNP APCH"}]
+        ],
+        "final_and_missed": [
+          {"serial": "010", "path": "IF", "waypoint": "DL900", "alt_ft": "+6200", "nav_spec": "RNP APCH"},
+          {"serial": "020", "path": "TF", "waypoint": "DL911", "course_mag": 88, "course_true": 86.9, "dist_nm": 4.99, "alt_ft": "+5000", "nav_spec": "RNP APCH"},
+          {"serial": "030", "path": "TF", "waypoint": "DL922 (MAPT)", "flyover": true, "course_mag": 88, "course_true": 86.9, "dist_nm": 3.96, "alt_ft": "@3744", "vpa_tch": "-3.0/50.0", "nav_spec": "RNP APCH"},
+          {"serial": "040", "path": "DF", "waypoint": "DL401", "turn": "R", "alt_ft": "@6500", "speed_kt": "-220", "nav_spec": "RNP APCH"},
+          {"serial": "050", "path": "HM", "waypoint": "DL401", "course_mag": 306, "course_true": 305.0, "turn": "L", "alt_ft": "+6500", "nav_spec": "RNP APCH"}
+        ],
+        "oca_h": {"LNAV_VNAV": 3750, "LNAV_VNAV_h": 699, "LNAV": 3850, "LNAV_h": 799},
+        "holding": {"fix": "DL401", "inbound_course_mag": 306, "turn": "L", "alt_ft": "+6500", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"}
+      },
+      "RNP Y RWY09": {
+        "initial": [
+          {"serial": "010", "path": "IF", "waypoint": "DL401", "alt_ft": "+6500", "nav_spec": "RNP APCH"},
+          {"serial": "020", "path": "TF", "waypoint": "DL902", "course_mag": 306, "course_true": 305.2, "dist_nm": 17.09, "alt_ft": null, "speed_kt": "-230", "nav_spec": "RNP APCH"},
+          {"serial": "030", "path": "TF", "waypoint": "DL900", "course_mag": 358, "course_true": 356.9, "dist_nm": 5.00, "alt_ft": "+6200", "nav_spec": "RNP APCH"},
+          {"serial": "040", "path": "TF", "waypoint": "DL911", "course_mag": 88, "course_true": 86.9, "dist_nm": 4.99, "alt_ft": "+5000", "nav_spec": "RNP APCH"},
+          {"serial": "050", "path": "TF", "waypoint": "DL922 (MAPT)", "flyover": true, "course_mag": 88, "course_true": 86.9, "dist_nm": 3.96, "alt_ft": "@3744", "vpa_tch": "-3.0/50.0", "nav_spec": "RNP APCH"},
+          {"serial": "060", "path": "DF", "waypoint": "DL401", "turn": "R", "alt_ft": "@6500", "speed_kt": "-220", "nav_spec": "RNP APCH"},
+          {"serial": "070", "path": "HM", "waypoint": "DL401", "course_mag": 306, "course_true": 305.0, "turn": "L", "alt_ft": "+6500", "nav_spec": "RNP APCH"}
+        ],
+        "oca_h": {"LNAV_VNAV": 3750, "LNAV_VNAV_h": 699, "LNAV": 3850, "LNAV_h": 799},
+        "holding": {"fix": "DL401", "inbound_course_mag": 306, "turn": "L", "alt_ft": "+6500", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"}
+      },
+      "RNP Z RWY27": {
+        "initial_entries": [
+          [{"serial": "010", "path": "IF", "waypoint": "DL382", "alt_ft": "+8000", "speed_kt": "-230", "nav_spec": "RNP APCH"},
+           {"serial": "020", "path": "TF", "waypoint": "DL381", "course_mag": 358, "course_true": 357.0, "dist_nm": 4.85, "alt_ft": "+7500", "speed_kt": "-210", "nav_spec": "RNP APCH"}],
+          [{"serial": "010", "path": "IF", "waypoint": "DL383", "alt_ft": "+9000", "speed_kt": "-230", "nav_spec": "RNP APCH"},
+           {"serial": "020", "path": "TF", "waypoint": "DL381", "course_mag": 178, "course_true": 177.0, "dist_nm": 6.00, "alt_ft": "+7500", "speed_kt": "-210", "nav_spec": "RNP APCH"}],
+          [{"serial": "010", "path": "IF", "waypoint": "SOSPA", "alt_ft": "+9000", "nav_spec": "RNP APCH"},
+           {"serial": "020", "path": "TF", "waypoint": "DL381", "course_mag": 211, "course_true": 210.0, "dist_nm": 4.71, "alt_ft": "+7500", "speed_kt": "-210", "nav_spec": "RNP APCH"}]
+        ],
+        "final_and_missed": [
+          {"serial": "010", "path": "IF", "waypoint": "DL381", "alt_ft": "+7500", "speed_kt": "-210", "nav_spec": "RNP APCH"},
+          {"serial": "020", "path": "TF", "waypoint": "DL380", "course_mag": 268, "course_true": 266.9, "dist_nm": 4.40, "alt_ft": "+6200", "nav_spec": "RNP APCH"},
+          {"serial": "030", "path": "TF", "waypoint": "SDF_LNAV", "course_mag": 268, "course_true": 267.0, "dist_nm": 4.41, "alt_ft": "+4700", "vpa_tch": "-3.2/50.0", "nav_spec": "RNP APCH"},
+          {"serial": "040", "path": "TF", "waypoint": "RWY27 (MAPT)", "flyover": true, "course_mag": 268, "course_true": 267.0, "dist_nm": 4.40, "alt_ft": "+3207", "vpa_tch": "-3.2/50.0", "nav_spec": "RNP APCH"},
+          {"serial": "050", "path": "CF", "waypoint": "DL400", "flyover": true, "course_mag": 268, "course_true": 266.9, "nav_spec": "RNP APCH"},
+          {"serial": "060", "path": "DF", "waypoint": "DL401", "turn": "L", "alt_ft": "@6500", "speed_kt": "-230", "nav_spec": "RNP APCH"},
+          {"serial": "070", "path": "HM", "waypoint": "DL401", "course_mag": 5, "course_true": 4.0, "turn": "R", "alt_ft": "+6500", "nav_spec": "RNP APCH"}
+        ],
+        "oca_h": {"LNAV_VNAV": 4120, "LNAV_VNAV_h": 963, "LNAV": 4410, "LNAV_h": 1253},
+        "holding": [
+          {"fix": "SOSPA", "inbound_course_mag": 211, "turn": "L", "alt_ft": "+9000", "speed_kt": "-220", "nav_spec": "RNP APCH"},
+          {"fix": "DL382", "inbound_course_mag": 358, "turn": "R", "alt_ft": "+8000", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"},
+          {"fix": "DL383", "inbound_course_mag": 163, "turn": "R", "alt_ft": "+9000", "speed_kt": "-210", "nav_spec": "RNP APCH"},
+          {"fix": "DL401", "inbound_course_mag": 5, "turn": "R", "alt_ft": "+6500", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"}
+        ]
+      },
+      "RNP Y RWY27": {
+        "initial": [
+          {"serial": "010", "path": "IF", "waypoint": "DL401", "alt_ft": "+6500", "nav_spec": "RNP APCH"},
+          {"serial": "020", "path": "TF", "waypoint": "DL382", "course_mag": 47, "course_true": 46.3, "dist_nm": 16.48, "speed_kt": "-230", "nav_spec": "RNP APCH"},
+          {"serial": "030", "path": "TF", "waypoint": "DL381", "course_mag": 358, "course_true": 357.0, "dist_nm": 4.85, "alt_ft": "+6500", "speed_kt": "-210", "nav_spec": "RNP APCH"},
+          {"serial": "040", "path": "TF", "waypoint": "DL380", "course_mag": 268, "course_true": 266.9, "dist_nm": 4.40, "alt_ft": "+6200", "nav_spec": "RNP APCH"},
+          {"serial": "050", "path": "TF", "waypoint": "SDF_LNAV", "course_mag": 268, "course_true": 267.0, "dist_nm": 4.41, "alt_ft": "+4700", "vpa_tch": "-3.2/50.0", "nav_spec": "RNP APCH"},
+          {"serial": "060", "path": "TF", "waypoint": "RWY27 (MAPT)", "flyover": true, "course_mag": 268, "course_true": 267.0, "dist_nm": 4.40, "alt_ft": "+3207", "vpa_tch": "-3.2/50.0", "nav_spec": "RNP APCH"},
+          {"serial": "070", "path": "CF", "waypoint": "DL400", "flyover": true, "course_mag": 268, "course_true": 266.9, "nav_spec": "RNP APCH"},
+          {"serial": "080", "path": "DF", "waypoint": "DL401", "turn": "L", "alt_ft": "@6500", "speed_kt": "-230", "nav_spec": "RNP APCH"},
+          {"serial": "090", "path": "HM", "waypoint": "DL401", "course_mag": 5, "course_true": 4.0, "turn": "R", "alt_ft": "+6500", "nav_spec": "RNP APCH"}
+        ],
+        "oca_h": {"LNAV_VNAV": 4120, "LNAV_VNAV_h": 963, "LNAV": 4410, "LNAV_h": 1253},
+        "holding": {"fix": "DL401", "inbound_course_mag": 5, "turn": "R", "alt_ft": "+6500", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP APCH"}
+      },
+      "ILS W RWY09 / ILS X RWY09": {
+        "_note": "2 thủ tục gần như giống hệt nhau trong PDF (cùng waypoint/toạ độ) -- có thể là 2 biến thể tần số/thiết bị khác nhau, giữ cả 2 tên chính thức",
+        "initial_entries": [
+          [{"serial": "010", "path": "IF", "waypoint": "DL901", "alt_ft": "+7100", "speed_kt": "-230", "nav_spec": "RNP 1"},
+           {"serial": "020", "path": "TF", "waypoint": "DL900", "course_mag": 178, "course_true": 176.9, "dist_nm": 5.00, "alt_ft": "+6200", "nav_spec": "RNP 1"}],
+          [{"serial": "010", "path": "IF", "waypoint": "DL902", "alt_ft": "+7000", "speed_kt": "-230", "nav_spec": "RNP 1"},
+           {"serial": "020", "path": "TF", "waypoint": "DL900", "course_mag": 358, "course_true": 356.9, "dist_nm": 5.00, "alt_ft": "+6200", "nav_spec": "RNP 1"}],
+          [{"serial": "010", "path": "IF", "waypoint": "DL401", "alt_ft": "+6500", "nav_spec": "RNP 1"},
+           {"serial": "020", "path": "TF", "waypoint": "DL902", "course_mag": 306, "course_true": 305.2, "dist_nm": 17.09, "speed_kt": "-230", "nav_spec": "RNP 1"},
+           {"serial": "030", "path": "TF", "waypoint": "DL900", "course_mag": 358, "course_true": 356.9, "dist_nm": 5.00, "alt_ft": "+6200", "nav_spec": "RNP 1"}]
+        ],
+        "final_and_missed": [
+          {"serial": "010", "path": "IF", "waypoint": "DL900", "alt_ft": "+6200", "nav_spec": "RNP 1", "_note": "final via FAF DL911/MAPT DL922 ILK LLZ/GP per CV data"},
+          {"serial": "020", "path": "CA", "course_mag": 88, "course_true": 86.9, "alt_ft": "+4200", "nav_spec": "RNP 1"},
+          {"serial": "030", "path": "DF", "waypoint": "DL401", "turn": "R", "alt_ft": "@6500", "speed_kt": "-220", "nav_spec": "RNP 1"},
+          {"serial": "040", "path": "HM", "waypoint": "DL401", "course_mag": 306, "course_true": 305.0, "turn": "L", "alt_ft": "+6500", "nav_spec": "RNP 1"}
+        ],
+        "oca_h": {"CAT1": 3660, "CAT1_h": 609, "GP_INOP": 3750, "GP_INOP_h": 699},
+        "llz_freq": "110.9", "gp_freq": "330.8", "rdh": 52, "glide_path": "3.0deg",
+        "holding": {"fix": "DL401", "inbound_course_mag": 306, "turn": "L", "alt_ft": "+6500", "speed_kt": "-230<=FL140/-240>FL140", "nav_spec": "RNP 1"}
+      }
+    }
+  }
+}

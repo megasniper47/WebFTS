@@ -1,0 +1,55 @@
+{
+  "airport": "VVDN",
+  "geometryStatus": "verified",
+  "runways": [
+    {
+      "designator": "17L",
+      "oppositeDesignator": "35R",
+      "thresholdLat": 16.0603655,
+      "thresholdLon": 108.1980039,
+      "oppositeThresholdLat": 16.0290376,
+      "oppositeThresholdLon": 108.202528,
+      "trueHeadingDeg": 172.10,
+      "oppositeTrueHeadingDeg": 352.10,
+      "source": "runways.geojson:RWY 17L/35R centerline"
+    },
+    {
+      "designator": "35R",
+      "oppositeDesignator": "17L",
+      "thresholdLat": 16.0290376,
+      "thresholdLon": 108.202528,
+      "oppositeThresholdLat": 16.0603655,
+      "oppositeThresholdLon": 108.1980039,
+      "trueHeadingDeg": 352.10,
+      "oppositeTrueHeadingDeg": 172.10,
+      "source": "runways.geojson:RWY 17L/35R centerline"
+    },
+    {
+      "designator": "17R",
+      "oppositeDesignator": "35L",
+      "thresholdLat": 16.057408,
+      "thresholdLon": 108.196433,
+      "oppositeThresholdLat": 16.030125,
+      "oppositeThresholdLon": 108.200392,
+      "trueHeadingDeg": 172.06,
+      "oppositeTrueHeadingDeg": 352.06,
+      "source": "runways.geojson:RWY 17R/35L centerline"
+    },
+    {
+      "designator": "35L",
+      "oppositeDesignator": "17R",
+      "thresholdLat": 16.030125,
+      "thresholdLon": 108.200392,
+      "oppositeThresholdLat": 16.057408,
+      "oppositeThresholdLon": 108.196433,
+      "trueHeadingDeg": 352.06,
+      "oppositeTrueHeadingDeg": 172.06,
+      "source": "runways.geojson:RWY 17R/35L centerline"
+    }
+  ],
+  "runwayModes": [
+    { "mode": "35L-ARR/35R-DEP", "arrivalRunway": "35L", "departureRunway": "35R" },
+    { "mode": "17R-ARR/17L-DEP", "arrivalRunway": "17R", "departureRunway": "17L" }
+  ],
+  "notes": "Both centerlines confirmed clean 2-point LineStrings in runways.geojson; bearings (352.10/172.10 for 17L/35R, 352.06/172.06 for 17R/35L) match nominal runway numbers exactly. Dependent parallel runway operation per QD 2850/QD-CHK (see project memory project_vvdn_parallel_runway_procedure.md)."
+}

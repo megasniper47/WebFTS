@@ -1,0 +1,25 @@
+# ARR_EXIT_E6.scn -- lăn giảm tốc sau chạm đất, GIỮ NGUYÊN hướng đường CHC
+# 352° (đã kiểm tra cross-track = 0 cho các điểm rollout thẳng, trước đó có
+# 1 điểm lệch ~6m), thoát ly đường CHC 35R tại E6 qua điểm dừng chờ
+# (16.057523,108.199282), rồi đi THẲNG hướng 082° về Gate 11
+# (16.057809,108.201338 -- toạ độ thật theo gates.geojson, xem
+# _KB5_ARR002_RESUME.scn) -- rồi dừng cứng và xoá sau 10s.
+#
+# SỬA LỖI TỐC ĐỘ RẼ: bản trước giảm tốc quá gấp (40kt -> 15kt chỉ trong
+# ~250m) khiến BADA CHƯA giảm tốc đủ kịp lúc bắt đầu rẽ phải thật (đo được
+# ~27kt lúc bắt đầu rẽ qua headless test, đúng như người dùng phát hiện --
+# "hơn 30kt"). Đã thêm 2 điểm giảm tốc trung gian (30kt, 20kt) để BADA có đủ
+# cự ly giảm tốc thật trước khi vào cua -- đo lại: tốc độ lúc bắt đầu rẽ chỉ
+# còn ~16kt.
+# Gọi: PCALL ARR_EXIT_E6 <acid>
+00:00:00.00>%0 ADDWPT 16.036833,108.201423 0 130
+00:00:00.00>%0 ADDWPT 16.045916,108.200111 0 90
+00:00:00.00>%0 ADDWPT 16.055000,108.198800 0 40
+00:00:00.00>%0 ADDWPT 16.055737,108.198687 0 30
+00:00:00.00>%0 ADDWPT 16.056474,108.198573 0 20
+00:00:00.00>%0 ADDWPT 16.057234,108.198459 0 12
+00:00:00.00>%0 ADDWPT 16.057523,108.199282 0 8.0
+00:00:00.00>%0 ADDWPT 16.057809,108.201338 0 0.0
+00:00:00.00>LNAV %0 ON
+00:00:00.00>VNAV %0 ON
+00:00:00.00>%0 ATDIST 16.057809,108.201338,0.05 PCALL STOP_AND_DEL %0 16.057809 108.201338 80.9

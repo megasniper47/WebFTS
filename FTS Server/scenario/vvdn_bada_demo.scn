@@ -1,0 +1,70 @@
+00:00:00>PAN 16.030 108.201
+00:00:00>ZOOM 12
+
+# Bat tinh nang canh bao xung dot (STCA / ASAS) va thiet lap Vung an toan
+# ZONER: Phan cach ngang 3NM. ZONEDH: Phan cach doc 1000ft
+00:00:00>ASAS ON
+00:00:00>ZONER 3
+00:00:00>ZONEDH 1000
+
+# =========================================================================
+# 1. TAU BAY HA CANH SO 1 (HVN35L_1) - Tiep can ILS V RWY 35L
+# =========================================================================
+# Xuat hien tai diem IF (Cach 10NM), giu do cao 3000 ft, toc do 180 kts
+00:00:00>CRE HVN35L_1 A321 15.865355 108.224434 352.0 3000 180
+
+# Giam do cao xuong muc FAF (1600 ft) truoc khi bat Glide Slope
+00:00:00>ALT HVN35L_1 1600 -800
+
+# Giam toc do de dat 150 kts tai diem FAF
+00:01:00>SPD HVN35L_1 150
+
+# Thoi diem 00:01:58 - Den diem FAF (cach 4.6 NM), toc do dang la 150 kts
+# Bat dau cat Glide Slope 3 do: Giam toc do ve Vapp (140 kts), ti toc giam do cao chinh xac -750 fpm
+00:01:58>SPD HVN35L_1 140
+00:01:58>ALT HVN35L_1 33 -750
+
+# Thoi diem 00:03:52 - May bay cham cang chinh xuong duong bang 35L
+# Giam toc do ve toc do lan (taxi speed) 30 kts tren duong bang de mo phong ha canh thanh cong
+00:03:52>SPD HVN35L_1 30
+
+# Sau 100 giay ke tu khi cham cang (00:05:32), tau bay thoat khoi duong bang va xoa khoi he thong
+00:05:32>DEL HVN35L_1
+
+# =========================================================================
+# 2. TAU BAY CAT CANH (HVN35R)
+# =========================================================================
+# Khoi tao san o dau duong bang 35R tu dau kich ban
+00:00:00>CRE HVN35R A321 16.0292 108.2025 352.0 33 0
+
+# Sau 30s ke tu khi tau bay 1 cham cang (00:03:52 + 30s = 00:04:22), HVN35R bat dau chay da
+00:04:22>ALT HVN35R 33
+00:04:22>SPD HVN35R 151
+00:04:22>HDG HVN35R 352.0
+
+# Dat V1 va nhac banh (rotation) sau 35 giay chay da (00:04:57)
+00:04:57>ALT HVN35R 10000
+00:04:57>SPD HVN35R 250
+
+# =========================================================================
+# 3. TAU BAY HA CANH SO 2 (HVN35L_2) - Cach tau bay 1 dung 3 phut
+# =========================================================================
+# Xuat hien tai IF (10NM) luc 00:03:00
+00:03:00>CRE HVN35L_2 A321 15.865355 108.224434 352.0 3000 180
+00:03:00>ALT HVN35L_2 1600 -800
+
+# Giam toc do de dat 150 kts tai diem FAF (tre 3 phut)
+00:04:00>SPD HVN35L_2 150
+
+# Thoi diem 00:04:58 - Den diem FAF (cach 4.6 NM)
+# Bat Glide Slope: Giam toc do ve 140 kts, ti toc giam do cao -750 fpm
+00:04:58>SPD HVN35L_2 140
+00:04:58>ALT HVN35L_2 33 -750
+
+# Thoi diem 00:06:52 - May bay 2 cham cang chinh xuong duong bang 35L
+00:06:52>SPD HVN35L_2 30
+
+# Sau 100 giay ke tu khi cham cang (00:08:32), tau bay thoat khoi duong bang va xoa khoi he thong
+00:08:32>DEL HVN35L_2
+
+

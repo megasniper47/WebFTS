@@ -1,0 +1,68 @@
+# VVDN -- Take-off Clearance Trigger Point demo, RWY 35R, real Gate 26.
+# Implements the ONE fully-confirmed trigger point from
+# FTS Server/docs/VVDN-Trigger-Point-Consecutive-Departures.docx:
+#   HEAVY leads -> MEDIUM follows: minimum = 120s (ICAO Doc 4444 Sec.5.8.3.1(3),
+#   "LIGHT or MEDIUM aircraft taking off behind a HEAVY aircraft -- 2 minutes").
+#   Worst-case real HEAVY type (B773, furthest of B788/A332/B773 at t=120s per
+#   headless BADA simulation) reaches 6.065 NM / ~1984 ft along the RWY 35R
+#   centerline (true heading 352.10 deg) at that moment -- this is P_wake.
+#
+# UNLIKE the earlier VVDN_GATE28_6DEP file (fixed time-offset schedule with
+# MOVE-approximated ground/climb physics), this file:
+#  (a) uses the PROVEN, real-BADA-driven taxi/roll/climb technique from
+#      "VVDN 2026-08-10_08-06-28 (ban 40) - Copy/VVDN_KB5_1HOUR_MIXED.scn"
+#      (CRE + ADDWPT + LNAV/VNAV ON, MOVE used ONLY for a true full stop at
+#      hold, never during taxi/roll/climb) -- see _TRIGGERDEMO_*.scn helper
+#      files in this same folder, copied verbatim from that reference;
+#  (b) releases the FOLLOWING aircraft's actual takeoff roll via a genuine
+#      geographic ATDIST trigger on the LEADING aircraft's position (P_wake),
+#      not a fixed time gap -- exactly the "Take-off Clearance Trigger Point"
+#      the source docx asks for.
+#
+# DEP_LEAD = B773 (HEAVY, real fuselage length 73.9m for TAXION separation).
+# DEP_FOLL = A320 (MEDIUM, real fuselage length 37.57m), CRE +60s later at the
+# same real Gate 26 (16.052628,108.201989) -- taxis in trail and holds short
+# of RWY 35R (via STOP_HOLD) well before DEP_LEAD reaches P_wake; its
+# take-off roll is released ONLY when DEP_LEAD crosses P_wake.
+#
+# P_wake trigger implementation note: ATDIST's third argument is a target
+# DISTANCE VALUE relative to the given point (bluesky/traffic/conditional.py
+# atdistcmd -- it fires when the aircraft's distance-to-point crosses that
+# value), NOT a fixed marker coordinate with a proximity radius. An earlier
+# version of this file targeted a separately-computed lat/lon "6.065NM along
+# the runway heading" with a small tolerance -- live headless testing showed
+# DEP_LEAD's REAL flown track (via the real PAPRA SID waypoints, which does
+# not retrace a perfectly straight extension of the runway centerline) never
+# came within that tolerance, so the trigger never fired. Fixed by using the
+# real RWY 35R threshold itself (16.0290376, 108.202528, VVDN.json
+# "verified") as the ATDIST reference point with target distance 6.065 --
+# this fires exactly when DEP_LEAD's distance FROM THE THRESHOLD (its actual
+# flown distance, along whatever track it is really on) reaches 6.065 NM,
+# matching the P_wake definition in the docx exactly and independent of the
+# exact lateral track shape.
+
+00:00:00.00>PLUGINS LOAD SURFACETAXI
+00:00:00.00>TRAILS ON
+00:00:00.00>ASAS ON
+00:00:00.00>PAN 16.0400,108.2000
+
+# ============ DEP_LEAD -- B773 (HEAVY), first departure, rolls straight out ============
+00:00:00.00>CRE DEP_LEAD,B773,16.052628,108.201989,80.9,0,15
+00:00:00.00>PCALL _TRIGGERDEMO_TAXI_G26_RWYHOLD DEP_LEAD
+00:00:00.00>TAXION DEP_LEAD 15 73.9
+# first departure, nobody to wait for -> snap exactly onto the real
+# threshold/heading (352.10deg true, VVDN.json "verified"), then roll
+# straight through -- without this exact lineup the climb-out route would
+# begin from whatever position/heading the taxi ADDWPT chain left it at,
+# which is not guaranteed to sit precisely on the RWY 35R centerline.
+00:00:00.00>DEP_LEAD ATDIST 16.029200,108.202500,0.01 PCALL _TRIGGERDEMO_LINEUP_AND_ROLL DEP_LEAD 16.0290376 108.202528 352.10
+# P_wake trigger: once DEP_LEAD's distance FROM THR 35R reaches 6.065NM,
+# release DEP_FOLL's own take-off roll (ICAO 4444 5.8.3.1(3), 120s HEAVY->MEDIUM)
+00:00:00.00>DEP_LEAD ATDIST 16.0290376,108.202528,6.065 PCALL _TRIGGERDEMO_DEP_ROLL DEP_FOLL
+
+# ============ DEP_FOLL -- A320 (MEDIUM), taxis in trail, holds short, ============
+# ============ take-off roll gated on DEP_LEAD crossing P_wake ============
+00:01:00.00>CRE DEP_FOLL,A320,16.052628,108.201989,80.9,0,15
+00:01:00.00>PCALL _TRIGGERDEMO_TAXI_G26_RWYHOLD DEP_FOLL
+00:01:00.00>TAXION DEP_FOLL 15 37.57
+00:01:00.00>DEP_FOLL ATDIST 16.029200,108.202500,0.01 PCALL _TRIGGERDEMO_STOP_HOLD DEP_FOLL 16.029200 108.202500 352.1

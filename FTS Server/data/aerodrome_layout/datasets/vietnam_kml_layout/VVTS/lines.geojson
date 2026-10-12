@@ -1,0 +1,45 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07L/25R",
+        "type": "runway_centerline"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            106.63716438,
+            10.81503498
+          ],
+          [
+            106.66315494,
+            10.82484638
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07R/25L",
+        "type": "runway_centerline"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            106.63682522,
+            10.81135885
+          ],
+          [
+            106.66952491,
+            10.82370937
+          ]
+        ]
+      }
+    }
+  ]
+}

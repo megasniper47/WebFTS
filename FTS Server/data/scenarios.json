@@ -1,0 +1,1370 @@
+[
+  {
+    "id": "scenario-vvts-base",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "Baseline VVTS 25L/25R",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "Baseline scenario for VVTS with 25L dep / 25R arr",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "fplDatasetId": "fpl-vvts-baseline",
+    "airport": "VVTS",
+    "airspace": "VVTS TMA",
+    "runwayConfig": {
+      "airport": "VVTS",
+      "arrivalRunway": "25R",
+      "departureRunway": "25L",
+      "mode": "mixed",
+      "notes": "Standard dual runway operations"
+    },
+    "weatherConfig": {
+      "mode": "none"
+    },
+    "procedureConfig": {
+      "sidStarMode": "auto"
+    },
+    "trafficDemand": {
+      "source": "fpl_dataset",
+      "fplDatasetId": "fpl-vvts-baseline",
+      "movementCount": 45
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-05-27T15:56:25.337997Z",
+    "updatedAt": "2026-05-27T16:08:11.114864Z",
+    "frozenAt": "2026-05-27T16:08:11.114864Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "baseline_vvts_25l25r.scn",
+    "scenarioBaseName": "baseline_vvts_25l25r",
+    "icCommand": "IC baseline_vvts_25l25r"
+  },
+  {
+    "id": "scenario-vvts-alt1",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "Alternative VVTS 52 movements",
+    "type": "alternative",
+    "status": "archived",
+    "description": "Alternative scenario testing 52 movements/hr",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "fplDatasetId": "fpl-vvts-alt1",
+    "airport": "VVTS",
+    "airspace": "VVTS TMA",
+    "runwayConfig": {
+      "airport": "VVTS",
+      "arrivalRunway": "25R",
+      "departureRunway": "25L",
+      "mode": "mixed"
+    },
+    "weatherConfig": {
+      "mode": "none"
+    },
+    "procedureConfig": {
+      "sidStarMode": "auto"
+    },
+    "trafficDemand": {
+      "source": "fpl_dataset",
+      "fplDatasetId": "fpl-vvts-alt1",
+      "movementCount": 52
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-05-27T15:56:25.337997Z",
+    "updatedAt": "2026-05-27T15:59:32.459923Z",
+    "frozenAt": null,
+    "submittedAt": null,
+    "archivedAt": "2026-05-27T15:59:32.459923Z"
+  },
+  {
+    "id": "scenario-vvdn-base",
+    "studyId": "study-vvdn-rnav-trombone",
+    "name": "Baseline VVDN RNAV",
+    "type": "baseline",
+    "status": "draft",
+    "description": "Baseline RNAV approach at VVDN",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "airport": "VVDN",
+    "airspace": "VVDN TMA",
+    "runwayConfig": {
+      "airport": "VVDN",
+      "arrivalRunway": "35R"
+    },
+    "weatherConfig": {
+      "mode": "none"
+    },
+    "procedureConfig": {
+      "sidStarMode": "auto"
+    },
+    "trafficDemand": {
+      "source": "manual",
+      "movementCount": 15
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-05-27T15:56:25.337997Z",
+    "updatedAt": "2026-08-25T06:41:14.125315Z",
+    "frozenAt": null,
+    "submittedAt": null,
+    "archivedAt": null
+  },
+  {
+    "id": "66a9e3ae-2557-4f5e-8ab4-ef7fc66ff3e8",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "Copy of Alternative VVTS 52 movements",
+    "type": "alternative",
+    "status": "archived",
+    "description": "Alternative scenario testing 52 movements/hr",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "fplDatasetId": "fpl-vvts-alt1",
+    "airport": "VVTS",
+    "airspace": "VVTS TMA",
+    "runwayConfig": {
+      "airport": "VVTS",
+      "arrivalRunway": "25R",
+      "departureRunway": "25L",
+      "mode": "mixed"
+    },
+    "weatherConfig": {
+      "mode": "none"
+    },
+    "procedureConfig": {
+      "sidStarMode": "auto"
+    },
+    "trafficDemand": {
+      "source": "fpl_dataset",
+      "fplDatasetId": "fpl-vvts-alt1",
+      "movementCount": 52
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-05-27T15:59:07.411284Z",
+    "updatedAt": "2026-05-27T15:59:28.303055Z",
+    "frozenAt": null,
+    "submittedAt": null,
+    "archivedAt": "2026-05-27T15:59:28.303055Z"
+  },
+  {
+    "id": "43e94e22-d52b-4d62-b947-75e9c9b373df",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "Copy of Baseline VVTS 25L/25R",
+    "type": "alternative",
+    "status": "draft",
+    "description": "Baseline scenario for VVTS with 25L dep / 25R arr",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "fplDatasetId": "fpl-vvts-baseline",
+    "airport": "VVTS",
+    "airspace": "VVTS TMA",
+    "runwayConfig": {
+      "airport": "VVTS",
+      "arrivalRunway": "25R",
+      "departureRunway": "25L",
+      "mode": "mixed",
+      "notes": "Standard dual runway operations"
+    },
+    "weatherConfig": {
+      "mode": "none"
+    },
+    "procedureConfig": {
+      "sidStarMode": "auto"
+    },
+    "trafficDemand": {
+      "source": "fpl_dataset",
+      "fplDatasetId": "fpl-vvts-baseline",
+      "movementCount": 45
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-05-27T15:59:51.103409Z",
+    "updatedAt": "2026-05-28T00:26:51.676658Z",
+    "frozenAt": null,
+    "submittedAt": null,
+    "archivedAt": null
+  },
+  {
+    "id": "0168a402-eab6-4631-8562-64c983241631",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "Copy of Baseline VVTS 25L/25R",
+    "type": "alternative",
+    "status": "draft",
+    "description": "Baseline scenario for VVTS with 25L dep / 25R arr",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "fplDatasetId": "fpl-vvts-baseline",
+    "airport": "VVTS",
+    "airspace": "VVTS TMA",
+    "runwayConfig": {
+      "airport": "VVTS",
+      "arrivalRunway": "25R",
+      "departureRunway": "25L",
+      "mode": "mixed",
+      "notes": "Standard dual runway operations"
+    },
+    "weatherConfig": {
+      "mode": "none"
+    },
+    "procedureConfig": {
+      "sidStarMode": "auto"
+    },
+    "trafficDemand": {
+      "source": "fpl_dataset",
+      "fplDatasetId": "fpl-vvts-baseline",
+      "movementCount": 45
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-05-27T15:59:53.182222Z",
+    "updatedAt": "2026-07-06T09:58:36.049447Z",
+    "frozenAt": null,
+    "submittedAt": null,
+    "archivedAt": null
+  },
+  {
+    "id": "scenario-vvts52v3nm",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "VVTS 52 Movements 3NM Separation Test",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "Scenario mẫu VVTS 52 movements/hour, RWY 25L departures / 25R arrivals, dùng để test protected-zone horizontal threshold 3 NM và conflict/STCA proxy.",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "airport": "VVTS",
+    "airspace": "TMA Tân Sơn Nhất",
+    "runwayConfig": {
+      "airport": "VVTS",
+      "arrivalRunway": "25R",
+      "departureRunway": "25L",
+      "mode": "25L DEP / 25R ARR",
+      "notes": "Arrivals vacate via P5 to apron."
+    },
+    "weatherConfig": {
+      "mode": "none",
+      "description": "Baseline weather condition for test scenario."
+    },
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedSids": [
+        "SAPEN 5K",
+        "PATMA 5P",
+        "BIXEX 5U",
+        "ELSAS 5A",
+        "ANHOA 5A",
+        "BACHU 5A",
+        "NIXIV 5A"
+      ],
+      "selectedStars": [
+        "SAPEN 5B",
+        "DOVIN 5E",
+        "VETOM 5A",
+        "PTH 5D",
+        "ELSAS 5C",
+        "TRN 5B",
+        "ANBOV 5A",
+        "NIXIV 5B"
+      ],
+      "selectedIaps": [],
+      "notes": "Multiple PBN entry/exit procedures for VVTS 25L/25R test."
+    },
+    "trafficDemand": {
+      "source": "template",
+      "movementCount": 52,
+      "timeWindowStart": "00:00:00",
+      "timeWindowEnd": "01:00:00",
+      "notes": "52 movements/hour sample scenario."
+    },
+    "validationStatus": "passed",
+    "validationMessages": [
+      "Scenario sample is prevalidated for demonstration.",
+      "SCN file exists in FTS Server/scenario/vvts52v3nm.scn.",
+      "Run command: IC vvts52v3nm."
+    ],
+    "scnFileName": "vvts52v3nm.scn",
+    "scenarioBaseName": "vvts52v3nm",
+    "icCommand": "IC vvts52v3nm",
+    "createdAt": "2026-05-27T00:00:00.000Z",
+    "updatedAt": "2026-05-27T00:00:00.000Z",
+    "frozenAt": "2026-05-27T00:00:00.000Z",
+    "submittedAt": null,
+    "archivedAt": null
+  },
+  {
+    "id": "scenario-vvnb-soir-peak14",
+    "studyId": "study-vvnb-soir-modes14",
+    "name": "VVNB SOIR peak-hour (11L arr / 11R dep)",
+    "type": "baseline",
+    "status": "draft",
+    "description": "VVNB peak hour (14:00) tu FPL that He 2026: 51 arrivals ILS 11L + 26 departures 11R (SID DILEN/NAKHA/NAH/MC). Nen SOIR Modes 1+4; nhanh VVGB cho sau khi co du lieu AIP Gia Binh.",
+    "aixmDatasetId": "aixm-airac-2508",
+    "airacCycle": "2508",
+    "fplDatasetId": "fpl-vvnb-summer2026",
+    "airport": "VVNB",
+    "airspace": "VVNB TMA",
+    "runwayConfig": {
+      "airport": "VVNB",
+      "arrivalRunway": "11L",
+      "departureRunway": "11R",
+      "mode": "segregated",
+      "notes": "SOIR parallel dependent; CL-CL 252m"
+    },
+    "weatherConfig": {
+      "mode": "none"
+    },
+    "procedureConfig": {
+      "sidStarMode": "explicit"
+    },
+    "trafficDemand": {
+      "source": "fpl_dataset",
+      "fplDatasetId": "fpl-vvnb-summer2026",
+      "movementCount": 77
+    },
+    "validationStatus": "passed",
+    "validationMessages": [
+      "Loaded & stepped in Vatm-Engine headless: 7+ aircraft spawned, arrivals descending on ILS 11L profile."
+    ],
+    "createdAt": "2026-07-14T09:00:00.000000Z",
+    "updatedAt": "2026-07-14T09:00:00.000000Z",
+    "frozenAt": null,
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "VVNB_SOIR_peak14.scn",
+    "scenarioBaseName": "VVNB_SOIR_peak14",
+    "icCommand": "IC VVNB_SOIR_peak14"
+  },
+  {
+    "id": "a53668b0-bfbb-4854-aaa8-04816694d9b8",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "Test Capacity VVNB via API",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVNB",
+    "airspace": "",
+    "runwayConfig": {
+      "arrivalRunway": "11L",
+      "departureRunway": "11R"
+    },
+    "weatherConfig": {},
+    "procedureConfig": {},
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "hours": 1,
+        "seed": 20260727
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-07-23T08:57:22.609019Z",
+    "updatedAt": "2026-07-23T08:57:45.081439Z",
+    "frozenAt": "2026-07-23T08:57:45.081439Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "test_capacity_vvnb_via_api.scn",
+    "scenarioBaseName": "test_capacity_vvnb_via_api",
+    "icCommand": "IC test_capacity_vvnb_via_api"
+  },
+  {
+    "id": "723ce89c-f553-48f5-a235-062660e6959a",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "Browser Save Test VVNB",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVNB",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {},
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {
+          "DILEN": 4,
+          "HUVAN_3A": 3,
+          "HUVAN_3B": 3,
+          "MC": 4,
+          "NAH": 3,
+          "NAKHA": 3
+        },
+        "starMix": {
+          "BISON": 2,
+          "DILEN": 2,
+          "DOKLA": 2,
+          "GASSO": 2,
+          "HUVAN": 2,
+          "MC": 2,
+          "NAKHA": 2,
+          "VDO": 2
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-07-23T09:09:11.582529Z",
+    "updatedAt": "2026-07-23T09:09:28.186919Z",
+    "frozenAt": "2026-07-23T09:09:28.186919Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "browser_save_test_vvnb.scn",
+    "scenarioBaseName": "browser_save_test_vvnb",
+    "icCommand": "IC browser_save_test_vvnb"
+  },
+  {
+    "id": "b593eb2c-2b16-47c5-907d-24c29744c1b5",
+    "studyId": "study-hcm-acc-sectorization",
+    "name": "Weather Phase3 Test IFR",
+    "type": "baseline",
+    "status": "archived",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "2405",
+    "fplDatasetId": "",
+    "airport": "VVNB",
+    "airspace": "TMA Noi Bai",
+    "runwayConfig": {
+      "airport": "VVNB",
+      "arrivalRunway": "11L",
+      "departureRunway": "11R",
+      "mode": "11L ARR / 11R DEP"
+    },
+    "weatherConfig": {
+      "mode": "ifr",
+      "windDirection": 250,
+      "windSpeedKt": 18,
+      "visibilityM": 3000,
+      "ceilingFt": 600,
+      "description": "Test IFR weather injection"
+    },
+    "procedureConfig": {},
+    "trafficDemand": {
+      "source": "template",
+      "movementCount": 4
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-07-23T10:30:09.697681Z",
+    "updatedAt": "2026-07-23T10:31:21.608581Z",
+    "frozenAt": "2026-07-23T10:30:28.309602Z",
+    "submittedAt": null,
+    "archivedAt": "2026-07-23T10:31:21.608581Z",
+    "scnFileName": "weather_phase3_test_ifr.scn",
+    "scenarioBaseName": "weather_phase3_test_ifr",
+    "icCommand": "IC weather_phase3_test_ifr"
+  },
+  {
+    "id": "afefd568-b28e-4bfe-80e7-060bd180cdb0",
+    "studyId": "study-hcm-acc-sectorization",
+    "name": "Constraints Phase4 Test Unconstrained",
+    "type": "baseline",
+    "status": "archived",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "2405",
+    "fplDatasetId": "",
+    "airport": "VVNB",
+    "airspace": "TMA Noi Bai",
+    "runwayConfig": {
+      "airport": "VVNB",
+      "arrivalRunway": "11L",
+      "departureRunway": "11R",
+      "mode": "11L ARR / 11R DEP"
+    },
+    "weatherConfig": {},
+    "procedureConfig": {},
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {
+          "DILEN": 4,
+          "HUVAN_3A": 3,
+          "HUVAN_3B": 3,
+          "MC": 4,
+          "NAH": 3,
+          "NAKHA": 3
+        },
+        "starMix": {
+          "BISON": 2,
+          "DILEN": 2,
+          "DOKLA": 2,
+          "GASSO": 2,
+          "HUVAN": 2,
+          "MC": 2,
+          "NAKHA": 2,
+          "VDO": 2
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 60,
+        "depAfterArrGapSec": 10,
+        "minRunwayGapSec": 30
+      }
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-07-23T21:59:37.851126Z",
+    "updatedAt": "2026-07-23T22:00:46.153065Z",
+    "frozenAt": "2026-07-23T21:59:38.267568Z",
+    "submittedAt": null,
+    "archivedAt": "2026-07-23T22:00:46.153065Z",
+    "scnFileName": "constraints_phase4_test_unconstrained.scn",
+    "scenarioBaseName": "constraints_phase4_test_unconstrained",
+    "icCommand": "IC constraints_phase4_test_unconstrained"
+  },
+  {
+    "id": "4adb4e2c-d8af-4d15-b784-7bc940920e99",
+    "studyId": "study-hcm-acc-sectorization",
+    "name": "Constraints Phase4 Test FullConstraints",
+    "type": "baseline",
+    "status": "archived",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "2405",
+    "fplDatasetId": "",
+    "airport": "VVNB",
+    "airspace": "TMA Noi Bai",
+    "runwayConfig": {
+      "airport": "VVNB",
+      "arrivalRunway": "11L",
+      "departureRunway": "11R",
+      "mode": "11L ARR / 11R DEP"
+    },
+    "weatherConfig": {},
+    "procedureConfig": {},
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {
+          "DILEN": 4,
+          "HUVAN_3A": 3,
+          "HUVAN_3B": 3,
+          "MC": 4,
+          "NAH": 3,
+          "NAKHA": 3
+        },
+        "starMix": {
+          "BISON": 2,
+          "DILEN": 2,
+          "DOKLA": 2,
+          "GASSO": 2,
+          "HUVAN": 2,
+          "MC": 2,
+          "NAKHA": 2,
+          "VDO": 2
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60
+      }
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-07-23T22:00:25.412461Z",
+    "updatedAt": "2026-07-23T22:00:46.376431Z",
+    "frozenAt": "2026-07-23T22:00:25.667041Z",
+    "submittedAt": null,
+    "archivedAt": "2026-07-23T22:00:46.376431Z",
+    "scnFileName": "constraints_phase4_test_fullconstraints.scn",
+    "scenarioBaseName": "constraints_phase4_test_fullconstraints",
+    "icCommand": "IC constraints_phase4_test_fullconstraints"
+  },
+  {
+    "id": "9cd684c4-1caa-4de8-adfd-7612e485904f",
+    "studyId": "1b3a5a76-6169-4c1d-acf3-0961c2f370e3",
+    "name": "VVPQ PBN 50mvt/h RWY10 - 2h",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "2405",
+    "fplDatasetId": "",
+    "airport": "VVPQ",
+    "airspace": "Phu Quoc TMA",
+    "runwayConfig": {
+      "airport": "VVPQ",
+      "arrivalRunway": "10L",
+      "departureRunway": "10R",
+      "mode": "10R DEP / 10L ARR (PBN RNP)"
+    },
+    "weatherConfig": {},
+    "procedureConfig": {},
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {
+          "NUMDI": 7,
+          "OSOTA": 6,
+          "RG": 6,
+          "ADBOP": 6
+        },
+        "starMix": {
+          "NUMDI": 7,
+          "OSOTA": 6,
+          "TUNPO": 6,
+          "ADBOP": 6
+        },
+        "hours": 2,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60
+      }
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-08-01T11:57:44.107119Z",
+    "updatedAt": "2026-08-01T11:58:04.409533Z",
+    "frozenAt": "2026-08-01T11:58:04.409533Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvpq_pbn_50mvt_h_rwy10_-_2h.scn",
+    "scenarioBaseName": "vvpq_pbn_50mvt_h_rwy10_-_2h",
+    "icCommand": "IC vvpq_pbn_50mvt_h_rwy10_-_2h"
+  },
+  {
+    "id": "2fca05a0-4658-4b34-a0e0-a8a49fb83e52",
+    "studyId": "1b3a5a76-6169-4c1d-acf3-0961c2f370e3",
+    "name": "VVPQ CONOPS APP 41mvt/h RWY10 - 2h",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "Kich ban theo CONOPS APP Phu Quoc (27.3.2026, FINAL-2): 41 chuyen/gio gio cao diem (~20 dep/21 arr), cau hinh 10R cat canh / 10L ha canh (che do song song phu thuoc), phan cach toi thieu 5NM quy doi ~130s theo toc do tiep can trung binh 140kt cua nhom A320/A321 (muc 2.2-2.4 CONOPS). Toc do cat canh dung du lieu BADA that theo tung loai tau bay. (Cap nhat: dep_after_arr_gap tang 30s->90s de tranh khoang cach dep/arr qua gan luc dep vua cat canh trung luc arr sap cham banh tren duong CHC song song ke ben.)",
+    "aixmDatasetId": "",
+    "airacCycle": "2405",
+    "fplDatasetId": "",
+    "airport": "VVPQ",
+    "airspace": "Phu Quoc TMA (CONOPS APP Phu Quoc)",
+    "runwayConfig": {
+      "airport": "VVPQ",
+      "arrivalRunway": "10L",
+      "departureRunway": "10R",
+      "mode": "10R DEP / 10L ARR (dependent parallel, per CONOPS APP Phu Quoc)",
+      "notes": "Theo CONOPS APP Phu Quoc muc 2.2.1: 2 duong CHC song song phu thuoc, 1 luong chuyen cat canh (10R) + 1 luong chuyen ha canh (10L)."
+    },
+    "weatherConfig": {},
+    "procedureConfig": {},
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {
+          "NUMDI": 5,
+          "OSOTA": 5,
+          "RG": 5,
+          "ADBOP": 5
+        },
+        "starMix": {
+          "NUMDI": 5,
+          "OSOTA": 5,
+          "TUNPO": 5,
+          "ADBOP": 6
+        },
+        "hours": 2,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 130,
+        "depAfterArrGapSec": 90,
+        "minRunwayGapSec": 60
+      }
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-08-03T02:53:47.215323Z",
+    "updatedAt": "2026-08-03T02:53:58.055917Z",
+    "frozenAt": "2026-08-03T02:53:58.055917Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvpq_conops_app_41mvt_h_rwy10_-_2h.scn",
+    "scenarioBaseName": "vvpq_conops_app_41mvt_h_rwy10_-_2h",
+    "icCommand": "IC vvpq_conops_app_41mvt_h_rwy10_-_2h"
+  },
+  {
+    "id": "44c2a3be-d18e-486e-814e-cd3949a92b5a",
+    "studyId": "1b3a5a76-6169-4c1d-acf3-0961c2f370e3",
+    "name": "VVPQ CONOPS APP 35mvt/h TUNPO50 RWY10 - 2h",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "Kich ban giam tai theo yeu cau: 35 chuyen/gio (thay vi 41), 10R cat canh / 10L ha canh (song song phu thuoc theo CONOPS APP Phu Quoc). STAR TUNPO 3F chiem 50% luu luong den (9/18 arr moi gio), 3 STAR con lai (NUMDI/OSOTA/ADBOP) chia deu phan con lai. Khi 2 tau bay khac STAR hoi tu qua gan tai diem nhap chung (GUKNU/LASOV -> PQ404), engine tu dong chen 1 doan 'trombone' (mo rong duong bay, khong phai vong cho tron) vao dung cho tau bay den sau, thay vi chi lui gio ha canh tren giay - mo phong dung ky thuat KSVKL that dung de tach tau bay khi luu luong dong.",
+    "aixmDatasetId": "",
+    "airacCycle": "2405",
+    "fplDatasetId": "",
+    "airport": "VVPQ",
+    "airspace": "Phu Quoc TMA (CONOPS APP Phu Quoc)",
+    "runwayConfig": {
+      "airport": "VVPQ",
+      "arrivalRunway": "10L",
+      "departureRunway": "10R",
+      "mode": "10R DEP / 10L ARR (dependent parallel, per CONOPS APP Phu Quoc)",
+      "notes": "Theo CONOPS APP Phu Quoc muc 2.2.1 va 4.2.1.5."
+    },
+    "weatherConfig": {},
+    "procedureConfig": {},
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {
+          "NUMDI": 4,
+          "OSOTA": 4,
+          "RG": 4,
+          "ADBOP": 5
+        },
+        "starMix": {
+          "NUMDI": 3,
+          "OSOTA": 3,
+          "ADBOP": 3,
+          "TUNPO": 9
+        },
+        "hours": 2,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 130,
+        "depAfterArrGapSec": 90,
+        "minRunwayGapSec": 60
+      }
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-08-03T11:19:12.832758Z",
+    "updatedAt": "2026-08-03T11:19:24.103248Z",
+    "frozenAt": "2026-08-03T11:19:24.103248Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvpq_conops_app_35mvt_h_tunpo50_rwy10_-_2h.scn",
+    "scenarioBaseName": "vvpq_conops_app_35mvt_h_tunpo50_rwy10_-_2h",
+    "icCommand": "IC vvpq_conops_app_35mvt_h_tunpo50_rwy10_-_2h"
+  },
+  {
+    "id": "335fbec6-3728-4699-9f4e-913a10505670",
+    "studyId": "1b3a5a76-6169-4c1d-acf3-0961c2f370e3",
+    "name": "VVPQ CONOPS APP TMA-cap 3arr-2dep RWY10 - 2h",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "Ap dung tran nang luc TMA thuc: toi da 3 tau bay den + 2 tau bay di dong thoi trong TMA PQ (tuong tu quy tac VVNB). Tau bay den vuot tran phai cho: NUMDI/OSOTA/ADBOP giu cho that o diem ngoai TMA that (NUMDI/OSOTA/MEBMI, xac nhan bang polygon TMA PHU QUOC that); TUNPO khong co diem cho ngoai TMA that (diem vao STAR da nam trong TMA) nen bi lui gio tao (cho o mat dat truoc khi vao kich ban).",
+    "aixmDatasetId": "",
+    "airacCycle": "2405",
+    "fplDatasetId": "",
+    "airport": "VVPQ",
+    "airspace": "Phu Quoc TMA (CONOPS APP Phu Quoc)",
+    "runwayConfig": {
+      "airport": "VVPQ",
+      "arrivalRunway": "10L",
+      "departureRunway": "10R",
+      "mode": "10R DEP / 10L ARR (dependent parallel, per CONOPS APP Phu Quoc)"
+    },
+    "weatherConfig": {},
+    "procedureConfig": {},
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {
+          "NUMDI": 4,
+          "OSOTA": 4,
+          "RG": 4,
+          "ADBOP": 5
+        },
+        "starMix": {
+          "NUMDI": 3,
+          "OSOTA": 3,
+          "ADBOP": 3,
+          "TUNPO": 9
+        },
+        "hours": 2,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 130,
+        "depAfterArrGapSec": 90,
+        "minRunwayGapSec": 60,
+        "maxArrInTma": 3,
+        "maxDepInTma": 2
+      }
+    },
+    "validationStatus": "passed",
+    "validationMessages": [],
+    "createdAt": "2026-08-03T20:28:26.571989Z",
+    "updatedAt": "2026-08-03T20:28:35.881633Z",
+    "frozenAt": "2026-08-03T20:28:35.881633Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvpq_conops_app_tma-cap_3arr-2dep_rwy10_-_2h.scn",
+    "scenarioBaseName": "vvpq_conops_app_tma-cap_3arr-2dep_rwy10_-_2h",
+    "icCommand": "IC vvpq_conops_app_tma-cap_3arr-2dep_rwy10_-_2h"
+  },
+  {
+    "id": "b1e985ab-7c74-4698-b586-c80210a73b94",
+    "studyId": "1b3a5a76-6169-4c1d-acf3-0961c2f370e3",
+    "name": "VVPQ Gio dong nhat thuc te 01 Aug 2026 (09h20-10h20)",
+    "type": "baseline",
+    "status": "draft",
+    "description": "Trich dung tu ke hoach bay THAT ngay 01/08/2026 (LICH BAY 01 AUG 2026 (V2).xlsx). Xac dinh gio cao diem THAT bang cua so truot 60 phut tren toan bo 152 chuyen bay that trong ngay (khong lam tron theo gio tron) -> cua so 09:20-10:20 la dong nhat voi 15 luot cat/ha canh (8 den + 7 di). Giu nguyen callsign/loai tau bay/gio that; STAR/SID gan theo phuong vi dia ly that gan nhat (nguon khong co route ATS). Mot vai gio duoc lui 1-5 phut do va cham phan cach that giua 2 chuyen gan nhau trong lich goc.",
+    "aixmDatasetId": "",
+    "airacCycle": "2405",
+    "fplDatasetId": "",
+    "airport": "VVPQ",
+    "airspace": "Phu Quoc TMA (CONOPS APP Phu Quoc)",
+    "runwayConfig": {
+      "airport": "VVPQ",
+      "arrivalRunway": "10L",
+      "departureRunway": "10R",
+      "mode": "10R DEP / 10L ARR (dependent parallel, per CONOPS APP Phu Quoc)"
+    },
+    "weatherConfig": {},
+    "procedureConfig": {},
+    "trafficDemand": {
+      "source": "real_schedule_snapshot",
+      "note": "Generated externally via build_real_schedule_scenario; scn already exported to FTS Server/scenario/vvpq_busiest_hour_01aug2026_0920-1020.scn"
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-04T01:01:37.809195Z",
+    "updatedAt": "2026-08-04T01:01:37.809195Z",
+    "frozenAt": null,
+    "submittedAt": null,
+    "archivedAt": null
+  },
+  {
+    "id": "c4570405-126a-4932-9b9d-adaf37bdf07a",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "VVDN - 1 tàu bay - STAR DOTEN - ILS U 35L",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVDN",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedStars": [
+        "DOTEN"
+      ],
+      "selectedIaps": [
+        "ILS U 35L"
+      ]
+    },
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {},
+        "starMix": {
+          "DOTEN": 1
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-20T06:56:41.226389Z",
+    "updatedAt": "2026-08-20T06:56:41.253368Z",
+    "frozenAt": "2026-08-20T06:56:41.253368Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l.scn",
+    "scenarioBaseName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l",
+    "icCommand": "IC vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l"
+  },
+  {
+    "id": "16128d8b-2454-488a-88a7-8ce824c58b16",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "VVDN - 1 tàu bay - STAR DOTEN - ILS U 35L",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVDN",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedStars": [
+        "DOTEN"
+      ],
+      "selectedIaps": [
+        "ILS U 35L"
+      ]
+    },
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {},
+        "starMix": {
+          "DOTEN": 1
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-20T07:00:42.053534Z",
+    "updatedAt": "2026-08-20T07:00:42.090231Z",
+    "frozenAt": "2026-08-20T07:00:42.090231Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l.scn",
+    "scenarioBaseName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l",
+    "icCommand": "IC vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l"
+  },
+  {
+    "id": "84d9fb36-3859-4918-b911-1e49fe9e5eba",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "VVDN - 1 tàu bay - STAR DOTEN - ILS U 35L",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVDN",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedStars": [
+        "DOTEN"
+      ],
+      "selectedIaps": [
+        "ILS U 35L"
+      ]
+    },
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {},
+        "starMix": {
+          "DOTEN": 1
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60,
+        "alignFirstSpawnToZero": true
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-20T07:06:53.061455Z",
+    "updatedAt": "2026-08-20T07:06:53.095175Z",
+    "frozenAt": "2026-08-20T07:06:53.095175Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l.scn",
+    "scenarioBaseName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l",
+    "icCommand": "IC vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l"
+  },
+  {
+    "id": "6036564b-470a-4b12-9719-081b589f0ff1",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "curl-test-align",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVDN",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedStars": [
+        "DOTEN"
+      ],
+      "selectedIaps": [
+        "ILS U 35L"
+      ]
+    },
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {},
+        "starMix": {
+          "DOTEN": 1
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60,
+        "alignFirstSpawnToZero": true
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-20T07:08:38.927273Z",
+    "updatedAt": "2026-08-20T07:08:40.079807Z",
+    "frozenAt": "2026-08-20T07:08:40.079807Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "curl-test-align.scn",
+    "scenarioBaseName": "curl-test-align",
+    "icCommand": "IC curl-test-align"
+  },
+  {
+    "id": "e4d24941-2e88-43b9-b915-d7dd1b4b7834",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "VVDN - 1 tàu bay - STAR DOTEN - ILS U 35L",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVDN",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedStars": [
+        "DOTEN"
+      ],
+      "selectedIaps": [
+        "ILS U 35L"
+      ]
+    },
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {},
+        "starMix": {
+          "DOTEN": 1
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60,
+        "alignFirstSpawnToZero": true
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-20T07:09:31.434613Z",
+    "updatedAt": "2026-08-20T07:09:31.490861Z",
+    "frozenAt": "2026-08-20T07:09:31.490861Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l.scn",
+    "scenarioBaseName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l",
+    "icCommand": "IC vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l"
+  },
+  {
+    "id": "3095cc74-9eae-4161-aded-84c665b9f2c3",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "VVGB - 1 tàu bay - STAR NAKHA",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVGB",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedStars": [
+        "NAKHA"
+      ]
+    },
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {},
+        "starMix": {
+          "NAKHA": 1
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60,
+        "alignFirstSpawnToZero": true
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-20T07:12:04.966823Z",
+    "updatedAt": "2026-08-20T07:12:05.014147Z",
+    "frozenAt": "2026-08-20T07:12:05.014147Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvgb_-_1_tau_bay_-_star_nakha.scn",
+    "scenarioBaseName": "vvgb_-_1_tau_bay_-_star_nakha",
+    "icCommand": "IC vvgb_-_1_tau_bay_-_star_nakha"
+  },
+  {
+    "id": "4596ad72-d87e-4eb4-a456-1651e36eb3b7",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "VVDN - 1 tàu bay - STAR DOTEN - ILS U 35L",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVDN",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedStars": [
+        "DOTEN"
+      ],
+      "selectedIaps": [
+        "ILS U 35L"
+      ]
+    },
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {},
+        "starMix": {
+          "DOTEN": 1
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60,
+        "alignFirstSpawnToZero": true
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-20T07:16:09.070357Z",
+    "updatedAt": "2026-08-20T07:16:09.097220Z",
+    "frozenAt": "2026-08-20T07:16:09.097220Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l.scn",
+    "scenarioBaseName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l",
+    "icCommand": "IC vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l"
+  },
+  {
+    "id": "3fe72e19-718f-44e0-ad10-cf814867e486",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "VVDN - 1 tàu bay - STAR DOTEN - ILS U 35L",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVDN",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedStars": [
+        "DOTEN"
+      ],
+      "selectedIaps": [
+        "ILS U 35L"
+      ]
+    },
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {},
+        "starMix": {
+          "DOTEN": 1
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60,
+        "alignFirstSpawnToZero": true
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-20T07:18:46.107610Z",
+    "updatedAt": "2026-08-20T07:18:46.251285Z",
+    "frozenAt": "2026-08-20T07:18:46.251285Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l.scn",
+    "scenarioBaseName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l",
+    "icCommand": "IC vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l"
+  },
+  {
+    "id": "66eee046-f516-4d5b-af3a-5dcb8c40dc31",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "VVDN - 1 tàu bay - STAR DOTEN - ILS U 35L",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVDN",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedStars": [
+        "DOTEN"
+      ],
+      "selectedIaps": [
+        "ILS U 35L"
+      ]
+    },
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {},
+        "starMix": {
+          "DOTEN": 1
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60,
+        "alignFirstSpawnToZero": true
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-20T09:20:29.078892Z",
+    "updatedAt": "2026-08-20T09:20:29.169990Z",
+    "frozenAt": "2026-08-20T09:20:29.169990Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l.scn",
+    "scenarioBaseName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l",
+    "icCommand": "IC vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l"
+  },
+  {
+    "id": "171ad30c-1527-48be-a18c-3239c77a1827",
+    "studyId": "study-vvts-25lr-capacity",
+    "name": "VVDN - 1 tàu bay - STAR DOTEN - ILS U 35L",
+    "type": "baseline",
+    "status": "frozen",
+    "description": "",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "fplDatasetId": "",
+    "airport": "VVDN",
+    "airspace": "",
+    "runwayConfig": {},
+    "weatherConfig": {},
+    "procedureConfig": {
+      "sidStarMode": "manual",
+      "selectedStars": [
+        "DOTEN"
+      ],
+      "selectedIaps": [
+        "ILS U 35L"
+      ]
+    },
+    "trafficDemand": {
+      "source": "procedure_capacity",
+      "capacityConfig": {
+        "sidMix": {},
+        "starMix": {
+          "DOTEN": 1
+        },
+        "hours": 1,
+        "seed": 20260727,
+        "asasOn": false,
+        "minArrArrGapSec": 180,
+        "depAfterArrGapSec": 30,
+        "minRunwayGapSec": 60,
+        "alignFirstSpawnToZero": true
+      }
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-23T03:18:30.760635Z",
+    "updatedAt": "2026-08-23T03:18:30.861615Z",
+    "frozenAt": "2026-08-23T03:18:30.861615Z",
+    "submittedAt": null,
+    "archivedAt": null,
+    "scnFileName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l.scn",
+    "scenarioBaseName": "vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l",
+    "icCommand": "IC vvdn_-_1_tau_bay_-_star_doten_-_ils_u_35l"
+  },
+  {
+    "id": "11b8dfb8-e967-4fd0-addf-ccbaad451636",
+    "studyId": "study-vvdn-rnav-trombone",
+    "name": "Copy of Baseline VVDN RNAV",
+    "type": "alternative",
+    "status": "draft",
+    "description": "Baseline RNAV approach at VVDN",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "airport": "VVDN",
+    "airspace": "VVDN TMA",
+    "runwayConfig": {
+      "airport": "VVDN",
+      "arrivalRunway": "35R"
+    },
+    "weatherConfig": {
+      "mode": "none"
+    },
+    "procedureConfig": {
+      "sidStarMode": "auto"
+    },
+    "trafficDemand": {
+      "source": "manual",
+      "movementCount": 15
+    },
+    "validationStatus": "not_checked",
+    "validationMessages": [],
+    "createdAt": "2026-08-25T06:41:19.679988Z",
+    "updatedAt": "2026-08-25T06:41:19.679988Z",
+    "frozenAt": null,
+    "submittedAt": null,
+    "archivedAt": null
+  }
+]

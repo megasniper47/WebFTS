@@ -1,0 +1,30 @@
+# DEP_TAXI_TO_HOLD.scn -- lăn từ vị trí đỗ 26 ra điểm dừng chờ đường CHC 35R
+# (PRE_HOLD, tọa độ 16.029255,108.203066, hướng mũi 263° -- đúng theo yêu cầu
+# đề bài). Toạ độ lộ trình tái sử dụng TAXI_COMMON_G26 đã kiểm chứng trong
+# _gen_kb_35r_only.py.
+#
+# Lộ trình kết thúc bằng chính waypoint PRE_HOLD (tốc độ 0) -- tàu bay tự
+# giảm tốc và dừng thật (hiện đúng tốc độ thực tế lăn ra, không dùng MOVE).
+# ĐÃ SỬA LỖI ENGINE THẬT trong bluesky/traffic/autopilot.py: trước đây
+# BlueSky xoá vô điều kiện MỌI tàu bay ngay khi hết waypoint (dù đang ở mặt
+# đất và chỉ đơn giản là đã lăn xong đoạn đường được cấp, không phải "đã tới
+# đích"), buộc phải dùng MOVE để giả lập đứng yên (trông giả). Đã sửa: chỉ
+# xoá khi tàu bay ĐANG BAY (alt > 10ft); tàu bay trên mặt đất hết waypoint
+# thì đứng yên tại đó (ép selspd=0), không bị xoá.
+# Gọi: PCALL DEP_TAXI_TO_HOLD <acid>
+00:00:00.00>%0 ADDWPT 16.052004,108.200773 0 10.0
+00:00:00.00>%0 ADDWPT 16.051764,108.200781 0 15.0
+00:00:00.00>%0 ADDWPT 16.051560,108.200776 0 15.0
+00:00:00.00>%0 ADDWPT 16.051307,108.200786 0 15.0
+00:00:00.00>%0 ADDWPT 16.049490,108.200986 0 15.0
+00:00:00.00>%0 ADDWPT 16.049218,108.201025 0 12.0
+00:00:00.00>%0 ADDWPT 16.044100,108.201789 0 18.0
+00:00:00.00>%0 ADDWPT 16.038291,108.202625 0 18.0
+00:00:00.00>%0 ADDWPT 16.030836,108.203677 0 15.0
+00:00:00.00>%0 ADDWPT 16.029967,108.203803 0 10.0
+00:00:00.00>%0 ADDWPT 16.029680,108.203824 0 8.0
+00:00:00.00>%0 ADDWPT 16.029490,108.203744 0 6.0
+00:00:00.00>%0 ADDWPT 16.029355,108.203538 0 5.0
+00:00:00.00>%0 ADDWPT 16.029255,108.203066 0 0.0
+00:00:00.00>%0 LNAV ON
+00:00:00.00>%0 VNAV ON

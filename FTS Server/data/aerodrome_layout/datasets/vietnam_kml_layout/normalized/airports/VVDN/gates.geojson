@@ -1,0 +1,593 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "New Ramp Start 6",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20377602,
+          16.03732477
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "New Ramp Start 6",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20373028,
+          16.03759216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "New Ramp Start 6",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20384079,
+          16.03695369
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "New Ramp Start 5",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.19453772,
+          16.05763084
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "New Ramp Start 140",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.2044255,
+          16.03883647
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 36",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20166821,
+          16.04868569
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 35",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20200391,
+          16.04873181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 34",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20237005,
+          16.04878611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 33",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20273921,
+          16.0488348
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 32",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20222248,
+          16.04998433
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 31",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20215187,
+          16.05038286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 30",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20208966,
+          16.05078565
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 29",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20203722,
+          16.05118946
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 28",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20227772,
+          16.05174691
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 27",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20209055,
+          16.05225901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 26",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.2019728,
+          16.05262199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 25",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20198893,
+          16.05300316
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 24",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.2018889,
+          16.05336803
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 23",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.2018339,
+          16.05373683
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 20",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20173283,
+          16.05493575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 18",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20166218,
+          16.0556392
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 16",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20153112,
+          16.05628652
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 14",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20155822,
+          16.05695109
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 10",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20128169,
+          16.05818302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 22",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20176652,
+          16.05410807
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 21",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.201712,
+          16.05455277
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 19",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20159982,
+          16.05528159
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 17",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20152986,
+          16.05594974
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 15",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20138125,
+          16.05659005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 12",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20131269,
+          16.05742023
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 11",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20133285,
+          16.05780758
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 9",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20121686,
+          16.05900996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate8",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20120493,
+          16.0594127
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate7",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20119373,
+          16.05981568
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate6",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20108769,
+          16.06021797
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 5",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20104612,
+          16.0606187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 4",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20091223,
+          16.06154914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 3",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20084218,
+          16.06194071
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 2",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20078417,
+          16.06233742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gate 1",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.20071406,
+          16.06274152
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "New Ramp Start 18",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.19472217,
+          16.05542234
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "New Ramp Start 19",
+        "type": "parking"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.19443448,
+          16.05593789
+        ]
+      }
+    }
+  ]
+}

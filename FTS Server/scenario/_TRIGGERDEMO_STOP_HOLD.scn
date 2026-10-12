@@ -1,0 +1,8 @@
+# _TRIGGERDEMO_STOP_HOLD.scn -- hold short of RWY 35R, copied from the proven
+# _KB5GEN_STOP_HOLD.scn pattern. MOVE is used ONLY here, for a true full stop
+# (speed exactly 0.0, not in BlueSky's 0.1-3.9kt CAS/Mach ambiguity band),
+# never for the moving/accelerating phases.
+# Call: PCALL _TRIGGERDEMO_STOP_HOLD <acid> <lat> <lon> <hdg>
+00:00:00.00>%0 LNAV OFF
+00:00:00.00>%0 VNAV OFF
+00:00:00.00>MOVE %0,%1,%2,0,%3,0.0

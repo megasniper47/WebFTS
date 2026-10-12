@@ -1,0 +1,229 @@
+# ================================================================
+# VVDN_2A2D_1HOUR_35R.scn -- Kịch bản 1 giờ, 12 cặp ARR/DEP trên 35R.
+# ARR001 CRE thẳng tại CADAS (T=0). ARR002+ bay theo 1 trong 8 STAR RNAV
+# RWY35LR thật (BUNTA dùng bản "2M"), chọn ngẫu nhiên theo hướng địa lý:
+# Bắc (HUE,CAHEO) 35%, Nam (KUMUN,SADIN,VILOT) 35%, Đông (BUNTA) 15%, Tây
+# (LATOM,PAPRA) 15%. Mực bay tại điểm đầu STAR: Đông+Bắc=FL240, Tây+Nam=FL250.
+# Thời điểm CRE tính ngược để MỖI ARR tới CADAS cách chuyến trước đúng
+# 300s (5 phút) -- dùng estimate_transit_s() theo
+# đúng toạ độ/tốc độ thật của STAR được gán (không ép cứng thời gian bay
+# thật trong engine).
+#
+# DEP mỗi chuyến bay theo 1 SID RNAV RWY35LR thật ngẫu nhiên trong 8 SID
+# (SID_CHAINS). DEP bắt đầu lăn cách nhau đúng 300s (5 phút),
+# độc lập với lịch CRE của ARR.
+#
+# Toàn bộ logic Trigger A/B, plugin TAXIWAYREROUTE (đường lăn E/D), HDG 352°
+# tại điểm chờ... giữ NGUYÊN như đã kiểm chứng trong VVDN_2A2D_35R_HOLDSHORT.
+# Seed cố định 20260812 để tái tạo được.
+# ================================================================
+00:00:00.00>PLUGINS LOAD SURFACETAXI
+00:00:00.00>PLUGINS LOAD DEPARRALERT
+00:00:00.00>PLUGINS LOAD TAXIWAYREROUTE
+00:00:00.00>ASAS OFF
+00:00:00.00>TRAILS ON
+00:00:00.00>PAN 16.0400,108.2000
+
+# ================================================================
+# CẶP 1 -- ARR001 [B39M] (STAR CADAS trực tiếp) / DEP001 [B764] (SID SADIN, thoát ly E6)
+# ================================================================
+00:00:00.00>CRE DEP001,B764,16.052628,108.201989,80.9,0,0
+00:00:00.00>TAXION DEP001 15 44.5
+00:00:00.00>TAXIROUTE DEP001
+
+00:00:00.00>CRE ARR001,B39M,15.618056,108.262500,353,6071,230
+00:00:00.00>PCALL ARR_APPROACH_ARR001 ARR001
+00:00:00.00>PCALL ARR_EXIT_E6 ARR001
+
+# Trigger A1: ARR001 vượt đầu thềm 35R -> +10s DEP001 vào đường CHC (lineup)
+00:00:00.00>ARR001 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP001
+
+# Trigger B1: ARR001 thoát ly hoàn toàn tại E6 -> +30s DEP001 chạy đà (SID SADIN)
+00:00:00.00>ARR001 ATDIST 16.057523,108.199282,0.02 PCALL ARR_VACATED_ROLL DEP001 DEP_ROLL_DEP001
+
+# ================================================================
+# CẶP 2 -- ARR002 [E195] (STAR CAHEO) / DEP002 [A321] (SID SADIN, thoát ly E6)
+# ================================================================
+00:05:00.00>CRE DEP002,A321,16.052628,108.201989,80.9,0,0
+00:05:00.00>TAXION DEP002 15 44.5
+00:05:00.00>TAXIROUTE DEP002
+
+00:00:00.00>CRE ARR002,E195,15.851739,108.105723,171.8,7934,250
+00:00:00.00>PCALL ARR_APPROACH_ARR002 ARR002
+00:00:00.00>PCALL ARR_EXIT_E6 ARR002
+
+# Trigger A2: ARR002 vượt đầu thềm 35R -> +10s DEP002 vào đường CHC (lineup)
+00:00:00.00>ARR002 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP002
+
+# Trigger B2: ARR002 thoát ly hoàn toàn tại E6 -> +30s DEP002 chạy đà (SID SADIN)
+00:00:00.00>ARR002 ATDIST 16.057523,108.199282,0.02 PCALL ARR_VACATED_ROLL DEP002 DEP_ROLL_DEP002
+
+# ================================================================
+# CẶP 3 -- ARR003 [B748] (STAR SADIN) / DEP003 [B737] (SID BUNTA, thoát ly E4)
+# ================================================================
+00:10:00.00>CRE DEP003,B737,16.052628,108.201989,80.9,0,0
+00:10:00.00>TAXION DEP003 15 44.5
+00:10:00.00>TAXIROUTE DEP003
+
+00:00:00.00>CRE ARR003,B748,15.341954,108.076481,339.7,17978,280
+00:00:00.00>PCALL ARR_APPROACH_ARR003 ARR003
+00:00:00.00>PCALL ARR_EXIT_E4 ARR003
+
+# Trigger A3: ARR003 vượt đầu thềm 35R -> +10s DEP003 vào đường CHC (lineup)
+00:00:00.00>ARR003 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP003
+
+# Trigger B3: ARR003 thoát ly hoàn toàn tại E4 -> +30s DEP003 chạy đà (SID BUNTA)
+00:00:00.00>ARR003 ATDIST 16.049011,108.199650,0.02 PCALL ARR_VACATED_ROLL DEP003 DEP_ROLL_DEP003
+
+# ================================================================
+# CẶP 4 -- ARR004 [A21N] (STAR CAHEO) / DEP004 [A343] (SID SADIN, thoát ly E6)
+# ================================================================
+00:15:00.00>CRE DEP004,A343,16.052628,108.201989,80.9,0,0
+00:15:00.00>TAXION DEP004 15 44.5
+00:15:00.00>TAXIROUTE DEP004
+
+00:02:42.85>CRE ARR004,A21N,16.536389,107.965278,167.8,24000,280
+00:02:42.85>PCALL ARR_APPROACH_ARR004 ARR004
+00:02:42.85>PCALL ARR_EXIT_E6 ARR004
+
+# Trigger A4: ARR004 vượt đầu thềm 35R -> +10s DEP004 vào đường CHC (lineup)
+00:02:42.85>ARR004 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP004
+
+# Trigger B4: ARR004 thoát ly hoàn toàn tại E6 -> +30s DEP004 chạy đà (SID SADIN)
+00:02:42.85>ARR004 ATDIST 16.057523,108.199282,0.02 PCALL ARR_VACATED_ROLL DEP004 DEP_ROLL_DEP004
+
+# ================================================================
+# CẶP 5 -- ARR005 [B38M] (STAR CAHEO) / DEP005 [A320] (SID SADIN, thoát ly E4)
+# ================================================================
+00:20:00.00>CRE DEP005,A320,16.052628,108.201989,80.9,0,0
+00:20:00.00>TAXION DEP005 15 44.5
+00:20:00.00>TAXIROUTE DEP005
+
+00:07:42.85>CRE ARR005,B38M,16.536389,107.965278,167.8,24000,280
+00:07:42.85>PCALL ARR_APPROACH_ARR005 ARR005
+00:07:42.85>PCALL ARR_EXIT_E4 ARR005
+
+# Trigger A5: ARR005 vượt đầu thềm 35R -> +10s DEP005 vào đường CHC (lineup)
+00:07:42.85>ARR005 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP005
+
+# Trigger B5: ARR005 thoát ly hoàn toàn tại E4 -> +30s DEP005 chạy đà (SID SADIN)
+00:07:42.85>ARR005 ATDIST 16.049011,108.199650,0.02 PCALL ARR_VACATED_ROLL DEP005 DEP_ROLL_DEP005
+
+# ================================================================
+# CẶP 6 -- ARR006 [E170] (STAR CAHEO) / DEP006 [A319] (SID SADIN, thoát ly E6)
+# ================================================================
+00:25:00.00>CRE DEP006,A319,16.052628,108.201989,80.9,0,0
+00:25:00.00>TAXION DEP006 15 44.5
+00:25:00.00>TAXIROUTE DEP006
+
+00:12:42.85>CRE ARR006,E170,16.536389,107.965278,167.8,24000,280
+00:12:42.85>PCALL ARR_APPROACH_ARR006 ARR006
+00:12:42.85>PCALL ARR_EXIT_E6 ARR006
+
+# Trigger A6: ARR006 vượt đầu thềm 35R -> +10s DEP006 vào đường CHC (lineup)
+00:12:42.85>ARR006 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP006
+
+# Trigger B6: ARR006 thoát ly hoàn toàn tại E6 -> +30s DEP006 chạy đà (SID SADIN)
+00:12:42.85>ARR006 ATDIST 16.057523,108.199282,0.02 PCALL ARR_VACATED_ROLL DEP006 DEP_ROLL_DEP006
+
+# ================================================================
+# CẶP 7 -- ARR007 [B788] (STAR CAHEO) / DEP007 [E195] (SID XAQUA, thoát ly E6)
+# ================================================================
+00:30:00.00>CRE DEP007,E195,16.052628,108.201989,80.9,0,0
+00:30:00.00>TAXION DEP007 15 44.5
+00:30:00.00>TAXIROUTE DEP007
+
+00:17:42.85>CRE ARR007,B788,16.536389,107.965278,167.8,24000,280
+00:17:42.85>PCALL ARR_APPROACH_ARR007 ARR007
+00:17:42.85>PCALL ARR_EXIT_E6 ARR007
+
+# Trigger A7: ARR007 vượt đầu thềm 35R -> +10s DEP007 vào đường CHC (lineup)
+00:17:42.85>ARR007 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP007
+
+# Trigger B7: ARR007 thoát ly hoàn toàn tại E6 -> +30s DEP007 chạy đà (SID XAQUA)
+00:17:42.85>ARR007 ATDIST 16.057523,108.199282,0.02 PCALL ARR_VACATED_ROLL DEP007 DEP_ROLL_DEP007
+
+# ================================================================
+# CẶP 8 -- ARR008 [A319] (STAR SADIN) / DEP008 [F100] (SID KONCO, thoát ly E6)
+# ================================================================
+00:35:00.00>CRE DEP008,F100,16.052628,108.201989,80.9,0,0
+00:35:00.00>TAXION DEP008 15 44.5
+00:35:00.00>TAXIROUTE DEP008
+
+00:22:46.84>CRE ARR008,A319,15.080000,108.177222,339.6,25000,280
+00:22:46.84>PCALL ARR_APPROACH_ARR008 ARR008
+00:22:46.84>PCALL ARR_EXIT_E6 ARR008
+
+# Trigger A8: ARR008 vượt đầu thềm 35R -> +10s DEP008 vào đường CHC (lineup)
+00:22:46.84>ARR008 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP008
+
+# Trigger B8: ARR008 thoát ly hoàn toàn tại E6 -> +30s DEP008 chạy đà (SID KONCO)
+00:22:46.84>ARR008 ATDIST 16.057523,108.199282,0.02 PCALL ARR_VACATED_ROLL DEP008 DEP_ROLL_DEP008
+
+# ================================================================
+# CẶP 9 -- ARR009 [A345] (STAR BUNTA) / DEP009 [E170] (SID KUMUN, thoát ly E6)
+# ================================================================
+00:40:00.00>CRE DEP009,E170,16.052628,108.201989,80.9,0,0
+00:40:00.00>TAXION DEP009 15 44.5
+00:40:00.00>TAXIROUTE DEP009
+
+00:20:48.70>CRE ARR009,A345,16.833333,109.395000,235.7,24000,280
+00:20:48.70>PCALL ARR_APPROACH_ARR009 ARR009
+00:20:48.70>PCALL ARR_EXIT_E6 ARR009
+
+# Trigger A9: ARR009 vượt đầu thềm 35R -> +10s DEP009 vào đường CHC (lineup)
+00:20:48.70>ARR009 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP009
+
+# Trigger B9: ARR009 thoát ly hoàn toàn tại E6 -> +30s DEP009 chạy đà (SID KUMUN)
+00:20:48.70>ARR009 ATDIST 16.057523,108.199282,0.02 PCALL ARR_VACATED_ROLL DEP009 DEP_ROLL_DEP009
+
+# ================================================================
+# CẶP 10 -- ARR010 [B739] (STAR BUNTA) / DEP010 [B762] (SID KONCO, thoát ly E6)
+# ================================================================
+00:45:00.00>CRE DEP010,B762,16.052628,108.201989,80.9,0,0
+00:45:00.00>TAXION DEP010 15 44.5
+00:45:00.00>TAXIROUTE DEP010
+
+00:25:48.70>CRE ARR010,B739,16.833333,109.395000,235.7,24000,280
+00:25:48.70>PCALL ARR_APPROACH_ARR010 ARR010
+00:25:48.70>PCALL ARR_EXIT_E6 ARR010
+
+# Trigger A10: ARR010 vượt đầu thềm 35R -> +10s DEP010 vào đường CHC (lineup)
+00:25:48.70>ARR010 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP010
+
+# Trigger B10: ARR010 thoát ly hoàn toàn tại E6 -> +30s DEP010 chạy đà (SID KONCO)
+00:25:48.70>ARR010 ATDIST 16.057523,108.199282,0.02 PCALL ARR_VACATED_ROLL DEP010 DEP_ROLL_DEP010
+
+# ================================================================
+# CẶP 11 -- ARR011 [A339] (STAR LATOM) / DEP011 [B38M] (SID XAQUA, thoát ly E4)
+# ================================================================
+00:50:00.00>CRE DEP011,B38M,16.052628,108.201989,80.9,0,0
+00:50:00.00>TAXION DEP011 15 44.5
+00:50:00.00>TAXIROUTE DEP011
+
+00:35:49.72>CRE ARR011,A339,14.879444,107.843611,19.9,25000,280
+00:35:49.72>PCALL ARR_APPROACH_ARR011 ARR011
+00:35:49.72>PCALL ARR_EXIT_E4 ARR011
+
+# Trigger A11: ARR011 vượt đầu thềm 35R -> +10s DEP011 vào đường CHC (lineup)
+00:35:49.72>ARR011 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP011
+
+# Trigger B11: ARR011 thoát ly hoàn toàn tại E4 -> +30s DEP011 chạy đà (SID XAQUA)
+00:35:49.72>ARR011 ATDIST 16.049011,108.199650,0.02 PCALL ARR_VACATED_ROLL DEP011 DEP_ROLL_DEP011
+
+# ================================================================
+# CẶP 12 -- ARR012 [B739] (STAR LATOM) / DEP012 [B737] (SID XAQUA, thoát ly E4)
+# ================================================================
+00:55:00.00>CRE DEP012,B737,16.052628,108.201989,80.9,0,0
+00:55:00.00>TAXION DEP012 15 44.5
+00:55:00.00>TAXIROUTE DEP012
+
+00:40:49.72>CRE ARR012,B739,14.879444,107.843611,19.9,25000,280
+00:40:49.72>PCALL ARR_APPROACH_ARR012 ARR012
+00:40:49.72>PCALL ARR_EXIT_E4 ARR012
+
+# Trigger A12: ARR012 vượt đầu thềm 35R -> +10s DEP012 vào đường CHC (lineup)
+00:40:49.72>ARR012 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP012
+
+# Trigger B12: ARR012 thoát ly hoàn toàn tại E4 -> +30s DEP012 chạy đà (SID XAQUA)
+00:40:49.72>ARR012 ATDIST 16.049011,108.199650,0.02 PCALL ARR_VACATED_ROLL DEP012 DEP_ROLL_DEP012

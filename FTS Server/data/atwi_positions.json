@@ -1,0 +1,392 @@
+[
+  {
+    "id": "pos-vvpq-gcu",
+    "icao": "VVPQ",
+    "name": "Trực điều hành GCU",
+    "nameEn": "GCU (Ground Control)",
+    "description": "Phụ trách từ vị trí đỗ tàu bay đến các điểm chờ trước đường CHC 10R/28L (CONOPS APP Phú Quốc, mục 3.1.2 -- di chuyển mặt đất). Kịch bản hiện tại chưa mô phỏng giai đoạn lăn bánh nên workload đo được ở đây sẽ luôn gần 0 cho tới khi engine sinh kịch bản có dữ liệu taxi/gate thật.",
+    "taskCodes": [
+      "AIRPORT_SURFACE_FEEDBACK"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-03T17:42:32.627061Z",
+    "updatedAt": "2026-08-03T17:42:32.627061Z"
+  },
+  {
+    "id": "pos-vvpq-twr",
+    "icao": "VVPQ",
+    "name": "Trực điều hành TWR",
+    "nameEn": "TWR (Local/Runway Control)",
+    "description": "Điều hành đường CHC 10R/28L (song song phụ thuộc) -- sắp xếp thứ tự cất/hạ cánh. Chưa đếm huấn lệnh cất/hạ cánh, băng qua CHC theo từng chuyến (mô hình 14-task hiện tại chưa có task này), nên số liệu ở đây có thể thấp hơn workload TWR thực tế.",
+    "taskCodes": [
+      "RUNWAY_SEQUENCE"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-03T17:42:32.627061Z",
+    "updatedAt": "2026-08-03T17:43:28.910711Z"
+  },
+  {
+    "id": "pos-vvpq-twr-gcu-coord",
+    "icao": "VVPQ",
+    "name": "Trực hiệp đồng TWR/GCU",
+    "nameEn": "TWR/GCU Coordination",
+    "description": "Hiệp đồng giữa TWR và GCU (CONOPS APP Phú Quốc, mục 5.5.2). Chưa có task nào trong mô hình 14-task hiện tại ánh xạ đúng vai trò này -- workload báo cáo sẽ là 0/không xác định cho tới khi bổ sung task.",
+    "taskCodes": [],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-03T17:42:32.627061Z",
+    "updatedAt": "2026-08-03T17:42:32.627061Z"
+  },
+  {
+    "id": "pos-vvpq-app-exec",
+    "icao": "VVPQ",
+    "name": "Trực điều hành APP",
+    "nameEn": "APP Executive (Tactical)",
+    "description": "Điều hành chiến thuật tiếp cận Phú Quốc (CONOPS APP Phú Quốc, mục 5.5.1) -- giám sát, huấn lệnh tốc độ/độ cao/hướng bay, phát hiện xung đột.",
+    "taskCodes": [
+      "SURV_SCAN",
+      "TRAFFIC_COUNT_MONITOR",
+      "CONFLICT_CHECK",
+      "STCA_RESPONSE",
+      "VECTOR_OR_DIRECT",
+      "ALTITUDE_CHANGE",
+      "SPEED_CONTROL",
+      "WEATHER_DEVIATION",
+      "MILITARY_COORD",
+      "SYSTEM_DEGRADED"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-03T17:42:32.627061Z",
+    "updatedAt": "2026-08-03T17:42:32.627061Z"
+  },
+  {
+    "id": "pos-vvpq-app-coord",
+    "icao": "VVPQ",
+    "name": "Trực hiệp đồng APP",
+    "nameEn": "APP Coordination/Handoff",
+    "description": "Phối hợp/chuyển giao của APP Phú Quốc (CONOPS APP Phú Quốc, mục 5.5.1) -- chuyển giao với ACC HCM, ACC Phnom Penh, TWR và các phân khu lân cận.",
+    "taskCodes": [
+      "HANDOFF_COORD",
+      "CROSS_SECTOR_COORD"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-03T17:42:32.627061Z",
+    "updatedAt": "2026-08-03T17:42:32.627061Z"
+  },
+  {
+    "id": "pos-vvdn-gcu",
+    "icao": "VVDN",
+    "name": "Trực điều hành GCU",
+    "nameEn": "GCU (Ground Control)",
+    "description": "Phụ trách di chuyển mặt đất tại Đà Nẵng -- từ vị trí đỗ tàu bay đến điểm chờ trước đường CHC 35L/35R (và 17L/17R) song song phụ thuộc. Kịch bản hiện tại chưa mô phỏng giai đoạn lăn bánh nên workload đo được ở đây sẽ luôn gần 0 cho tới khi engine sinh kịch bản có dữ liệu taxi/gate thật. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "AIRPORT_SURFACE_FEEDBACK"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvdn-twr-ec",
+    "icao": "VVDN",
+    "name": "Trực điều hành TWR (EC)",
+    "nameEn": "TWR Executive Controller (EC)",
+    "description": "Điều hành chiến thuật đường CHC 35L/35R (và 17L/17R) song song phụ thuộc tại Đà Nẵng -- sắp xếp thứ tự cất/hạ cánh, huấn lệnh cất/hạ cánh trên CHC. Mô hình 14-task hiện tại chưa có task riêng cho huấn lệnh cất/hạ cánh theo từng chuyến nên số liệu ở đây có thể thấp hơn workload TWR thực tế. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "RUNWAY_SEQUENCE"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvdn-twr-plc",
+    "icao": "VVDN",
+    "name": "Trực hiệp đồng TWR (PLC)",
+    "nameEn": "TWR Planning Controller (PLC)",
+    "description": "Lập kế hoạch/hiệp đồng của TWR Đà Nẵng -- hiệp đồng với GCU và chuẩn bị chuyển giao cho APP. Chưa có task nào trong mô hình 14-task hiện tại ánh xạ đúng vai trò này -- workload báo cáo sẽ là 0/không xác định cho tới khi bổ sung task. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvdn-app-ec",
+    "icao": "VVDN",
+    "name": "Trực điều hành APP (EC)",
+    "nameEn": "APP Executive Controller (EC)",
+    "description": "Điều hành chiến thuật tiếp cận Đà Nẵng -- giám sát, huấn lệnh tốc độ/độ cao/hướng bay, phát hiện và xử lý xung đột trong TMA. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "SURV_SCAN",
+      "TRAFFIC_COUNT_MONITOR",
+      "CONFLICT_CHECK",
+      "STCA_RESPONSE",
+      "VECTOR_OR_DIRECT",
+      "ALTITUDE_CHANGE",
+      "SPEED_CONTROL",
+      "WEATHER_DEVIATION",
+      "MILITARY_COORD",
+      "SYSTEM_DEGRADED"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvdn-app-plc",
+    "icao": "VVDN",
+    "name": "Trực hiệp đồng APP (PLC)",
+    "nameEn": "APP Planning Controller (PLC)",
+    "description": "Lập kế hoạch/hiệp đồng của APP Đà Nẵng -- chuyển giao với ACC, TWR và các phân khu lân cận. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "HANDOFF_COORD",
+      "CROSS_SECTOR_COORD"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvcr-gcu",
+    "icao": "VVCR",
+    "name": "Trực điều hành GCU",
+    "nameEn": "GCU (Ground Control)",
+    "description": "Phụ trách di chuyển mặt đất tại Cam Ranh -- từ vị trí đỗ tàu bay đến điểm chờ trước đường CHC 02L/02R và 20L/20R song song phụ thuộc. Kịch bản hiện tại chưa mô phỏng giai đoạn lăn bánh nên workload đo được ở đây sẽ luôn gần 0 cho tới khi engine sinh kịch bản có dữ liệu taxi/gate thật. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "AIRPORT_SURFACE_FEEDBACK"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvcr-twr-ec",
+    "icao": "VVCR",
+    "name": "Trực điều hành TWR (EC)",
+    "nameEn": "TWR Executive Controller (EC)",
+    "description": "Điều hành chiến thuật đường CHC 02L/02R và 20L/20R song song phụ thuộc tại Cam Ranh -- sắp xếp thứ tự cất/hạ cánh, huấn lệnh cất/hạ cánh trên CHC. Mô hình 14-task hiện tại chưa có task riêng cho huấn lệnh cất/hạ cánh theo từng chuyến nên số liệu ở đây có thể thấp hơn workload TWR thực tế. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "RUNWAY_SEQUENCE"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvcr-twr-plc",
+    "icao": "VVCR",
+    "name": "Trực hiệp đồng TWR (PLC)",
+    "nameEn": "TWR Planning Controller (PLC)",
+    "description": "Lập kế hoạch/hiệp đồng của TWR Cam Ranh -- hiệp đồng với GCU và chuẩn bị chuyển giao cho APP. Chưa có task nào trong mô hình 14-task hiện tại ánh xạ đúng vai trò này -- workload báo cáo sẽ là 0/không xác định cho tới khi bổ sung task. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvcr-app-ec",
+    "icao": "VVCR",
+    "name": "Trực điều hành APP (EC)",
+    "nameEn": "APP Executive Controller (EC)",
+    "description": "Điều hành chiến thuật tiếp cận Cam Ranh -- giám sát, huấn lệnh tốc độ/độ cao/hướng bay, phát hiện và xử lý xung đột trong TMA. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "SURV_SCAN",
+      "TRAFFIC_COUNT_MONITOR",
+      "CONFLICT_CHECK",
+      "STCA_RESPONSE",
+      "VECTOR_OR_DIRECT",
+      "ALTITUDE_CHANGE",
+      "SPEED_CONTROL",
+      "WEATHER_DEVIATION",
+      "MILITARY_COORD",
+      "SYSTEM_DEGRADED"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvcr-app-plc",
+    "icao": "VVCR",
+    "name": "Trực hiệp đồng APP (PLC)",
+    "nameEn": "APP Planning Controller (PLC)",
+    "description": "Lập kế hoạch/hiệp đồng của APP Cam Ranh -- chuyển giao với ACC, TWR và các phân khu lân cận. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "HANDOFF_COORD",
+      "CROSS_SECTOR_COORD"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvts-gcu",
+    "icao": "VVTS",
+    "name": "Trực điều hành GCU",
+    "nameEn": "GCU (Ground Control)",
+    "description": "Phụ trách di chuyển mặt đất tại Tân Sơn Nhất -- từ vị trí đỗ tàu bay đến điểm chờ trước đường CHC 07L/25R và 07R/25L song song phụ thuộc. Kịch bản hiện tại chưa mô phỏng giai đoạn lăn bánh nên workload đo được ở đây sẽ luôn gần 0 cho tới khi engine sinh kịch bản có dữ liệu taxi/gate thật. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "AIRPORT_SURFACE_FEEDBACK"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvts-twr-ec",
+    "icao": "VVTS",
+    "name": "Trực điều hành TWR (EC)",
+    "nameEn": "TWR Executive Controller (EC)",
+    "description": "Điều hành chiến thuật đường CHC 07L/25R và 07R/25L song song phụ thuộc tại Tân Sơn Nhất -- sắp xếp thứ tự cất/hạ cánh, huấn lệnh cất/hạ cánh trên CHC. Mô hình 14-task hiện tại chưa có task riêng cho huấn lệnh cất/hạ cánh theo từng chuyến nên số liệu ở đây có thể thấp hơn workload TWR thực tế. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "RUNWAY_SEQUENCE"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvts-twr-plc",
+    "icao": "VVTS",
+    "name": "Trực hiệp đồng TWR (PLC)",
+    "nameEn": "TWR Planning Controller (PLC)",
+    "description": "Lập kế hoạch/hiệp đồng của TWR Tân Sơn Nhất -- hiệp đồng với GCU và chuẩn bị chuyển giao cho APP. Chưa có task nào trong mô hình 14-task hiện tại ánh xạ đúng vai trò này -- workload báo cáo sẽ là 0/không xác định cho tới khi bổ sung task. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvts-app-ec",
+    "icao": "VVTS",
+    "name": "Trực điều hành APP (EC)",
+    "nameEn": "APP Executive Controller (EC)",
+    "description": "Điều hành chiến thuật tiếp cận Tân Sơn Nhất -- giám sát, huấn lệnh tốc độ/độ cao/hướng bay, phát hiện và xử lý xung đột trong TMA. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "SURV_SCAN",
+      "TRAFFIC_COUNT_MONITOR",
+      "CONFLICT_CHECK",
+      "STCA_RESPONSE",
+      "VECTOR_OR_DIRECT",
+      "ALTITUDE_CHANGE",
+      "SPEED_CONTROL",
+      "WEATHER_DEVIATION",
+      "MILITARY_COORD",
+      "SYSTEM_DEGRADED"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvts-app-plc",
+    "icao": "VVTS",
+    "name": "Trực hiệp đồng APP (PLC)",
+    "nameEn": "APP Planning Controller (PLC)",
+    "description": "Lập kế hoạch/hiệp đồng của APP Tân Sơn Nhất -- chuyển giao với ACC, TWR và các phân khu lân cận. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "HANDOFF_COORD",
+      "CROSS_SECTOR_COORD"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvnb-gcu",
+    "icao": "VVNB",
+    "name": "Trực điều hành GCU",
+    "nameEn": "GCU (Ground Control)",
+    "description": "Phụ trách di chuyển mặt đất tại Nội Bài -- từ vị trí đỗ tàu bay đến điểm chờ trước đường CHC 11L/11R và 29L/29R song song phụ thuộc (8 chế độ khai thác). Kịch bản hiện tại chưa mô phỏng giai đoạn lăn bánh nên workload đo được ở đây sẽ luôn gần 0 cho tới khi engine sinh kịch bản có dữ liệu taxi/gate thật. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "AIRPORT_SURFACE_FEEDBACK"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvnb-twr-ec",
+    "icao": "VVNB",
+    "name": "Trực điều hành TWR (EC)",
+    "nameEn": "TWR Executive Controller (EC)",
+    "description": "Điều hành chiến thuật đường CHC 11L/11R và 29L/29R song song phụ thuộc (8 chế độ khai thác) tại Nội Bài -- sắp xếp thứ tự cất/hạ cánh, huấn lệnh cất/hạ cánh trên CHC. Mô hình 14-task hiện tại chưa có task riêng cho huấn lệnh cất/hạ cánh theo từng chuyến nên số liệu ở đây có thể thấp hơn workload TWR thực tế. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "RUNWAY_SEQUENCE"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvnb-twr-plc",
+    "icao": "VVNB",
+    "name": "Trực hiệp đồng TWR (PLC)",
+    "nameEn": "TWR Planning Controller (PLC)",
+    "description": "Lập kế hoạch/hiệp đồng của TWR Nội Bài -- hiệp đồng với GCU và chuẩn bị chuyển giao cho APP. Chưa có task nào trong mô hình 14-task hiện tại ánh xạ đúng vai trò này -- workload báo cáo sẽ là 0/không xác định cho tới khi bổ sung task. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvnb-app-ec",
+    "icao": "VVNB",
+    "name": "Trực điều hành APP (EC)",
+    "nameEn": "APP Executive Controller (EC)",
+    "description": "Điều hành chiến thuật tiếp cận Nội Bài -- giám sát, huấn lệnh tốc độ/độ cao/hướng bay, phát hiện và xử lý xung đột trong TMA. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "SURV_SCAN",
+      "TRAFFIC_COUNT_MONITOR",
+      "CONFLICT_CHECK",
+      "STCA_RESPONSE",
+      "VECTOR_OR_DIRECT",
+      "ALTITUDE_CHANGE",
+      "SPEED_CONTROL",
+      "WEATHER_DEVIATION",
+      "MILITARY_COORD",
+      "SYSTEM_DEGRADED"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  },
+  {
+    "id": "pos-vvnb-app-plc",
+    "icao": "VVNB",
+    "name": "Trực hiệp đồng APP (PLC)",
+    "nameEn": "APP Planning Controller (PLC)",
+    "description": "Lập kế hoạch/hiệp đồng của APP Nội Bài -- chuyển giao với ACC, TWR và các phân khu lân cận. Đây là mẫu vị trí kiểm soát viên mang tính đại diện (generic template), xây dựng theo mô hình 2 kiểm soát viên EC (Executive Controller -- điều hành chiến thuật) / PLC (Planning Controller -- lập kế hoạch, hiệp đồng) theo tài liệu quốc tế ICAO/EUROCONTROL (nguồn: SkyBrary, \"Executive and Planner Controller\") kết hợp phân loại 4 loại cơ sở kiểm soát không lưu tại Việt Nam: ACC/APP/TWR/GCU (nguồn: accgroup.vn, skylead.vn). CHƯA phải sơ đồ tổ chức đã được xác thực thực tế cho cơ sở này -- cần chuyên gia vận hành xác nhận trước khi dùng cho mục đích chính thức.",
+    "taskCodes": [
+      "HANDOFF_COORD",
+      "CROSS_SECTOR_COORD"
+    ],
+    "atcoCount": 1,
+    "source": "system_seed",
+    "createdAt": "2026-08-12T00:00:00.000000Z",
+    "updatedAt": "2026-08-12T00:00:00.000000Z"
+  }
+]

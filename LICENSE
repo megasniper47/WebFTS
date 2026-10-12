@@ -1,0 +1,101 @@
+# THÔNG TIN BẢN QUYỀN VÀ GIẤY PHÉP
+
+## VATM Fast-Time Simulation Platform
+
+**VATM Fast-Time Simulation Platform** là nền tảng mô phỏng không lưu thời gian nhanh của **Tổng công ty Quản lý bay Việt Nam (VATM)**, được xây dựng nhằm phục vụ công tác nghiên cứu, thử nghiệm, phân tích và đánh giá các phương án tổ chức, khai thác, điều hành bay trong môi trường mô phỏng.
+
+Nền tảng này hỗ trợ trực quan hóa hoạt động bay, mô phỏng lưu lượng tàu bay, hiển thị dữ liệu vùng trời, đường bay, điểm trọng yếu, phương thức bay, vùng trách nhiệm điều hành và các thông tin liên quan đến quản lý hoạt động bay.
+
+---
+
+## 1. Chủ sở hữu và phạm vi sử dụng
+
+Bản quyền đối với các phần phát triển, tùy biến, tích hợp dữ liệu và cấu hình nghiệp vụ của **VATM Fast-Time Simulation Platform** thuộc về **Tổng công ty Quản lý bay Việt Nam (VATM)** hoặc các đơn vị, cá nhân được VATM giao nhiệm vụ thực hiện.
+
+Phần mềm được sử dụng cho các mục đích chính sau:
+
+- Nghiên cứu và đánh giá tổ chức vùng trời.
+- Mô phỏng hoạt động bay trong môi trường thời gian nhanh.
+- Phân tích năng lực điều hành bay và năng lực vùng trời.
+- Kiểm thử các phương án khai thác, phương án phân luồng, phương án tổ chức đường bay.
+- Hỗ trợ đào tạo, huấn luyện, nghiên cứu khoa học và phát triển công nghệ trong lĩnh vực quản lý hoạt động bay.
+
+Việc sao chép, phân phối, triển khai hoặc khai thác phần mềm ngoài phạm vi được VATM cho phép phải có sự chấp thuận bằng văn bản của VATM hoặc đơn vị có thẩm quyền.
+
+---
+
+## 2. Thành phần kế thừa và mã nguồn mở
+
+VATM Fast-Time Simulation Platform có thể sử dụng, kế thừa, tham khảo hoặc tích hợp một số thành phần mã nguồn mở và thư viện phần mềm của bên thứ ba, bao gồm các thành phần phục vụ mô phỏng, bản đồ, giao diện web, xử lý dữ liệu và trực quan hóa.
+
+Các thành phần mã nguồn mở đó tiếp tục chịu sự điều chỉnh bởi giấy phép gốc tương ứng của từng thành phần. Việc sử dụng, sửa đổi hoặc phân phối lại các thành phần này cần tuân thủ đúng điều kiện giấy phép đi kèm với chúng.
+
+Các phần do VATM phát triển, tùy biến hoặc tích hợp thêm không làm thay đổi quyền và nghĩa vụ liên quan đến các thành phần mã nguồn mở gốc.
+
+---
+
+## 3. Quyền sử dụng nội bộ
+
+Người dùng, nhóm nghiên cứu, đơn vị kỹ thuật hoặc đơn vị nghiệp vụ được VATM phân quyền có thể sử dụng nền tảng này cho công việc chuyên môn, bao gồm:
+
+- Cài đặt và vận hành trong môi trường nghiên cứu, thử nghiệm hoặc nội bộ.
+- Điều chỉnh cấu hình phục vụ bài toán mô phỏng cụ thể.
+- Cập nhật dữ liệu vùng trời, đường bay, phương thức bay và kịch bản mô phỏng.
+- Phát triển bổ sung chức năng theo nhiệm vụ được giao.
+- Tạo báo cáo, kết quả phân tích và tài liệu phục vụ công tác chuyên môn.
+
+Việc sử dụng phải bảo đảm an toàn thông tin, bảo mật dữ liệu và phù hợp với các quy định nội bộ của VATM.
+
+---
+
+## 4. Hạn chế sử dụng
+
+Trừ khi có văn bản cho phép của VATM, người dùng không được:
+
+- Công bố, chia sẻ hoặc phát tán mã nguồn, dữ liệu cấu hình, dữ liệu vùng trời hoặc dữ liệu nghiệp vụ ra bên ngoài.
+- Sử dụng phần mềm cho mục đích thương mại độc lập ngoài phạm vi nhiệm vụ được giao.
+- Chuyển giao phần mềm, tài liệu kỹ thuật hoặc dữ liệu đi kèm cho tổ chức, cá nhân không có thẩm quyền.
+- Loại bỏ thông tin bản quyền, thông tin nguồn gốc hoặc thông tin ghi nhận các thành phần phần mềm được sử dụng.
+- Sử dụng hệ thống theo cách có thể gây ảnh hưởng đến an toàn, an ninh thông tin hoặc uy tín của VATM.
+
+---
+
+## 5. Dữ liệu hàng không và dữ liệu mô phỏng
+
+Dữ liệu sử dụng trong nền tảng có thể bao gồm dữ liệu vùng trời, đường bay, điểm trọng yếu, khu vực trách nhiệm, phương thức bay, sân bay, kịch bản bay và các dữ liệu phục vụ mô phỏng khác.
+
+Các dữ liệu này chỉ được sử dụng cho mục đích nghiên cứu, thử nghiệm, đào tạo và phân tích theo phạm vi được cho phép. Người dùng có trách nhiệm kiểm tra, xác thực và quản lý dữ liệu trước khi sử dụng trong các bài toán chuyên môn.
+
+Kết quả mô phỏng có giá trị tham khảo, hỗ trợ phân tích và đánh giá. Kết quả này không thay thế cho các quy trình phê duyệt, khai thác, điều hành hoặc ban hành chính thức theo quy định hiện hành.
+
+---
+
+## 6. Miễn trừ bảo đảm
+
+VATM Fast-Time Simulation Platform được cung cấp cho mục đích nghiên cứu, thử nghiệm và hỗ trợ phân tích. Phần mềm không được bảo đảm là hoàn toàn không có lỗi, không gián đoạn hoặc phù hợp với mọi tình huống khai thác thực tế.
+
+Người sử dụng chịu trách nhiệm đánh giá tính phù hợp của phần mềm, dữ liệu đầu vào, kịch bản mô phỏng và kết quả đầu ra trước khi sử dụng cho bất kỳ mục đích chuyên môn nào.
+
+Trong phạm vi pháp luật cho phép, VATM và các đơn vị, cá nhân tham gia phát triển không chịu trách nhiệm đối với các thiệt hại phát sinh từ việc sử dụng sai mục đích, sử dụng dữ liệu chưa được kiểm chứng hoặc diễn giải kết quả mô phỏng không phù hợp.
+
+---
+
+## 7. Ghi nhận phát triển
+
+Nền tảng được phát triển, tùy biến và hoàn thiện nhằm phục vụ yêu cầu nghiên cứu, mô phỏng và phân tích trong lĩnh vực quản lý hoạt động bay của VATM.
+
+Các đóng góp về mã nguồn, cấu hình, dữ liệu, giao diện, thuật toán, tài liệu và quy trình nghiệp vụ cần được ghi nhận theo quy định quản lý dự án và quản lý tài sản trí tuệ của VATM.
+
+---
+
+## 8. Điều khoản chung
+
+Tài liệu này mô tả định hướng bản quyền, phạm vi sử dụng và nguyên tắc quản lý đối với VATM Fast-Time Simulation Platform. Trong trường hợp có sự khác biệt giữa tài liệu này và giấy phép gốc của các thành phần mã nguồn mở được tích hợp, giấy phép gốc của từng thành phần sẽ được áp dụng đối với chính thành phần đó.
+
+Mọi việc sử dụng, sửa đổi, phân phối, triển khai hoặc khai thác nền tảng cần tuân thủ quy định của VATM, quy định về an toàn thông tin, quy định về bảo vệ dữ liệu và các quy định pháp luật có liên quan.
+
+---
+
+**VATM Fast-Time Simulation Platform**  
+**Tổng công ty Quản lý bay Việt Nam (VATM)**  
+Bản quyền thuộc VATM và các bên liên quan theo phạm vi đóng góp, phát triển và giấy phép phần mềm tương ứng.

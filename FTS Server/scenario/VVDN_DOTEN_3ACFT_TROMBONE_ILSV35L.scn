@@ -1,0 +1,209 @@
+# VVDN — 3 synthetic aircraft in trail from DOTEN, 3-minute spacing, Trombone
+# vectoring into ILS V 35L (RWY 35L), landing, then 2 different ground exits.
+# Built 2026-08 per user spec; callsigns VDN601/602/603 are SYNTHETIC (not
+# real ADS-B flights, unlike VVDN_HVN337_ARR_EVA384_DEP_REAL.scn) — flagged
+# clearly so this is never mistaken for real traffic data.
+#
+# REAL DATA USED (sources):
+#  - DOTEN 15.767222,108.118333 -> TRACO 15.601667,108.142222 -> CADAS
+#    15.618056,108.262500 -> MONRY 15.700556,108.250000 -> TAMLA
+#    15.788333,108.237500 -> KALET 15.873556,108.223089 -> FAF35
+#    15.957231,108.210955 — the REAL published route (corrected after an
+#    earlier wrong first attempt routed DOTEN via TAWAN, a different real
+#    entry transition that does NOT touch DOTEN). Confirmed from
+#    WebATM/static/data/vatm_kmz/procedures_by_airport/vatm_procedures_VVDN.geojson:
+#    STAR RWY 35's real named legs DOTEN-TRACO / TRACO-CADAS / CADAS-MONRY /
+#    MONRY-TAMLA, then TAMLA feeds into ILS V 35L's own "Initial TAML"
+#    transition (TAMLA-KALET) through to the shared Intermediate/Final legs.
+#  - RWY 35L threshold 16.030125,108.200392 hdg352, and the 3NM/1NM/short-
+#    final/touchdown points (15.980645,108.207626 / 16.013632,108.202804 /
+#    16.029556,108.200443 / 16.036501,108.199490) — reused verbatim from
+#    VVDN_HVN337_ARR_EVA384_DEP_REAL.scn, itself a real-ADS-B-anchored
+#    reconstruction of the same RWY35L final approach.
+#  - Real RWY 35L (17R/35L) far end 16.057080,108.196439 and taxiway G4
+#    (16.048721,108.197655 -> 16.049646,108.199646) / G6 (16.057080,108.196439
+#    -> 16.057400,108.198412) — FTS Server/data/aerodrome_layout/datasets/
+#    vietnam_kml_layout/normalized/airports/VVDN/taxiway_centerlines.geojson.
+#    G4's start point matches HVN337's real turn-off (16.048622,108.197792,
+#    ~11m away) — confirms it's the same real taxiway the user referenced.
+#  - Real Gate 11 16.057808,108.201333 — same dataset's gates.geojson
+#    (0.5m from the user-supplied 16.0578,108.2013).
+#  - REAL crossing altitudes (v3), from the official AIP Vietnam STAR chart
+#    "STANDARD ARRIVAL CHART - INSTRUMENT (STAR) - ICAO, DA NANG/DA NANG INTL
+#    (VVDN), RNAV RWY 35L/R" (AD 2-VVDN-11-7/8/11, AIRAC AMDT 01/23), tabular
+#    description common to all 9 published transitions (HUE/CAHEO/BUNTA/CQ/
+#    KUMUN/SADIN/VILOT/LATOM/PAPRA 2K) that converge through DOTEN-TRACO-
+#    CADAS-MONRY-TAMLA identically: MONRY +1500m=4921ft (real published max
+#    speed 390km/h=210kt, applied here); TAMLA +1350m=4429ft (user-confirmed).
+#    KALET 790m=2592ft and FAF35 450m=1476ft are from the ILS V RWY35L IAP
+#    chart's own DME DAD table (D9.6/D4.6 DAD).
+#  - DOTEN altitude v3 (11000ft = FL110, replacing the earlier 6070ft): the
+#    published chart's "+1850m/6070ft" at DOTEN is only the minimum crossing
+#    restriction, not the altitude arrivals actually fly it at -- per user
+#    feedback (real ATC operational knowledge), aircraft typically still cross
+#    DOTEN around FL110 and get stepped down further along the STAR. TRACO and
+#    CADAS carry NO published altitude on the real chart ("–" in both
+#    columns), so both were recomputed (8200ft / 6300ft, was 5500ft/5100ft in
+#    v2) by linearly interpolating distance-weighted between the new DOTEN
+#    FL110 and the real MONRY 4921ft crossing -- DOTEN-TRACO 10.0NM,
+#    TRACO-CADAS 7.0NM, CADAS-MONRY 5.0NM (haversine on the real waypoint
+#    coordinates), giving a smooth, constant ~276ft/NM descent gradient the
+#    whole way from DOTEN to MONRY (not real charted numbers themselves, but
+#    now consistent with both the real endpoints and a realistic descent
+#    rate).
+#  - NO trombone detour is inserted anywhere in CADAS-MONRY-TAMLA-KALET:
+#    corrected per user feedback that this whole stretch must keep holding
+#    one continuous course (their real bearings are already within ~1.4 deg
+#    of each other -- CADAS-MONRY 351.7, MONRY-TAMLA 352.2, TAMLA-KALET
+#    350.8 -- i.e. it's really one long straight final-course-intercept leg,
+#    not a place to bend with a lateral detour). An earlier version of this
+#    file put a +3NM V-shaped offset between TAMLA and KALET; removed. All 3
+#    aircraft fly the identical real route at exact 3-minute CRE spacing,
+#    which by itself already maintains the requested in-trail gap -- the
+#    "Trombone" the user asked for is represented by this real long,
+#    fully-merged final-approach course itself (the classic trombone SHAPE
+#    real ATC vectors onto), not a synthetic detour bent into it.
+#
+# ROLLOUT PHYSICS (VDN601's 60-second full runway vacation): touchdown
+# 16.036501,108.199490 to G4's real junction 16.048721,108.197655 is
+# 0.7413NM (1372.9m). Solved for constant deceleration from touchdown speed
+# 134kt to 15kt (a realistic moderate autobrake, ~2.06 m/s2) reaching 15kt
+# at t=29.7s, then a constant 15kt taxi crawl for the remaining 30.3s —
+# total exactly 60.0s touchdown-to-fully-clear. VDN601 then continues on
+# the SAME real taxiway HVN337 used (per the reference file's own
+# turn-off-to-Gate24 data) since the user asked for "like HVN337."
+# VDN602/VDN603 instead ride the full 1.248NM touchdown-to-runway-end
+# rollout (no early exit), turn right onto real taxiway G6, then straight
+# to real Gate 11 — exactly as specified.
+#
+# SPEED PROFILE (v4) — re-tuned to hold specific IAS bands at specific real
+# distances from the RWY 35L threshold (16.030125,108.200392), per explicit
+# request: 200-230kt at ~25NM, 160-180kt at ~10NM, 150-160kt at ~5NM.
+# Distances computed (haversine) from the threshold to each existing real
+# waypoint -- no new waypoints were added, since 3 of them already sit very
+# close to the requested distances:
+#   TRACO  25.94NM -> 225kt (was 240)   |  both inside the 200-230 band for
+#   CADAS  25.00NM -> 215kt (was 230)   |  the ~25NM point (CADAS is almost
+#                                         exactly 25.00NM)
+#   MONRY  19.99NM -> 210kt (REAL, unchanged -- between the 25NM and 10NM
+#                                         bands, already a good gradient step)
+#   TAMLA  14.67NM -> 190kt (was 200)   -- interpolation step down toward KALET
+#   KALET   9.49NM -> 170kt (was 200)   -- inside the 160-180 band for ~10NM
+#   FAF35   4.42NM -> 155kt (was 180)   -- inside the 150-160 band for ~5NM
+#     (FAF35 is 4.42NM, not exactly 5.0NM -- closest real charted fix to that
+#     distance; flagged honestly rather than adding a synthetic extra point)
+# 3NM-final (150.1kt) and everything inside it are unchanged (already real/
+# reused from the reference file, and outside the 3 requested bands). This
+# gives a smooth, monotonically decreasing IAS schedule from CADAS all the
+# way to touchdown: 225-215-210-190-170-155-150.1-140-133 kt.
+#
+# TAXI-TO-GATE STUCK BUG (found and fixed): VDN601's post-G4 taxi-in path
+# (reused verbatim from the real-ADS-B reference file) had one waypoint at
+# EXACTLY 0.0kt in the MIDDLE of the route (16.049126,108.200491), not at
+# the final gate stop. This is the same underlying engine limitation found
+# and fixed in the departure scenarios this session: VNAVSPD never resumes
+# acceleration once an aircraft is driven to a true dead stop mid-route --
+# VDN601 got permanently stuck there instead of continuing on to Gate 24,
+# confirmed live. Fixed by bumping that one waypoint to 4.1kt (matching the
+# very next waypoint's speed) -- low enough to preserve the tight-turn
+# moment the real data represents, but nonzero so VNAV never has to
+# accelerate away from a standstill. VDN602/VDN603's G6->Gate11 taxi has no
+# equivalent 0.0kt mid-route waypoint, so they were not affected.
+#
+# RESOLVED (previously flagged as an open issue here): the apparent altitude
+# drop seen in early live telemetry was a units bug in the verification
+# scripts (bs.traf.alt is in METERS; scripts read it as feet), not a real
+# VNAV/descent problem -- confirmed by cross-checking against POS <acid>.
+# A second, real bug WAS found and fixed at the BlueSky engine level: ADDWPT
+# was silently dropping alt=0/spd=0 constraints (Python falsy-zero check in
+# route.py's addwptStack()), which froze touchdown altitude at ~75ft instead
+# of 0. Fixed via an `is not None` check; verified with LISTRTE showing
+# touchdown at 0/134 post-fix.
+
+00:00:00.00>TRAILS ON
+00:00:00.00>ASAS ON
+
+# ============ VDN601 — 1st in trail, exits via G4 in 60s (like HVN337) ============
+00:00:00.00>CRE VDN601 B738 15.767222 108.118333 172 11000 250.0
+00:00:00.00>VDN601 ADDWPT 15.601667,108.142222,8200,225.0
+00:00:00.00>VDN601 ADDWPT 15.618056,108.262500,6300,215.0
+00:00:00.00>VDN601 ADDWPT 15.700556,108.250000,4921,210.0
+00:00:00.00>VDN601 ADDWPT 15.788333,108.237500,4429,190.0
+00:00:00.00>VDN601 ADDWPT 15.873556,108.223089,2592,170.0
+00:00:00.00>VDN601 ADDWPT 15.957231,108.210955,1476,155.0
+00:00:00.00>VDN601 ADDWPT 15.980645,108.207626,1000,150.1
+00:00:00.00>VDN601 ADDWPT 16.013632,108.202804,350,140.0
+00:00:00.00>VDN601 ADDWPT 16.029556,108.200443,75,133.0
+00:00:00.00>VDN601 ADDWPT 16.036501,108.199490,0,134.0
+00:00:00.00>VDN601 ADDWPT 16.040823,108.198841,0,102.0
+00:00:00.00>VDN601 ADDWPT 16.043972,108.198368,0,69.9
+00:00:00.00>VDN601 ADDWPT 16.045948,108.198071,0,37.9
+00:00:00.00>VDN601 ADDWPT 16.046642,108.197967,0,15.0
+00:00:00.00>VDN601 ADDWPT 16.048721,108.197655,0,15.0
+00:00:00.00>VDN601 ADDWPT 16.048840,108.198226,0,18.1
+00:00:00.00>VDN601 ADDWPT 16.048874,108.198588,0,16.9
+00:00:00.00>VDN601 ADDWPT 16.048989,108.199515,0,16.9
+00:00:00.00>VDN601 ADDWPT 16.049068,108.200069,0,15.9
+00:00:00.00>VDN601 ADDWPT 16.049103,108.200334,0,12.1
+00:00:00.00>VDN601 ADDWPT 16.049126,108.200491,0,4.1
+00:00:00.00>VDN601 ADDWPT 16.049149,108.200611,0,4.1
+00:00:00.00>VDN601 ADDWPT 16.049263,108.200888,0,6.0
+00:00:00.00>VDN601 ADDWPT 16.049801,108.200936,0,7.0
+00:00:00.00>VDN601 ADDWPT 16.050431,108.200851,0,8.9
+00:00:00.00>VDN601 ADDWPT 16.052090,108.200611,0,12.1
+00:00:00.00>VDN601 ADDWPT 16.052759,108.200508,0,11.1
+00:00:00.00>VDN601 ADDWPT 16.053155,108.200569,0,8.0
+00:00:00.00>VDN601 ADDWPT 16.053257,108.200936,0,8.9
+00:00:00.00>VDN601 ADDWPT 16.053280,108.201177,0,6.0
+00:00:00.00>VDN601 ADDWPT 16.053349,108.201707,0,5.1
+00:00:00.00>VDN601 ADDWPT 16.053376,108.201881,0,0.0
+00:00:00.00>VDN601 LNAV ON
+00:00:00.00>VDN601 VNAV ON
+
+# ============ VDN602 — 2nd in trail, +3min, full-length rollout -> G6 -> Gate 11 ============
+00:03:00.00>CRE VDN602 B738 15.767222 108.118333 172 11000 250.0
+00:03:00.00>VDN602 ADDWPT 15.601667,108.142222,8200,225.0
+00:03:00.00>VDN602 ADDWPT 15.618056,108.262500,6300,215.0
+00:03:00.00>VDN602 ADDWPT 15.700556,108.250000,4921,210.0
+00:03:00.00>VDN602 ADDWPT 15.788333,108.237500,4429,190.0
+00:03:00.00>VDN602 ADDWPT 15.873556,108.223089,2592,170.0
+00:03:00.00>VDN602 ADDWPT 15.957231,108.210955,1476,155.0
+00:03:00.00>VDN602 ADDWPT 15.980645,108.207626,1000,150.1
+00:03:00.00>VDN602 ADDWPT 16.013632,108.202804,350,140.0
+00:03:00.00>VDN602 ADDWPT 16.029556,108.200443,75,133.0
+00:03:00.00>VDN602 ADDWPT 16.036501,108.199490,0,134.0
+00:03:00.00>VDN602 ADDWPT 16.040617,108.198880,0,100.0
+00:03:00.00>VDN602 ADDWPT 16.045762,108.198117,0,70.0
+00:03:00.00>VDN602 ADDWPT 16.050906,108.197354,0,40.0
+00:03:00.00>VDN602 ADDWPT 16.055022,108.196744,0,20.0
+00:03:00.00>VDN602 ADDWPT 16.057080,108.196439,0,12.0
+00:03:00.00>VDN602 ADDWPT 16.057400,108.198412,0,15.0
+00:03:00.00>VDN602 ADDWPT 16.057808,108.201333,0,5.0
+00:03:00.00>VDN602 LNAV ON
+00:03:00.00>VDN602 VNAV ON
+
+# ============ VDN603 — 3rd in trail, +6min, full-length rollout -> G6 -> Gate 11 ============
+00:06:00.00>CRE VDN603 B738 15.767222 108.118333 172 11000 250.0
+00:06:00.00>VDN603 ADDWPT 15.601667,108.142222,8200,225.0
+00:06:00.00>VDN603 ADDWPT 15.618056,108.262500,6300,215.0
+00:06:00.00>VDN603 ADDWPT 15.700556,108.250000,4921,210.0
+00:06:00.00>VDN603 ADDWPT 15.788333,108.237500,4429,190.0
+00:06:00.00>VDN603 ADDWPT 15.873556,108.223089,2592,170.0
+00:06:00.00>VDN603 ADDWPT 15.957231,108.210955,1476,155.0
+00:06:00.00>VDN603 ADDWPT 15.980645,108.207626,1000,150.1
+00:06:00.00>VDN603 ADDWPT 16.013632,108.202804,350,140.0
+00:06:00.00>VDN603 ADDWPT 16.029556,108.200443,75,133.0
+00:06:00.00>VDN603 ADDWPT 16.036501,108.199490,0,134.0
+00:06:00.00>VDN603 ADDWPT 16.040617,108.198880,0,100.0
+00:06:00.00>VDN603 ADDWPT 16.045762,108.198117,0,70.0
+00:06:00.00>VDN603 ADDWPT 16.050906,108.197354,0,40.0
+00:06:00.00>VDN603 ADDWPT 16.055022,108.196744,0,20.0
+00:06:00.00>VDN603 ADDWPT 16.057080,108.196439,0,12.0
+00:06:00.00>VDN603 ADDWPT 16.057400,108.198412,0,15.0
+00:06:00.00>VDN603 ADDWPT 16.057808,108.201333,0,5.0
+00:06:00.00>VDN603 LNAV ON
+00:06:00.00>VDN603 VNAV ON
+
+00:23:00.00>DEL VDN601
+00:26:00.00>DEL VDN602
+00:29:00.00>DEL VDN603

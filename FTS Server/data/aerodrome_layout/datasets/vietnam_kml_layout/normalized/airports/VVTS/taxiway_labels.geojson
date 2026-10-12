@@ -1,0 +1,1643 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P4",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.643906495,
+          10.81584277
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P4",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.645303455,
+          10.816761875000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P4",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.64648314,
+          10.818060955
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63803081,
+          10.81007511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.64117291,
+          10.811265305
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.647086465,
+          10.81349591
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.653666145,
+          10.81596083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.657717745,
+          10.817476840000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.660583385,
+          10.82207218
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65751305500001,
+          10.821036119999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65904495000001,
+          10.821513435
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65554453,
+          10.821177559999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S4",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66275128000001,
+          10.820258575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.660791265,
+          10.819508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65796465,
+          10.81736776
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65941235,
+          10.818097715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66178644,
+          10.81900503
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66079346999999,
+          10.818604845
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.666177645,
+          10.820684544999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66437267,
+          10.819999764999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.668282045,
+          10.821453635000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.67032022999999,
+          10.822384809999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.67022648,
+          10.822814005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.669724195,
+          10.823180375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65094347,
+          10.81383083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65070395000001,
+          10.81384291
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65048356,
+          10.813920735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65024740999999,
+          10.81411011
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65006756,
+          10.81441926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.650013645,
+          10.81475096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.650052785,
+          10.815066654999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65017026000001,
+          10.815388805
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S8",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.64521725,
+          10.812214319999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S8",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.644046085,
+          10.812543475
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S8",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.643858295,
+          10.812907854999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S9",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63804248,
+          10.810511340000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S9",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63835678,
+          10.8096963
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S10",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63733153,
+          10.81034141
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S10",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63752617,
+          10.809929015
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S10",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.637949445,
+          10.80949786
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S10",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63830285,
+          10.809335245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "V",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63929383499999,
+          10.809369125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "V",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63868571,
+          10.809214235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "V",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65542446,
+          10.81547112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "V",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65223808,
+          10.814266669999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "V",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.648321255,
+          10.812801005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "V",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.643009245,
+          10.810800205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "V",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65758358,
+          10.816218375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "V",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65779707,
+          10.81612773
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66584746000001,
+          10.820835825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66544032,
+          10.821126244999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S6",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.657564165,
+          10.817217190000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S6",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65677285999999,
+          10.817566775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.662979605,
+          10.822976505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P2",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66099898499999,
+          10.821802165000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P2",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66107826000001,
+          10.822713324999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.643238035,
+          10.81619538
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.6431185,
+          10.81575936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.64307679999999,
+          10.815284160000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.643143785,
+          10.81486439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P6",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63703946000001,
+          10.813206345000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P6",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63686399,
+          10.812133915
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P6",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63684617,
+          10.81183619
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P6",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63695154,
+          10.811568855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S10",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.63703733,
+          10.811292975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S10",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.6371244,
+          10.81087933
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S9",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.637748415,
+          10.811271900000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S8",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.643636805,
+          10.813502575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.64334163000001,
+          10.814268089999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65167429499999,
+          10.816890560000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65107226500001,
+          10.816454114999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S7",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.650512545,
+          10.815881935
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S6",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65569375,
+          10.818046030000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P2",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66091746000001,
+          10.82090834
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66932710500001,
+          10.823475025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66502946,
+          10.821262115
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66434408500001,
+          10.82134533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S3",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.663339025,
+          10.821263585
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.662849815,
+          10.821612089999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66307083000001,
+          10.824547025000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66308559000001,
+          10.82408429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P2",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66116138000001,
+          10.823653185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.64429989499999,
+          10.817518525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.643601765,
+          10.816762820000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P6",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.637311045,
+          10.8149278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P6",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.637240965,
+          10.814442675
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07R/25L",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66902666,
+          10.823521034999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07R/25L",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66579171000001,
+          10.822286909999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07R/25L",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.661843105,
+          10.82079837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07R/25L",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65801755000001,
+          10.819366380000002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07R/25L",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65357048999999,
+          10.817685355
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07R/25L",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.647736615,
+          10.815482945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07R/25L",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.64054554,
+          10.81276763
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07R/25L",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.637324525,
+          10.811551405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07L/25R",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.641011475,
+          10.816488249999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07L/25R",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.64590384499999,
+          10.818333575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07L/25R",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65020598000001,
+          10.819958374999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07L/25R",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.653661395,
+          10.821264915
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07L/25R",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65761527000001,
+          10.822758185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07L/25R",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66212278,
+          10.824459205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65080888,
+          10.81253113
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65054638000001,
+          10.813146974999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Y",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.654554055,
+          10.81369825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.6510646,
+          10.812402604999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66065463999999,
+          10.81800414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.669431605,
+          10.82128029
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.667732095,
+          10.820095004999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66394961,
+          10.818699259999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66081966,
+          10.817520015
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.66029577500001,
+          10.81415213
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S5",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.660518885,
+          10.816555144999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Y1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.658544045,
+          10.812767555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Y1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65954001,
+          10.812685210000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "N",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65794603500001,
+          10.812960165
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Y1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65794543,
+          10.815710745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Y1",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.657798615,
+          10.814025405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S6",
+        "type": "taxiway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65791605499999,
+          10.8168001
+        ]
+      }
+    }
+  ]
+}

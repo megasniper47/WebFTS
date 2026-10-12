@@ -1,0 +1,126 @@
+{
+  "_source": "vietnam_ats_routes_pack/Dữ liệu PTB + code/PTB QLBMN/LT/PD2 Sơ đồ PBN.pdf pages 10-15, đọc bằng mắt (pypdfium2)",
+  "_note": "STAR RNP RWY 05L/R cho VVLT. Transition_altitude 9000. Common tail từ LT700 trở đi giống hệt mọi transition (qua LT903->LT902->LT901->LT706->LT705->LT704->LT703->LT702->LT701(-210)->LT700->LT903 vòng lại @-4000/+3000 IAF).",
+  "waypoints": {
+    "DOVIN": {"lat": "11°55'01.0\"N", "lon": "108°06'29.0\"E"},
+    "VETOM": {"lat": "11°13'59.0\"N", "lon": "107°36'27.0\"E"},
+    "PTH": {"lat": "10°55'41.0\"N", "lon": "108°04'19.0\"E"},
+    "ELSAS": {"lat": "10°08'12.0\"N", "lon": "107°32'54.0\"E"},
+    "NIXIV": {"lat": "09°23'36.0\"N", "lon": "106°38'02.0\"E"},
+    "TRN": {"lat": "10°05'00.2\"N", "lon": "105°42'19.9\"E"},
+    "ANBOV": {"lat": "10°15'59.0\"N", "lon": "106°14'54.0\"E"},
+    "SAPEN": {"lat": "11°01'12.0\"N", "lon": "106°11'00.0\"E"},
+    "DALAP": {"lat": "11°00'51.0\"N", "lon": "107°23'21.8\"E"},
+    "VICAL": {"lat": "10°08'46.9\"N", "lon": "106°45'02.0\"E"},
+    "LT515": {"lat": "11°15'21.2\"N", "lon": "107°34'52.4\"E"},
+    "LT700": {"lat": "10°35'22.5\"N", "lon": "106°46'09.7\"E", "_note": "IAF区域, common tail entry"},
+    "LT701": {"lat": "10°31'17.3\"N", "lon": "106°49'09.6\"E"},
+    "LT702": {"lat": "10°33'40.3\"N", "lon": "106°52'25.9\"E"},
+    "LT703": {"lat": "10°36'03.1\"N", "lon": "106°55'42.2\"E"},
+    "LT704": {"lat": "10°39'02.3\"N", "lon": "106°59'54.7\"E"},
+    "LT705": {"lat": "10°42'21.9\"N", "lon": "107°04'33.0\"E"},
+    "LT706": {"lat": "10°46'25.9\"N", "lon": "107°01'34.2\"E"},
+    "LT707": {"lat": "10°39'29.1\"N", "lon": "106°36'23.0\"E"},
+    "LT709": {"lat": "10°26'09.9\"N", "lon": "106°58'53.5\"E"},
+    "LT710": {"lat": "10°18'02.0\"N", "lon": "107°14'18.5\"E"},
+    "LT711": {"lat": "10°23'29.0\"N", "lon": "106°47'43.7\"E"},
+    "LT712": {"lat": "10°18'04.1\"N", "lon": "106°31'02.0\"E"},
+    "LT901": {"lat": "10°43'06.3\"N", "lon": "106°56'55.8\"E", "_note": "IAF"},
+    "LT902": {"lat": "10°40'05.8\"N", "lon": "106°52'44.2\"E", "_note": "IAF"},
+    "LT903": {"lat": "10°37'44.2\"N", "lon": "106°49'26.9\"E", "_note": "IAF"},
+    "TS548": {"lat": "10°46'17.6\"N", "lon": "107°11'50.2\"E"},
+    "TS584": {"lat": "10°57'51.1\"N", "lon": "106°18'51.0\"E"}
+  },
+  "transition_altitude": 9000,
+  "runway": "05L/R",
+  "common_tail_from_LT700": [
+    {"serial": "A", "path": "TF", "waypoint": "LT903", "course_mag": 55, "course_true": 54.0, "mag_var": 1, "dist_nm": 4.00, "nav_spec": "RNP 1"},
+    {"serial": "B", "path": "TF", "waypoint": "LT902", "course_mag": 55, "course_true": 54.0, "mag_var": 1, "dist_nm": 4.00, "nav_spec": "RNP 1"},
+    {"serial": "C", "path": "TF", "waypoint": "LT901", "course_mag": 55, "course_true": 54.0, "mag_var": 1, "dist_nm": 5.10, "nav_spec": "RNP 1"},
+    {"serial": "D", "path": "TF", "waypoint": "LT706", "course_mag": 55, "course_true": 54.1, "mag_var": 1, "dist_nm": 5.64, "nav_spec": "RNP 1"},
+    {"serial": "E", "path": "TF", "waypoint": "LT705", "course_mag": 145, "course_true": 144.1, "mag_var": 1, "dist_nm": 5.00, "nav_spec": "RNP 1"},
+    {"serial": "F", "path": "TF", "waypoint": "LT704", "course_mag": 235, "course_true": 234.1, "mag_var": 1, "dist_nm": 5.64, "nav_spec": "RNP 1"},
+    {"serial": "G", "path": "TF", "waypoint": "LT703", "course_mag": 235, "course_true": 234.4, "mag_var": 1, "dist_nm": 5.10, "nav_spec": "RNP 1"},
+    {"serial": "H", "path": "TF", "waypoint": "LT702", "course_mag": 235, "course_true": 233.7, "mag_var": 1, "dist_nm": 4.00, "nav_spec": "RNP 1"},
+    {"serial": "I", "path": "TF", "waypoint": "LT701", "course_mag": 235, "course_true": 233.7, "mag_var": 1, "dist_nm": 4.00, "speed_kt": "-210", "nav_spec": "RNP 1"},
+    {"serial": "J", "path": "TF", "waypoint": "LT700", "course_mag": 325, "course_true": 324.0, "mag_var": 1, "dist_nm": 5.03, "nav_spec": "RNP 1"},
+    {"serial": "K", "path": "TF", "waypoint": "LT903 (IAF)", "course_mag": 55, "course_true": 54.0, "mag_var": 1, "dist_nm": 4.00, "alt_ft": "-4000/+3000", "nav_spec": "RNP 1"}
+  ],
+  "DOVIN_5S": {
+    "legs": [
+      {"serial": "010", "path": "IF", "waypoint": "DOVIN", "mag_var": 1, "nav_spec": "RNP 1"},
+      {"serial": "020", "path": "TF", "waypoint": "LT515", "course_mag": 219, "course_true": 218.2, "mag_var": 1, "dist_nm": 50.22, "alt_ft": "+FL100", "nav_spec": "RNP 1"},
+      {"serial": "030", "path": "TF", "waypoint": "DALAP", "course_mag": 219, "course_true": 218.1, "mag_var": 1, "dist_nm": 18.34, "alt_ft": "-FL120", "nav_spec": "RNP 1"},
+      {"serial": "040", "path": "TF", "waypoint": "TS548", "course_mag": 219, "course_true": 218.1, "mag_var": 1, "dist_nm": 18.40, "alt_ft": "@6000", "nav_spec": "RNP 1"},
+      {"serial": "050", "path": "TF", "waypoint": "LT705", "course_mag": 242, "course_true": 241.4, "mag_var": 1, "dist_nm": 8.17, "alt_ft": "@4000", "nav_spec": "RNP 1"},
+      {"serial": "060", "path": "TF", "waypoint": "LT704", "course_mag": 235, "course_true": 234.1, "mag_var": 1, "dist_nm": 5.64, "nav_spec": "RNP 1"},
+      {"serial": "..", "note": "tiếp tục LT703->LT702->LT701(-210)->LT700->LT903->LT902->LT901->LT706->LT705->LT704->LT703->LT702->LT701(-210)->LT700->LT903(@-4000/+3000) -- xem common_tail chi tiết"}
+    ]
+  },
+  "VETOM_5D": {
+    "legs": [
+      {"serial": "010", "path": "IF", "waypoint": "VETOM", "alt_ft": "+FL100", "mag_var": 1, "nav_spec": "RNP 1"},
+      {"serial": "020", "path": "TF", "waypoint": "DALAP", "course_mag": 226, "course_true": 224.6, "mag_var": 1, "dist_nm": 18.34, "alt_ft": "-FL120", "nav_spec": "RNP 1"},
+      {"serial": "030", "path": "TF", "waypoint": "TS548", "course_mag": 219, "course_true": 218.1, "mag_var": 1, "dist_nm": 18.40, "alt_ft": "@6000", "nav_spec": "RNP 1"},
+      {"serial": "..", "note": "tiếp tục qua LT705->LT704->...->LT903 giống common_tail"}
+    ]
+  },
+  "PTH_5Q": {
+    "legs": [
+      {"serial": "010", "path": "IF", "waypoint": "PTH", "alt_ft": "+FL135", "mag_var": 1, "nav_spec": "RNP 1"},
+      {"serial": "020", "path": "TF", "waypoint": "DALAP", "course_mag": 278, "course_true": 277.3, "mag_var": 1, "dist_nm": 40.61, "alt_ft": "-FL120", "nav_spec": "RNP 1"},
+      {"serial": "030", "path": "TF", "waypoint": "TS548", "course_mag": 219, "course_true": 218.1, "mag_var": 1, "dist_nm": 18.40, "alt_ft": "@6000", "nav_spec": "RNP 1"},
+      {"serial": "..", "note": "tiếp tục giống common_tail"}
+    ]
+  },
+  "ELSAS_5J": {
+    "legs": [
+      {"serial": "010", "path": "IF", "waypoint": "ELSAS", "alt_ft": "+FL135", "mag_var": 1, "nav_spec": "RNP 1"},
+      {"serial": "020", "path": "TF", "waypoint": "LT710", "course_mag": 299, "course_true": 298.1, "mag_var": 1, "dist_nm": 20.78, "alt_ft": "-FL120", "nav_spec": "RNP 1"},
+      {"serial": "030", "path": "TF", "waypoint": "LT709", "course_mag": 299, "course_true": 298.1, "mag_var": 1, "dist_nm": 17.21, "alt_ft": "@5000", "nav_spec": "RNP 1"},
+      {"serial": "040", "path": "TF", "waypoint": "LT701", "course_mag": 299, "course_true": 298.0, "mag_var": 1, "dist_nm": 10.86, "alt_ft": "@5000", "speed_kt": "-210", "nav_spec": "RNP 1"},
+      {"serial": "050", "path": "TF", "waypoint": "LT700", "course_mag": 325, "course_true": 324.0, "mag_var": 1, "dist_nm": 5.03, "nav_spec": "RNP 1"},
+      {"serial": "..", "note": "tiếp tục qua LT903->LT902->LT901->LT706->LT705->LT704->LT703->LT702->LT701(-210)->LT700->LT903(@-4000/+3000 IAF)"}
+    ]
+  },
+  "NIXIV_5L": {
+    "legs": [
+      {"serial": "010", "path": "IF", "waypoint": "NIXIV", "mag_var": 1, "nav_spec": "RNP 1"},
+      {"serial": "020", "path": "TF", "waypoint": "VICAL", "course_mag": 10, "course_true": 8.7, "mag_var": 1, "dist_nm": 45.50, "alt_ft": "-FL120/+7000", "nav_spec": "RNP 1"},
+      {"serial": "030", "path": "TF", "waypoint": "LT711", "course_mag": 11, "course_true": 10.3, "mag_var": 1, "dist_nm": 14.87, "alt_ft": "-5000", "nav_spec": "RNP 1"},
+      {"serial": "040", "path": "TF", "waypoint": "LT701", "course_mag": 11, "course_true": 10.3, "mag_var": 1, "dist_nm": 7.90, "speed_kt": "-210", "nav_spec": "RNP 1"},
+      {"serial": "..", "note": "tiếp tục giống common_tail từ LT700"}
+    ]
+  },
+  "TRN_5L": {
+    "legs": [
+      {"serial": "010", "path": "IF", "waypoint": "TRN", "mag_var": 1, "nav_spec": "RNP 1"},
+      {"serial": "020", "path": "TF", "waypoint": "ANBOV", "course_mag": 72, "course_true": 71.2, "mag_var": 1, "dist_nm": 33.93, "alt_ft": "-FL120", "nav_spec": "RNP 1"},
+      {"serial": "030", "path": "TF", "waypoint": "LT712", "course_mag": 84, "course_true": 82.5, "mag_var": 1, "dist_nm": 16.04, "alt_ft": "@4000", "nav_spec": "RNP 1"},
+      {"serial": "040", "path": "TF", "waypoint": "LT701", "course_mag": 55, "course_true": 53.6, "mag_var": 1, "dist_nm": 22.19, "speed_kt": "-210", "nav_spec": "RNP 1"},
+      {"serial": "..", "note": "tiếp tục giống common_tail từ LT700"}
+    ]
+  },
+  "ANBOV_5F": {
+    "legs": [
+      {"serial": "010", "path": "IF", "waypoint": "ANBOV", "alt_ft": "-FL120", "mag_var": 1, "nav_spec": "RNP 1"},
+      {"serial": "020", "path": "TF", "waypoint": "LT712", "course_mag": 84, "course_true": 82.5, "mag_var": 1, "dist_nm": 16.04, "alt_ft": "@4000", "nav_spec": "RNP 1"},
+      {"serial": "030", "path": "TF", "waypoint": "LT701", "course_mag": 55, "course_true": 53.6, "mag_var": 1, "dist_nm": 22.19, "speed_kt": "-210", "nav_spec": "RNP 1"},
+      {"serial": "..", "note": "tiếp tục giống common_tail từ LT700"}
+    ]
+  },
+  "SAPEN_5J": {
+    "legs": [
+      {"serial": "010", "path": "IF", "waypoint": "SAPEN", "alt_ft": "+8000", "mag_var": 1, "nav_spec": "RNP 1"},
+      {"serial": "020", "path": "TF", "waypoint": "TS584", "course_mag": 114, "course_true": 113.3, "mag_var": 1, "dist_nm": 8.41, "alt_ft": "@6000", "nav_spec": "RNP 1"},
+      {"serial": "030", "path": "TF", "waypoint": "LT707", "course_mag": 138, "course_true": 136.6, "mag_var": 1, "dist_nm": 25.14, "alt_ft": "@6000", "speed_kt": "-210", "nav_spec": "RNP 1"},
+      {"serial": "040", "path": "TF", "waypoint": "LT700", "course_mag": 114, "course_true": 113.0, "mag_var": 1, "dist_nm": 10.46, "nav_spec": "RNP 1"},
+      {"serial": "..", "note": "tiếp tục giống common_tail từ LT903 trở đi"}
+    ]
+  },
+  "holding": [
+    {"fix": "ANBOV", "inbound_course_mag": 29, "inbound_course_true": 28.0, "mag_var": 1, "time_min": 1.5, "turn": "L", "alt_ft": "-FL200/+8000", "speed_kt": "-230", "nav_spec": "RNP 1"},
+    {"fix": "VICAL", "inbound_course_mag": 1, "inbound_course_true": 360.0, "mag_var": 1, "time_min": 1, "turn": "L", "alt_ft": "-FL120/+7000", "speed_kt": "-230", "nav_spec": "RNP 1"},
+    {"fix": "DALAP", "inbound_course_mag": 237, "inbound_course_true": 236.0, "mag_var": 1, "time_min": 1, "turn": "L", "alt_ft": "-FL140/+FL110", "speed_kt": "-220", "nav_spec": "RNP 1"}
+  ]
+}

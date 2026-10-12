@@ -1,0 +1,10 @@
+# _KB5GEN_DEP_ENTER_RWY.scn — nối tiếp từ PRE_HOLD vào đầu 35R
+# Gọi: PCALL _KB5GEN_DEP_ENTER_RWY <acid>
+# Bỏ DELRTE để tàu bay đang lăn KHÔNG bị cắt ngang lộ trình và bay direct.
+# Tàu bay sẽ tự động tiếp tục lăn hoặc đi tiếp từ PRE_HOLD.
+00:00:00.00>%0 ADDWPT 16.029181,108.202508 0 5.0
+00:00:00.00>%0 ADDWPT 16.029200,108.202500 0 5.0
+00:00:00.00>%0 ADDWPT 16.030000,108.202000 0 5.0
+00:00:00.00>%0 LNAV ON
+00:00:00.00>%0 VNAV ON
+00:00:00.00>%0 SPD 5.0

@@ -1,0 +1,128 @@
+# Automatically generated directories and files
+/output
+/plugins
+/cache
+/scenario/ic.scn
+/bluesky/resources/grib
+/bluesky/resources/netcdf
+
+# Potentially locally-copied BADA installation
+/bluesky/resources/performance/BADA/*
+!/bluesky/resources/performance/BADA/README.md
+
+# Sphinx documentation
+/docs/_build/
+
+# virtual environment
+venv
+
+# PyBuilder
+target/
+
+.DS_Store
+settings.cfg
+*.bak
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Editor project files
+*.sublime*
+*.atom-build*
+*.build-tools*
+.idea/*
+.vscode/*
+
+# C extensions
+*.so
+
+# Distribution / packaging
+__pycache__
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+tmp/
+*.egg-info/
+.installed.cfg
+*.egg
+.eggs/*
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+.mypy_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+ssd.obj
+
+# IPython
+*-checkpoint.py
+*-checkpoint.ipynb
+.ropeproject/config.py
+
+# Node.js (fts-server-api tooling)
+node_modules/
+
+# Third-party vendored repo (its own git history) -- clone separately:
+#   git clone https://github.com/eurocontrol-bada/pybada.git
+pybada/
+
+# Raw/huge source data and regenerable run outputs -- not app code.
+data/aixm/
+data/monte_carlo_jobs/
+data/security_audit_log.jsonl
+data/*.bak
+simulation_results/
+tools/airways/pdf_pages/
+/PTB TSN/
+analysis/monte_carlo/results/
+analysis/monte_carlo/run_batch_log.txt
+analysis/monte_carlo_3nm/results/
+scenario/Backup/
+
+# Live credential/user store -- never commit real account data.
+data/users.json
+
+# Internal-only reports/docs, not meant for the shared repo.
+docs/*.docx
+
+# One-off scratch/debug scripts.
+_debug_*.py
+_takeoff_perf_results.json
+scenario/check_out.txt
+scenario/out_check.txt

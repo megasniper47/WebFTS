@@ -1,0 +1,115 @@
+{
+  "_source": "vietnam_ats_routes_pack/Dữ liệu PTB + code/PTB QLBMN/LT/PD2 Sơ đồ CV.pdf, đọc bằng mắt qua ảnh render (pypdfium2)",
+  "_note": "QUAN TRỌNG: VVLT có 2 cặp CHC song song thật: 05L/05R và 23L/23R (xác nhận qua tiêu đề chart SID/STAR/IAP riêng cho từng đầu CHC) -- giống cấu trúc VVPQ, khác với giả định ban đầu chỉ có 1 CHC 23L. Cần áp dụng kiến trúc multi-runway (Phase 4) cho VVLT. PBN SID/STAR coding (file riêng vvlt_tabular_from_pdf_sid_star.json) chỉ ghi nhận cho RNP RWY 23L -- cần xác nhận nếu có bộ PBN SID/STAR khác cho 05L/R (chưa thấy trong PTB LT folder, có thể PBN chỉ áp dụng 1 CHC còn CV áp dụng cho cả 4 đầu).",
+  "waypoints": {
+    "LTH_VORDME": {"lat": "10°45'56\"N", "lon": "107°00'53\"E", "_freq": "114.8"},
+    "AC_NDB": {"lat": "10°56'21\"N", "lon": "107°11'18\"E", "_freq": "320"},
+    "PATMA": {"lat": "12°20'11\"N", "lon": "107°48'36\"E"},
+    "ENRIN": {"lat": "11°11'27\"N", "lon": "107°19'26\"E"},
+    "VETOM": {"lat": "11°13'59\"N", "lon": "107°36'27\"E"},
+    "VEPMA": {"lat": "10°56'00\"N", "lon": "107°40'18\"E"},
+    "PTH_VORDME": {"lat": "10°55'41\"N", "lon": "108°04'19\"E", "_freq": "114.1"},
+    "BAOMY": {"lat": "10°52'15\"N", "lon": "107°19'45\"E"},
+    "MATGI": {"lat": "10°53'44\"N", "lon": "107°38'48\"E"},
+    "ASEBO": {"lat": "10°19'54\"N", "lon": "107°17'24\"E"},
+    "ELSAS": {"lat": "10°08'12\"N", "lon": "107°32'54\"E"},
+    "ANBOV": {"lat": "10°15'59\"N", "lon": "106°14'54\"E"},
+    "XOBAV": {"lat": "10°08'25\"N", "lon": "106°38'33\"E"},
+    "TSN_VORDME": {"lat": "10°49'06\"N", "lon": "106°39'02\"E", "_freq": "116.8"},
+    "LOSON": {"lat": "10°29'36\"N", "lon": "107°04'32\"E"}
+  },
+  "SID": {
+    "runway_05LR": {
+      "_note": "RWY 05L/R dùng chung mô tả (không phân biệt rõ L vs R trong instruction text)",
+      "PATMA_8A": "Bay lên trên R-055 LTH đến 1500FT, vòng trái về đài NDB AC, tiến nhập BRG 029° từ AC đến ENRIN đạt 9000FT hoặc cao hơn, tiến nhập BRG 025° từ AC đến PATMA đạt FL230 hoặc cao hơn (độ dốc bay lên tối thiểu 5.0% đến 9000FT)",
+      "ENRIN_8A": "Bay lên trên R-055 LTH đến 1500FT, vòng trái về đài NDB AC, tiến nhập BRG 029° từ AC đến ENRIN đạt 9000FT hoặc cao hơn (độ dốc tối thiểu 5.0% đến 9000FT)",
+      "VETOM_8A": "Bay lên trên R-055 LTH đến 1500FT, vòng trái về đài NDB AC, tiến nhập BRG 056° từ AC đến VETOM đạt FL100 hoặc cao hơn (độ dốc tối thiểu 3.9% đến FL100)",
+      "VEPMA_8A": "Bay lên trên R-055 LTH đến 1500FT, vòng trái về đài NDB AC, tiến nhập BRG 092° từ AC đến VEPMA đạt FL135 hoặc cao hơn (độ dốc tối thiểu 5.5% đến FL135)",
+      "PTH_8A": "Bay lên trên R-055 LTH đến 1500FT, vòng trái tiến nhập R-086 TSH đến BAOMY và MATGI, tiến nhập R-087 PTH đến đài VOR/DME PTH đạt FL135 hoặc cao hơn (độ dốc tối thiểu 3.6% đến FL135)",
+      "ELSAS_8A": "Bay lên trên R-055 LTH đến 1500FT, vòng phải về đài VOR/DME LTH đạt 5000FT hoặc cao hơn, vòng trái tiến nhập R-179 LTH để tiến nhập R-129 TSH đến ASEBO, tiến nhập R-128 TSH đến ELSAS đạt FL135 hoặc cao hơn",
+      "XOBAV_8A": "Bay lên trên R-055 LTH đến 1500FT, vòng phải về đài VOR/DME LTH đạt 5000FT hoặc cao hơn, vòng trái tiến nhập R-212 LTH đến XOBAV đạt 7000FT hoặc cao hơn",
+      "ANBOV_8A": "Bay lên trên R-055 LTH đến 1500FT, vòng phải về đài VOR/DME LTH đạt 5000FT hoặc cao hơn, vòng trái tiến nhập R-238 LTH đến ANBOV đạt FL135 hoặc cao hơn",
+      "TSH_8A": "Bay lên trên R-055 LTH đến 1500FT, vòng phải về đài VOR/DME LTH đạt 5000FT hoặc cao hơn, tiến nhập R-279 LTH đến D15.7 LTH đạt FL100 hoặc cao hơn, tiếp tục đến đài VOR/DME TSH (độ dốc tối thiểu 3.9% đến FL100)"
+    },
+    "runway_23LR": {
+      "PATMA_8B": "Bay lên trên R-235 LTH đến 1500FT, vòng trái về đài VOR/DME LTH đạt 5000FT hoặc cao hơn, tiến nhập BRG 046° đến AC đạt FL100 hoặc cao hơn, tiến nhập BRG 029° từ AC đến ENRIN, tiến nhập BRG 025° từ AC đến PATMA đạt FL230 hoặc cao hơn (độ dốc tối thiểu 4.3% đến FL100)",
+      "AC_8B": "Bay lên trên R-235 LTH đến 1500FT, vòng trái về đài VOR/DME LTH đạt 5000FT hoặc cao hơn, tiến nhập BRG 046° đến AC đạt FL100 hoặc cao hơn (độ dốc tối thiểu 4.3% đến FL100)",
+      "MATGI_8B": "Bay lên trên R-235 LTH đến 1500FT, vòng trái về đài VOR/DME LTH đạt 5000FT hoặc cao hơn, tiến nhập BRG 046° đến AC, khi cắt qua R-086 TSH vòng phải đến BAOMY sau đến MATGI đạt FL135 hoặc cao hơn (độ dốc tối thiểu 3.6% đến FL135)",
+      "ELSAS_8B": "Bay lên trên R-235 LTH đến 1500FT, sau đó đến R-235.1/D11.2 LTH vòng trái tiến nhập R-129 TSH đến ASEBO, tiến nhập R-128 TSH đến ELSAS đạt FL135 hoặc cao hơn",
+      "XOBAV_8B": "Bay lên trên R-235 LTH đến 1500FT, sau đó đến R-235.1/D11.2 LTH vòng trái tiến nhập R-212 LTH đến XOBAV đạt 7000FT hoặc cao hơn",
+      "ANBOV_8B": "Bay lên trên R-235 LTH đến 1500FT, sau đó đến R-235.1/D11.2 LTH vòng phải tiến nhập R-238 LTH đến ANBOV đạt FL135 hoặc cao hơn",
+      "TSH_8B": "Bay lên trên R-235 LTH đến 1500FT, vòng trái về đài VOR/DME LTH đạt 5000FT hoặc cao hơn, tiến nhập R-279 LTH đến R-279.3/D15.7 LTH đạt FL100 hoặc cao hơn, tiếp tục đến đài VOR/DME TSN (độ dốc tối thiểu 4.2% đến FL100 do khống chế độ cao tại D15.7)"
+    }
+  },
+  "STAR": {
+    "runway_05LR_23LR_shared": {
+      "AC_8C": "Từ đài NDB AC tại FL100 hoặc cao hơn bay hướng 226° về đài VOR/DME LTH đạt 5000FT hoặc cao hơn",
+      "MATGI_8C": "Từ MATGI tại FL135 hoặc cao hơn bay trên R-086 TSH đến BAOMY, vòng trái tiến nhập R-072 LTH về đài VOR/DME LTH đạt 5000FT hoặc cao hơn",
+      "ASEBO_8C": "Từ ASEBO tại FL135 hoặc cao hơn bay trên R-129 TSH đến LOSON, vòng phải tiến nhập R-169 LTH về đài VOR/DME LTH đạt 5000FT hoặc cao hơn",
+      "XOBAV_8C": "Từ XOBAV tại 7000FT hoặc cao hơn bay trên R-212 LTH về đài VOR/DME LTH đạt 5000FT hoặc cao hơn",
+      "ANBOV_8C": "Từ ANBOV tại FL135 hoặc cao hơn bay trên R-238 LTH về đài VOR/DME LTH đạt 5000FT hoặc cao hơn",
+      "TSH_8C": "Từ đài VOR/DME TSH bay trên R-279 LTH đến R-279.3/D15.7 LTH đạt FL100 hoặc cao hơn, về đài VOR/DME LTH đạt 5000FT hoặc cao hơn"
+    },
+    "holding_IAF_05LR": {"fix": "LTH VOR/DME", "inbound_course": 209, "outbound": 29, "min_alt": 5000, "time_min": 1},
+    "holding_IAF_23LR": {"fix": "LTH VOR/DME", "inbound_course": 76, "outbound": 256, "min_alt": 5000, "time_min": 1}
+  },
+  "IAP": {
+    "VOR Z RWY05R": {
+      "iaf": "LTH VOR/DME", "if_dist": 9.9, "faf_dist": 4.8, "mapt_dist": 0.9,
+      "faf_coords": {"lat": "10°43'06\"N", "lon": "106°56'56\"E"},
+      "dme_altitude_table": {"0.9": 770, "2": 1110, "3": 1430, "4": 1750, "4.8": 2000},
+      "oca_h_straight_in": 770, "oca_h_height": 616,
+      "faf_course": 55, "final_course": 55,
+      "missed_approach": "Bay lên trên R-055 LTH đến 2500ft, vòng phải về đài VOR/DME LTH đạt 5000ft hoặc cao hơn"
+    },
+    "VOR Z RWY23L": {
+      "iaf": "LTH VOR/DME", "if_dist": 13.6, "faf_dist": 8.5, "mapt_dist": 4.9,
+      "faf_coords": {"lat": "10°50'57\"N", "lon": "107°07'52\"E"},
+      "dme_altitude_table": {"4.9": 850, "6": 1200, "7": 1520, "8": 1840, "8.5": 2000},
+      "oca_h_straight_in": 850, "oca_h_height": 648,
+      "faf_course": 235, "final_course": 235,
+      "missed_approach": "Bay lên trên R-235 LTH đến 2500ft, vòng trái về đài VOR/DME LTH đạt 5000ft hoặc cao hơn"
+    },
+    "VOR Z RWY23R": {
+      "iaf": "LTH VOR/DME", "if_dist": 13.6, "faf_dist": 8.5, "mapt_dist": 4.9,
+      "faf_coords": {"lat": "10°51'18\"N", "lon": "107°07'35\"E"},
+      "dme_altitude_table": {"4.9": 850, "6": 1200, "7": 1520, "8": 1840, "8.5": 2000},
+      "oca_h_straight_in": 850, "oca_h_height": 648,
+      "faf_course": 232, "final_course": 232,
+      "_note": "approach course offset 3deg from runway extended centerline",
+      "missed_approach": "Bay lên trên R-232 LTH đến 2500ft, vòng trái về đài VOR/DME LTH đạt 5000ft hoặc cao hơn"
+    },
+    "ILS Y RWY05L": {
+      "iaf": "LTH VOR/DME", "if_dist_ian": 10.9, "faf_dist_ian": 5.8, "mapt_dist_ian": 0.8,
+      "faf_coords": {"lat": "10°43'17\"N", "lon": "106°56'48\"E"},
+      "llz_freq": "108.1 (IAN)", "gp_freq": "334.7 CH018X", "rdh": 50, "glide_path": "3.0deg",
+      "dme_altitude_table_ian": {"0.8": 410, "2": 790, "3": 1100, "4": 1420, "5": 1740, "5.8": 2000},
+      "oca_h": {"CAT1": 410, "CAT1_h": 256, "CAT2": 335, "CAT2_h": 181, "GP_INOP": 770, "GP_INOP_h": 616},
+      "missed_approach": "Bay lên trên R-055 LTH đến 2500ft, vòng phải (MAX IAS 210KT) về đài VOR/DME LTH đạt 5000ft hoặc cao hơn"
+    },
+    "ILS Y RWY05R": {
+      "iaf": "LTH VOR/DME", "if_dist_igh": 10.9, "faf_dist_igh": 5.8, "mapt_dist_igh": 0.8,
+      "faf_coords": {"lat": "10°43'06\"N", "lon": "106°56'56\"E"},
+      "llz_freq": "111.3 (IGH)", "gp_freq": "332.3 CH050X", "rdh": 58, "glide_path": "3.0deg",
+      "dme_altitude_table_igh": {"0.8": 410, "2": 790, "3": 1100, "4": 1420, "5": 1740, "5.8": 2000},
+      "oca_h": {"CAT1": 410, "CAT1_h": 256, "CAT2": 335, "CAT2_h": 181, "GP_INOP": 770, "GP_INOP_h": 616},
+      "missed_approach": "Bay lên trên R-055 LTH đến 2500ft, vòng phải (MAX IAS 210KT) về đài VOR/DME LTH đạt 5000ft hoặc cao hơn"
+    },
+    "ILS Y RWY23L": {
+      "iaf": "LTH VOR/DME", "if_dist_ilt": 9.7, "faf_dist_ilt": 5.7, "mapt_dist_ilt": 0.7,
+      "faf_coords": {"lat": "10°50'57\"N", "lon": "107°07'52\"E"},
+      "llz_freq": "108.5 (ILT)", "gp_freq": "329.9 CH022X", "rdh": 58, "glide_path": "3.0deg",
+      "dme_altitude_table_ilt": {"0.7": 415, "2": 830, "3": 1150, "4": 1460, "5": 1780, "5.7": 2000},
+      "oca_h": {"CAT1": 415, "CAT1_h": 218, "CAT2": 380, "CAT2_h": 183, "GP_INOP": 850, "GP_INOP_h": 653},
+      "missed_approach": "Bay lên trên R-235 LTH đến 2500ft, vòng trái (MAX IAS 230KT) về đài VOR/DME LTH đạt 5000ft hoặc cao hơn"
+    },
+    "ILS Y RWY23R": {
+      "iaf": "LTH VOR/DME", "if_dist_ila": 9.7, "faf_dist_ila": 5.7, "mapt_dist_ila": 0.7,
+      "faf_coords": {"lat": "10°51'07\"N", "lon": "107°07'44\"E"},
+      "llz_freq": "108.7 (ILA)", "gp_freq": "330.5 CH024X", "rdh": 50, "glide_path": "3.0deg",
+      "dme_altitude_table_ila": {"0.7": 415, "2": 830, "3": 1150, "4": 1470, "5": 1790, "5.7": 2000},
+      "oca_h": {"CAT1": 415, "CAT1_h": 213, "CAT2": 380, "CAT2_h": 178, "GP_INOP": 850, "GP_INOP_h": 648},
+      "missed_approach": "Bay lên trên R-235 LTH đến 2500ft, vòng trái (MAX IAS 230KT) về đài VOR/DME LTH đạt 5000ft hoặc cao hơn"
+    }
+  }
+}

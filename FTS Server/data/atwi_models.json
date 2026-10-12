@@ -1,0 +1,38 @@
+[
+  {
+    "id": "atwi-model-vietnam-default-draft",
+    "name": "Vietnam ATWI Default Draft Model",
+    "description": "Default draft workload model for WebFTS ATWI foundation. Values are assumed and require expert review/calibration before official KPI use.",
+    "atcoOnPosition": 1,
+    "availableSecondsPerAtcoPerHour": 3600,
+    "coefficients": {
+      "complexityCoeff": 0.15,
+      "weatherCoeff": 0.10,
+      "militaryCoeff": 0.10,
+      "coordinationCoeff": 0.12,
+      "airportCoeff": 0.10,
+      "degradedCoeff": 0.20
+    },
+    "thresholds": {
+      "normalMax": 60,
+      "watchMax": 75,
+      "highMax": 90
+    },
+    "taskDefinitions": [],
+    "metadata": {
+      "version": "0.1-draft",
+      "status": "draft",
+      "source": "ai_generated",
+      "reviewStatus": "not_reviewed",
+      "approvedForKpi": false,
+      "createdBy": "VATM FTS Team",
+      "reviewedBy": null,
+      "approvedBy": null,
+      "createdAt": "2026-05-28T00:00:00.000Z",
+      "updatedAt": "2026-05-28T00:00:00.000Z",
+      "reviewedAt": null,
+      "approvedAt": null,
+      "notes": "Initial AI-generated/draft ATWI model. Not approved for official KPI reporting."
+    }
+  }
+]

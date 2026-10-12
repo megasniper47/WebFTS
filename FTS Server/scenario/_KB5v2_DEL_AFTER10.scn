@@ -1,0 +1,5 @@
+# _KB5v2_DEL_AFTER10.scn — dùng chung, gọi bằng "PCALL _KB5v2_DEL_AFTER10 <ACID>"
+# %0 được PCALL thay bằng acid truyền vào. Timestamp 10.00 (REL) = xoá tàu
+# bay đúng 10 giây sau khi file này được gọi (tức 10s sau khi tàu bay đến vị
+# trí đỗ).
+00:00:10.00>DEL %0

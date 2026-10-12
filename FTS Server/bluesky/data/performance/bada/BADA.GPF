@@ -1,0 +1,115 @@
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC BADA.GPF CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC/
+CC                                                                                   /
+CC                             GLOBAL PARAMETERS FILE                                /
+CC                                                                                   /
+CC                                                                                   /
+CC      File_name: BADA.GPF                                                          /
+CC                                                                                   /
+CC      Creation_date: Apr 30 2002                                                   /
+CC                                                                                   /
+CC      Modification_date: May 16 2022                                               /
+CC                                                                                   /
+CC                                                                                   /
+CC======== Class ====================================================================/
+CC                                                                                   /
+CC Flight = civ,mil                                                                  /
+CC Engine = jet,tbp,pst,elc                                                          /
+CC Phase  = to,ic,cl,cr,des,hold,app,lnd,gnd                                         /
+CC                                                                                   /
+CC======== Parameters List ==========================================================/
+CC                                                                                   /
+CC Name             Unit                                                             /
+CC Parameter       Flight  Engine           Phase                        Value       /
+CC                                                                                   /
+CC max. long. acc.  [fps2]                                                           /
+CD acc_long_max    civ     jet,tbp,pst,elc  to,ic,cl,cr,des,hold,app,lnd  .20000E+01 /
+CC max. norm. acc.  [fps2]                                                           /
+CD acc_norm_max    civ     jet,tbp,pst,elc  to,ic,cl,cr,des,hold,app,lnd  .50000E+01 /
+CC nom. bank angle  [deg]                                                            /
+CD ang_bank_nom    civ     jet,tbp,pst,elc  to,lnd                        .15000E+02 /
+CC nom. bank angle  [deg]                                                            /
+CD ang_bank_nom    civ     jet,tbp,pst,elc  ic,cl,cr,des,hold,app         .30000E+02 /
+CC nom. bank angle  [deg]                                                            /
+CD ang_bank_nom    mil     jet,tbp,pst,elc  to,ic,cl,cr,des,hold,app,lnd  .50000E+02 /
+CC max. bank angle  [deg]                                                            /
+CD ang_bank_max    civ     jet,tbp,pst,elc  to,lnd                        .25000E+02 /
+CC max. bank angle  [deg]                                                            /
+CD ang_bank_max    civ     jet,tbp,pst,elc  hold                          .35000E+02 /
+CC max. bank angle  [deg]                                                            /
+CD ang_bank_max    civ     jet,tbp,pst,elc  ic,cl,cr,des,app              .45000E+02 /
+CC max. bank angle  [deg]                                                            /
+CD ang_bank_max    mil     jet,tbp,pst,elc  to,ic,cl,cr,des,hold,app,lnd  .70000E+02 /
+CC exp. desc. fact. [-]                                                              /
+CD C_des_exp       civ,mil jet,tbp,pst,elc  des                           .16000E+01 /
+CC to thrust factor [-]                                                              /
+CD C_th_to         mil,civ jet,tbp,pst,elc  to                            .12000E+01 /
+CC cr thrust factor [-]                                                              /
+CD C_th_cr         mil,civ jet,tbp,pst,elc  cr                            .95000E+00 /
+CC max alt for to  [ft]                                                              /
+CD H_max_to        mil,civ jet,tbp,pst,elc  to                            .40000E+03 /
+CC max alt for ic  [ft]                                                              /
+CD H_max_ic        mil,civ jet,tbp,pst,elc  ic                            .20000E+04 /
+CC max alt for app  [ft]                                                             /
+CD H_max_app       mil,civ jet,tbp,pst,elc  app                           .80000E+04 /
+CC max alt for ld  [ft]                                                              /
+CD H_max_ld        mil,civ jet,tbp,pst,elc  lnd                           .30000E+04 /
+CC min speed coef.  [-]                                                              /
+CD C_v_min         mil,civ jet,tbp,pst,elc  cr,ic,cl,des,hold,app,lnd     .13000E+01 /
+CC min speed coef.  [-]                                                              /
+CD C_v_min_to      mil,civ jet,tbp,pst,elc  to                            .12000E+01 /
+CC spd incr FL < 15 [KCAS]                                                           /
+CD V_cl_1          mil,civ jet              cl                            .50000E+01 /
+CC spd incr FL < 30 [KCAS]                                                           /
+CD V_cl_2          mil,civ jet              cl                            .10000E+02 /
+CC spd incr FL < 40 [KCAS]                                                           /
+CD V_cl_3          mil,civ jet              cl                            .30000E+02 /
+CC spd incr FL < 50 [KCAS]                                                           /
+CD V_cl_4          mil,civ jet              cl                            .60000E+02 /
+CC spd incr FL < 60 [KCAS]                                                           /
+CD V_cl_5          mil,civ jet              cl                            .80000E+02 /
+CC spd incr FL < 5  [KCAS]                                                           /
+CD V_cl_6          mil,civ tbp,pst,elc      cl                            .20000E+02 /
+CC spd incr FL < 10 [KCAS]                                                           /
+CD V_cl_7          mil,civ tbp,pst,elc      cl                            .30000E+02 /
+CC spd incr FL < 15 [KCAS]                                                           /
+CD V_cl_8          mil,civ tbp,pst,elc      cl                            .35000E+02 /
+CC spd incr FL < 10 [KCAS]                                                           /
+CD V_des_1         mil,civ jet,tbp          des                           .50000E+01 /
+CC spd incr FL < 15 [KCAS]                                                           /
+CD V_des_2         mil,civ jet,tbp          des                           .10000E+02 /
+CC spd incr FL < 20 [KCAS]                                                           /
+CD V_des_3         mil,civ jet,tbp          des                           .20000E+02 /
+CC spd incr FL < 30 [KCAS]                                                           /
+CD V_des_4         mil,civ jet,tbp          des                           .50000E+02 /
+CC spd incr FL < 5  [KCAS]                                                           /
+CD V_des_5         mil,civ pst,elc          des                           .50000E+01 /
+CC spd incr FL < 10 [KCAS]                                                           /
+CD V_des_6         mil,civ pst,elc          des                           .10000E+02 /
+CC spd incr FL < 15 [KCAS]                                                           /
+CD V_des_7         mil,civ pst,elc          des                           .20000E+02 /
+CC hold. spd FL < 140 [KCAS]                                                         /
+CD V_hold_1        mil,civ jet,tbp,pst,elc  hold                          .23000E+03 /
+CC hold. spd FL < 200 [KCAS]                                                         /
+CD V_hold_2        mil,civ jet,tbp,pst,elc  hold                          .24000E+03 /
+CC hold. spd FL < 340 [KCAS]                                                         /
+CD V_hold_3        mil,civ jet,tbp,pst,elc  hold                          .26500E+03 /
+CC hold. spd FL > 340 [M]                                                            /
+CD V_hold_4        mil,civ jet,tbp,pst,elc  hold                          .83000E+00 /
+CC backtrack spd    [KCAS]                                                           /
+CD V_backtrack     mil,civ jet,tbp,pst,elc  gnd                           .35000E+02 /
+CC taxi spd         [KCAS]                                                           /
+CD V_taxi          mil,civ jet,tbp,pst,elc  gnd                           .15000E+02 /
+CC apron spd        [KCAS]                                                           /
+CD V_apron         mil,civ jet,tbp,pst,elc  gnd                           .10000E+02 /
+CC gate spd         [KCAS]                                                           /
+CD V_gate          mil,civ jet,tbp,pst,elc  gnd                           .50000E+01 /
+CC Electric pow. red. [-]                                                            /
+CD C_red_elec      mil,civ elc              ic,cl                         .00000E+00 /
+CC Piston pow. red. [-]                                                              /
+CD C_red_piston    mil,civ pst              ic,cl                         .00000E+00 /
+CC Turboprop pow. red. [-]                                                           /
+CD C_red_turbo     mil,civ tbp              ic,cl                         .25000E+00 /
+CC Jet pow. red. [-]                                                                 /
+CD C_red_jet       mil,civ jet              ic,cl                         .15000E+00 /
+FI===================================================================================/
+CC//////////////////////////////  THE END  ///////////////////////////////////////////

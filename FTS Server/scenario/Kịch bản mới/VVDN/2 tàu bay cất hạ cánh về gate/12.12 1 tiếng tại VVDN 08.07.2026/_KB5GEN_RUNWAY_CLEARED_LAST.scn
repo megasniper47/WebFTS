@@ -1,0 +1,4 @@
+# _KB5GEN_RUNWAY_CLEARED_LAST.scn — như trên nhưng không còn DEP kế tiếp để gọi
+# (dùng cho cặp cuối cùng trong kịch bản)
+# Gọi: PCALL _KB5GEN_RUNWAY_CLEARED_LAST <cross_template> <arr_acid>
+00:00:00.00>PCALL %0 %1

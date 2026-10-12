@@ -1,0 +1,5 @@
+# _KB5GEN_STOP_AND_DEL.scn — dừng cứng tại bến đỗ rồi xoá sau 10s
+00:00:00.00>%0 LNAV OFF
+00:00:00.00>%0 VNAV OFF
+00:00:00.00>MOVE %0,%1,%2,0,%3,0.0
+00:00:00.00>PCALL _KB5v2_DEL_AFTER10 %0

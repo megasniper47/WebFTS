@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "17L/35R",
+        "type": "runway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.200265965,
+          16.04470157
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "17R/35L",
+        "type": "runway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.19841249999999,
+          16.0437665
+        ]
+      }
+    }
+  ]
+}

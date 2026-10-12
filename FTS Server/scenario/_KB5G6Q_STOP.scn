@@ -1,0 +1,4 @@
+# Dừng cứng bằng MOVE. Gọi: PCALL _KB5G6Q_STOP <acid> <lat> <lon> <hdg>
+00:00:00.00>%0 LNAV OFF
+00:00:00.00>%0 VNAV OFF
+00:00:00.00>MOVE %0,%1,%2,0,%3,0.0

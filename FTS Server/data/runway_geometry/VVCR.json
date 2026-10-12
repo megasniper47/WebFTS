@@ -1,0 +1,55 @@
+{
+  "airport": "VVCR",
+  "geometryStatus": "verified",
+  "runways": [
+    {
+      "designator": "02L",
+      "oppositeDesignator": "20R",
+      "thresholdLat": 11.985089,
+      "thresholdLon": 109.214822,
+      "oppositeThresholdLat": 12.011169,
+      "oppositeThresholdLon": 109.223864,
+      "trueHeadingDeg": 18.73,
+      "oppositeTrueHeadingDeg": 198.73,
+      "source": "runways.geojson:RWY 02/20 centerline"
+    },
+    {
+      "designator": "20R",
+      "oppositeDesignator": "02L",
+      "thresholdLat": 12.011169,
+      "thresholdLon": 109.223864,
+      "oppositeThresholdLat": 11.985089,
+      "oppositeThresholdLon": 109.214822,
+      "trueHeadingDeg": 198.73,
+      "oppositeTrueHeadingDeg": 18.73,
+      "source": "runways.geojson:RWY 02/20 centerline"
+    },
+    {
+      "designator": "02R",
+      "oppositeDesignator": "20L",
+      "thresholdLat": 11.9815487,
+      "thresholdLon": 109.2164666,
+      "oppositeThresholdLat": 12.0077908,
+      "oppositeThresholdLon": 109.2256307,
+      "trueHeadingDeg": 18.86,
+      "oppositeTrueHeadingDeg": 198.86,
+      "source": "runways.geojson:RWY 02R/20L centerline"
+    },
+    {
+      "designator": "20L",
+      "oppositeDesignator": "02R",
+      "thresholdLat": 12.0077908,
+      "thresholdLon": 109.2256307,
+      "oppositeThresholdLat": 11.9815487,
+      "oppositeThresholdLon": 109.2164666,
+      "trueHeadingDeg": 198.86,
+      "oppositeTrueHeadingDeg": 18.86,
+      "source": "runways.geojson:RWY 02R/20L centerline"
+    }
+  ],
+  "runwayModes": [
+    { "mode": "02R-ARR/02L-DEP", "arrivalRunway": "02R", "departureRunway": "02L" },
+    { "mode": "20L-ARR/20R-DEP", "arrivalRunway": "20L", "departureRunway": "20R" }
+  ],
+  "notes": "Both centerlines confirmed clean 2-point LineStrings in runways.geojson; bearings (18.73/198.73 and 18.86/198.86) match nominal runway numbers 02/20 exactly. Designators corrected to 02L/20R (was bare '02'/'20') and runwayModes corrected to match the real procedure doc (CHC song song VVCR.pdf s4.1.1: 02R for arrival/02L for departure; s4.2.1: 20L for arrival/20R for departure) -- an earlier version of this file had the roles backwards (02-ARR/02R-DEP, 20L-ARR/20-DEP)."
+}

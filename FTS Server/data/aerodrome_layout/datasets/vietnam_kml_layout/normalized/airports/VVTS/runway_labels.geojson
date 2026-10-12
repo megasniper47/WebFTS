@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07L/25R",
+        "type": "runway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.65015966,
+          10.81994068
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "07R/25L",
+        "type": "runway_label"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.653175065,
+          10.81753411
+        ]
+      }
+    }
+  ]
+}

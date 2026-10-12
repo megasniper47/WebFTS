@@ -1,0 +1,7 @@
+# _KB5GEN_STOP_THEN_RESUME_G4.scn — dung tai diem thoat ly G4, giu 3s, roi
+# lan tiep vao gate 28 theo toa do thuc te (dung file _ARR_RESUME_G4_GATE28.scn)
+# Goi: PCALL _KB5GEN_STOP_THEN_RESUME_G4 <acid>
+00:00:00.00>%0 LNAV OFF
+00:00:00.00>%0 VNAV OFF
+00:00:00.00>MOVE %0,16.048727,108.197660,0,81.6,0.0
+00:00:03.00>PCALL _ARR_RESUME_G4_GATE28 %0

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "preset-vmc-calm",
+    "name": "VMC / gió nhẹ (mặc định)",
+    "description": "Điều kiện quang mây, gió nhẹ ổn định -- dùng làm baseline khi không cần mô hình hoá thời tiết.",
+    "mode": "vfr",
+    "windDirection": 90,
+    "windSpeedKt": 5,
+    "visibilityM": 10000,
+    "ceilingFt": null,
+    "createdAt": "2026-07-23T10:29:43.606025Z",
+    "updatedAt": "2026-07-23T10:29:43.606025Z"
+  },
+  {
+    "id": "preset-monsoon-ne",
+    "name": "Gió mùa Đông Bắc mạnh",
+    "description": "Gió mùa Đông Bắc điển hình khu vực Bắc Bộ tháng 11-3, hướng ổn định nhưng tốc độ cao -- kiểm tra ảnh hưởng đến cấu hình đường CHC ngược gió.",
+    "mode": "custom",
+    "windDirection": 30,
+    "windSpeedKt": 22,
+    "visibilityM": 8000,
+    "ceilingFt": null,
+    "createdAt": "2026-07-23T10:29:43.606025Z",
+    "updatedAt": "2026-07-23T10:29:43.606025Z"
+  },
+  {
+    "id": "preset-ifr-low-ceiling",
+    "name": "IFR - Trần mây thấp",
+    "description": "Trần mây và tầm nhìn dưới tối thiểu VFR -- kiểm tra tác động của phân cách/tốc độ tiếp cận theo IFR lên năng lực đường CHC.",
+    "mode": "ifr",
+    "windDirection": 250,
+    "windSpeedKt": 10,
+    "visibilityM": 3000,
+    "ceilingFt": 600,
+    "createdAt": "2026-07-23T10:29:43.606025Z",
+    "updatedAt": "2026-07-23T10:29:43.606025Z"
+  },
+  {
+    "id": "preset-cb-ts",
+    "name": "Dông đối lưu (CB/TS)",
+    "description": "Có mây dông/giông trong khu vực TMA -- gió giật mạnh, hướng thay đổi nhanh; dùng để kiểm tra kịch bản tránh ô/deviation.",
+    "mode": "cb_ts",
+    "windDirection": 180,
+    "windSpeedKt": 30,
+    "visibilityM": 5000,
+    "ceilingFt": 2000,
+    "createdAt": "2026-07-23T10:29:43.606025Z",
+    "updatedAt": "2026-07-23T10:29:43.606025Z"
+  }
+]

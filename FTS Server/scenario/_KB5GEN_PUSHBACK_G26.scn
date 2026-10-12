@@ -1,0 +1,16 @@
+# _KB5GEN_PUSHBACK_G26.scn — đẩy lùi khỏi vị trí đỗ rồi quay đầu theo hướng đường lăn
+# Gọi: PCALL _KB5GEN_PUSHBACK_G26.scn <acid> <tên_file_taxi> <chiều_dài_tàu_bay_m>
+# LƯU Ý 1: MOVE với tốc độ khác 0.0 bị BlueSky hiểu nhầm đơn vị (số nhỏ ->
+# Mach!) gây tăng tốc phi lý (đã kiểm chứng: "3.0" -> ~Mach 1.5 -> ~1020kt).
+# Vì vậy CHỈ dùng 0.0 (dừng cứng tại từng điểm chờ) cho MOVE, giống đúng quy
+# ước đã dùng ở _KB5GEN_STOP_HOLD -- việc "đẩy lùi" được thể hiện bằng 2 lần
+# dịch vị trí tức thời (snapshot), không phải bay liên tục với tốc độ thật.
+# LƯU Ý 2: MOVE (dù speed=0.0) VẪN ghi đè traf.selspd về 0 -- nên phải gọi
+# TAXION lại SAU 2 lần MOVE (không phải trước, sẽ bị ghi đè mất) để tàu bay
+# thực sự lăn đi khi vào lộ trình taxi (LNAV ON) ngay sau đó.
+00:00:00.00>%0 LNAV OFF
+00:00:00.00>%0 VNAV OFF
+00:00:00.00>MOVE %0,16.052602,108.201823,0,80.9,0.0
+00:00:05.00>MOVE %0,16.052578,108.201666,0,236.2,0.0
+00:00:07.00>TAXION %0 15 %2
+00:00:07.00>PCALL %1 %0

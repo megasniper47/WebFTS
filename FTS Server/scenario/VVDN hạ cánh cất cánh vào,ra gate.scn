@@ -1,0 +1,71 @@
+# VVDN — 2 real Aireon/ASTERIX-derived aircraft, RWY 35 operations, 2025-12-22
+# HVN337 (B738-like): 10NM final RWY35L, lands, taxis in, stops at real Gate 24 (verified match, 1.6m).
+# EVA384 (widebody): pushes back FROM real Gate 15, taxis out, holds short of RWY35R, lines up, departs.
+# Ground/taxi positions+speeds/headings below are read directly from the real ground-bit + ADS-B trace
+# (ground speed already in kt while on the ground; airborne ground-speed field converted x1.94384/x3600 to kt).
+# The 10NM-6NM approach leg for HVN337 is NOT in the source data (source only started at short final);
+# it is reconstructed along the real RWY35L extended centerline (thr 16.030125,108.200392, hdg352)
+# on a standard 3 deg glideslope (~318ft/NM) so the aircraft visibly flies the approach before landing.
+# T=00:00:00 corresponds to real UTC 2025-12-22 06:05:03 minus ~214s (estimated transit time 10NM->thr).
+#
+# ---- HVN337 arrival milestones ----
+#  (synthetic) 10NM final  15.865190,108.224490 3200ft 220kt hdg352
+#  (synthetic)  8NM final  15.898177,108.219673 2600ft 200kt hdg352
+#  (synthetic)  5NM final  15.947658,108.212446 1600ft 170kt hdg352
+#  (synthetic)  3NM final  15.980645,108.207626 1000ft 150kt hdg352
+#  (synthetic)  1NM final  16.013632,108.202804  350ft 140kt hdg352
+#  06:05:03 (real) short final   16.029556,108.200443  75ft   133kt  hdg352
+#  06:05:14 (real) TOUCHDOWN     16.036501,108.199490   0ft   134kt  hdg352
+#  06:05:54 (real) turn off RWY  16.048622,108.197792         21kt  hdg014->070
+#  06:06:37 (real) HOLD (35s)    16.049126,108.200491          0kt
+#  06:07:55 (real) resume, turn  16.049801,108.200936          7kt  hdg352
+#  06:09:13 (real) 2nd turn      16.053155,108.200569          8kt  hdg020->082
+#  06:10:10 (real) STOP = GATE24 16.053376,108.201881          0kt  (1.6m from real Gate 24)
+#
+# ---- EVA384 departure milestones ----
+#  (synthetic) CRE at real Gate 15 16.056590,108.201381   0kt   (stand, engine start/pushback)
+#  06:05:18 (real) start taxi      16.056600,108.199956   3kt  hdg169
+#  06:09:57 (real) mid taxi        16.031834,108.203549  16kt  hdg172
+#  06:11:16 (real) HOLD SHORT RWY35R (63s) 16.029430,108.203587  0kt  (121m from real THR 35R)
+#  06:12:45 (real) turn onto RWY   16.029190,108.203141   5.5kt hdg248
+#  06:13:24 (real) lined up        16.029821,108.202408    8kt  hdg352
+#  06:13:49 (real) takeoff roll    16.034185,108.201795   84kt  hdg352
+#  06:14:16 (real) liftoff/climb   16.051163,108.199286  200ft 164kt hdg352
+
+00:00:00.00>TRAILS ON
+00:00:00.00>ASAS ON
+
+# ============ HVN337 — ARRIVAL, 10NM final RWY35L, lands, taxi to Gate 24 ============
+00:00:00.00>CRE HVN337 B738 15.865190 108.224490 352 3200 220
+00:00:00.00>HVN337 ADDWPT 15.898177,108.219673 2600 200
+00:00:00.00>HVN337 ADDWPT 15.947658,108.212446 1600 170
+00:00:00.00>HVN337 ADDWPT 15.980645,108.207626 1000 150
+00:00:00.00>HVN337 ADDWPT 16.013632,108.202804 350 140
+00:00:00.00>HVN337 ADDWPT 16.029556,108.200443 75 133
+00:00:00.00>HVN337 ADDWPT 16.033522,108.199931 25 136
+00:00:00.00>HVN337 ADDWPT 16.036501,108.199490 0 134
+00:00:00.00>HVN337 ADDWPT 16.039032,108.199093 0 128
+00:00:00.00>HVN337 ADDWPT 16.044353,108.198310 0 70
+00:00:00.00>HVN337 ADDWPT 16.046219,108.198043 0 56
+00:00:00.00>HVN337 ADDWPT 16.048116,108.197761 0 37
+00:00:00.00>HVN337 ADDWPT 16.048622,108.197792 0 21
+00:00:00.00>HVN337 ADDWPT 16.048840,108.198226 0 18
+00:00:00.00>HVN337 ADDWPT 16.048874,108.198588 0 17
+00:00:00.00>HVN337 ADDWPT 16.048989,108.199515 0 17
+00:00:00.00>HVN337 ADDWPT 16.049068,108.200069 0 16
+00:00:00.00>HVN337 ADDWPT 16.049103,108.200334 0 12
+00:00:00.00>HVN337 ADDWPT 16.049126,108.200491 0 0
+00:00:00.00>HVN337 ADDWPT 16.049149,108.200611 0 4
+00:00:00.00>HVN337 ADDWPT 16.049263,108.200888 0 6
+00:00:00.00>HVN337 ADDWPT 16.049801,108.200936 0 7
+00:00:00.00>HVN337 ADDWPT 16.050431,108.200851 0 9
+00:00:00.00>HVN337 ADDWPT 16.052090,108.200611 0 12
+00:00:00.00>HVN337 ADDWPT 16.052759,108.200508 0 11
+00:00:00.00>HVN337 ADDWPT 16.053155,108.200569 0 8
+00:00:00.00>HVN337 ADDWPT 16.053257,108.200936 0 9
+00:00:00.00>HVN337 ADDWPT 16.053280,108.201177 0 6
+00:00:00.00>HVN337 ADDWPT 16.053349,108.201707 0 5
+00:00:00.00>HVN337 ADDWPT 16.053376,108.201881 0 0
+00:00:00.00>HVN337 LNAV ON
+00:00:00.00>HVN337 VNAV ON
+00:20:00.00>DEL EVA384

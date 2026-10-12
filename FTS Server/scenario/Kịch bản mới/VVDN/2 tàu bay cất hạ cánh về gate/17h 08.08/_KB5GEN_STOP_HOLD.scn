@@ -1,0 +1,5 @@
+# _KB5GEN_STOP_HOLD.scn — dừng cứng tại 1 điểm bằng MOVE (dùng chung mọi điểm chờ)
+# Gọi: PCALL _KB5GEN_STOP_HOLD <acid> <lat> <lon> <hdg>
+00:00:00.00>%0 LNAV OFF
+00:00:00.00>%0 VNAV OFF
+00:00:00.00>MOVE %0,%1,%2,0,%3,0.0

@@ -1,0 +1,84 @@
+# ================================================================
+# VVDN_2A2D_35R.scn -- Kịch bản khai thác 2 cặp tàu bay cất cánh - hạ cánh
+# trên đường CHC 35R (toàn bộ cất/hạ cánh chỉ dùng 35R, hạ cánh theo IAP ILS
+# V 35R).
+#
+# LOGIC THỜI GIAN (theo đúng yêu cầu):
+#  - Landing 2   = Landing 1 + 5 phút.
+#  - Departure 2 bắt đầu lăn = Departure 1 bắt đầu lăn + 5 phút.
+#  - DEP chỉ được lăn từ điểm dừng chờ (PRE_HOLD) lên đường CHC (RWY_HOLD)
+#    10s SAU KHI ARR tương ứng vượt qua đầu thềm 35R (Trigger A).
+#  - DEP chỉ được chạy đà cất cánh 30s SAU KHI ARR tương ứng thoát ly HOÀN
+#    TOÀN khỏi 35R tại E4 hoặc E6 (Trigger B).
+#  - Không bao giờ cho DEP chạy đà khi ARR tương ứng còn trên đường CHC.
+#
+# Cả 2 Trigger (A, B) đăng ký ATDIST TRỰC TIẾP từ kịch bản chính này (1 tầng,
+# KHÔNG lồng qua Condition khác) -- đúng mẫu duy nhất đã được kiểm chứng an
+# toàn tuyệt đối trong phiên làm việc trước đó (mọi ATDIST đăng ký lồng 2
+# tầng qua PCALL trung gian đều có rủi ro tự kích hoạt sai).
+#
+# TRÁNH XUNG ĐỘT ĐƯỜNG LĂN E: lệnh TAXIROUTE (plugin TAXIWAYREROUTE) tính
+# toán và PCALL đúng 1 trong 2 lộ trình lăn ra (đường lăn E chuẩn, hoặc
+# đường lăn D thay thế) cho tàu bay cất cánh, dựa trên dự đoán xem nó có gặp
+# (đối đầu) một tàu bay hạ cánh đang lăn về bến trên đoạn đường lăn E
+# (16.049407,108.200982 - 16.052437,108.200543) hay không -- xem
+# bluesky/plugins/taxiway_reroute.py.
+#
+# QUAN TRỌNG: TAXIROUTE phải gọi NGAY SAU TAXION, CÙNG dòng thời gian
+# 00:00:00.00 (đồng bộ, không lệch nhịp) -- bản đầu dùng periodic scan trong
+# plugin có lỗi thật: có 1 khoảng hở giữa lúc TAXION đặt tốc độ và lúc plugin
+# kịp gán route, khiến tàu bay trôi thẳng theo hướng đỗ tại bến trong lúc
+# chờ (đã được người dùng phát hiện qua quan sát trực tiếp). Gọi đồng bộ như
+# dưới đây loại bỏ hoàn toàn khoảng hở đó.
+#
+# KHÔNG còn cần ATDIST+MOVE để "giữ cứng" tàu bay ở PRE_HOLD nữa (đã sửa lỗi
+# engine thật trong bluesky/traffic/autopilot.py: trước đây BlueSky xoá vô
+# điều kiện MỌI tàu bay ngay khi hết waypoint, buộc phải MOVE để giả lập
+# đứng yên -- trông giả, đúng như người dùng phát hiện. Giờ tàu bay mặt đất
+# hết waypoint chỉ đứng yên tại đó, không bị xoá, nên các lộ trình taxi
+# (DEP_TAXI_TO_HOLD*.scn) kết thúc thẳng bằng chính PRE_HOLD, hiện đúng tốc
+# độ giảm dần thật khi lăn).
+# ================================================================
+00:00:00.00>PLUGINS LOAD SURFACETAXI
+00:00:00.00>PLUGINS LOAD DEPARRALERT
+00:00:00.00>PLUGINS LOAD TAXIWAYREROUTE
+00:00:00.00>ASAS OFF
+00:00:00.00>TRAILS ON
+00:00:00.00>PAN 16.0400,108.2000
+
+# ================================================================
+# CẶP 1 -- ARR001 / DEP001 (thoát ly tại E4)
+# ================================================================
+00:00:00.00>CRE DEP001,A321,16.052628,108.201989,80.9,0,0
+00:00:00.00>TAXION DEP001 15 44.5
+00:00:00.00>TAXIROUTE DEP001
+
+00:00:00.00>CRE ARR001,A321,15.618056,108.262500,353,6071,230
+00:00:00.00>PCALL ARR_APPROACH ARR001
+00:00:00.00>PCALL ARR_EXIT_E4 ARR001
+
+# Trigger A1: ARR001 vượt đầu thềm 35R -> +10s DEP001 vào đường CHC (lineup)
+00:00:00.00>ARR001 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP001
+
+# Trigger B1: ARR001 thoát ly hoàn toàn tại E4 (rẽ phải tại giao điểm E4/35R,
+# toạ độ 16.049011,108.199650 -- đã hiệu chỉnh theo đúng vị trí thật) -> +30s
+# DEP001 chạy đà
+00:00:00.00>ARR001 ATDIST 16.049011,108.199650,0.02 PCALL ARR_VACATED_ROLL DEP001
+
+# ================================================================
+# CẶP 2 -- ARR002 / DEP002 (thoát ly tại E6)
+# Landing2 = Landing1 + 5'; Departure2 bắt đầu lăn = Departure1 bắt đầu lăn + 5'
+# ================================================================
+00:05:00.00>CRE DEP002,A321,16.052628,108.201989,80.9,0,0
+00:05:00.00>TAXION DEP002 15 44.5
+00:05:00.00>TAXIROUTE DEP002
+
+00:05:00.00>CRE ARR002,A321,15.618056,108.262500,353,6071,230
+00:05:00.00>PCALL ARR_APPROACH ARR002
+00:05:00.00>PCALL ARR_EXIT_E6 ARR002
+
+# Trigger A2: ARR002 vượt đầu thềm 35R -> +10s DEP002 vào đường CHC (lineup)
+00:05:00.00>ARR002 ATDIST 16.029047,108.202547,0.02 PCALL DEP_ENTER_LINEUP DEP002
+
+# Trigger B2: ARR002 thoát ly hoàn toàn tại E6 -> +30s DEP002 chạy đà
+00:05:00.00>ARR002 ATDIST 16.057523,108.199282,0.02 PCALL ARR_VACATED_ROLL DEP002

@@ -1,0 +1,11 @@
+# STOP_AND_DEL.scn -- dừng cứng đúng vị trí chỉ định rồi xoá tàu bay sau 10s.
+# ATDIST gọi file này dùng bán kính rộng (0.05NM) để có thời gian đăng ký
+# trước khi tàu bay thực sự "tới" waypoint cuối của lộ trình (tránh lỗi
+# auto-delete của BlueSky khi autopilot phát hiện hết waypoint) -- vì vậy
+# CẦN MOVE thẳng tới đúng toạ độ đích (không dựa vào vị trí hiện tại lúc
+# trigger fire, có thể còn cách đích tới ~90m).
+# Gọi: PCALL STOP_AND_DEL <acid> <lat> <lon> <hdg>
+00:00:00.00>%0 LNAV OFF
+00:00:00.00>%0 VNAV OFF
+00:00:00.00>MOVE %0,%1,%2,0,%3,0.0
+00:00:10.00>DEL %0

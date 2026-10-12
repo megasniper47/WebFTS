@@ -1,0 +1,19 @@
+# _KB5v2_DEP002_ENTER_RWY.scn
+# Được gọi bởi _KB5v2_DEP001_ROLL.scn ĐÚNG lúc DEP001 nhấc bánh mũi (không
+# phải lúc bắt đầu chạy đà — đã sửa theo yêu cầu mới nhất).
+# DEP002 đang dừng (MOVE) tại PRE_HOLD. QUAN TRỌNG: route cũ (từ lúc lăn ra
+# Gate 27) vẫn còn tồn tại với con trỏ waypoint đang trỏ tới điểm "mồi" phía
+# sau PRE_HOLD — nếu chỉ ADDWPT thêm điểm mới rồi bật LNAV, tàu bay sẽ cố bay
+# tới điểm mồi CŨ trước (sai hướng), KHÔNG bay tới điểm mới thêm. Phải DELRTE
+# xoá sạch route cũ trước, rồi mới ADDWPT lại từ đầu.
+00:00:00.00>DEP002 DELRTE
+
+00:00:00.00>DEP002 ADDWPT 16.029181,108.202508 0 5.0
+00:00:00.00>DEP002 ADDWPT 16.0292,108.2025 0 0.0
+00:00:00.00>DEP002 ADDWPT 16.030000,108.202000 0 5.0
+00:00:00.00>DEP002 LNAV ON
+00:00:00.00>DEP002 VNAV ON
+
+# "16.030000,108.202000" là waypoint mồi — không bao giờ bay tới, chỉ để
+# tránh bug tự xoá tàu bay khi "đến" waypoint cuối route.
+00:00:00.00>DEP002 ATDIST 16.029200,108.202500,0.01 PCALL _KB5v2_STOP_DEP002_RWYHOLD

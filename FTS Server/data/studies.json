@@ -1,0 +1,78 @@
+[
+  {
+    "id": "study-vvts-25lr-capacity",
+    "name": "Đánh giá năng lực VVTS 25L/25R",
+    "type": "capacity",
+    "status": "draft",
+    "area": "VVTS / TMA Tân Sơn Nhất",
+    "objective": "Đánh giá năng lực khai thác 52 chuyến/giờ với cấu hình 25L cất cánh và 25R hạ cánh.",
+    "owner": "VATM FTS Team",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "createdAt": "2026-05-01T00:00:00.000Z",
+    "updatedAt": "2026-05-01T00:00:00.000Z",
+    "archivedAt": null,
+    "description": "Study phục vụ đánh giá năng lực, sequencing, runway occupancy và nguy cơ dồn ứ tại P5.",
+    "tags": [
+      "VVTS",
+      "capacity",
+      "25L/25R"
+    ]
+  },
+  {
+    "id": "study-vvdn-rnav-trombone",
+    "name": "Đánh giá RNAV/Trombone Đà Nẵng",
+    "type": "procedure",
+    "status": "in_analysis",
+    "area": "VVDN / Đà Nẵng TMA",
+    "objective": "Đánh giá tác động của RNAV/Trombone, spacing 8–10 NM và workload APP/TWR.",
+    "owner": "VATM Safety / ATM",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "createdAt": "2026-05-02T00:00:00.000Z",
+    "updatedAt": "2026-05-02T00:00:00.000Z",
+    "archivedAt": null,
+    "description": "Study phục vụ phân tích phương thức đến/đi và kiểm tra tác động workload.",
+    "tags": [
+      "VVDN",
+      "RNAV",
+      "Trombone"
+    ]
+  },
+  {
+    "id": "study-hcm-acc-sectorization",
+    "name": "Sectorization HCM ACC",
+    "type": "airspace",
+    "status": "review",
+    "area": "VVHM FIR / HCM ACC",
+    "objective": "Đánh giá phương án phân khu kiểm soát và phân bổ tải điều hành.",
+    "owner": "VATM ATM Planning",
+    "aixmDatasetId": "aixm-airac-2405",
+    "airacCycle": "2405",
+    "createdAt": "2026-05-03T00:00:00.000Z",
+    "updatedAt": "2026-05-03T00:00:00.000Z",
+    "archivedAt": null,
+    "description": "Study phục vụ đánh giá workload, sector load và phương án phân khu.",
+    "tags": [
+      "VVHM",
+      "ACC",
+      "Sectorization"
+    ]
+  },
+  {
+    "id": "1b3a5a76-6169-4c1d-acf3-0961c2f370e3",
+    "name": "Đánh giá năng lực VVPQ PBN RWY10",
+    "type": "capacity",
+    "status": "draft",
+    "area": "VVPQ / Phu Quoc TMA",
+    "objective": "Đánh giá năng lực khai thác theo thủ tục PBN thật (SID/STAR RNP RWY10L/R + IAP RNP Z RWY10L), 50 chuyến/giờ, cất RWY10R / hạ RWY10L.",
+    "owner": "VATM FTS Team",
+    "aixmDatasetId": "",
+    "airacCycle": "",
+    "createdAt": "2026-08-01T11:57:24.141776Z",
+    "updatedAt": "2026-08-01T11:57:24.141776Z",
+    "archivedAt": null,
+    "description": "",
+    "tags": []
+  }
+]

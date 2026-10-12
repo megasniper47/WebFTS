@@ -1,0 +1,25 @@
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC DR40__.APF CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC/
+CC                                                                                                 /
+CC                 AIRLINES PROCEDURES FILE                                                        /
+CC                                                                                                 /
+CC      File_name: DR40__.APF                                                                      /
+CC                                                                                                 /
+CC      Creation_date: Feb 08 2022                                                                 /
+CC                                                                                                 /
+CC      Modification_date: Feb 08 2022                                                             /
+CC                                                                                                 /
+CC                                                                                                 /
+CC                                                                                                 /
+CC   LO= 000.66 to ---.--  /  AV= ---.-- to ---.--  /  HI= ---.-- to 001.10                        /
+CC                                                                                                 /
+CC=================================================================================================/
+CC  COM CO    Company name ------climb-------  --cruise--  -----descent------  --approach-  model- /
+CC                    mass  lo  hi              lo  hi         hi  lo            (unused)          /
+CC    version engines  ma  cas cas mc xxxx xx  cas cas mc  mc cas cas xxxx xx  xxx xxx xxx  opf___ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CD  *** **    Default Company                                                                      /
+CD    155CDI           LO   78  72 16          114 108 21  29 130 130            0   0   0  DR40__ /
+CD    155CDI           AV   78  72 16          114 108 21  29 130 130            0   0   0  DR40__ /
+CD    155CDI           HI   78  72 16          114 108 21  29 130 130            0   0   0  DR40__ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CC/////////////////////////////////////////////THE END/////////////////////////////////////////////

@@ -1,0 +1,7 @@
+# _KB5GEN_STOP_THEN_RESUME_G6.scn — dung tai diem thoat ly G6, giu 3s, roi
+# lan tiep vao san do so 11 (dung file that _ARR_RESUME_G6_GATE11.scn)
+# Goi: PCALL _KB5GEN_STOP_THEN_RESUME_G6 <acid>
+00:00:00.00>%0 LNAV OFF
+00:00:00.00>%0 VNAV OFF
+00:00:00.00>MOVE %0,16.057200,108.197400,0,82.0,0.0
+00:00:03.00>PCALL _ARR_RESUME_G6_GATE11 %0

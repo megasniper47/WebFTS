@@ -1,0 +1,41 @@
+00:00:00>PAN 21.225 105.785
+00:00:00>ZOOM 12
+
+# Bat tinh nang canh bao xung dot (STCA / ASAS) va thiet lap Vung an toan
+# ZONER: Phan cach ngang 3NM. ZONEDH: Phan cach doc 1000ft
+00:00:00>ASAS ON
+00:00:00>ZONER 3
+00:00:00>ZONEDH 1000
+
+# 1. Tao chuyen bay ha canh: HVN11L (A321)
+# Cach THR 11L 10NM, toc do 180 kts, do cao 3000 ft
+00:00:00>CRE HVN11L A321 21.274796 105.620856 107.20 3000 180
+00:00:00>ALT HVN11L 39 -811
+
+# Giam toc do ve 150 kts khi cach duong bang 5NM (sau 1 phut 40 giay)
+00:01:30>SPD HVN11L 170
+00:01:36>SPD HVN11L 154
+# 2. Tao chuyen bay cat canh: HVN11R (A321)
+00:00:00>CRE HVN11R A321 21.2245 105.7871 107.20 39 0
+
+# 3. Kich hoat cat canh sau 2 phut 03 giay
+# Buoc 1: Chay da (Ground roll) tren duong bang, giu nguyen do cao 39 ft, tang toc len 151 kts (V1/Vr)
+00:02:03>ALT HVN11R 39
+00:02:03>SPD HVN11R 151
+00:02:03>HDG HVN11R 107.20
+
+# Buoc 2: Sau 35 giay chay da (thoi diem 00:02:38), may bay dat V1 = 151 kts, bat dau nhac banh (Rotation) va leo cao
+00:02:38>ALT HVN11R 10000
+00:02:38>SPD HVN11R 250
+
+# 4. Kich hoat "Bay lai" (Go-around)
+# Sau 3 phut 30 giay, HVN11L se cham nguong duong bang
+# Pha 1: TOGA Thrust, boc dau leo cao gap voi ti toc 3000 fpm
+00:03:30>ALT HVN11L 5000 3000
+00:03:30>SPD HVN11L 210
+00:03:30>HDG HVN11L 107.20
+
+# Pha 2: Dat do cao gia toc (khoang 1500 ft AGL) sau 30 giay (00:04:00)
+# Phi cong giam luc day ve Climb Thrust, ti toc giam ve 1500 fpm, gia toc len 250 kts
+00:04:00>ALT HVN11L 5000 1500
+00:04:00>SPD HVN11L 250

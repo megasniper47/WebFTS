@@ -1,0 +1,4 @@
+# _TRIGGERDEMO_VNAV_ON.scn -- re-engage VNAV after initial climb, copied from
+# the proven _KB5GEN_VNAV_ON.scn.
+# Call: PCALL _TRIGGERDEMO_VNAV_ON <acid>
+00:00:00.00>%0 VNAV ON

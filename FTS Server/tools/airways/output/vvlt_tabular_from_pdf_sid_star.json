@@ -1,0 +1,225 @@
+{
+  "_source": "vietnam_ats_routes_pack/Dữ liệu PTB + code/PTB QLBMN/PTB LT/*.pdf, trích text trực tiếp (pypdfium2 get_textpage) -- các PDF này là text-based (không scan), độ tin cậy cao hơn các bảng đọc bằng vision",
+  "_note": "VVLT runway RNP RWY 23L (1 CHC duy nhất, không song song). CA/DF leg đầu mỗi SID transition dùng chung initial climb legs (LT601->LT602->LT603->LUTRI), giống cấu trúc thấy ở VVDL. Bảng gốc PDF có cột 'Magnetic Variation' = +1 cho mọi hàng (không như CM/DL/PQ = 0) -- giữ nguyên giá trị gốc, không tự sửa.",
+  "transition_altitude": 9000,
+  "waypoints": {
+    "ANBOV": {"lat": "10°15'59.0\"N", "lon": "106°14'54.0\"E"},
+    "ATGAS": {"lat": "10°24'17.0\"N", "lon": "105°31'02.0\"E"},
+    "BIXEX": {"lat": "11°36'13.3\"N", "lon": "108°08'19.3\"E"},
+    "DOVIN": {"lat": "11°55'01.0\"N", "lon": "108°06'29.0\"E"},
+    "ELSAS": {"lat": "10°08'12.0\"N", "lon": "107°32'54.0\"E"},
+    "LANHI": {"lat": "10°24'22.0\"N", "lon": "107°11'29.0\"E"},
+    "LT600": {"lat": "10°44'39.8\"N", "lon": "106°59'06.1\"E"},
+    "LT601": {"lat": "10°52'03.9\"N", "lon": "106°59'22.0\"E"},
+    "LT602": {"lat": "10°57'36.3\"N", "lon": "107°08'08.3\"E"},
+    "LT603": {"lat": "10°59'53.0\"N", "lon": "107°11'42.2\"E"},
+    "LT604": {"lat": "11°04'55.3\"N", "lon": "107°20'08.6\"E"},
+    "LT606": {"lat": "10°33'43.1\"N", "lon": "107°05'47.0\"E"},
+    "LT607": {"lat": "10°28'53.0\"N", "lon": "107°08'43.9\"E"},
+    "LT608": {"lat": "10°37'54.5\"N", "lon": "106°51'49.8\"E"},
+    "LT609": {"lat": "10°27'47.7\"N", "lon": "106°34'59.3\"E"},
+    "LT610": {"lat": "10°35'46.7\"N", "lon": "106°29'15.9\"E"},
+    "LT611": {"lat": "10°38'56.1\"N", "lon": "106°27'00.0\"E"},
+    "LT612": {"lat": "10°42'14.9\"N", "lon": "106°24'37.4\"E"},
+    "LT630": {"lat": "10°22'32.5\"N", "lon": "106°51'04.6\"E"},
+    "LUTRI": {"lat": "11°09'41.4\"N", "lon": "107°14'10.5\"E"},
+    "NIXIV": {"lat": "09°23'36.0\"N", "lon": "106°38'02.0\"E"},
+    "PATMA": {"lat": "12°20'11.0\"N", "lon": "107°48'36.0\"E"},
+    "POTIX": {"lat": "10°14'05.0\"N", "lon": "105°37'00.0\"E"},
+    "PTH": {"lat": "10°55'41.0\"N", "lon": "108°04'19.0\"E"},
+    "SAPEN": {"lat": "11°01'12.0\"N", "lon": "106°11'00.0\"E"},
+    "TRN": {"lat": "10°05'00.2\"N", "lon": "105°42'19.9\"E"},
+    "TS644": {"lat": "10°12'44.3\"N", "lon": "106°37'19.7\"E"},
+    "VIPEV": {"lat": "10°17'56.5\"N", "lon": "107°04'31.6\"E"},
+    "XOBAV": {"lat": "10°08'25.0\"N", "lon": "106°38'33.0\"E"},
+    "DALAP": {"lat": "11°00'51.0\"N", "lon": "107°23'21.8\"E"},
+    "DAGAG": {"lat": "09°27'48.0\"N", "lon": "108°26'30.0\"E"},
+    "LETRO": {"lat": "10°28'37.5\"N", "lon": "106°50'53.4\"E"},
+    "LT401": {"lat": "10°50'56.9\"N", "lon": "107°07'52.5\"E"},
+    "LT402": {"lat": "10°53'18.4\"N", "lon": "107°11'10.0\"E"},
+    "LT403": {"lat": "10°55'39.8\"N", "lon": "107°14'27.6\"E"},
+    "LT500": {"lat": "10°58'12.9\"N", "lon": "107°18'50.3\"E"},
+    "LT501": {"lat": "10°51'35.7\"N", "lon": "107°17'26.4\"E"},
+    "LT502": {"lat": "10°49'14.3\"N", "lon": "107°14'08.9\"E", "_note": "IAF"},
+    "LT503": {"lat": "10°38'19.2\"N", "lon": "107°19'08.7\"E"},
+    "LT504": {"lat": "10°32'20.6\"N", "lon": "107°12'32.9\"E"},
+    "LT505": {"lat": "10°23'45.3\"N", "lon": "107°03'04.7\"E"},
+    "LT510": {"lat": "10°47'42.3\"N", "lon": "107°03'20.8\"E"},
+    "LT511": {"lat": "10°43'38.2\"N", "lon": "107°06'19.7\"E"},
+    "LT512": {"lat": "10°46'52.9\"N", "lon": "107°10'51.3\"E"},
+    "LT515": {"lat": "11°15'21.2\"N", "lon": "107°34'52.4\"E"},
+    "LT545": {"lat": "10°27'55.0\"N", "lon": "107°07'40.0\"E"},
+    "NOKUM": {"lat": "10°34'55.8\"N", "lon": "106°35'04.2\"E"},
+    "TS492": {"lat": "10°32'18.3\"N", "lon": "106°41'39.8\"E"},
+    "TS496": {"lat": "10°40'53.4\"N", "lon": "106°29'37.1\"E"},
+    "TS498": {"lat": "10°43'52.1\"N", "lon": "106°26'53.5\"E"},
+    "VETOM": {"lat": "11°13'59.0\"N", "lon": "107°36'27.0\"E"},
+    "VICAL": {"lat": "10°08'46.9\"N", "lon": "106°45'02.0\"E"}
+  },
+  "SID": {
+    "runway": "23L",
+    "common_initial_climb": [
+      {"serial": "010", "path": "CA", "course_mag": 235, "course_true": 234.1, "mag_var": 1, "alt_ft": "+700", "nav_spec": "RNP 1"},
+      {"serial": "020", "path": "DF", "waypoint": "LT601", "mag_var": 1, "speed_kt": "-195", "nav_spec": "RNP 1"},
+      {"serial": "030", "path": "TF", "waypoint": "LT602", "course_mag": 58, "course_true": 57.4, "mag_var": 1, "dist_nm": 10.24, "alt_ft": "@3000", "nav_spec": "RNP 1"},
+      {"serial": "040", "path": "TF", "waypoint": "LT603", "course_mag": 58, "course_true": 57.1, "mag_var": 1, "dist_nm": 4.18, "alt_ft": "@3000", "nav_spec": "RNP 1"},
+      {"serial": "050", "path": "TF", "waypoint": "LUTRI", "course_mag": 15, "course_true": 14.0, "mag_var": 1, "dist_nm": 10.06, "alt_ft": "-FL100", "nav_spec": "RNP 1"}
+    ],
+    "PATMA 5C": {
+      "legs_after_common": [
+        {"serial": "060", "path": "TF", "waypoint": "PATMA", "course_mag": 27, "course_true": 25.6, "mag_var": 1, "dist_nm": 77.88, "alt_ft": "+FL290", "min_cg_pct": 4.7, "nav_spec": "RNP 1"}
+      ]
+    },
+    "DOVIN 5F": {
+      "legs_after_common": [
+        {"serial": "060", "path": "TF", "waypoint": "DOVIN", "course_mag": 50, "course_true": 48.6, "mag_var": 1, "dist_nm": 68.36, "alt_ft": "+9000", "nav_spec": "RNP 1"}
+      ]
+    },
+    "BIXEX 5D": {
+      "legs_after_common": [
+        {"serial": "060", "path": "TF", "waypoint": "BIXEX", "course_mag": 65, "course_true": 63.5, "mag_var": 1, "dist_nm": 59.38, "alt_ft": "+FL100", "nav_spec": "RNP 1"}
+      ]
+    },
+    "PTH 5E": {
+      "legs_after_common": [
+        {"serial": "060", "path": "TF", "waypoint": "PTH", "course_mag": 107, "course_true": 105.7, "mag_var": 1, "dist_nm": 51.24, "alt_ft": "+FL135", "nav_spec": "RNP 1"}
+      ]
+    },
+    "PATMA 5D": {
+      "_note": "diverges earlier than 5C -- uses LT604 instead of LUTRI",
+      "legs": [
+        {"serial": "010", "path": "CA", "course_mag": 235, "course_true": 234.1, "mag_var": 1, "alt_ft": "+700", "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "DF", "waypoint": "LT601", "mag_var": 1, "speed_kt": "-195", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "LT602", "course_mag": 58, "course_true": 57.4, "mag_var": 1, "dist_nm": 10.24, "alt_ft": "@3000", "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "LT603", "course_mag": 58, "course_true": 57.1, "mag_var": 1, "dist_nm": 4.18, "alt_ft": "@3000", "nav_spec": "RNP 1"},
+        {"serial": "050", "path": "TF", "waypoint": "LT604", "course_mag": 60, "course_true": 58.8, "mag_var": 1, "dist_nm": 9.70, "alt_ft": "-8000", "min_cg_pct": 4.5, "nav_spec": "RNP 1"},
+        {"serial": "060", "path": "TF", "waypoint": "PATMA", "course_mag": 21, "course_true": 20.4, "mag_var": 1, "dist_nm": 79.96, "alt_ft": "+FL290", "min_cg_pct": 4.5, "nav_spec": "RNP 1"}
+      ]
+    },
+    "ANBOV 5C / TRN 5D / POTIX 5A / ATGAS 5A / SAPEN 5C": {
+      "common_initial_2": [
+        {"serial": "010", "path": "DF", "waypoint": "LT600", "flyover": true, "mag_var": 1, "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "DF", "waypoint": "LT608", "mag_var": 1, "alt_ft": "@3000", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "LT609", "course_mag": 240, "course_true": 238.8, "mag_var": 1, "dist_nm": 19.40, "alt_ft": "-6000/+4000", "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "ANBOV", "course_mag": 240, "course_true": 239.3, "mag_var": 1, "dist_nm": 23.03, "nav_spec": "RNP 1"}
+      ],
+      "ANBOV_5C": {"_note": "terminates at ANBOV (step 040 above)"},
+      "TRN_5D": {"legs_after_common2": [{"serial": "050", "path": "TF", "waypoint": "TRN", "course_mag": 252, "course_true": 251.3, "mag_var": 1, "dist_nm": 33.93, "nav_spec": "RNP 1"}]},
+      "POTIX_5A": {"legs_after_common2": [{"serial": "050", "path": "TF", "waypoint": "POTIX", "course_mag": 268, "course_true": 267.2, "mag_var": 1, "dist_nm": 37.41, "nav_spec": "RNP 1"}]},
+      "ATGAS_5A": {"legs_after_common2": [{"serial": "050", "path": "TF", "waypoint": "ATGAS", "course_mag": 282, "course_true": 280.9, "mag_var": 1, "dist_nm": 44.02, "nav_spec": "RNP 1"}]},
+      "SAPEN_5C": {"legs_after_common2": [
+        {"serial": "040b", "path": "TF", "waypoint": "LT610", "course_mag": 326, "course_true": 324.7, "mag_var": 1, "dist_nm": 9.74, "alt_ft": "-FL100", "min_cg_pct": 4.9, "nav_spec": "RNP 1"},
+        {"serial": "050", "path": "TF", "waypoint": "LT611", "course_mag": 326, "course_true": 324.6, "mag_var": 1, "dist_nm": 3.85, "alt_ft": "-FL110/+FL100", "min_cg_pct": 4.9, "nav_spec": "RNP 1"},
+        {"serial": "060", "path": "TF", "waypoint": "LT612", "course_mag": 326, "course_true": 324.6, "mag_var": 1, "dist_nm": 4.04, "alt_ft": "-FL130", "nav_spec": "RNP 1"},
+        {"serial": "070", "path": "TF", "waypoint": "SAPEN", "course_mag": 326, "course_true": 324.6, "mag_var": 1, "dist_nm": 23.14, "alt_ft": "-FL140", "nav_spec": "RNP 1"}
+      ], "_note_sapen": "SAPEN replaces step 040 'TF ANBOV' with LT610 onward -- diverges right after LT609, not after ANBOV like TRN/POTIX/ATGAS"}
+    },
+    "DOVIN 5G": {"_note": "not fully captured in these coding pages (name appears in chart legend p.2 but tabular row not found in OCR text) -- likely identical to DOVIN 5F structurally per chart, needs manual verify", "status": "incomplete"},
+    "BIXEX 5E": {"_note": "same as DOVIN 5G -- name in legend, tabular not found", "status": "incomplete"},
+    "PTH 5F": {"_note": "same -- name in legend, tabular not found", "status": "incomplete"},
+    "ELSAS 5D": {"_note": "same -- name in legend, tabular not found", "status": "incomplete"},
+    "NIXIV 5C": {"_note": "same -- name in legend, tabular not found", "status": "incomplete"}
+  },
+  "STAR": {
+    "runway": "23L",
+    "common_final": [
+      {"serial": "A", "path": "TF", "waypoint": "LT502", "course_mag": 337, "course_true": 335.7, "mag_var": 1, "dist_nm": 11.93, "speed_kt": "-210", "nav_spec": "RNP 1"},
+      {"serial": "B", "path": "TF", "waypoint": "LT501", "course_mag": 55, "course_true": 54.1, "mag_var": 1, "dist_nm": 4.00, "nav_spec": "RNP 1"},
+      {"serial": "C", "path": "TF", "waypoint": "LT403", "course_mag": 325, "course_true": 324.1, "mag_var": 1, "dist_nm": 5.00, "nav_spec": "RNP 1"},
+      {"serial": "D", "path": "TF", "waypoint": "LT402", "course_mag": 235, "course_true": 234.1, "mag_var": 1, "dist_nm": 4.00, "nav_spec": "RNP 1"},
+      {"serial": "E", "path": "TF", "waypoint": "LT401", "course_mag": 235, "course_true": 234.1, "mag_var": 1, "dist_nm": 4.00, "nav_spec": "RNP 1"},
+      {"serial": "F", "path": "TF", "waypoint": "LT510", "course_mag": 235, "course_true": 234.1, "mag_var": 1, "dist_nm": 5.50, "nav_spec": "RNP 1"},
+      {"serial": "G", "path": "TF", "waypoint": "LT511", "course_mag": 145, "course_true": 144.1, "mag_var": 1, "dist_nm": 5.00, "nav_spec": "RNP 1"},
+      {"serial": "H", "path": "TF", "waypoint": "LT512", "course_mag": 55, "course_true": 54.1, "mag_var": 1, "dist_nm": 5.50, "nav_spec": "RNP 1"},
+      {"serial": "I", "path": "TF", "waypoint": "LT502 (IAF)", "course_mag": 55, "course_true": 54.1, "mag_var": 1, "dist_nm": 4.00, "alt_ft": "@3000", "nav_spec": "RNP 1"}
+    ],
+    "DOVIN 5H": {
+      "legs": [
+        {"serial": "010", "path": "IF", "waypoint": "DOVIN", "mag_var": 1, "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "LT515", "course_mag": 219, "course_true": 218.2, "mag_var": 1, "dist_nm": 50.22, "alt_ft": "+FL100", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "DALAP", "course_mag": 219, "course_true": 218.1, "mag_var": 1, "dist_nm": 18.34, "alt_ft": "-6000/+4000", "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "LT500", "course_mag": 240, "course_true": 239.5, "mag_var": 1, "dist_nm": 5.17, "alt_ft": "@3000", "speed_kt": "-210", "nav_spec": "RNP 1"},
+        {"serial": "050", "path": "TF", "waypoint": "LT403", "course_mag": 240, "course_true": 239.5, "mag_var": 1, "dist_nm": 5.00, "nav_spec": "RNP 1"},
+        {"serial": "060..130", "note": "continues through common_final sequence (LT402->LT401->LT510->LT511->LT512->LT502->LT501->LT403 again @3000)"}
+      ]
+    },
+    "VETOM 5B": {
+      "legs": [
+        {"serial": "010", "path": "IF", "waypoint": "VETOM", "alt_ft": "+FL100", "mag_var": 1, "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "DALAP", "course_mag": 226, "course_true": 224.6, "mag_var": 1, "dist_nm": 18.34, "alt_ft": "-6000/+4000", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "LT500", "course_mag": 240, "course_true": 239.5, "mag_var": 1, "dist_nm": 5.17, "alt_ft": "@3000", "speed_kt": "-210", "nav_spec": "RNP 1"},
+        {"serial": "040..120", "note": "continues LT403->LT402->LT401->LT510->LT511->LT512->LT502->LT501->LT403 @3000"}
+      ]
+    },
+    "PTH 5G": {
+      "legs": [
+        {"serial": "010", "path": "IF", "waypoint": "PTH", "alt_ft": "+FL135", "mag_var": 1, "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "DALAP", "course_mag": 278, "course_true": 277.3, "mag_var": 1, "dist_nm": 40.61, "alt_ft": "-6000/+4000", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "LT500", "course_mag": 240, "course_true": 239.5, "mag_var": 1, "dist_nm": 5.17, "alt_ft": "@3000", "speed_kt": "-210", "nav_spec": "RNP 1"},
+        {"serial": "040..120", "note": "continues LT403->LT402->LT401->LT510->LT511->LT512->LT502->LT501->LT403 @3000"}
+      ]
+    },
+    "DAGAG 5A": {
+      "legs": [
+        {"serial": "010", "path": "IF", "waypoint": "DAGAG", "alt_ft": "+FL135", "mag_var": 1, "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "ELSAS", "course_mag": 308, "course_true": 307.3, "mag_var": 1, "dist_nm": 66.46, "alt_ft": "-FL120", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "LT503", "course_mag": 337, "course_true": 335.7, "mag_var": 1, "dist_nm": 32.90, "alt_ft": "@3000", "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "LT502", "course_mag": 337, "course_true": 335.7, "mag_var": 1, "dist_nm": 11.93, "speed_kt": "-210", "nav_spec": "RNP 1"},
+        {"serial": "050..120", "note": "continues LT501->LT403->LT402->LT401->LT510->LT511->LT512->LT502 @3000"}
+      ]
+    },
+    "NIXIV 5D": {
+      "legs": [
+        {"serial": "010", "path": "IF", "waypoint": "NIXIV", "mag_var": 1, "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "VICAL", "course_mag": 10, "course_true": 8.7, "mag_var": 1, "dist_nm": 45.50, "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "LT505", "course_mag": 51, "course_true": 50.0, "mag_var": 1, "dist_nm": 23.21, "alt_ft": "@7000", "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "LT545", "course_mag": 48, "course_true": 47.5, "mag_var": 1, "dist_nm": 6.13, "alt_ft": "-6000", "nav_spec": "RNP 1"},
+        {"serial": "050", "path": "TF", "waypoint": "LT504", "course_mag": 49, "course_true": 47.5, "mag_var": 1, "dist_nm": 6.52, "alt_ft": "+5000", "nav_spec": "RNP 1"},
+        {"serial": "060", "path": "TF", "waypoint": "LT503", "course_mag": 49, "course_true": 47.5, "mag_var": 1, "dist_nm": 8.81, "alt_ft": "@3000", "nav_spec": "RNP 1"},
+        {"serial": "070..150", "note": "continues LT502(-210)->LT501->LT403->LT402->LT401->LT510->LT511->LT512->LT502 @3000"}
+      ]
+    },
+    "TRN 5E": {
+      "legs": [
+        {"serial": "010", "path": "IF", "waypoint": "TRN", "mag_var": 1, "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "ANBOV", "course_mag": 72, "course_true": 71.2, "mag_var": 1, "dist_nm": 33.93, "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "NOKUM", "course_mag": 47, "course_true": 46.5, "mag_var": 1, "dist_nm": 27.40, "alt_ft": "+FL120", "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "TS492", "course_mag": 113, "course_true": 111.9, "mag_var": 1, "dist_nm": 7.00, "alt_ft": "+FL110", "nav_spec": "RNP 1"},
+        {"serial": "050", "path": "TF", "waypoint": "LETRO", "course_mag": 113, "course_true": 111.9, "mag_var": 1, "dist_nm": 9.80, "alt_ft": "@7000", "nav_spec": "RNP 1"},
+        {"serial": "060", "path": "TF", "waypoint": "LT505", "course_mag": 113, "course_true": 112.0, "mag_var": 1, "dist_nm": 12.95, "alt_ft": "@7000", "nav_spec": "RNP 1"},
+        {"serial": "070", "path": "TF", "waypoint": "LT545", "course_mag": 48, "course_true": 47.5, "mag_var": 1, "dist_nm": 6.13, "alt_ft": "-6000", "nav_spec": "RNP 1"},
+        {"serial": "080", "path": "TF", "waypoint": "LT504", "course_mag": 49, "course_true": 47.5, "mag_var": 1, "dist_nm": 6.52, "alt_ft": "+5000", "nav_spec": "RNP 1"},
+        {"serial": "090", "path": "TF", "waypoint": "LT503", "course_mag": 49, "course_true": 47.5, "mag_var": 1, "dist_nm": 8.81, "alt_ft": "@3000", "nav_spec": "RNP 1"},
+        {"serial": "100..170", "note": "continues LT502(-210)->LT501->LT403->LT402->LT401->LT510->LT511->LT512->LT502 @3000"}
+      ]
+    },
+    "ANBOV 5D": {
+      "legs": [
+        {"serial": "010", "path": "IF", "waypoint": "ANBOV", "mag_var": 1, "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "NOKUM", "course_mag": 47, "course_true": 46.5, "mag_var": 1, "dist_nm": 27.40, "alt_ft": "+FL120", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "TS492", "course_mag": 113, "course_true": 111.9, "mag_var": 1, "dist_nm": 7.00, "alt_ft": "+FL110", "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "LETRO", "course_mag": 113, "course_true": 111.9, "mag_var": 1, "dist_nm": 9.80, "alt_ft": "@7000", "nav_spec": "RNP 1"},
+        {"serial": "050", "path": "TF", "waypoint": "LT505", "course_mag": 113, "course_true": 112.0, "mag_var": 1, "dist_nm": 12.95, "alt_ft": "@7000", "nav_spec": "RNP 1"},
+        {"serial": "060..170", "note": "continues LT545->LT504->LT503->LT502(-210)->LT501->LT403->LT402->LT401->LT510->LT511->LT512->LT502 @3000 (same tail as TRN 5E)"}
+      ]
+    },
+    "SAPEN 5D": {
+      "legs": [
+        {"serial": "010", "path": "IF", "waypoint": "SAPEN", "mag_var": 1, "nav_spec": "RNP 1"},
+        {"serial": "020", "path": "TF", "waypoint": "TS498", "course_mag": 139, "course_true": 137.8, "mag_var": 1, "dist_nm": 23.28, "alt_ft": "+FL150", "nav_spec": "RNP 1"},
+        {"serial": "030", "path": "TF", "waypoint": "TS496", "course_mag": 139, "course_true": 137.8, "mag_var": 1, "dist_nm": 4.00, "alt_ft": "@FL140", "nav_spec": "RNP 1"},
+        {"serial": "040", "path": "TF", "waypoint": "NOKUM", "course_mag": 139, "course_true": 137.9, "mag_var": 1, "dist_nm": 8.00, "alt_ft": "+FL120", "nav_spec": "RNP 1"},
+        {"serial": "050", "path": "TF", "waypoint": "TS492", "course_mag": 113, "course_true": 111.9, "mag_var": 1, "dist_nm": 7.00, "alt_ft": "+FL110", "nav_spec": "RNP 1"},
+        {"serial": "060", "path": "TF", "waypoint": "LETRO", "course_mag": 113, "course_true": 111.9, "mag_var": 1, "dist_nm": 9.80, "alt_ft": "@7000", "nav_spec": "RNP 1"},
+        {"serial": "070", "path": "TF", "waypoint": "LT505", "course_mag": 113, "course_true": 112.0, "mag_var": 1, "dist_nm": 12.95, "alt_ft": "@7000", "nav_spec": "RNP 1"},
+        {"serial": "080..190", "note": "continues LT545->LT504->LT503->LT502(-210)->LT501->LT403->LT402->LT401->LT510->LT511->LT512->LT502 @3000 (same tail as TRN/ANBOV)"}
+      ]
+    },
+    "holding": [
+      {"fix": "ANBOV", "inbound_course_mag": 29, "inbound_course_true": 28.0, "mag_var": 1, "time_min": 1.5, "turn": "L", "alt_ft": "-FL200/+8000", "speed_kt": "-230", "nav_spec": "RNP 1"},
+      {"fix": "DALAP", "inbound_course_mag": 237, "inbound_course_true": 236.0, "mag_var": 1, "time_min": 1, "turn": "L", "alt_ft": "-6000/+4000", "speed_kt": "-220", "nav_spec": "RNP 1"},
+      {"fix": "NOKUM", "inbound_course_mag": 113, "inbound_course_true": 112.0, "mag_var": 1, "time_min": 1, "turn": "R", "alt_ft": "-FL140/+FL120", "speed_kt": "-220", "nav_spec": "RNP 1"},
+      {"fix": "VICAL", "inbound_course_mag": 1, "inbound_course_true": 360.0, "mag_var": 1, "time_min": 1, "turn": "L", "alt_ft": "-FL120/+7000", "speed_kt": "-230", "nav_spec": "RNP 1"}
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+# _KB5v2_STOP_DEP001_RWYHOLD.scn
+# Gọi bởi ATDIST khi DEP001 tới gần điểm dừng chờ đầu 35R. Chuyển sang MOVE để
+# khoá cứng vị trí/hướng mũi/tốc độ=0 — ngăn autopilot tiếp tục điều hướng tới
+# waypoint mồi phía sau, và tránh hẳn cơ chế tự xoá-khi-đến-waypoint-cuối.
+00:00:00.00>DEP001 LNAV OFF
+00:00:00.00>DEP001 VNAV OFF
+00:00:00.00>MOVE DEP001,16.029200,108.202500,0,352.1,0.0

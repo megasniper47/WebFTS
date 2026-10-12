@@ -1,0 +1,67 @@
+ 0:00:00.00>noise off
+ 0:00:00.00>pan 16.0 108.0
+ 0:00:00.00>zoom 5
+ 0:00:00.00># call FIR/VV/ALL
+ 0:00:00.00>call FIR_1803
+
+# --- FLIGHTS OVER VIETNAM AIRSPACE ---
+
+# Vietnam Airlines HVN213 (Hanoi VVNB to HCMC VVTS) - Flying over Da Nang heading South
+ 0:00:00.00>CRE HVN213, A359, 16.521, 107.954, 175, FL350, 460
+ 0:00:00.00>DEST HVN213, VVTS
+
+# Vietjet Air VJC624 (HCMC VVTS to Hanoi VVNB) - Flying North over Pleiku
+ 0:00:00.00>CRE VJC624, A321, 14.320, 108.012, 355, FL360, 450
+ 0:00:00.00>DEST VJC624, VVNB
+
+# Bamboo Airways QH142 (Da Nang VVDN to Hanoi VVNB) - Flying North over Vinh
+ 0:00:00.00>CRE QH142, A320, 18.520, 105.981, 345, FL280, 440
+ 0:00:00.00>DEST QH142, VVNB
+
+# Vietnam Airlines HVN115 (Hanoi VVNB to Da Nang VVDN) - Descreasing altitude over Thanh Hoa heading South
+ 0:00:00.00>CRE HVN115, B789, 19.824, 105.811, 160, FL240, 410
+ 0:00:00.00>DEST HVN115, VVDN
+
+# Vietjet Air VJC321 (HCMC VVTS to Da Nang VVDN) - Flying North over Cam Ranh/Nha Trang
+ 0:00:00.00>CRE VJC321, A321, 12.245, 109.182, 010, FL300, 430
+ 0:00:00.00>DEST VJC321, VVDN
+
+# Vietnam Airlines HVN1201 (Hanoi VVNB to Phu Quoc VVPQ) - Flying South over Laos/Cambodia border
+ 0:00:00.00>CRE HVN1201, A321, 15.580, 105.120, 195, FL340, 450
+ 0:00:00.00>DEST HVN1201, VVPQ
+
+# Singapore Airlines SIA182 (Singapore WSSS to Hanoi VVNB) - Flying North along Central Coast
+ 0:00:00.00>CRE SIA182, B77W, 11.200, 109.620, 350, FL380, 470
+ 0:00:00.00>DEST SIA182, VVNB
+
+# All Nippon Airways ANA843 (Tokyo RJTT to HCMC VVTS) - Entering Vietnam airspace from East Sea
+ 0:00:00.00>CRE ANA843, B789, 11.150, 110.840, 255, FL360, 460
+ 0:00:00.00>DEST ANA843, VVTS
+
+# Cathay Pacific CPA751 (Hong Kong VHHH to HCMC VVTS) - Flying Southwest over Paracel Islands (East Sea)
+ 0:00:00.00>CRE CPA751, A333, 15.820, 112.120, 220, FL370, 460
+ 0:00:00.00>DEST CPA751, VVTS
+
+# Vietravel Airlines VJT310 (HCMC VVTS to Hanoi VVNB) - Flying North over Binh Dinh
+ 0:00:00.00>CRE VJT310, A321, 13.510, 108.920, 355, FL320, 440
+ 0:00:00.00>DEST VJT310, VVNB
+
+# Pacific Airlines PIC521 (HCMC VVTS to Vinh VVVH) - Flying North over Kon Tum
+ 0:00:00.00>CRE PIC521, A320, 14.850, 107.820, 350, FL300, 440
+ 0:00:00.00>DEST PIC521, VVVH
+
+# Korean Air KAL681 (Seoul RKSI to HCMC VVTS) - Southwest over Central Vietnam coast
+ 0:00:00.00>CRE KAL681, A333, 14.210, 109.840, 230, FL360, 460
+ 0:00:00.00>DEST KAL681, VVTS
+
+# Air France AFR258 (Paris LFPG to HCMC VVTS) - Overflying Laos towards HCMC
+ 0:00:00.00>CRE AFR258, B77W, 16.820, 104.910, 145, FL350, 470
+ 0:00:00.00>DEST AFR258, VVTS
+
+# Vietjet Air VJC602 (HCMC VVTS to Hai Phong VVCI) - Flying North over East Sea coastal route
+ 0:00:00.00>CRE VJC602, A321, 17.520, 108.810, 345, FL360, 450
+ 0:00:00.00>DEST VJC602, VVCI
+
+# Bamboo Airways QH211 (Hanoi VVNB to HCMC VVTS) - Over Thanh Hoa heading South
+ 0:00:00.00>CRE QH211, A320, 19.920, 105.780, 175, FL310, 440
+ 0:00:00.00>DEST QH211, VVTS

@@ -1,0 +1,375 @@
+# ================================================================
+# KỊCH BẢN 5 -- BIẾN THỂ 6 ĐIỂM/CADAS 3 PHÚT (LẶP LẠI 1 GIỜ, TÀU BAY HỖN HỢP)
+# -- KHAI THÁC PHỐI HỢP 35L/35R -- VVDN
+#
+# Sinh tự động bởi _gen_kb5_1hour_6pts_cadas3min.py (biến thể của
+# _gen_kb5_1hour.py), LẶP LẠI đúng chu trình phối hợp đã kiểm chứng trong
+# VVDN_KB5_35L35R_2ARR2DEP_v2.scn (touchdown->30s->roll, DEP bay hết đường
+# CHC->cho ARR cắt + DEP kế tiếp vào CHC, DELRTE trước mọi lần ADDWPT lại sau
+# khi đã MOVE, v.v.) cho 20 cặp ARR/DEP liên tiếp, trải trong ~1 giờ
+# (ARR cách nhau 180s, DEP cách nhau 180s -- ĐÚNG nhịp độ của
+# kịch bản gốc, không đổi).
+#
+# NGẪU NHIÊN (seed cố định 20260807 để tái tạo được):
+#  - Loại tàu bay mỗi chuyến: 70% medium (A320, A321, A20N, A21N, B738, B38M, B739),
+#    30% heavy (A332, A333, A359, B744, B763, B772, B773, B77W, B788, B789, B748, B78X).
+#  - Hướng thoát ly của mỗi tàu bay hạ cánh: G4 (về Gate 26) hoặc G6 (về Gate 11), 50/50.
+#  - Điểm CRE của mỗi chuyến đến (trừ ARR001): ngẫu nhiên 1 trong 6 điểm theo
+#    ĐÚNG tỉ lệ yêu cầu -- HAMIN 30%, SADIN 20%, VILOT 10%, PAPRA 15%,
+#    BUNTA 20%, CQ 5% (xem STAR_IAF/STAR_CHAINS trong generator; SADIN/VILOT/
+#    PAPRA/BUNTA là 4/9 STAR RNAV RWY35LR thật của VVDN, CQ là STAR RNAV thứ
+#    9 -- trước đây bị loại khỏi bản gốc vì không qua TRACO -- HAMIN là 1
+#    điểm ATS enroute thật (AIP ENR 3.1), nối vào CAHEO 2K thật qua đúng đoạn
+#    đường bay công bố HAMIN->PHULU->CAHEO).
+#  - SID của mỗi chuyến đi: ngẫu nhiên 1 trong 8 phương thức SID RNAV
+#    RWY35LR thật của VVDN (KONCO/VIDEN/PHULU/BUNTA qua DN456; KUMUN/SADIN/
+#    XAQUA/PAPRA qua DN450 -- xem SID_CHAINS trong generator). Không đổi so
+#    với bản gốc (yêu cầu chỉ liên quan tàu bay đến).
+#
+# LUỒNG ĐẾN (ARR) -- MÔ PHỎNG "NÚT THẮT" CADAS THẬT:
+#  - ARR001 xuất phát THẲNG tại điểm hội tụ CADAS, ĐÚNG 00:00:00 tuyệt đối
+#    (không dịch chuyển kịch bản).
+#  - ARR002-20 được gán ngẫu nhiên 1 trong 6 điểm trên (tỉ lệ nêu trên),
+#    CRE tại đúng toạ độ điểm đó, mực bay FL230 hoặc FL240 (ngẫu nhiên, theo
+#    yêu cầu), rồi bay theo đúng chuỗi toạ độ+khống chế cao độ/tốc độ THẬT
+#    của AIP (AD 2-VVDN STAR RNAV RWY35LR + ENR 3.1 cho đoạn HAMIN, không bịa
+#    số liệu) tới CADAS. Thời gian bay điểm CRE->CADAS được ƯỚC LƯỢNG (không
+#    ép cứng) để tính NGƯỢC ra thời điểm CRE (spawn), sao cho chuyến đến
+#    CADAS cách ARR001 (và các chuyến trước) đúng giãn cách 180s (3 phút)
+#    -- xem thuật toán ở BƯỚC 1.
+#  - Từ CADAS tới khi chạm đất, tốc độ (IAS) tại các mốc 25/10/5NM RIÊNG theo
+#    BADA của từng loại tàu bay (Vstall cấu hình AP/LD), rải vào đúng 3 dải:
+#    200-230kt@25NM, 160-180kt@10NM, 150-160kt@5NM -- thời gian bay THỰC không
+#    bị ép, phụ thuộc hoàn toàn vào động lực học BADA/OpenAP của engine.
+#  - LƯU Ý VẬT LÝ: cả 6 điểm đều cần nhiều phút bay tới CADAS (HAMIN xa nhất,
+#    >20 phút), dài hơn nhiều so với mục tiêu của vài slot ARR rất sớm (ví dụ
+#    ARR002 mục tiêu chỉ 150s). Với các slot này, hệ thống tự CẮT BỎ đoạn xa
+#    và CRE ngay tại một điểm nội suy TRÊN CHÍNH lộ trình đó (gần CADAS hơn,
+#    giữ nguyên cao độ nội suy vật lý, KHÔNG áp FL230/240 vì không còn CRE
+#    đúng tại điểm được đặt tên nữa) sao cho thời gian bay còn lại đúng bằng
+#    target -- nhờ vậy MỌI chuyến (kể cả các slot rất sớm) đều đạt đúng giãn
+#    cách 180s tại CADAS, không còn trễ (xem truncated_star_spawn()).
+#
+# ĐƠN GIẢN HOÁ CÓ CHỦ ĐÍCH (khác với kịch bản 2-cặp gốc):
+#  - CHỈ dùng lại 2 vị trí đỗ (Gate 26, Gate 27) cho TẤT CẢ 20 chuyến cất
+#    cánh, và 2 đích đến (Gate 26 nếu thoát G4, Gate 11 nếu thoát G6) cho TẤT
+#    CẢ chuyến hạ cánh -- không dựng thêm lộ trình lăn cho từng gate khác
+#    nhau (ngoài phạm vi khả thi của yêu cầu này).
+#  - Tàu bay cất cánh ĐẦU TIÊN (DEP001) lăn thẳng ra đầu 35R (không qua
+#    PRE_HOLD, vì chưa có ai chiếm đường CHC); TẤT CẢ các chuyến sau đều qua
+#    PRE_HOLD rồi xếp hàng chờ chuyến trước bay hết đường CHC mới được vào.
+#
+# ĐẨY LÙI (PUSHBACK): mỗi DEP, khi tới lượt (giãn cách 180s giữa 2
+# lần đẩy lùi liên tiếp), được CRE đứng yên tại bến rồi PCALL
+# _KB5GEN_PUSHBACK_<gate> -- lùi ~35m dọc hướng đối diện mũi tàu (giữ nguyên
+# hướng bến trong lúc bị kéo lùi, đúng thực tế xe kéo không xoay đầu), sau đó
+# quay đầu theo hướng đường lăn và mới bắt đầu lăn theo lộ trình đã định.
+#
+# XẾP HÀNG KHÔNG ĐÈ LÊN NHAU (gate -> PRE_HOLD): dùng plugin SURFACETAXI
+# (bluesky/plugins/surfacetaxi.py, thuật toán Stop&Go kiểu OpenTaxi, đã có
+# sẵn trong engine nhưng trước đây chưa bật). Mỗi DEP được đặt dưới quyền
+# điều phối của plugin này (TAXION) ngay khi rời bến -- nếu tàu phía trước
+# (ưu tiên hơn, vì gần đích hơn) CHƯA thực sự rời vị trí, tàu sau tự động
+# phanh (selspd=0) và giữ khoảng cách tối thiểu = nửa chiều dài 2 tàu +
+# 20.0m đúng tính từ ĐUÔI tàu trước -- không còn hội tụ về đúng 1 toạ độ
+# PRE_HOLD cố định như trước (rủi ro chồng lấn nếu 2+ tàu cùng phải chờ).
+# Khi được ATC cho vào đường CHC (PCALL _KB5GEN_DEP_ENTER_RWY), TAXIOFF được
+# gọi để trả quyền điều khiển tốc độ lại cho chuỗi ADDWPT/LNAV có sẵn (tàu
+# TIẾP TỤC ĐÚNG lộ trình đã lập kế hoạch, không đi tắt/direct tới đường CHC).
+#
+# CẢNH BÁO CỰ LY DEP-ĐÃ-CẤT-CÁNH vs ARR-TRÊN-FINAL: dùng plugin DEPARRALERT
+# (bluesky/plugins/dep_arr_final_alert.py) -- mỗi giây kiểm tra MỌI cặp
+# (DEP đã rời đất >400ft, ARR đang dưới 3000ft trên final), nếu cự ly ngang
+# <3NM thì đánh dấu CẢ HAI "in conflict". KHÔNG bao giờ xét 2 tàu bay đang ở
+# mặt đất (cả 2 điều kiện lọc đều yêu cầu đang bay). Ghi thẳng vào
+# bs.traf.cd.inconf/tcpamax -- đúng 2 trường mà pipeline ACDATA có sẵn
+# (ConflictsPanel + tô màu tàu bay trên bản đồ) đã đọc, nên hiện cảnh báo
+# ngay trên UI mà không cần sửa gì ở frontend. An toàn cùng lúc với ASAS OFF
+# vì CD method gốc khi OFF không đụng vào 2 mảng này.
+# ================================================================
+
+00:00:00.00>PLUGINS LOAD SURFACETAXI
+00:00:00.00>PLUGINS LOAD DEPARRALERT
+00:00:00.00>TRAILS ON
+00:00:00.00>ASAS OFF
+00:00:00.00>PAN 16.0400,108.2000
+
+
+# ================================================================
+# CẶP 1/20: ARR001 (A320, thoát ly G6, CRE qua CADAS 2NM cao độ 5607ft) + DEP001 (A21N, G26, SID KONCO  -- lăn thẳng ra 35R (chuyến đầu))
+# ================================================================
+00:00:00.00>CRE DEP001,A21N,16.052628,108.201989,80.9,0,0
+00:00:00.00>PCALL _KB5GEN_PUSHBACK_G26 DEP001 _KB5GEN_TAXI_G26_RWYHOLD 44.5
+00:00:00.00>DEP001 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP002
+00:00:00.00>DEP001 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR001
+
+00:00:00.00>CRE ARR001,A320,15.65134475,108.25745625,353,5607,230
+00:00:00.00>PCALL _KB5GEN_ARR_APPROACH_ARR001 ARR001
+00:00:00.00>PCALL _KB5GEN_ARR_EXIT_G6 ARR001
+00:00:00.00>ARR001 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP001 DEP001
+
+
+# ================================================================
+# CẶP 2/20: ARR002 (A20N, thoát ly G4, CRE trên STAR VILOT tại điểm gần CADAS hơn (bỏ đoạn IAF xa) -- khớp đúng target 144s) + DEP002 (A320, G27, SID KONCO -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:03:00.00>CRE DEP002,A320,16.052283,108.202231,80.9,0,0
+00:03:00.00>PCALL _KB5GEN_PUSHBACK_G27 DEP002 _KB5GEN_TAXI_G27_PREHOLD 37.6
+00:03:00.00>DEP002 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP003
+00:03:00.00>DEP002 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G4 ARR002
+
+00:00:00.00>CRE ARR002,A20N,15.65490858503117,108.1345394278952,172.1,7172,230
+00:00:00.00>PCALL _KB5GEN_ARR_APPROACH_ARR002 ARR002
+00:00:00.00>PCALL _KB5GEN_ARR_EXIT_G4 ARR002
+00:00:00.00>ARR002 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP002 DEP002
+
+
+# ================================================================
+# CẶP 3/20: ARR003 (A21N, thoát ly G4, CRE trên STAR HAMIN tại điểm gần CADAS hơn (bỏ đoạn IAF xa) -- khớp đúng target 324s) + DEP003 (A20N, G26, SID PHULU -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:06:00.00>CRE DEP003,A20N,16.052628,108.201989,80.9,0,0
+00:06:00.00>PCALL _KB5GEN_PUSHBACK_G26 DEP003 _KB5GEN_TAXI_G26_PREHOLD 37.6
+00:06:00.00>DEP003 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP004
+00:06:00.00>DEP003 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G4 ARR003
+
+00:00:00.00>CRE ARR003,A21N,15.880638715789175,108.10157563443109,172.2,8006,250
+00:00:00.00>PCALL _KB5GEN_ARR_APPROACH_ARR003 ARR003
+00:00:00.00>PCALL _KB5GEN_ARR_EXIT_G4 ARR003
+00:00:00.00>ARR003 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP003 DEP003
+
+
+# ================================================================
+# CẶP 4/20: ARR004 (B38M, thoát ly G6, CRE trên STAR BUNTA tại điểm gần CADAS hơn (bỏ đoạn IAF xa) -- khớp đúng target 504s) + DEP004 (B738, G27, SID PAPRA -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:09:00.00>CRE DEP004,B738,16.052283,108.202231,80.9,0,0
+00:09:00.00>PCALL _KB5GEN_PUSHBACK_G27 DEP004 _KB5GEN_TAXI_G27_PREHOLD 39.5
+00:09:00.00>DEP004 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP005
+00:09:00.00>DEP004 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR004
+
+00:00:00.00>CRE ARR004,B38M,16.03411501536388,108.5106043935581,179.2,17514,250
+00:00:00.00>PCALL _KB5GEN_ARR_APPROACH_ARR004 ARR004
+00:00:00.00>PCALL _KB5GEN_ARR_EXIT_G6 ARR004
+00:00:00.00>ARR004 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP004 DEP004
+
+
+# ================================================================
+# CẶP 5/20: ARR005 (A321, thoát ly G6, CRE trên STAR BUNTA tại điểm gần CADAS hơn (bỏ đoạn IAF xa) -- khớp đúng target 684s) + DEP005 (A321, G26, SID PAPRA -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:12:00.00>CRE DEP005,A321,16.052628,108.201989,80.9,0,0
+00:12:00.00>PCALL _KB5GEN_PUSHBACK_G26 DEP005 _KB5GEN_TAXI_G26_PREHOLD 44.5
+00:12:00.00>DEP005 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP006
+00:12:00.00>DEP005 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR005
+
+00:00:00.00>CRE ARR005,A321,16.28913203127798,108.5581472315165,237.6,22647,280
+00:00:00.00>PCALL _KB5GEN_ARR_APPROACH_ARR005 ARR005
+00:00:00.00>PCALL _KB5GEN_ARR_EXIT_G6 ARR005
+00:00:00.00>ARR005 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP005 DEP005
+
+
+# ================================================================
+# CẶP 6/20: ARR006 (B788, thoát ly G6, CRE tại PAPRA (bay ~807s ước lượng tới CADAS, FL240)) + DEP006 (A20N, G27, SID PHULU -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:15:00.00>CRE DEP006,A20N,16.052283,108.202231,80.9,0,0
+00:15:00.00>PCALL _KB5GEN_PUSHBACK_G27 DEP006 _KB5GEN_TAXI_G27_PREHOLD 37.6
+00:15:00.00>DEP006 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP007
+00:15:00.00>DEP006 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR006
+
+00:00:57.08>CRE ARR006,B788,15.766667,107.183333,91.9,24000,280
+00:00:57.08>PCALL _KB5GEN_ARR_APPROACH_ARR006 ARR006
+00:00:57.08>PCALL _KB5GEN_ARR_EXIT_G6 ARR006
+00:00:57.08>ARR006 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP006 DEP006
+
+
+# ================================================================
+# CẶP 7/20: ARR007 (B739, thoát ly G6, CRE trên STAR HAMIN tại điểm gần CADAS hơn (bỏ đoạn IAF xa) -- khớp đúng target 1044s) + DEP007 (B739, G26, SID BUNTA -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:18:00.00>CRE DEP007,B739,16.052628,108.201989,80.9,0,0
+00:18:00.00>PCALL _KB5GEN_PUSHBACK_G26 DEP007 _KB5GEN_TAXI_G26_PREHOLD 42.1
+00:18:00.00>DEP007 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP008
+00:18:00.00>DEP007 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR007
+
+00:00:00.00>CRE ARR007,B739,16.900071111568167,107.78908371439253,155.1,18485,280
+00:00:00.00>PCALL _KB5GEN_ARR_APPROACH_ARR007 ARR007
+00:00:00.00>PCALL _KB5GEN_ARR_EXIT_G6 ARR007
+00:00:00.00>ARR007 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP007 DEP007
+
+
+# ================================================================
+# CẶP 8/20: ARR008 (B773, thoát ly G6, CRE tại PAPRA (bay ~807s ước lượng tới CADAS, FL240)) + DEP008 (B38M, G27, SID BUNTA -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:21:00.00>CRE DEP008,B38M,16.052283,108.202231,80.9,0,0
+00:21:00.00>PCALL _KB5GEN_PUSHBACK_G27 DEP008 _KB5GEN_TAXI_G27_PREHOLD 39.5
+00:21:00.00>DEP008 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP009
+00:21:00.00>DEP008 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR008
+
+00:06:57.08>CRE ARR008,B773,15.766667,107.183333,91.9,24000,280
+00:06:57.08>PCALL _KB5GEN_ARR_APPROACH_ARR008 ARR008
+00:06:57.08>PCALL _KB5GEN_ARR_EXIT_G6 ARR008
+00:06:57.08>ARR008 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP008 DEP008
+
+
+# ================================================================
+# CẶP 9/20: ARR009 (B38M, thoát ly G6, CRE tại SADIN (bay ~734s ước lượng tới CADAS, FL230)) + DEP009 (B738, G26, SID SADIN -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:24:00.00>CRE DEP009,B738,16.052628,108.201989,80.9,0,0
+00:24:00.00>PCALL _KB5GEN_PUSHBACK_G26 DEP009 _KB5GEN_TAXI_G26_PREHOLD 39.5
+00:24:00.00>DEP009 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP010
+00:24:00.00>DEP009 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR009
+
+00:11:09.79>CRE ARR009,B38M,15.08,108.177222,339.6,23000,280
+00:11:09.79>PCALL _KB5GEN_ARR_APPROACH_ARR009 ARR009
+00:11:09.79>PCALL _KB5GEN_ARR_EXIT_G6 ARR009
+00:11:09.79>ARR009 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP009 DEP009
+
+
+# ================================================================
+# CẶP 10/20: ARR010 (A332, thoát ly G6, CRE tại BUNTA (bay ~1152s ước lượng tới CADAS, FL230)) + DEP010 (B738, G27, SID XAQUA -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:27:00.00>CRE DEP010,B738,16.052283,108.202231,80.9,0,0
+00:27:00.00>PCALL _KB5GEN_PUSHBACK_G27 DEP010 _KB5GEN_TAXI_G27_PREHOLD 39.5
+00:27:00.00>DEP010 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP011
+00:27:00.00>DEP010 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR010
+
+00:07:11.65>CRE ARR010,A332,16.833333,109.395,235.7,23000,280
+00:07:11.65>PCALL _KB5GEN_ARR_APPROACH_ARR010 ARR010
+00:07:11.65>PCALL _KB5GEN_ARR_EXIT_G6 ARR010
+00:07:11.65>ARR010 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP010 DEP010
+
+
+# ================================================================
+# CẶP 11/20: ARR011 (B788, thoát ly G6, CRE tại PAPRA (bay ~807s ước lượng tới CADAS, FL240)) + DEP011 (B789, G26, SID BUNTA -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:30:00.00>CRE DEP011,B789,16.052628,108.201989,80.9,0,0
+00:30:00.00>PCALL _KB5GEN_PUSHBACK_G26 DEP011 _KB5GEN_TAXI_G26_PREHOLD 62.8
+00:30:00.00>DEP011 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP012
+00:30:00.00>DEP011 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR011
+
+00:15:57.08>CRE ARR011,B788,15.766667,107.183333,91.9,24000,280
+00:15:57.08>PCALL _KB5GEN_ARR_APPROACH_ARR011 ARR011
+00:15:57.08>PCALL _KB5GEN_ARR_EXIT_G6 ARR011
+00:15:57.08>ARR011 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP011 DEP011
+
+
+# ================================================================
+# CẶP 12/20: ARR012 (A320, thoát ly G6, CRE tại VILOT (bay ~747s ước lượng tới CADAS, FL230)) + DEP012 (B788, G27, SID XAQUA -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:33:00.00>CRE DEP012,B788,16.052283,108.202231,80.9,0,0
+00:33:00.00>PCALL _KB5GEN_PUSHBACK_G27 DEP012 _KB5GEN_TAXI_G27_PREHOLD 56.7
+00:33:00.00>DEP012 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP013
+00:33:00.00>DEP012 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR012
+
+00:19:56.61>CRE ARR012,A320,15.038611,108.111667,350.6,23000,280
+00:19:56.61>PCALL _KB5GEN_ARR_APPROACH_ARR012 ARR012
+00:19:56.61>PCALL _KB5GEN_ARR_EXIT_G6 ARR012
+00:19:56.61>ARR012 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP012 DEP012
+
+
+# ================================================================
+# CẶP 13/20: ARR013 (A320, thoát ly G6, CRE tại SADIN (bay ~734s ước lượng tới CADAS, FL240)) + DEP013 (B773, G26, SID SADIN -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:36:00.00>CRE DEP013,B773,16.052628,108.201989,80.9,0,0
+00:36:00.00>PCALL _KB5GEN_PUSHBACK_G26 DEP013 _KB5GEN_TAXI_G26_PREHOLD 73.9
+00:36:00.00>DEP013 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP014
+00:36:00.00>DEP013 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR013
+
+00:23:09.79>CRE ARR013,A320,15.08,108.177222,339.6,24000,280
+00:23:09.79>PCALL _KB5GEN_ARR_APPROACH_ARR013 ARR013
+00:23:09.79>PCALL _KB5GEN_ARR_EXIT_G6 ARR013
+00:23:09.79>ARR013 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP013 DEP013
+
+
+# ================================================================
+# CẶP 14/20: ARR014 (A21N, thoát ly G6, CRE tại HAMIN (bay ~1172s ước lượng tới CADAS, FL240)) + DEP014 (A333, G27, SID VIDEN -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:39:00.00>CRE DEP014,A333,16.052283,108.202231,80.9,0,0
+00:39:00.00>PCALL _KB5GEN_PUSHBACK_G27 DEP014 _KB5GEN_TAXI_G27_PREHOLD 63.7
+00:39:00.00>DEP014 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP015
+00:39:00.00>DEP014 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR014
+
+00:18:51.77>CRE ARR014,A21N,17.129722,107.677778,155.1,24000,280
+00:18:51.77>PCALL _KB5GEN_ARR_APPROACH_ARR014 ARR014
+00:18:51.77>PCALL _KB5GEN_ARR_EXIT_G6 ARR014
+00:18:51.77>ARR014 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP014 DEP014
+
+
+# ================================================================
+# CẶP 15/20: ARR015 (B788, thoát ly G4, CRE tại HAMIN (bay ~1172s ước lượng tới CADAS, FL240)) + DEP015 (A320, G26, SID VIDEN -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:42:00.00>CRE DEP015,A320,16.052628,108.201989,80.9,0,0
+00:42:00.00>PCALL _KB5GEN_PUSHBACK_G26 DEP015 _KB5GEN_TAXI_G26_PREHOLD 37.6
+00:42:00.00>DEP015 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP016
+00:42:00.00>DEP015 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G4 ARR015
+
+00:21:51.77>CRE ARR015,B788,17.129722,107.677778,155.1,24000,280
+00:21:51.77>PCALL _KB5GEN_ARR_APPROACH_ARR015 ARR015
+00:21:51.77>PCALL _KB5GEN_ARR_EXIT_G4 ARR015
+00:21:51.77>ARR015 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP015 DEP015
+
+
+# ================================================================
+# CẶP 16/20: ARR016 (B739, thoát ly G4, CRE tại SADIN (bay ~734s ước lượng tới CADAS, FL230)) + DEP016 (A320, G27, SID XAQUA -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:45:00.00>CRE DEP016,A320,16.052283,108.202231,80.9,0,0
+00:45:00.00>PCALL _KB5GEN_PUSHBACK_G27 DEP016 _KB5GEN_TAXI_G27_PREHOLD 37.6
+00:45:00.00>DEP016 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP017
+00:45:00.00>DEP016 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G4 ARR016
+
+00:32:09.79>CRE ARR016,B739,15.08,108.177222,339.6,23000,280
+00:32:09.79>PCALL _KB5GEN_ARR_APPROACH_ARR016 ARR016
+00:32:09.79>PCALL _KB5GEN_ARR_EXIT_G4 ARR016
+00:32:09.79>ARR016 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP016 DEP016
+
+
+# ================================================================
+# CẶP 17/20: ARR017 (A21N, thoát ly G4, CRE tại CQ (bay ~411s ước lượng tới CADAS, FL230)) + DEP017 (B773, G26, SID PHULU -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:48:00.00>CRE DEP017,B773,16.052628,108.201989,80.9,0,0
+00:48:00.00>PCALL _KB5GEN_PUSHBACK_G26 DEP017 _KB5GEN_TAXI_G26_PREHOLD 73.9
+00:48:00.00>DEP017 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP018
+00:48:00.00>DEP017 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G4 ARR017
+
+00:40:32.54>CRE ARR017,A21N,15.412222,108.704444,322.8,23000,280
+00:40:32.54>PCALL _KB5GEN_ARR_APPROACH_ARR017 ARR017
+00:40:32.54>PCALL _KB5GEN_ARR_EXIT_G4 ARR017
+00:40:32.54>ARR017 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP017 DEP017
+
+
+# ================================================================
+# CẶP 18/20: ARR018 (B738, thoát ly G6, CRE tại SADIN (bay ~734s ước lượng tới CADAS, FL240)) + DEP018 (A332, G27, SID PAPRA -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:51:00.00>CRE DEP018,A332,16.052283,108.202231,80.9,0,0
+00:51:00.00>PCALL _KB5GEN_PUSHBACK_G27 DEP018 _KB5GEN_TAXI_G27_PREHOLD 58.8
+00:51:00.00>DEP018 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP019
+00:51:00.00>DEP018 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR018
+
+00:38:09.79>CRE ARR018,B738,15.08,108.177222,339.6,24000,280
+00:38:09.79>PCALL _KB5GEN_ARR_APPROACH_ARR018 ARR018
+00:38:09.79>PCALL _KB5GEN_ARR_EXIT_G6 ARR018
+00:38:09.79>ARR018 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP018 DEP018
+
+
+# ================================================================
+# CẶP 19/20: ARR019 (B38M, thoát ly G6, CRE tại BUNTA (bay ~1152s ước lượng tới CADAS, FL230)) + DEP019 (A20N, G26, SID PHULU -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:54:00.00>CRE DEP019,A20N,16.052628,108.201989,80.9,0,0
+00:54:00.00>PCALL _KB5GEN_PUSHBACK_G26 DEP019 _KB5GEN_TAXI_G26_PREHOLD 37.6
+00:54:00.00>DEP019 ATDIST 16.030100,108.202372,0.025 PCALL _KB5GEN_DEP_ENTER_RWY DEP020
+00:54:00.00>DEP019 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G6 ARR019
+
+00:34:11.65>CRE ARR019,B38M,16.833333,109.395,235.7,23000,280
+00:34:11.65>PCALL _KB5GEN_ARR_APPROACH_ARR019 ARR019
+00:34:11.65>PCALL _KB5GEN_ARR_EXIT_G6 ARR019
+00:34:11.65>ARR019 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP019 DEP019
+
+
+# ================================================================
+# CẶP 20/20: ARR020 (B788, thoát ly G4, CRE tại HAMIN (bay ~1172s ước lượng tới CADAS, FL240)) + DEP020 (A20N, G27, SID SADIN -- qua PRE_HOLD, xếp hàng)
+# ================================================================
+00:57:00.00>CRE DEP020,A20N,16.052283,108.202231,80.9,0,0
+00:57:00.00>PCALL _KB5GEN_PUSHBACK_G27 DEP020 _KB5GEN_TAXI_G27_PREHOLD 37.6
+# Không còn chuyến khởi hành nào sau DEP020
+00:57:00.00>DEP020 ATDIST 16.0604,108.1980,0.15 PCALL _KB5GEN_CROSS_G4 ARR020
+
+00:36:51.77>CRE ARR020,B788,17.129722,107.677778,155.1,24000,280
+00:36:51.77>PCALL _KB5GEN_ARR_APPROACH_ARR020 ARR020
+00:36:51.77>PCALL _KB5GEN_ARR_EXIT_G4 ARR020
+00:36:51.77>ARR020 ATALT 0 PCALL _KB5GEN_DEP_ROLL_DEP020 DEP020

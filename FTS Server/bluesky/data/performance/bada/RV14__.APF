@@ -1,0 +1,25 @@
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC RV14__.APF CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC/
+CC                                                                                                 /
+CC                 AIRLINES PROCEDURES FILE                                                        /
+CC                                                                                                 /
+CC      File_name: RV14__.APF                                                                      /
+CC                                                                                                 /
+CC      Creation_date: Feb 25 2022                                                                 /
+CC                                                                                                 /
+CC      Modification_date: Feb 25 2022                                                             /
+CC                                                                                                 /
+CC                                                                                                 /
+CC                                                                                                 /
+CC   LO= 000.56 to ---.--  /  AV= ---.-- to ---.--  /  HI= ---.-- to 000.93                        /
+CC                                                                                                 /
+CC=================================================================================================/
+CC  COM CO    Company name ------climb-------  --cruise--  -----descent------  --approach-  model- /
+CC                    mass  lo  hi              lo  hi         hi  lo            (unused)          /
+CC    version engines  ma  cas cas mc xxxx xx  cas cas mc  mc cas cas xxxx xx  xxx xxx xxx  opf___ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CD  *** **    Default Company                                                                      /
+CD    14A              LO   95  95 24          140 130 24  24 130 130            0   0   0  RV14__ /
+CD    14A              AV   95  95 24          140 130 24  24 130 130            0   0   0  RV14__ /
+CD    14A              HI   95  95 24          140 130 24  24 130 130            0   0   0  RV14__ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CC/////////////////////////////////////////////THE END/////////////////////////////////////////////

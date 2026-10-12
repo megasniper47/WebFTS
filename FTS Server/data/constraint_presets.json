@@ -1,0 +1,32 @@
+[
+  {
+    "id": "preset-full-constraints",
+    "name": "Ràng buộc đầy đủ hiện tại (λS1)",
+    "description": "Phân cách vận hành hiện hành -- 3NM/3 phút giữa các lượt đến, 30 giây cất cánh sau hạ cánh. Dùng làm baseline năng lực thực tế.",
+    "minArrArrGapSec": 180,
+    "depAfterArrGapSec": 30,
+    "minRunwayGapSec": 60,
+    "createdAt": "2026-07-23T21:59:07.389963Z",
+    "updatedAt": "2026-07-23T21:59:07.389963Z"
+  },
+  {
+    "id": "preset-semi-constrained",
+    "name": "Bán ràng buộc - công nghệ mới (λS2)",
+    "description": "Giả định triển khai công nghệ/thủ tục mới (VD: giám sát tăng cường, RECAT) cho phép rút ngắn phân cách -- dùng để kiểm tra độ nhạy năng lực khi cải tiến vận hành.",
+    "minArrArrGapSec": 120,
+    "depAfterArrGapSec": 20,
+    "minRunwayGapSec": 45,
+    "createdAt": "2026-07-23T21:59:07.389963Z",
+    "updatedAt": "2026-07-23T21:59:07.389963Z"
+  },
+  {
+    "id": "preset-unconstrained",
+    "name": "Không ràng buộc mặt đất (λSU)",
+    "description": "Trần năng lực lý thuyết, chỉ giới hạn bởi runway occupancy tối thiểu -- KHÔNG phải mục tiêu vận hành thật, dùng để xác định giới hạn trên khi so sánh với λS1/λS2.",
+    "minArrArrGapSec": 60,
+    "depAfterArrGapSec": 10,
+    "minRunwayGapSec": 30,
+    "createdAt": "2026-07-23T21:59:07.389963Z",
+    "updatedAt": "2026-07-23T21:59:07.389963Z"
+  }
+]

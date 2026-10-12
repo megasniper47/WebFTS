@@ -1,0 +1,55 @@
+{
+  "airport": "VVTS",
+  "geometryStatus": "verified",
+  "runways": [
+    {
+      "designator": "07L",
+      "oppositeDesignator": "25R",
+      "thresholdLat": 10.815035,
+      "thresholdLon": 106.6371644,
+      "oppositeThresholdLat": 10.8248464,
+      "oppositeThresholdLon": 106.6631549,
+      "trueHeadingDeg": 68.97,
+      "oppositeTrueHeadingDeg": 248.98,
+      "source": "runways.geojson:RWY 07L/25R centerline"
+    },
+    {
+      "designator": "25R",
+      "oppositeDesignator": "07L",
+      "thresholdLat": 10.8248464,
+      "thresholdLon": 106.6631549,
+      "oppositeThresholdLat": 10.815035,
+      "oppositeThresholdLon": 106.6371644,
+      "trueHeadingDeg": 248.98,
+      "oppositeTrueHeadingDeg": 68.97,
+      "source": "runways.geojson:RWY 07L/25R centerline"
+    },
+    {
+      "designator": "07R",
+      "oppositeDesignator": "25L",
+      "thresholdLat": 10.811442,
+      "thresholdLon": 106.6370339,
+      "oppositeThresholdLat": 10.8237094,
+      "oppositeThresholdLon": 106.6695249,
+      "trueHeadingDeg": 68.97,
+      "oppositeTrueHeadingDeg": 248.98,
+      "source": "runways.geojson:RWY 07R/25L centerline"
+    },
+    {
+      "designator": "25L",
+      "oppositeDesignator": "07R",
+      "thresholdLat": 10.8237094,
+      "thresholdLon": 106.6695249,
+      "oppositeThresholdLat": 10.811442,
+      "oppositeThresholdLon": 106.6370339,
+      "trueHeadingDeg": 248.98,
+      "oppositeTrueHeadingDeg": 68.97,
+      "source": "runways.geojson:RWY 07R/25L centerline"
+    }
+  ],
+  "runwayModes": [
+    { "mode": "07R-ARR/07L-DEP", "arrivalRunway": "07R", "departureRunway": "07L" },
+    { "mode": "25L-ARR/25R-DEP", "arrivalRunway": "25L", "departureRunway": "25R" }
+  ],
+  "notes": "Revised from an earlier session assumption that VVTS only had polygon boundaries — re-inspection of runways.geojson found clean, correctly labeled 'RWY 07L/25R centerline' and 'RWY 07R/25L centerline' LineStrings. Bearings (68.97/248.98) match nominal runway numbers 07/25 exactly."
+}
