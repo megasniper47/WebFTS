@@ -1,5 +1,0 @@
-# _KB5GEN_RUNWAY_CLEARED.scn — DEP đã bay hết đường CHC 35R:
-# cho ARR cặp mình cắt 35R (theo template G4/G6) VÀ cho DEP kế tiếp vào 35R.
-# Gọi: PCALL _KB5GEN_RUNWAY_CLEARED <cross_template> <arr_acid> <next_dep_acid>
-00:00:00.00>PCALL %0 %1
-00:00:00.00>PCALL _KB5GEN_DEP_ENTER_RWY %2

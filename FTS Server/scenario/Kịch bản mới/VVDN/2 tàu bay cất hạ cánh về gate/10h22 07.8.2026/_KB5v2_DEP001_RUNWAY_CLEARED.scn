@@ -1,9 +1,0 @@
-# _KB5v2_DEP001_RUNWAY_CLEARED.scn
-# Được gọi bởi: "DEP001 ATDIST 16.0604,108.1980,0.15 PCALL _KB5v2_DEP001_RUNWAY_CLEARED"
-# (khi DEP001 đã bay HẾT toàn bộ chiều dài đường CHC 35R).
-# Gộp 2 việc xảy ra cùng lúc:
-#  1. ARR001 được phép cắt qua 35R để về Gate 26.
-#  2. DEP002 được phép lăn vào đường CHC 35R (từ PRE_HOLD tới điểm dừng chờ
-#     đầu 35R) — KHÔNG còn gắn với thời điểm DEP001 nhấc bánh mũi nữa.
-00:00:00.00>PCALL _KB5v2_ARR001_CROSS
-00:00:00.00>PCALL _KB5v2_DEP002_ENTER_RWY

@@ -126,3 +126,9 @@ _debug_*.py
 _takeoff_perf_results.json
 scenario/check_out.txt
 scenario/out_check.txt
+
+# Accidental Windows-Explorer duplicate/backup folders -- not canonical,
+# and their deep nesting + long names exceed Windows' 260-char path limit.
+scenario/*- Copy/
+scenario/*- Copy - Copy/
+scenario/Kịch bản mới/

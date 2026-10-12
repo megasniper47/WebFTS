@@ -1,8 +1,0 @@
-# _KB5v2_STOP_ARR001_GATE26.scn
-# Gọi bởi ATDIST khi ARR001 tới gần Gate 26. Khoá cứng vị trí bằng MOVE, sau
-# đó PCALL xoá tàu bay sau 10 giây (đúng yêu cầu "biến mất sau 10 giây" — nếu
-# để route tự kết thúc tại đây, autopilot sẽ xoá NGAY LẬP TỨC, không có 10s).
-00:00:00.00>ARR001 LNAV OFF
-00:00:00.00>ARR001 VNAV OFF
-00:00:00.00>MOVE ARR001,16.053376,108.201881,0,82.0,0.0
-00:00:00.00>PCALL _KB5v2_DEL_AFTER10 ARR001

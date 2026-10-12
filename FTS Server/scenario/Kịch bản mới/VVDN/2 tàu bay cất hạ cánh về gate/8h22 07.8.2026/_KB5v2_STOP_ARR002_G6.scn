@@ -1,6 +1,0 @@
-# _KB5v2_STOP_ARR002_G6.scn
-# Gọi bởi ATDIST khi ARR002 tới gần điểm dừng chờ tại G6. Khoá cứng vị trí
-# bằng MOVE, đúng toạ độ và hướng mũi 082° người dùng đã cho.
-00:00:00.00>ARR002 LNAV OFF
-00:00:00.00>ARR002 VNAV OFF
-00:00:00.00>MOVE ARR002,16.0572,108.1974,0,82.0,0.0

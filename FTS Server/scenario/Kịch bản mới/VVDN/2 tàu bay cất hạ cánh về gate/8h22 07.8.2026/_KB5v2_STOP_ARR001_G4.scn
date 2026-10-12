@@ -1,6 +1,0 @@
-# _KB5v2_STOP_ARR001_G4.scn
-# Gọi bởi ATDIST khi ARR001 tới gần điểm dừng chờ trước G4. Khoá cứng vị trí
-# bằng MOVE (hướng mũi 082° — cùng hướng sẽ dùng để cắt qua 35R sau này).
-00:00:00.00>ARR001 LNAV OFF
-00:00:00.00>ARR001 VNAV OFF
-00:00:00.00>MOVE ARR001,16.0489,108.1986,0,82.0,0.0

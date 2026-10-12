@@ -1,3 +1,0 @@
-# _KB5GEN_VNAV_ON.scn — Bật lại VNAV sau khi cất cánh
-# Gọi: PCALL _KB5GEN_VNAV_ON <acid>
-00:00:00.00>%0 VNAV ON
