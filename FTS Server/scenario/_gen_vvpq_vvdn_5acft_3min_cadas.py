@@ -51,8 +51,12 @@ CADAS (khong can tinh nguoc thoi gian phuc tap nhu truong hop nhieu loai
 tau bay/nhieu SID khac nhau).
 
 Lich cat canh TUYET DOI (khong dung dieu kien ghep ATDIST+DELAY):
-  VVPQ01: 00:30:00   VVPQ02: 00:33:00   VVPQ03: 00:36:00
-  VVPQ04: 00:39:00   VVPQ05: 00:42:00
+  VVPQ01: 00:00:30   VVPQ02: 00:03:30   VVPQ03: 00:06:30
+  VVPQ04: 00:09:30   VVPQ05: 00:12:30
+
+LUU Y khi xem truc tiep: chang VVPQ->VVDN dai ~600NM nen DU cat canh som,
+tau van mat ~2 tieng MO PHONG moi toi CADAS. De xem het kich ban trong vai
+phut thuc te, dat DTMULT 64 (hoac cao hon) ngay sau khi mo.
 """
 from __future__ import annotations
 
@@ -64,7 +68,7 @@ from pathlib import Path
 OUT_FILE = Path("VVPQ-VVDN-5acft-3min-CADAS.scn")
 BACKUP_DIR = Path("Backup")
 
-SCENARIO_START_SEC = 30 * 60.0  # 00:30:00
+SCENARIO_START_SEC = 30.0  # 00:00:30 -- tau dau xuat hien gan nhu ngay khi mo
 DEPARTURE_GAP_SEC = 180.0  # 3 phut
 N_AIRCRAFT = 5
 ACTYPE = "A320"
