@@ -51,8 +51,8 @@ CADAS (khong can tinh nguoc thoi gian phuc tap nhu truong hop nhieu loai
 tau bay/nhieu SID khac nhau).
 
 Lich cat canh TUYET DOI (khong dung dieu kien ghep ATDIST+DELAY):
-  VVPQ01: 08:00:00   VVPQ02: 08:03:00   VVPQ03: 08:06:00
-  VVPQ04: 08:09:00   VVPQ05: 08:12:00
+  VVPQ01: 00:30:00   VVPQ02: 00:33:00   VVPQ03: 00:36:00
+  VVPQ04: 00:39:00   VVPQ05: 00:42:00
 """
 from __future__ import annotations
 
@@ -64,7 +64,7 @@ from pathlib import Path
 OUT_FILE = Path("VVPQ-VVDN-5acft-3min-CADAS.scn")
 BACKUP_DIR = Path("Backup")
 
-SCENARIO_START_SEC = 8 * 3600.0  # 08:00:00
+SCENARIO_START_SEC = 30 * 60.0  # 00:30:00
 DEPARTURE_GAP_SEC = 180.0  # 3 phut
 N_AIRCRAFT = 5
 ACTYPE = "A320"
