@@ -1,16 +1,17 @@
-# VVPQ -> VVDN: 5 tau bay A320 cat canh SID OSOTA (VVPQ RWY10R that),
+# VVPQ -> VVDN: 5 tau bay A320 cat canh SID RG 3D (VVPQ RWY10R that),
 # bay qua enroute bridge that (TUNPO-RG-TSH-PATMA-SADAS-DADEN), ha canh
 # VVDN STAR LATOM 2K (RWY35L that), cach nhau DUNG 3 phut tai CADAS.
 00:00:30.000>DTMULT 1
 
-# VVPQ01: cat canh luc 00:00:30.000, qua CADAS (du kien) luc 02:02:22.272
-# --- VVPQ01 (A320) - SID OSOTA (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
+# VVPQ01: cat canh luc 00:00:30.000, qua CADAS (du kien) luc 02:00:18.793
+# --- VVPQ01 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
 00:00:30.000>CRE VVPQ01,A320,10.171189,103.979464,96,0,150
 00:00:30.000>VVPQ01 ALT 50
-00:00:30.000>VVPQ01 ADDWPT 10.152833,104.164389  # PQ600 (SID OSOTA, that, khong rang buoc do cao)
-00:00:30.000>VVPQ01 ADDWPT 10.551944,104.263611,7000,250  # OSOTA (SID OSOTA, that)
-00:00:30.000>VVPQ01 ADDWPT 10.062222,104.589444,25000,290  # TUNPO (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:00:30.000>VVPQ01 ADDWPT 9.959444,105.133056,25000,290  # RG (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:00:30.000>VVPQ01 ADDWPT 10.152833,104.164389  # PQ600 (SID RG 3D, that, khong rang buoc do cao)
+00:00:30.000>VVPQ01 ADDWPT 9.916111,104.279167,7000,250  # PQ620 (SID RG 3D, that)
+00:00:30.000>VVPQ01 ADDWPT 9.870000,104.524167  # SAMIX (SID RG 3D, that, khong rang buoc do cao)
+00:00:30.000>VVPQ01 ADDWPT 9.796111,104.914722  # VILIT (SID RG 3D, that, khong rang buoc do cao)
+00:00:30.000>VVPQ01 ADDWPT 9.959444,105.133056  # RG (SID RG 3D, that, khong rang buoc do cao)
 00:00:30.000>VVPQ01 ADDWPT 10.818333,106.650556,25000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
 00:00:30.000>VVPQ01 ADDWPT 12.336389,107.810000,25000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
 00:00:30.000>VVPQ01 ADDWPT 13.320000,107.829444,25000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
@@ -31,16 +32,17 @@
 00:00:30.000>VVPQ01 ADDWPT 16.030133,108.200372,0,130  # nguong 35L (cham cang chinh) (STAR LATOM 2K, that)
 00:00:30.000>VVPQ01 LNAV ON
 00:00:30.000>VVPQ01 VNAV ON
-02:13:19.375>DEL VVPQ01
+02:11:15.896>DEL VVPQ01
 
-# VVPQ02: cat canh luc 00:03:30.000, qua CADAS (du kien) luc 02:05:22.272
-# --- VVPQ02 (A320) - SID OSOTA (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
+# VVPQ02: cat canh luc 00:03:30.000, qua CADAS (du kien) luc 02:03:18.793
+# --- VVPQ02 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
 00:03:30.000>CRE VVPQ02,A320,10.171189,103.979464,96,0,150
 00:03:30.000>VVPQ02 ALT 50
-00:03:30.000>VVPQ02 ADDWPT 10.152833,104.164389  # PQ600 (SID OSOTA, that, khong rang buoc do cao)
-00:03:30.000>VVPQ02 ADDWPT 10.551944,104.263611,7000,250  # OSOTA (SID OSOTA, that)
-00:03:30.000>VVPQ02 ADDWPT 10.062222,104.589444,25000,290  # TUNPO (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:03:30.000>VVPQ02 ADDWPT 9.959444,105.133056,25000,290  # RG (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:03:30.000>VVPQ02 ADDWPT 10.152833,104.164389  # PQ600 (SID RG 3D, that, khong rang buoc do cao)
+00:03:30.000>VVPQ02 ADDWPT 9.916111,104.279167,7000,250  # PQ620 (SID RG 3D, that)
+00:03:30.000>VVPQ02 ADDWPT 9.870000,104.524167  # SAMIX (SID RG 3D, that, khong rang buoc do cao)
+00:03:30.000>VVPQ02 ADDWPT 9.796111,104.914722  # VILIT (SID RG 3D, that, khong rang buoc do cao)
+00:03:30.000>VVPQ02 ADDWPT 9.959444,105.133056  # RG (SID RG 3D, that, khong rang buoc do cao)
 00:03:30.000>VVPQ02 ADDWPT 10.818333,106.650556,25000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
 00:03:30.000>VVPQ02 ADDWPT 12.336389,107.810000,25000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
 00:03:30.000>VVPQ02 ADDWPT 13.320000,107.829444,25000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
@@ -61,16 +63,17 @@
 00:03:30.000>VVPQ02 ADDWPT 16.030133,108.200372,0,130  # nguong 35L (cham cang chinh) (STAR LATOM 2K, that)
 00:03:30.000>VVPQ02 LNAV ON
 00:03:30.000>VVPQ02 VNAV ON
-02:16:19.375>DEL VVPQ02
+02:14:15.896>DEL VVPQ02
 
-# VVPQ03: cat canh luc 00:06:30.000, qua CADAS (du kien) luc 02:08:22.272
-# --- VVPQ03 (A320) - SID OSOTA (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
+# VVPQ03: cat canh luc 00:06:30.000, qua CADAS (du kien) luc 02:06:18.793
+# --- VVPQ03 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
 00:06:30.000>CRE VVPQ03,A320,10.171189,103.979464,96,0,150
 00:06:30.000>VVPQ03 ALT 50
-00:06:30.000>VVPQ03 ADDWPT 10.152833,104.164389  # PQ600 (SID OSOTA, that, khong rang buoc do cao)
-00:06:30.000>VVPQ03 ADDWPT 10.551944,104.263611,7000,250  # OSOTA (SID OSOTA, that)
-00:06:30.000>VVPQ03 ADDWPT 10.062222,104.589444,25000,290  # TUNPO (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:06:30.000>VVPQ03 ADDWPT 9.959444,105.133056,25000,290  # RG (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:06:30.000>VVPQ03 ADDWPT 10.152833,104.164389  # PQ600 (SID RG 3D, that, khong rang buoc do cao)
+00:06:30.000>VVPQ03 ADDWPT 9.916111,104.279167,7000,250  # PQ620 (SID RG 3D, that)
+00:06:30.000>VVPQ03 ADDWPT 9.870000,104.524167  # SAMIX (SID RG 3D, that, khong rang buoc do cao)
+00:06:30.000>VVPQ03 ADDWPT 9.796111,104.914722  # VILIT (SID RG 3D, that, khong rang buoc do cao)
+00:06:30.000>VVPQ03 ADDWPT 9.959444,105.133056  # RG (SID RG 3D, that, khong rang buoc do cao)
 00:06:30.000>VVPQ03 ADDWPT 10.818333,106.650556,25000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
 00:06:30.000>VVPQ03 ADDWPT 12.336389,107.810000,25000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
 00:06:30.000>VVPQ03 ADDWPT 13.320000,107.829444,25000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
@@ -91,16 +94,17 @@
 00:06:30.000>VVPQ03 ADDWPT 16.030133,108.200372,0,130  # nguong 35L (cham cang chinh) (STAR LATOM 2K, that)
 00:06:30.000>VVPQ03 LNAV ON
 00:06:30.000>VVPQ03 VNAV ON
-02:19:19.375>DEL VVPQ03
+02:17:15.896>DEL VVPQ03
 
-# VVPQ04: cat canh luc 00:09:30.000, qua CADAS (du kien) luc 02:11:22.272
-# --- VVPQ04 (A320) - SID OSOTA (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
+# VVPQ04: cat canh luc 00:09:30.000, qua CADAS (du kien) luc 02:09:18.793
+# --- VVPQ04 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
 00:09:30.000>CRE VVPQ04,A320,10.171189,103.979464,96,0,150
 00:09:30.000>VVPQ04 ALT 50
-00:09:30.000>VVPQ04 ADDWPT 10.152833,104.164389  # PQ600 (SID OSOTA, that, khong rang buoc do cao)
-00:09:30.000>VVPQ04 ADDWPT 10.551944,104.263611,7000,250  # OSOTA (SID OSOTA, that)
-00:09:30.000>VVPQ04 ADDWPT 10.062222,104.589444,25000,290  # TUNPO (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:09:30.000>VVPQ04 ADDWPT 9.959444,105.133056,25000,290  # RG (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:09:30.000>VVPQ04 ADDWPT 10.152833,104.164389  # PQ600 (SID RG 3D, that, khong rang buoc do cao)
+00:09:30.000>VVPQ04 ADDWPT 9.916111,104.279167,7000,250  # PQ620 (SID RG 3D, that)
+00:09:30.000>VVPQ04 ADDWPT 9.870000,104.524167  # SAMIX (SID RG 3D, that, khong rang buoc do cao)
+00:09:30.000>VVPQ04 ADDWPT 9.796111,104.914722  # VILIT (SID RG 3D, that, khong rang buoc do cao)
+00:09:30.000>VVPQ04 ADDWPT 9.959444,105.133056  # RG (SID RG 3D, that, khong rang buoc do cao)
 00:09:30.000>VVPQ04 ADDWPT 10.818333,106.650556,25000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
 00:09:30.000>VVPQ04 ADDWPT 12.336389,107.810000,25000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
 00:09:30.000>VVPQ04 ADDWPT 13.320000,107.829444,25000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
@@ -121,16 +125,17 @@
 00:09:30.000>VVPQ04 ADDWPT 16.030133,108.200372,0,130  # nguong 35L (cham cang chinh) (STAR LATOM 2K, that)
 00:09:30.000>VVPQ04 LNAV ON
 00:09:30.000>VVPQ04 VNAV ON
-02:22:19.375>DEL VVPQ04
+02:20:15.896>DEL VVPQ04
 
-# VVPQ05: cat canh luc 00:12:30.000, qua CADAS (du kien) luc 02:14:22.272
-# --- VVPQ05 (A320) - SID OSOTA (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
+# VVPQ05: cat canh luc 00:12:30.000, qua CADAS (du kien) luc 02:12:18.793
+# --- VVPQ05 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
 00:12:30.000>CRE VVPQ05,A320,10.171189,103.979464,96,0,150
 00:12:30.000>VVPQ05 ALT 50
-00:12:30.000>VVPQ05 ADDWPT 10.152833,104.164389  # PQ600 (SID OSOTA, that, khong rang buoc do cao)
-00:12:30.000>VVPQ05 ADDWPT 10.551944,104.263611,7000,250  # OSOTA (SID OSOTA, that)
-00:12:30.000>VVPQ05 ADDWPT 10.062222,104.589444,25000,290  # TUNPO (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:12:30.000>VVPQ05 ADDWPT 9.959444,105.133056,25000,290  # RG (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:12:30.000>VVPQ05 ADDWPT 10.152833,104.164389  # PQ600 (SID RG 3D, that, khong rang buoc do cao)
+00:12:30.000>VVPQ05 ADDWPT 9.916111,104.279167,7000,250  # PQ620 (SID RG 3D, that)
+00:12:30.000>VVPQ05 ADDWPT 9.870000,104.524167  # SAMIX (SID RG 3D, that, khong rang buoc do cao)
+00:12:30.000>VVPQ05 ADDWPT 9.796111,104.914722  # VILIT (SID RG 3D, that, khong rang buoc do cao)
+00:12:30.000>VVPQ05 ADDWPT 9.959444,105.133056  # RG (SID RG 3D, that, khong rang buoc do cao)
 00:12:30.000>VVPQ05 ADDWPT 10.818333,106.650556,25000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
 00:12:30.000>VVPQ05 ADDWPT 12.336389,107.810000,25000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
 00:12:30.000>VVPQ05 ADDWPT 13.320000,107.829444,25000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
@@ -151,5 +156,5 @@
 00:12:30.000>VVPQ05 ADDWPT 16.030133,108.200372,0,130  # nguong 35L (cham cang chinh) (STAR LATOM 2K, that)
 00:12:30.000>VVPQ05 LNAV ON
 00:12:30.000>VVPQ05 VNAV ON
-02:25:19.375>DEL VVPQ05
+02:23:15.896>DEL VVPQ05
 

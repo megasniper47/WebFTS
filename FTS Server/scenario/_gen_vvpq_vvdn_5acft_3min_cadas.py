@@ -1,20 +1,19 @@
 """
 VVPQ-VVDN-5acft-3min-CADAS.scn
 
-5 tau bay A320 (VVPQ01..VVPQ05) cat canh VVPQ RWY 10R (SID that OSOTA --
+5 tau bay A320 (VVPQ01..VVPQ05) cat canh VVPQ RWY 10R (SID that RG 3D --
 RWY 10L chi dung cho ha canh, khong co SID 10L, xem bao cao Buoc 0), bay
 qua VVDN ha canh RWY 35L theo STAR that "LATOM 2K", cach nhau DUNG 3 phut
 (180s) tai waypoint CADAS -- diem hoi tu that cua nhieu STAR VVDN.
 
 TOAN BO waypoint la du lieu THAT, khong bia -- nguon cu the tung doan:
 
-1. SID OSOTA (VVPQ, RWY 10R that): PQ600 -> OSOTA (7000ft)
+1. SID RG 3D (VVPQ, RWY 10R that): PQ600 -> PQ620 (7000ft) -> SAMIX -> VILIT -> RG
    Nguon: vvpq_procedures.py (da transcribe tu PDF AIP VVPQ).
 
-2. Doan "bridge" enroute TUNPO - RG - TSH - PATMA - SADAS - DADEN (nguoi
-   dung chi dinh, da xac minh tung diem):
-   - TUNPO: AIP ENR 3.1 (M755) + khop voi vvpq_procedures.py
-   - RG: vvpq_procedures.py (SID RG, VVPQ transcribe goc)
+2. Doan "bridge" enroute TSH - PATMA - SADAS - DADEN (noi tu diem cuoi SID
+   la RG sang diem dau STAR la LATOM; nguoi dung chi dinh, da xac minh
+   tung diem):
    - TSH: "TAN SON NHAT DVOR/DME (TSH)", airways_enr31_legacy.json
    - PATMA/SADAS/DADEN: AIP ENR 3.1/3.3 (W12/Q7/G474)
    Khong co do cao cong bo rieng cho doan enroute nay trong du an (day la
@@ -44,7 +43,7 @@ TOAN BO waypoint la du lieu THAT, khong bia -- nguon cu the tung doan:
    _KB5GEN_ARR_APPROACH_ARRxxx.scn (A320: 250/230/205/190/175/165/150/
    150/130 kt tai DOTEN/TRACO/CADAS/MONRY/TAMLA/KALET/NB2/DN351/THR).
 
-Vi CA 5 tau cung loai (A320) + cung SID (OSOTA) + cung toan bo route -- khong
+Vi CA 5 tau cung loai (A320) + cung SID (RG 3D) + cung toan bo route -- khong
 co khac biet toc do/profile giua cac tau -- nen cach deu nhau N phut luc cat
 canh se cho CHINH XAC cach deu N phut tai MOI diem doc theo route, bao gom
 CADAS (khong can tinh nguoc thoi gian phuc tap nhu truong hop nhieu loai
@@ -75,25 +74,40 @@ ACTYPE = "A320"
 V2_KT = 150
 
 # ---------------------------------------------------------------------------
-# VVPQ SID OSOTA (RWY 10R that)
+# VVPQ SID RG 3D (RWY 10R that) -- vvpq_procedures.py's SID_TRANSITIONS["RG"].
+# Toan bo chuoi di deu ve huong dong-dong nam roi vong len RG (154/101/101/53
+# do), khong gap khuc.
+#
+# DA SUA: ban truoc dung SID OSOTA roi noi them TUNPO phia sau -> tau bay len
+# BAC toi OSOTA (014 do) roi phai quay nguoc xuong DONG NAM toi TUNPO (147 do),
+# gap khuc 133 do vo ly. Nguyen nhan: hieu sai y "doi diem OSOTA thanh TUNPO -
+# RG - ..." thanh "giu SID OSOTA roi noi them", thay vi "thay han SID OSOTA
+# bang SID RG 3D".
 # ---------------------------------------------------------------------------
 RW10R = (10.171189, 103.979464)
 DEP_INITIAL_COURSE = 96  # that, cong bo 096(096.2)
-SID_OSOTA = [
+SID_RG_3D = [
     ("PQ600", 10.152833, 104.164389, None),
-    ("OSOTA", 10.551944, 104.263611, 7000.0),
+    ("PQ620", 9.916111, 104.279167, 7000.0),
+    ("SAMIX", 9.870000, 104.524167, None),
+    ("VILIT", 9.796111, 104.914722, None),
+    ("RG", 9.959444, 105.133056, None),
 ]
 
 # ---------------------------------------------------------------------------
 # Enroute bridge that (nguoi dung chi dinh, da xac minh tung diem) -- khong
 # co do cao cong bo, dung 1 muc hanh trinh co dinh (ghi ro la lua chon khai
 # thac, khong phai AIP).
+#
+# TUNPO DA BO: no khong nam trong SID RG 3D cong bo (phuong thuc that chi co
+# PQ600-PQ620-SAMIX-VILIT-RG), va trong danh sach nguoi dung dua ra no dung
+# TRUOC RG -- tuc thuoc phan "thay cho OSOTA", nay da duoc thay bang chinh
+# SID RG 3D. Chen TUNPO vao giua cac diem cua 1 SID cong bo la sai phuong thuc.
+# RG cung da la diem cuoi SID nen khong lap lai o day.
 # ---------------------------------------------------------------------------
 CRUISE_ALT_FT = 25000.0
 CRUISE_SPD_KT = 290
 ENROUTE_BRIDGE = [
-    ("TUNPO", 10.062222, 104.589444),
-    ("RG", 9.959444, 105.133056),
     ("TSH", 10.818333, 106.650556),
     ("PATMA", 12.336389, 107.810000),
     ("SADAS", 13.320000, 107.829444),
@@ -178,16 +192,16 @@ def backup_if_exists():
 def build_flight_lines(callsign, t0_sec):
     t0 = fmt_time(t0_sec)
     lat0, lon0 = RW10R
-    lines = [f"# --- {callsign} ({ACTYPE}) - SID OSOTA (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---"]
+    lines = [f"# --- {callsign} ({ACTYPE}) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---"]
     lines.append(f"{t0}>CRE {callsign},{ACTYPE},{lat0:.6f},{lon0:.6f},{DEP_INITIAL_COURSE},0,{V2_KT}")
     lines.append(f"{t0}>{callsign} ALT 50")
 
-    for name, lat, lon, alt in SID_OSOTA:
+    for name, lat, lon, alt in SID_RG_3D:
         if alt is not None:
             spd = climb_speed_kt(alt)
-            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f},{alt:.0f},{spd}  # {name} (SID OSOTA, that)")
+            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f},{alt:.0f},{spd}  # {name} (SID RG 3D, that)")
         else:
-            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f}  # {name} (SID OSOTA, that, khong rang buoc do cao)")
+            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f}  # {name} (SID RG 3D, that, khong rang buoc do cao)")
 
     for name, lat, lon in ENROUTE_BRIDGE:
         lines.append(
@@ -214,13 +228,13 @@ def build_flight_lines(callsign, t0_sec):
     # Thoi gian bay THAT tu CRE den nguong (de tinh moc DEL an toan).
     all_pts = (
         [("RW10R", *RW10R)]
-        + [(n, lat, lon) for n, lat, lon, _ in SID_OSOTA]
+        + [(n, lat, lon) for n, lat, lon, _ in SID_RG_3D]
         + [(n, lat, lon) for n, lat, lon in ENROUTE_BRIDGE]
         + [(n, lat, lon) for n, lat, lon, _ in STAR_LATOM_2K]
     )
     speeds = (
         [climb_speed_kt(0)]
-        + [climb_speed_kt(alt) if alt is not None else climb_speed_kt(7000) for _, _, _, alt in SID_OSOTA]
+        + [climb_speed_kt(alt) if alt is not None else climb_speed_kt(7000) for _, _, _, alt in SID_RG_3D]
         + [CRUISE_SPD_KT] * len(ENROUTE_BRIDGE)
         + [
             (DN_SPEED_FROM_DOTEN.get(n) if n in DN_SPEED_FROM_DOTEN else (bada_descent_speed_kt(alt) if alt is not None else 230))
@@ -248,7 +262,7 @@ def main():
     backup_if_exists()
 
     lines = []
-    lines.append("# VVPQ -> VVDN: 5 tau bay A320 cat canh SID OSOTA (VVPQ RWY10R that),")
+    lines.append("# VVPQ -> VVDN: 5 tau bay A320 cat canh SID RG 3D (VVPQ RWY10R that),")
     lines.append("# bay qua enroute bridge that (TUNPO-RG-TSH-PATMA-SADAS-DADEN), ha canh")
     lines.append("# VVDN STAR LATOM 2K (RWY35L that), cach nhau DUNG 3 phut tai CADAS.")
     lines.append(f"{fmt_time(SCENARIO_START_SEC)}>DTMULT 1")
