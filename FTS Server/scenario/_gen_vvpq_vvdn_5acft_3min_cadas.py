@@ -265,7 +265,10 @@ def main():
     lines.append("# VVPQ -> VVDN: 5 tau bay A320 cat canh SID RG 3D (VVPQ RWY10R that),")
     lines.append("# bay qua enroute bridge that (TUNPO-RG-TSH-PATMA-SADAS-DADEN), ha canh")
     lines.append("# VVDN STAR LATOM 2K (RWY35L that), cach nhau DUNG 3 phut tai CADAS.")
-    lines.append(f"{fmt_time(SCENARIO_START_SEC)}>DTMULT 1")
+    # DTMULT phai o moc 00:00:00, KHONG phai moc cat canh dau tien: neu dat o
+    # 00:00:30 thi moi lenh tang toc nguoi dung go truoc do deu bi dong nay ghi
+    # de nguoc lai ve 1x (da gap khi chay thu live).
+    lines.append("00:00:00.000>DTMULT 1")
     lines.append("")
 
     cadas_times = []

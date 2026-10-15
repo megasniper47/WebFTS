@@ -1,7 +1,7 @@
 # VVPQ -> VVDN: 5 tau bay A320 cat canh SID RG 3D (VVPQ RWY10R that),
 # bay qua enroute bridge that (TUNPO-RG-TSH-PATMA-SADAS-DADEN), ha canh
 # VVDN STAR LATOM 2K (RWY35L that), cach nhau DUNG 3 phut tai CADAS.
-00:00:30.000>DTMULT 1
+00:00:00.000>DTMULT 1
 
 # VVPQ01: cat canh luc 00:00:30.000, qua CADAS (du kien) luc 02:00:18.793
 # --- VVPQ01 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
