@@ -151,6 +151,22 @@ SID_RG_3D = [
 #                            nen khong vi pham neu tau con cao hon)
 CRUISE_ALT_FT = 31000.0  # FL310
 STAR_ENTRY_ALT_FT = 25000.0  # FL250 tai LATOM
+
+# Toc do hanh trinh tai FL310 -- YEU CAU KHAI THAC cua nguoi dung: ground
+# speed 470-480 kt. Khong co gio trong kich ban nay nen GS = TAS; quy doi ve
+# IAS (CAS) tai FL310 theo khi quyen tieu chuan ISA:
+#     IAS 298 kt -> GS 470.3 kt (M 0.802)
+#     IAS 300 kt -> GS 473.2 kt (M 0.806)   <-- chon, nam giua dai yeu cau
+#     IAS 305 kt -> GS 480.3 kt (M 0.819)
+# Vi TAS chi phu thuoc (CAS, do cao) chu khong phu thuoc loai tau bay, 1 gia
+# tri IAS nay cho CUNG mot GS o ca 5 loai.
+#
+# GHI DE co chu dich len lich BADA cruise: BADA cho 5 loai nay o FL310 chi ra
+# IAS 289-293 kt = GS 457-463 kt, THAP hon dai 470-480 nguoi dung yeu cau.
+# Cac giai doan khac (leo, ha do, tiep can) VAN theo dung BADA/toc do that.
+# Mach tuong ung 0.806 nam duoi MMO 0.82 cua ca 5 loai nen khong vi pham gioi
+# han khai thac.
+CRUISE_IAS_KT = 300
 CRUISE_SPD_KT = 290
 ENROUTE_BRIDGE = [
     ("TSH", 10.818333, 106.650556),
@@ -311,8 +327,8 @@ def route_points(actype):
             pts.append((name, lat, lon, alt, spd, f"SID RG 3D, that; toc do BADA climb {actype}"))
 
     for name, lat, lon in ENROUTE_BRIDGE:
-        spd = bada_speed_kt(actype, CRUISE_ALT_FT, "cruise")
-        pts.append((name, lat, lon, CRUISE_ALT_FT, spd, f"enroute FL310; toc do BADA cruise {actype}"))
+        pts.append((name, lat, lon, CRUISE_ALT_FT, CRUISE_IAS_KT,
+                    f"enroute FL310; IAS {CRUISE_IAS_KT}kt = GS ~473kt (yeu cau khai thac, ghi de BADA cruise)"))
 
     for name, lat, lon, alt in STAR_LATOM_2K:
         if alt is None:
@@ -357,18 +373,18 @@ def estimate_times(actype):
 #   2. Dat dung moc thoi gian bat dau chuoi MOVE lan vao ben do.
 # Cap nhat bang quy trinh hieu chinh (chay headless do lai roi dien vao day).
 CADAS_CALIB = {   # so giay tu CRE den khi qua CADAS
-    "A320": 4996.0,   # do duoc khi cach CADAS 0.90 NM
-    "A321": 4978.0,   # 0.90 NM
-    "A20N": 4972.0,   # 0.90 NM
-    "A21N": 4926.0,   # 0.89 NM
-    "B739": 4936.0,   # 0.89 NM
+    "A320": 4924.0,   # do duoc khi cach CADAS 0.90 NM
+    "A321": 4906.0,   # 0.90 NM
+    "A20N": 4900.0,   # 0.90 NM
+    "A21N": 4880.0,   # 0.89 NM
+    "B739": 4890.0,   # 0.89 NM
 }
 TOUCHDOWN_CALIB = {   # so giay tu CRE den khi cham nguong 35L
-    "A320": 5484.0,   # do duoc khi cach nguong 0.01 NM
-    "A321": 5462.0,   # 0.00 NM
-    "A20N": 5460.0,   # 0.01 NM
-    "A21N": 5392.0,   # 0.04 NM
-    "B739": 5402.0,   # 0.04 NM
+    "A320": 5412.0,   # do duoc khi cach nguong 0.00 NM
+    "A321": 5390.0,   # 0.01 NM
+    "A20N": 5388.0,   # 0.02 NM
+    "A21N": 5348.0,   # 0.02 NM
+    "B739": 5358.0,   # 0.03 NM
 }
 
 # ---------------------------------------------------------------------------
