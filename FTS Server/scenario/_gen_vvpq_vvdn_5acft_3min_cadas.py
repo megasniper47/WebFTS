@@ -62,7 +62,9 @@ phut thuc te, dat DTMULT 64 (hoac cao hon) ngay sau khi mo.
 from __future__ import annotations
 
 import math
+import random
 import shutil
+import sys
 from datetime import datetime
 from pathlib import Path
 
@@ -70,10 +72,39 @@ OUT_FILE = Path("VVPQ-VVDN-5acft-3min-CADAS.scn")
 BACKUP_DIR = Path("Backup")
 
 SCENARIO_START_SEC = 30.0  # 00:00:30 -- tau dau xuat hien gan nhu ngay khi mo
-DEPARTURE_GAP_SEC = 180.0  # 3 phut
-N_AIRCRAFT = 5
-ACTYPE = "A320"
-V2_KT = 150
+CADAS_GAP_SEC = 180.0  # 3 phut -- gian cach YEU CAU tai CADAS
+
+# ---------------------------------------------------------------------------
+# 5 LOAI TAU BAY -- deu la loai Viet Nam dang khai thac that va deu nam trong
+# danh sach 12 loai da duoc du an xac nhan tu VVDN_KB5_1HOUR_MIXED.scn (xem
+# _gen_vvdn_minsep_pairs_from_doten.py), nen moi loai vua co bang toc do BADA
+# that, vua co toc do tiep can that da transcribe san.
+#
+# BADA 3.16, doc nguyen tu hang "CD ... AV" trong file .APF that
+# (FTS Server/bluesky/data/performance/bada/<TYPE>__.APF), layout 9 gia tri
+# theo BADA User Manual: CAScl1/CAScl2/Mcl | CAScr1/CAScr2/Mcr | Mdes/CASdes2/
+# CASdes1. Khong bia, khong lam tron -- so nao trong file la so do.
+# ---------------------------------------------------------------------------
+BADA = {
+    # type:  (CAScl1, CAScl2, Mcl,  CAScr2, Mcr,  Mdes, CASdes2, CASdes1)
+    "A320": (310, 310, 0.78, 310, 0.78, 0.79, 300, 300),
+    "A321": (310, 310, 0.78, 300, 0.78, 0.78, 300, 300),
+    "A20N": (310, 310, 0.78, 310, 0.78, 0.79, 300, 300),
+    "A21N": (300, 300, 0.79, 300, 0.79, 0.79, 300, 300),
+    "B739": (300, 300, 0.79, 300, 0.79, 0.79, 300, 300),
+}
+
+# V2 (toc do an toan khi cat canh) theo tung loai -- UOC LUONG hop ly theo
+# hang/kich co, KHONG phai so lieu BADA (file .APF khong cong bo V2; no nam
+# trong .OPF duoi dang Vstall va con phu thuoc khoi luong/cau hinh canh thuc
+# te cua tung chuyen bay).
+V2_BY_TYPE = {"A320": 150, "A321": 155, "A20N": 148, "A21N": 150, "B739": 152}
+
+# Thu tu 5 tau: moi tau 1 loai khac nhau.
+FLEET = ["A320", "A321", "A20N", "A21N", "B739"]
+
+# Gioi han toc do ATC duoi FL100 (quy dinh khai thac, khong phai so BADA).
+ATC_SPEED_LIMIT_BELOW_FL100 = 250
 
 # ---------------------------------------------------------------------------
 # VVPQ SID RG 3D (RWY 10R that) -- vvpq_procedures.py's SID_TRANSITIONS["RG"].
@@ -149,11 +180,69 @@ STAR_LATOM_2K = [
     ("RW35L", 16.030133, 108.200372, 0.0),
 ]
 
-# Toc do THAT (A320), DOTEN tro di -- tu _gen_vvdn_minsep_pairs_from_doten.py
+# Toc do IAS THAT tai tung moc tu DOTEN tro di, RIENG cho tung loai tau bay --
+# chep nguyen tu _gen_vvdn_minsep_pairs_from_doten.py's SPEED dict (chinh no
+# da chep tu cac file _KB5GEN_ARR_APPROACH_ARRxxx.scn that cua tung loai).
+# Doan nay dung toc do THAT thay vi BADA vi do la profile tiep can thuc te da
+# duoc do/kiem chung trong du an, sat hon mot bang BADA chung chung.
 DN_SPEED_FROM_DOTEN = {
-    "DOTEN": 250, "TRACO": 230, "CADAS": 205, "MONRY": 190, "TAMLA": 175,
-    "KALET": 165, "NB2": 150, "DN351": 150, "RW35L": 130,
+    "A320": {"DOTEN": 250, "TRACO": 230, "CADAS": 205, "MONRY": 190, "TAMLA": 175, "KALET": 165, "NB2": 150, "DN351": 150, "RW35L": 130},
+    "A321": {"DOTEN": 250, "TRACO": 230, "CADAS": 205, "MONRY": 190, "TAMLA": 175, "KALET": 165, "NB2": 155, "DN351": 155, "RW35L": 135},
+    "A20N": {"DOTEN": 250, "TRACO": 230, "CADAS": 205, "MONRY": 190, "TAMLA": 175, "KALET": 165, "NB2": 150, "DN351": 150, "RW35L": 130},
+    "A21N": {"DOTEN": 250, "TRACO": 230, "CADAS": 215, "MONRY": 200, "TAMLA": 185, "KALET": 170, "NB2": 155, "DN351": 155, "RW35L": 140},
+    "B739": {"DOTEN": 250, "TRACO": 230, "CADAS": 215, "MONRY": 200, "TAMLA": 185, "KALET": 170, "NB2": 155, "DN351": 155, "RW35L": 145},
 }
+
+
+# ---------------------------------------------------------------------------
+# Lich toc do BADA theo giai doan + muc bay
+# ---------------------------------------------------------------------------
+def _isa(alt_ft):
+    h = alt_ft * 0.3048
+    if h < 11000.0:
+        T = 288.15 - 0.0065 * h
+        p = 101325.0 * (T / 288.15) ** 5.25588
+    else:
+        T = 216.65
+        p = 22632.0 * math.exp(-9.80665 * (h - 11000.0) / (287.05 * 216.65))
+    return T, p
+
+
+def mach_to_cas_kt(mach, alt_ft):
+    """Doi so Mach cong bo cua BADA sang CAS (IAS) de ghi vao ADDWPT -- cong
+    thuc khi quyen tieu chuan ISA + dong ap nen duoc (compressible), cung ho
+    cong thuc bluesky/tools/aero.py dung."""
+    _T, p = _isa(alt_ft)
+    qc = p * ((1.0 + 0.2 * mach * mach) ** 3.5 - 1.0)
+    cas_ms = 340.294 * math.sqrt(5.0 * ((qc / 101325.0 + 1.0) ** (1.0 / 3.5) - 1.0))
+    return cas_ms / 0.514444
+
+
+def bada_speed_kt(actype, alt_ft, phase, v2=None):
+    """Toc do CAS theo dung lich BADA 3.x cua RIENG loai tau bay do, theo
+    giai doan bay va muc bay:
+
+      - Duoi 3000ft (chi khi leo): V2 + 20, giai doan tang toc sau cat canh.
+      - Duoi FL100: CAS cua giai doan nhung bi gioi han boi quy dinh ATC
+        250kt (gioi han khai thac, KHONG phai so BADA).
+      - Tren FL100: lay MIN giua CAS cong bo va CAS tuong duong cua so Mach
+        cong bo -- chinh la cach BADA chuyen tu che do giu CAS sang giu Mach
+        tai "crossover altitude" (duoi crossover CAS nho hon, tren crossover
+        Mach nho hon), khong can tinh rieng crossover.
+    """
+    cascl1, cascl2, mcl, cascr2, mcr, mdes, casdes2, casdes1 = BADA[actype]
+    if phase == "climb":
+        if alt_ft < 3000 and v2 is not None:
+            return round(v2 + 20)
+        cas_lo, cas_hi, mach = cascl1, cascl2, mcl
+    elif phase == "cruise":
+        cas_lo, cas_hi, mach = cascr2, cascr2, mcr
+    else:  # descent
+        cas_lo, cas_hi, mach = casdes1, casdes2, mdes
+
+    if alt_ft < 10000:
+        return min(cas_lo, ATC_SPEED_LIMIT_BELOW_FL100)
+    return round(min(cas_hi, mach_to_cas_kt(mach, alt_ft)))
 
 
 def haversine_nm(lat1, lon1, lat2, lon2):
@@ -174,23 +263,171 @@ def fmt_time(total_sec):
     return f"{h:02d}:{m:02d}:{s:06.3f}"
 
 
-def climb_speed_kt(alt_ft):
-    if alt_ft < 3000:
-        return round(V2_KT + 20)
-    if alt_ft < 10000:
-        return 250
-    return 280
+def build_flight_lines(callsign, actype, t0_sec, exit_choice):
+    t0 = fmt_time(t0_sec)
+    lat0, lon0 = RW10R
+    v2 = V2_BY_TYPE[actype]
+    lines = [f"# --- {callsign} ({actype}) - SID RG 3D (VVPQ RWY10R) -> FL310 -> LATOM FL250 -> STAR LATOM 2K (VVDN RWY35L) ---"]
+    lines.append(f"{t0}>CRE {callsign},{actype},{lat0:.6f},{lon0:.6f},{DEP_INITIAL_COURSE},0,{v2}")
+    lines.append(f"{t0}>{callsign} ALT 50")
+
+    for name, lat, lon, alt, spd, note in route_points(actype):
+        if alt is None:
+            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f}  # {name} ({note})")
+        else:
+            label = "nguong 35L (cham cang chinh)" if name == "RW35L" else name
+            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f},{alt:.0f},{spd}  # {label} ({note})")
+
+    exit_info = EXIT_CHAINS[exit_choice]
+    for lat, lon, spd in exit_info["chain"]:
+        lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f},0,{spd}  # thoat ly {exit_choice} (that)")
+
+    lines.append(f"{t0}>{callsign} LNAV ON")
+    lines.append(f"{t0}>{callsign} VNAV ON")
+
+    # Chuyen tu LNAV/VNAV sang chuoi MOVE lan vao ben do that. Moc thoi gian
+    # = cham nguong (DO THAT bang headless) + thoi gian xa da/lan thoat ly.
+    td_spd = DN_SPEED_FROM_DOTEN[actype]["RW35L"]
+    t_stop = t0_sec + TOUCHDOWN_CALIB[actype] + occupancy_time_sec(exit_choice, td_spd)
+    lines.append(f"{fmt_time(t_stop)}>{callsign} LNAV OFF")
+    lines.append(f"{fmt_time(t_stop)}>{callsign} VNAV OFF  # thoat ly {exit_choice}, lan vao {exit_info['dest_label']}")
+    for offset, cmd in load_move_sequence(exit_info["move_file"]):
+        lines.append(f"{fmt_time(t_stop + offset)}>{cmd.replace('%0', callsign)}")
+    lines.append("")
+    return lines
 
 
-def bada_descent_speed_kt(alt_ft):
-    """Cung cong thuc voi capacity_scenario_engine._bada_descent_speed_kt,
-    dung cho cac diem that nhung khong co toc do cong bo (NOVAN/NOCKA/
-    DN368/VIDAN)."""
-    if alt_ft >= 14000:
-        return 250
-    if alt_ft >= 6000:
-        return 230
-    return 210
+def route_points(actype):
+    """Chuoi (ten, lat, lon, alt_ft, spd_kt, ghi_chu) day du cua 1 chuyen bay,
+    toc do da ap dung dung lich BADA cua RIENG loai tau bay do."""
+    v2 = V2_BY_TYPE[actype]
+    pts = []
+
+    for name, lat, lon, alt in SID_RG_3D:
+        if alt is None:
+            pts.append((name, lat, lon, None, None, "SID RG 3D, that, khong rang buoc do cao"))
+        else:
+            spd = bada_speed_kt(actype, alt, "climb", v2)
+            pts.append((name, lat, lon, alt, spd, f"SID RG 3D, that; toc do BADA climb {actype}"))
+
+    for name, lat, lon in ENROUTE_BRIDGE:
+        spd = bada_speed_kt(actype, CRUISE_ALT_FT, "cruise")
+        pts.append((name, lat, lon, CRUISE_ALT_FT, spd, f"enroute FL310; toc do BADA cruise {actype}"))
+
+    for name, lat, lon, alt in STAR_LATOM_2K:
+        if alt is None:
+            pts.append((name, lat, lon, None, None, "STAR LATOM 2K, that, khong rang buoc do cao"))
+            continue
+        real = DN_SPEED_FROM_DOTEN[actype].get(name)
+        if real is not None:
+            pts.append((name, lat, lon, alt, real, f"STAR LATOM 2K; toc do tiep can THAT cua {actype}"))
+        else:
+            spd = bada_speed_kt(actype, alt, "descent")
+            pts.append((name, lat, lon, alt, spd, f"STAR LATOM 2K; toc do BADA descent {actype}"))
+    return pts
+
+
+def estimate_times(actype):
+    """Uoc luong thoi gian bay tu luc CRE den (CADAS, nguong) bang toc do
+    trung binh tung chang. Chi dung de SAP XEP gio cat canh ban dau -- con so
+    chinh xac lay tu lan do THAT bang BlueSky headless (CADAS_CALIB)."""
+    pts = [("RW10R", RW10R[0], RW10R[1], 0.0, bada_speed_kt(actype, 0, "climb", V2_BY_TYPE[actype]), "")] + route_points(actype)
+    last_spd = pts[0][4]
+    t = 0.0
+    t_cadas = None
+    for i in range(len(pts) - 1):
+        _, la1, lo1, _a1, s1, _ = pts[i]
+        n2, la2, lo2, _a2, s2, _ = pts[i + 1]
+        s1 = s1 if s1 is not None else last_spd
+        s2 = s2 if s2 is not None else s1
+        last_spd = s2
+        d = haversine_nm(la1, lo1, la2, lo2)
+        t += d / max((s1 + s2) / 2.0, 1.0) * 3600.0
+        if n2 == "CADAS":
+            t_cadas = t
+    return t_cadas, t
+
+
+# Thoi gian bay THAT tu luc CRE den khi qua CADAS / den khi cham nguong, DO
+# BANG BlueSky headless (khong phai uoc luong) cho tung loai tau bay voi dung
+# profile trong file nay. Dung de:
+#   1. Giai nguoc gio cat canh sao cho gian cach TAI CADAS dung 180s -- vi 5
+#      loai co toc do khac nhau nen cat canh cach deu 180s se KHONG cho gian
+#      cach 180s tai CADAS.
+#   2. Dat dung moc thoi gian bat dau chuoi MOVE lan vao ben do.
+# Cap nhat bang quy trinh hieu chinh (chay headless do lai roi dien vao day).
+CADAS_CALIB = {   # so giay tu CRE den khi qua CADAS
+    "A320": 4996.0,   # do duoc khi cach CADAS 0.90 NM
+    "A321": 4978.0,   # 0.90 NM
+    "A20N": 4972.0,   # 0.90 NM
+    "A21N": 4926.0,   # 0.89 NM
+    "B739": 4936.0,   # 0.89 NM
+}
+TOUCHDOWN_CALIB = {   # so giay tu CRE den khi cham nguong 35L
+    "A320": 5484.0,   # do duoc khi cach nguong 0.01 NM
+    "A321": 5462.0,   # 0.00 NM
+    "A20N": 5460.0,   # 0.01 NM
+    "A21N": 5392.0,   # 0.04 NM
+    "B739": 5402.0,   # 0.04 NM
+}
+
+# ---------------------------------------------------------------------------
+# THOAT LY SAU KHI HA CANH -- chep nguyen tu _gen_vvdn_minsep_pairs_from_
+# doten.py's EXIT_CHAINS (chinh no chep tu _KB5GEN_ARR_EXIT_G4/G6.scn that).
+# Moi tau NGAU NHIEN (seed co dinh de tai lap duoc) thoat ly qua G4 hoac G6:
+#   G4 -> lan vao BEN 26      (du lieu MOVE: _ARR_RESUME_G4_GATE26.scn)
+#   G6 -> lan vao BEN 11      (du lieu MOVE: _ARR_RESUME_G6_GATE11.scn)
+# Toc do giam dan den muc lan (10kt) chu KHONG ve 0: de chuoi LNAV rollout noi
+# lien mach sang chuoi MOVE lan vao ben, khong bi dung khuc giua duong bang
+# (loi nay da tung gap va duoc ghi lai trong _gen_vvdn_minsep_pairs_from_doten).
+# ---------------------------------------------------------------------------
+EXIT_CHAINS = {
+    "G4": {
+        "chain": [
+            (16.034580, 108.199721, 122), (16.039028, 108.199071, 102), (16.043475, 108.198420, 75),
+            (16.046143, 108.198030, 54), (16.047922, 108.197769, 32), (16.048687, 108.197658, 10),
+            (16.048950, 108.198100, 8), (16.048727, 108.197660, 10),
+        ],
+        "move_file": "_ARR_RESUME_G4_GATE26.scn",
+        "dest_label": "ben 26",
+    },
+    "G6": {
+        "chain": [
+            (16.034580, 108.199721, 128), (16.039028, 108.199071, 115), (16.043475, 108.198420, 100),
+            (16.047922, 108.197769, 83), (16.052370, 108.197119, 61), (16.055927, 108.196598, 34),
+            (16.057199, 108.196412, 10), (16.057250, 108.196800, 8), (16.057200, 108.197400, 12),
+        ],
+        "move_file": "_ARR_RESUME_G6_GATE11.scn",
+        "dest_label": "ben 11",
+    },
+}
+RANDOM_SEED = 20261014
+
+
+def load_move_sequence(filename):
+    """Doc file MOVE/DEL nguon, tra ve [(offset_giay, lenh_co_%0)] de NHOI
+    THANG vao file dau ra -- khong dung PCALL toi file rieng, de kich ban chi
+    con DUY NHAT 1 file .scn."""
+    out = []
+    for line in (Path(__file__).parent / filename).read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or ">" not in line:
+            continue
+        ts, rest = line.split(">", 1)
+        h, m, s = ts.split(":")
+        out.append((int(h) * 3600 + int(m) * 60 + float(s), rest))
+    return out
+
+
+def occupancy_time_sec(exit_name, touchdown_spd_kt):
+    """Thoi gian tu luc cham nguong den khi toi diem cuoi chuoi thoat ly."""
+    pts = [(STAR_LATOM_2K[-1][1], STAR_LATOM_2K[-1][2], touchdown_spd_kt)] + EXIT_CHAINS[exit_name]["chain"]
+    t = 0.0
+    for i in range(len(pts) - 1):
+        la1, lo1, s1 = pts[i]
+        la2, lo2, s2 = pts[i + 1]
+        t += haversine_nm(la1, lo1, la2, lo2) / max((s1 + s2) / 2.0, 0.5) * 3600.0
+    return t
 
 
 def backup_if_exists():
@@ -203,102 +440,97 @@ def backup_if_exists():
         print(f"Da backup file cu vao {dest}")
 
 
-def build_flight_lines(callsign, t0_sec):
-    t0 = fmt_time(t0_sec)
-    lat0, lon0 = RW10R
-    lines = [f"# --- {callsign} ({ACTYPE}) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---"]
-    lines.append(f"{t0}>CRE {callsign},{ACTYPE},{lat0:.6f},{lon0:.6f},{DEP_INITIAL_COURSE},0,{V2_KT}")
-    lines.append(f"{t0}>{callsign} ALT 50")
+def assign_exits():
+    """Ngau nhien G4/G6 cho tung tau, seed co dinh de moi lan sinh lai ra ket
+    qua y het (tai lap duoc)."""
+    rng = random.Random(RANDOM_SEED)
+    return [rng.choice(["G4", "G6"]) for _ in FLEET]
 
-    for name, lat, lon, alt in SID_RG_3D:
-        if alt is not None:
-            spd = climb_speed_kt(alt)
-            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f},{alt:.0f},{spd}  # {name} (SID RG 3D, that)")
-        else:
-            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f}  # {name} (SID RG 3D, that, khong rang buoc do cao)")
 
-    for name, lat, lon in ENROUTE_BRIDGE:
-        lines.append(
-            f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f},{CRUISE_ALT_FT:.0f},{CRUISE_SPD_KT}"
-            f"  # {name} (enroute that, do cao hanh trinh don gian hoa -- xem docstring)"
-        )
+def solve_t0():
+    """Giai nguoc gio cat canh: 5 loai tau bay co toc do khac nhau nen thoi
+    gian bay toi CADAS khac nhau; muon gian cach TAI CADAS dung 180s thi gio
+    cat canh KHONG the cach deu 180s.
 
-    for name, lat, lon, alt in STAR_LATOM_2K:
-        if alt is None:
-            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f}  # {name} (STAR LATOM 2K, that, khong rang buoc do cao)")
-            continue
-        if name in DN_SPEED_FROM_DOTEN:
-            spd = DN_SPEED_FROM_DOTEN[name]
-            src = "that"
-        else:
-            spd = bada_descent_speed_kt(alt)
-            src = "BADA descent schedule, khong co toc do cong bo"
-        label = "nguong 35L (cham cang chinh)" if name == "RW35L" else name
-        lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f},{alt:.0f},{spd}  # {label} (STAR LATOM 2K, {src})")
+        t0[i] = (moc CADAS mong muon cua tau i) - (thoi gian bay toi CADAS cua
+                 loai tau i)
 
-    lines.append(f"{t0}>{callsign} LNAV ON")
-    lines.append(f"{t0}>{callsign} VNAV ON")
-
-    # Thoi gian bay THAT tu CRE den nguong (de tinh moc DEL an toan).
-    all_pts = (
-        [("RW10R", *RW10R)]
-        + [(n, lat, lon) for n, lat, lon, _ in SID_RG_3D]
-        + [(n, lat, lon) for n, lat, lon in ENROUTE_BRIDGE]
-        + [(n, lat, lon) for n, lat, lon, _ in STAR_LATOM_2K]
-    )
-    speeds = (
-        [climb_speed_kt(0)]
-        + [climb_speed_kt(alt) if alt is not None else climb_speed_kt(7000) for _, _, _, alt in SID_RG_3D]
-        + [CRUISE_SPD_KT] * len(ENROUTE_BRIDGE)
-        + [
-            (DN_SPEED_FROM_DOTEN.get(n) if n in DN_SPEED_FROM_DOTEN else (bada_descent_speed_kt(alt) if alt is not None else 230))
-            for n, _, _, alt in STAR_LATOM_2K
-        ]
-    )
-    total_t = 0.0
-    cadas_t = None
-    for i in range(len(all_pts) - 1):
-        _, lat1, lon1 = all_pts[i]
-        name2, lat2, lon2 = all_pts[i + 1]
-        d = haversine_nm(lat1, lon1, lat2, lon2)
-        avg = (speeds[i] + speeds[i + 1]) / 2.0
-        total_t += d / avg * 3600.0
-        if name2 == "CADAS":
-            cadas_t = t0_sec + total_t
-
-    del_time = t0_sec + total_t + 120.0
-    lines.append(f"{fmt_time(del_time)}>DEL {callsign}")
-    lines.append("")
-    return lines, cadas_t
+    Moc CADAS dau tien chon du lon de khong tau nao co t0 am."""
+    if CADAS_CALIB:
+        to_cadas = [CADAS_CALIB[ac] for ac in FLEET]
+        src = "DO THAT bang BlueSky headless"
+    else:
+        to_cadas = [estimate_times(ac)[0] for ac in FLEET]
+        src = "UOC LUONG (chua hieu chinh -- chay che do --calib de do that)"
+    first = max(to_cadas) + SCENARIO_START_SEC
+    t0s = [first + i * CADAS_GAP_SEC - to_cadas[i] for i in range(len(FLEET))]
+    return t0s, [first + i * CADAS_GAP_SEC for i in range(len(FLEET))], src
 
 
 def main():
+    calib_mode = "--calib" in sys.argv
     backup_if_exists()
 
-    lines = []
-    lines.append("# VVPQ -> VVDN: 5 tau bay A320 cat canh SID RG 3D (VVPQ RWY10R that),")
-    lines.append("# bay qua enroute bridge that (TUNPO-RG-TSH-PATMA-SADAS-DADEN), ha canh")
-    lines.append("# VVDN STAR LATOM 2K (RWY35L that), cach nhau DUNG 3 phut tai CADAS.")
-    # DTMULT phai o moc 00:00:00, KHONG phai moc cat canh dau tien: neu dat o
-    # 00:00:30 thi moi lenh tang toc nguoi dung go truoc do deu bi dong nay ghi
-    # de nguoc lai ve 1x (da gap khi chay thu live).
-    lines.append("00:00:00.000>DTMULT 1")
-    lines.append("")
+    exits = assign_exits()
+    t0s, cadas_targets, src = solve_t0()
 
-    cadas_times = []
-    for i in range(N_AIRCRAFT):
-        callsign = f"VVPQ{i + 1:02d}"
-        t0 = SCENARIO_START_SEC + i * DEPARTURE_GAP_SEC
-        flight_lines, cadas_t = build_flight_lines(callsign, t0)
-        lines.append(f"# {callsign}: cat canh luc {fmt_time(t0)}, qua CADAS (du kien) luc {fmt_time(cadas_t)}")
-        lines += flight_lines
-        cadas_times.append(cadas_t)
+    lines = [
+        "# VVPQ -> VVDN: 5 tau bay (5 LOAI KHAC NHAU) cat canh SID RG 3D (VVPQ",
+        "# RWY10R that), leo FL310, ha dan dat FL250 tai LATOM, ha canh VVDN",
+        "# STAR LATOM 2K (RWY35L that), cach nhau DUNG 3 phut tai CADAS.",
+        "# Toc do moi giai doan theo lich BADA 3.16 that cua TUNG loai tau bay.",
+        "# Sau khi ha canh: ngau nhien thoat ly G4 -> ben 26 hoac G6 -> ben 11.",
+        f"# Gio cat canh giai nguoc tu moc CADAS ({src}).",
+        "00:00:00.000>DTMULT 1",
+        "",
+    ]
+
+    for i, actype in enumerate(FLEET):
+        cs = f"VVPQ{i + 1:02d}"
+        if calib_mode:
+            # Che do hieu chinh: cat canh cach deu, KHONG vacate -- chi de do
+            # thoi gian bay thuan tuy cua tung loai.
+            t0 = SCENARIO_START_SEC + i * CADAS_GAP_SEC
+            lines.append(f"# {cs} ({actype}): cat canh {fmt_time(t0)} [CHE DO HIEU CHINH]")
+            lines += build_flight_lines_nocalib(cs, actype, t0)
+        else:
+            t0 = t0s[i]
+            lines.append(
+                f"# {cs} ({actype}): cat canh {fmt_time(t0)}, qua CADAS {fmt_time(cadas_targets[i])}, "
+                f"thoat ly {exits[i]} -> {EXIT_CHAINS[exits[i]]['dest_label']}"
+            )
+            lines += build_flight_lines(cs, actype, t0, exits[i])
 
     OUT_FILE.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"Da ghi {OUT_FILE}")
-    for i in range(1, len(cadas_times)):
-        gap = cadas_times[i] - cadas_times[i - 1]
-        print(f"Khoang cach CADAS (du kien) giua tau {i} va {i + 1}: {gap:.1f}s ({gap / 60:.2f} phut)")
+    print(f"Da ghi {OUT_FILE}" + ("  [CHE DO HIEU CHINH]" if calib_mode else ""))
+    print(f"Nguon thoi gian: {src}")
+    for i, ac in enumerate(FLEET):
+        print(f"  VVPQ{i+1:02d} {ac}: cat canh {fmt_time(t0s[i] if not calib_mode else SCENARIO_START_SEC + i*CADAS_GAP_SEC)}"
+              + (f", CADAS {fmt_time(cadas_targets[i])}, thoat ly {exits[i]} -> {EXIT_CHAINS[exits[i]]['dest_label']}" if not calib_mode else ""))
+    if not calib_mode:
+        for i in range(1, len(cadas_targets)):
+            gap = cadas_targets[i] - cadas_targets[i - 1]
+            print(f"  gian cach CADAS {i}->{i+1}: {gap:.1f}s")
+
+
+def build_flight_lines_nocalib(callsign, actype, t0_sec):
+    """Ban rut gon chi dung cho che do hieu chinh: khong co doan thoat ly/
+    vacate (nhung doan do can TOUCHDOWN_CALIB -- thu chua co o vong do dau)."""
+    t0 = fmt_time(t0_sec)
+    lat0, lon0 = RW10R
+    v2 = V2_BY_TYPE[actype]
+    lines = [f"# --- {callsign} ({actype}) [hieu chinh] ---"]
+    lines.append(f"{t0}>CRE {callsign},{actype},{lat0:.6f},{lon0:.6f},{DEP_INITIAL_COURSE},0,{v2}")
+    lines.append(f"{t0}>{callsign} ALT 50")
+    for name, lat, lon, alt, spd, note in route_points(actype):
+        if alt is None:
+            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f}  # {name}")
+        else:
+            lines.append(f"{t0}>{callsign} ADDWPT {lat:.6f},{lon:.6f},{alt:.0f},{spd}  # {name}")
+    lines.append(f"{t0}>{callsign} LNAV ON")
+    lines.append(f"{t0}>{callsign} VNAV ON")
+    lines.append("")
+    return lines
 
 
 if __name__ == "__main__":
