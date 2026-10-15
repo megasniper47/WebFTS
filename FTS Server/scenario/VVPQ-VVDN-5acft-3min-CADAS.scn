@@ -3,7 +3,7 @@
 # VVDN STAR LATOM 2K (RWY35L that), cach nhau DUNG 3 phut tai CADAS.
 00:00:00.000>DTMULT 1
 
-# VVPQ01: cat canh luc 00:00:30.000, qua CADAS (du kien) luc 02:00:18.793
+# VVPQ01: cat canh luc 00:00:30.000, qua CADAS (du kien) luc 01:59:35.742
 # --- VVPQ01 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
 00:00:30.000>CRE VVPQ01,A320,10.171189,103.979464,96,0,150
 00:00:30.000>VVPQ01 ALT 50
@@ -12,11 +12,11 @@
 00:00:30.000>VVPQ01 ADDWPT 9.870000,104.524167  # SAMIX (SID RG 3D, that, khong rang buoc do cao)
 00:00:30.000>VVPQ01 ADDWPT 9.796111,104.914722  # VILIT (SID RG 3D, that, khong rang buoc do cao)
 00:00:30.000>VVPQ01 ADDWPT 9.959444,105.133056  # RG (SID RG 3D, that, khong rang buoc do cao)
-00:00:30.000>VVPQ01 ADDWPT 10.818333,106.650556,25000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:00:30.000>VVPQ01 ADDWPT 12.336389,107.810000,25000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:00:30.000>VVPQ01 ADDWPT 13.320000,107.829444,25000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:00:30.000>VVPQ01 ADDWPT 13.999444,107.843611,25000,290  # DADEN (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:00:30.000>VVPQ01 ADDWPT 14.879444,107.843611  # LATOM (STAR LATOM 2K, that, khong rang buoc do cao)
+00:00:30.000>VVPQ01 ADDWPT 10.818333,106.650556,31000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:00:30.000>VVPQ01 ADDWPT 12.336389,107.810000,31000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:00:30.000>VVPQ01 ADDWPT 13.320000,107.829444,31000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:00:30.000>VVPQ01 ADDWPT 13.999444,107.843611,31000,290  # DADEN (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:00:30.000>VVPQ01 ADDWPT 14.879444,107.843611,25000,250  # LATOM (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:00:30.000>VVPQ01 ADDWPT 15.262500,107.987500,11000,230  # NOVAN (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:00:30.000>VVPQ01 ADDWPT 15.419444,108.046667,10000,230  # NOCKA (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:00:30.000>VVPQ01 ADDWPT 15.585278,108.022500  # DN368 (STAR LATOM 2K, that, khong rang buoc do cao)
@@ -32,9 +32,9 @@
 00:00:30.000>VVPQ01 ADDWPT 16.030133,108.200372,0,130  # nguong 35L (cham cang chinh) (STAR LATOM 2K, that)
 00:00:30.000>VVPQ01 LNAV ON
 00:00:30.000>VVPQ01 VNAV ON
-02:11:15.896>DEL VVPQ01
+02:10:32.846>DEL VVPQ01
 
-# VVPQ02: cat canh luc 00:03:30.000, qua CADAS (du kien) luc 02:03:18.793
+# VVPQ02: cat canh luc 00:03:30.000, qua CADAS (du kien) luc 02:02:35.742
 # --- VVPQ02 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
 00:03:30.000>CRE VVPQ02,A320,10.171189,103.979464,96,0,150
 00:03:30.000>VVPQ02 ALT 50
@@ -43,11 +43,11 @@
 00:03:30.000>VVPQ02 ADDWPT 9.870000,104.524167  # SAMIX (SID RG 3D, that, khong rang buoc do cao)
 00:03:30.000>VVPQ02 ADDWPT 9.796111,104.914722  # VILIT (SID RG 3D, that, khong rang buoc do cao)
 00:03:30.000>VVPQ02 ADDWPT 9.959444,105.133056  # RG (SID RG 3D, that, khong rang buoc do cao)
-00:03:30.000>VVPQ02 ADDWPT 10.818333,106.650556,25000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:03:30.000>VVPQ02 ADDWPT 12.336389,107.810000,25000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:03:30.000>VVPQ02 ADDWPT 13.320000,107.829444,25000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:03:30.000>VVPQ02 ADDWPT 13.999444,107.843611,25000,290  # DADEN (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:03:30.000>VVPQ02 ADDWPT 14.879444,107.843611  # LATOM (STAR LATOM 2K, that, khong rang buoc do cao)
+00:03:30.000>VVPQ02 ADDWPT 10.818333,106.650556,31000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:03:30.000>VVPQ02 ADDWPT 12.336389,107.810000,31000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:03:30.000>VVPQ02 ADDWPT 13.320000,107.829444,31000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:03:30.000>VVPQ02 ADDWPT 13.999444,107.843611,31000,290  # DADEN (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:03:30.000>VVPQ02 ADDWPT 14.879444,107.843611,25000,250  # LATOM (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:03:30.000>VVPQ02 ADDWPT 15.262500,107.987500,11000,230  # NOVAN (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:03:30.000>VVPQ02 ADDWPT 15.419444,108.046667,10000,230  # NOCKA (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:03:30.000>VVPQ02 ADDWPT 15.585278,108.022500  # DN368 (STAR LATOM 2K, that, khong rang buoc do cao)
@@ -63,9 +63,9 @@
 00:03:30.000>VVPQ02 ADDWPT 16.030133,108.200372,0,130  # nguong 35L (cham cang chinh) (STAR LATOM 2K, that)
 00:03:30.000>VVPQ02 LNAV ON
 00:03:30.000>VVPQ02 VNAV ON
-02:14:15.896>DEL VVPQ02
+02:13:32.846>DEL VVPQ02
 
-# VVPQ03: cat canh luc 00:06:30.000, qua CADAS (du kien) luc 02:06:18.793
+# VVPQ03: cat canh luc 00:06:30.000, qua CADAS (du kien) luc 02:05:35.742
 # --- VVPQ03 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
 00:06:30.000>CRE VVPQ03,A320,10.171189,103.979464,96,0,150
 00:06:30.000>VVPQ03 ALT 50
@@ -74,11 +74,11 @@
 00:06:30.000>VVPQ03 ADDWPT 9.870000,104.524167  # SAMIX (SID RG 3D, that, khong rang buoc do cao)
 00:06:30.000>VVPQ03 ADDWPT 9.796111,104.914722  # VILIT (SID RG 3D, that, khong rang buoc do cao)
 00:06:30.000>VVPQ03 ADDWPT 9.959444,105.133056  # RG (SID RG 3D, that, khong rang buoc do cao)
-00:06:30.000>VVPQ03 ADDWPT 10.818333,106.650556,25000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:06:30.000>VVPQ03 ADDWPT 12.336389,107.810000,25000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:06:30.000>VVPQ03 ADDWPT 13.320000,107.829444,25000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:06:30.000>VVPQ03 ADDWPT 13.999444,107.843611,25000,290  # DADEN (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:06:30.000>VVPQ03 ADDWPT 14.879444,107.843611  # LATOM (STAR LATOM 2K, that, khong rang buoc do cao)
+00:06:30.000>VVPQ03 ADDWPT 10.818333,106.650556,31000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:06:30.000>VVPQ03 ADDWPT 12.336389,107.810000,31000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:06:30.000>VVPQ03 ADDWPT 13.320000,107.829444,31000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:06:30.000>VVPQ03 ADDWPT 13.999444,107.843611,31000,290  # DADEN (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:06:30.000>VVPQ03 ADDWPT 14.879444,107.843611,25000,250  # LATOM (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:06:30.000>VVPQ03 ADDWPT 15.262500,107.987500,11000,230  # NOVAN (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:06:30.000>VVPQ03 ADDWPT 15.419444,108.046667,10000,230  # NOCKA (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:06:30.000>VVPQ03 ADDWPT 15.585278,108.022500  # DN368 (STAR LATOM 2K, that, khong rang buoc do cao)
@@ -94,9 +94,9 @@
 00:06:30.000>VVPQ03 ADDWPT 16.030133,108.200372,0,130  # nguong 35L (cham cang chinh) (STAR LATOM 2K, that)
 00:06:30.000>VVPQ03 LNAV ON
 00:06:30.000>VVPQ03 VNAV ON
-02:17:15.896>DEL VVPQ03
+02:16:32.846>DEL VVPQ03
 
-# VVPQ04: cat canh luc 00:09:30.000, qua CADAS (du kien) luc 02:09:18.793
+# VVPQ04: cat canh luc 00:09:30.000, qua CADAS (du kien) luc 02:08:35.742
 # --- VVPQ04 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
 00:09:30.000>CRE VVPQ04,A320,10.171189,103.979464,96,0,150
 00:09:30.000>VVPQ04 ALT 50
@@ -105,11 +105,11 @@
 00:09:30.000>VVPQ04 ADDWPT 9.870000,104.524167  # SAMIX (SID RG 3D, that, khong rang buoc do cao)
 00:09:30.000>VVPQ04 ADDWPT 9.796111,104.914722  # VILIT (SID RG 3D, that, khong rang buoc do cao)
 00:09:30.000>VVPQ04 ADDWPT 9.959444,105.133056  # RG (SID RG 3D, that, khong rang buoc do cao)
-00:09:30.000>VVPQ04 ADDWPT 10.818333,106.650556,25000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:09:30.000>VVPQ04 ADDWPT 12.336389,107.810000,25000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:09:30.000>VVPQ04 ADDWPT 13.320000,107.829444,25000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:09:30.000>VVPQ04 ADDWPT 13.999444,107.843611,25000,290  # DADEN (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:09:30.000>VVPQ04 ADDWPT 14.879444,107.843611  # LATOM (STAR LATOM 2K, that, khong rang buoc do cao)
+00:09:30.000>VVPQ04 ADDWPT 10.818333,106.650556,31000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:09:30.000>VVPQ04 ADDWPT 12.336389,107.810000,31000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:09:30.000>VVPQ04 ADDWPT 13.320000,107.829444,31000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:09:30.000>VVPQ04 ADDWPT 13.999444,107.843611,31000,290  # DADEN (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:09:30.000>VVPQ04 ADDWPT 14.879444,107.843611,25000,250  # LATOM (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:09:30.000>VVPQ04 ADDWPT 15.262500,107.987500,11000,230  # NOVAN (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:09:30.000>VVPQ04 ADDWPT 15.419444,108.046667,10000,230  # NOCKA (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:09:30.000>VVPQ04 ADDWPT 15.585278,108.022500  # DN368 (STAR LATOM 2K, that, khong rang buoc do cao)
@@ -125,9 +125,9 @@
 00:09:30.000>VVPQ04 ADDWPT 16.030133,108.200372,0,130  # nguong 35L (cham cang chinh) (STAR LATOM 2K, that)
 00:09:30.000>VVPQ04 LNAV ON
 00:09:30.000>VVPQ04 VNAV ON
-02:20:15.896>DEL VVPQ04
+02:19:32.846>DEL VVPQ04
 
-# VVPQ05: cat canh luc 00:12:30.000, qua CADAS (du kien) luc 02:12:18.793
+# VVPQ05: cat canh luc 00:12:30.000, qua CADAS (du kien) luc 02:11:35.742
 # --- VVPQ05 (A320) - SID RG 3D (VVPQ RWY10R) -> enroute that -> STAR LATOM 2K (VVDN RWY35L) ---
 00:12:30.000>CRE VVPQ05,A320,10.171189,103.979464,96,0,150
 00:12:30.000>VVPQ05 ALT 50
@@ -136,11 +136,11 @@
 00:12:30.000>VVPQ05 ADDWPT 9.870000,104.524167  # SAMIX (SID RG 3D, that, khong rang buoc do cao)
 00:12:30.000>VVPQ05 ADDWPT 9.796111,104.914722  # VILIT (SID RG 3D, that, khong rang buoc do cao)
 00:12:30.000>VVPQ05 ADDWPT 9.959444,105.133056  # RG (SID RG 3D, that, khong rang buoc do cao)
-00:12:30.000>VVPQ05 ADDWPT 10.818333,106.650556,25000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:12:30.000>VVPQ05 ADDWPT 12.336389,107.810000,25000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:12:30.000>VVPQ05 ADDWPT 13.320000,107.829444,25000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:12:30.000>VVPQ05 ADDWPT 13.999444,107.843611,25000,290  # DADEN (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
-00:12:30.000>VVPQ05 ADDWPT 14.879444,107.843611  # LATOM (STAR LATOM 2K, that, khong rang buoc do cao)
+00:12:30.000>VVPQ05 ADDWPT 10.818333,106.650556,31000,290  # TSH (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:12:30.000>VVPQ05 ADDWPT 12.336389,107.810000,31000,290  # PATMA (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:12:30.000>VVPQ05 ADDWPT 13.320000,107.829444,31000,290  # SADAS (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:12:30.000>VVPQ05 ADDWPT 13.999444,107.843611,31000,290  # DADEN (enroute that, do cao hanh trinh don gian hoa -- xem docstring)
+00:12:30.000>VVPQ05 ADDWPT 14.879444,107.843611,25000,250  # LATOM (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:12:30.000>VVPQ05 ADDWPT 15.262500,107.987500,11000,230  # NOVAN (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:12:30.000>VVPQ05 ADDWPT 15.419444,108.046667,10000,230  # NOCKA (STAR LATOM 2K, BADA descent schedule, khong co toc do cong bo)
 00:12:30.000>VVPQ05 ADDWPT 15.585278,108.022500  # DN368 (STAR LATOM 2K, that, khong rang buoc do cao)
@@ -156,5 +156,5 @@
 00:12:30.000>VVPQ05 ADDWPT 16.030133,108.200372,0,130  # nguong 35L (cham cang chinh) (STAR LATOM 2K, that)
 00:12:30.000>VVPQ05 LNAV ON
 00:12:30.000>VVPQ05 VNAV ON
-02:23:15.896>DEL VVPQ05
+02:22:32.846>DEL VVPQ05
 

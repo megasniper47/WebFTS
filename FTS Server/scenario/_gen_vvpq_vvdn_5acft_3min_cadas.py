@@ -17,9 +17,11 @@ TOAN BO waypoint la du lieu THAT, khong bia -- nguon cu the tung doan:
    - TSH: "TAN SON NHAT DVOR/DME (TSH)", airways_enr31_legacy.json
    - PATMA/SADAS/DADEN: AIP ENR 3.1/3.3 (W12/Q7/G474)
    Khong co do cao cong bo rieng cho doan enroute nay trong du an (day la
-   waypoint DIEM BAO CAO, khong phai procedure leg co rang buoc do cao) --
-   dung 1 do cao hanh trinh co dinh (FL250), ghi ro day la LUA CHON KHAI
-   THAC don gian hoa, khong phai so lieu AIP cong bo.
+   waypoint DIEM BAO CAO, khong phai procedure leg co rang buoc do cao).
+   PROFILE DO CAO (LUA CHON KHAI THAC theo yeu cau nguoi dung, KHONG phai
+   so lieu AIP): sau khi het SID RG 3D, leo len muc bay duong dai FL310 va
+   giu suot TSH/PATMA/SADAS/DADEN; sau DADEN ha dan de dat DUNG FL250 tai
+   LATOM, roi tu LATOM moi vao STAR LATOM 2K.
 
 3. STAR "LATOM 2K" (VVDN, RWY 35L that): LATOM(IF) -> NOVAN -> NOCKA ->
    DN368 -> VIDAN -> DOTEN -> TRACO -> CADAS -> MONRY -> TAMLA -> KALET ->
@@ -105,7 +107,19 @@ SID_RG_3D = [
 # SID RG 3D. Chen TUNPO vao giua cac diem cua 1 SID cong bo la sai phuong thuc.
 # RG cung da la diem cuoi SID nen khong lap lai o day.
 # ---------------------------------------------------------------------------
-CRUISE_ALT_FT = 25000.0
+# Muc bay duong dai FL310, giu suot doan enroute; sau DADEN tau ha dan de dat
+# DUNG FL250 tai LATOM (diem dau STAR LATOM 2K) -- yeu cau nguoi dung. Day la
+# LUA CHON KHAI THAC, khong phai so lieu AIP (cac diem nay la diem bao cao
+# enroute, khong co rang buoc do cao cong bo).
+#
+# Da kiem tra kha thi truoc khi dat:
+#   PQ620(7000ft) -> TSH : 154 NM, leo 24000ft = 156 ft/NM   (thoai mai)
+#   DADEN -> LATOM       :  53 NM, giam 6000ft = 114 ft/NM   (thoai mai)
+#   LATOM -> NOVAN(+FL110): 24.5 NM, giam 14000ft = 2384 ft/min @250kt
+#                           (trong kha nang A320; va "+FL110" la AT-OR-ABOVE
+#                            nen khong vi pham neu tau con cao hon)
+CRUISE_ALT_FT = 31000.0  # FL310
+STAR_ENTRY_ALT_FT = 25000.0  # FL250 tai LATOM
 CRUISE_SPD_KT = 290
 ENROUTE_BRIDGE = [
     ("TSH", 10.818333, 106.650556),
@@ -119,7 +133,7 @@ ENROUTE_BRIDGE = [
 # + doan TAMLA->RW35L da co san that trong vvdn_procedures.py.
 # ---------------------------------------------------------------------------
 STAR_LATOM_2K = [
-    ("LATOM", 14.879444, 107.843611, None),
+    ("LATOM", 14.879444, 107.843611, STAR_ENTRY_ALT_FT),  # FL250 -- yeu cau nguoi dung
     ("NOVAN", 15.262500, 107.987500, 11000.0),   # +FL110
     ("NOCKA", 15.419444, 108.046667, 10000.0),   # +FL100
     ("DN368", 15.585278, 108.022500, None),       # khong rang buoc (that)
