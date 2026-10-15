@@ -402,7 +402,12 @@ EXIT_CHAINS = {
         "chain": [
             (16.034580, 108.199721, 122), (16.039028, 108.199071, 102), (16.043475, 108.198420, 75),
             (16.046143, 108.198030, 54), (16.047922, 108.197769, 32), (16.048687, 108.197658, 10),
-            (16.048950, 108.198100, 8), (16.048727, 108.197660, 10),
+            # DA BO 1 diem thua: ban cu xen (16.048950,108.198100) vao giua roi
+            # moi ve (16.048727,108.197660) -- tau tien len roi LUI nguoc lai
+            # (huong 242 do) ngay truoc khi chuyen sang chuoi MOVE. Bo diem do
+            # thi chuoi chay thang 352 -> 2 -> 82 do, noi lien mach vao dau
+            # tuyen lan (16.048739,108.197745), chi lech 9 m.
+            (16.048727, 108.197660, 10),
         ],
         "move_file": "_ARR_RESUME_G4_GATE26.scn",
         "dest_label": "ben 26",
