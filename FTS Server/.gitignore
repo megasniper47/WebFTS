@@ -132,3 +132,7 @@ scenario/out_check.txt
 scenario/*- Copy/
 scenario/*- Copy - Copy/
 scenario/Kịch bản mới/
+
+# Quy dao trung gian do script kiem chung sinh ra (tai tao duoc bang
+# _verify_vvdn_xenke.py), dung lai toi vai chuc MB -- khong theo doi.
+scenario/*.track.json

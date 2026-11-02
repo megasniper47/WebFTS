@@ -1,0 +1,177 @@
+{
+  "_mo_ta": "Cau hinh quy tac phan cach va tham so lan cho kich ban cat canh xen ke VVDN 35L/35R. Moi gia tri deu ghi dieu khoan nguon. Gia tri chua chac chan duoc danh dau can_xac_nhan=true va PHAI duoc nguoi dung xac nhan truoc khi dung ket qua vao cong tac chuyen mon.",
+  "_san_bay": "VVDN - Cang HKQT Da Nang",
+  "_cau_hinh_khai_thac": "Huong 35, hai duong CHC song song khai thac PHU THUOC. 35L ha canh (ILS), 35R cat canh.",
+
+  "thoi_gian": {
+    "thoi_luong_phut": 60,
+    "gio_dia_phuong": "07:00-17:00",
+    "thoi_tiet": "tot, duong CHC kho",
+    "nguon": "Gia dinh co dinh do nguoi dung chi dinh trong prompt"
+  },
+
+  "co_cau_tau_bay": {
+    "ty_le_medium": 0.70,
+    "ty_le_heavy": 0.30,
+    "medium": ["A320", "A321", "A20N", "A21N", "B738", "B38M", "B739", "E190"],
+    "heavy": ["A332", "A333", "A359", "B744", "B763", "B772", "B773", "B77W", "B788", "B789", "B748", "B78X"],
+    "phuong_phap": "han ngach chinh xac roi xao tron bang seed co dinh, khong boc ngau nhien doc lap tung chuyen",
+    "nguon": "Nguoi dung chi dinh (muc 2 prompt)"
+  },
+
+  "phan_cach_cat_canh_vs_tau_den_35L": {
+    "_mo_ta": "Cap huan lenh cat canh cho tau tren 35R chi khi tau ha canh 35L da cham cang chinh. Vi tri tau dang tiep can 35L cach nguong khong nho hon (NM). Hang = loai tau CAT CANH, cot = loai tau HA CANH.",
+    "don_vi": "NM",
+    "ma_tran": {
+      "SUPER":  {"SUPER": 5, "HEAVY": 7, "MEDIUM": 9, "LIGHT": 10},
+      "HEAVY":  {"SUPER": 5, "HEAVY": 6, "MEDIUM": 7, "LIGHT": 8},
+      "MEDIUM": {"SUPER": 5, "HEAVY": 5, "MEDIUM": 5, "LIGHT": 7},
+      "LIGHT":  {"SUPER": 5, "HEAVY": 5, "MEDIUM": 5, "LIGHT": 5}
+    },
+    "nguon": "Muc 3d prompt nguoi dung - co giam sat ATS",
+    "can_xac_nhan": false
+  },
+
+  "cham_cang_den_chay_da": {
+    "mac_dinh_giay": 30,
+    "dai_cho_phep_giay": [10, 15, 30],
+    "nguon": "Muc 3c prompt nguoi dung",
+    "can_xac_nhan": false
+  },
+
+  "thoi_gian_phan_ung_mat_dat": {
+    "doi_chuan_den_chay_da_code_C_giay": 10,
+    "doi_chuan_den_chay_da_code_D_tro_len_giay": 15,
+    "thoat_ly_duong_CHC_toi_da_giay": 100,
+    "cat_qua_duong_CHC_toi_da_giay": 45,
+    "nguon": "Muc 3e, 3f prompt nguoi dung",
+    "can_xac_nhan": false
+  },
+
+  "dieu_kien_cat_qua_35R": {
+    "cu_ly_toi_thieu_tau_tiep_can_35R_NM": 6,
+    "dieu_kien_them": "Khong co tau dang chay da hoac dang len duong CHC 35R tai vi tri cat qua",
+    "nguon": "Muc 3g prompt nguoi dung - co giam sat ATS",
+    "can_xac_nhan": false
+  },
+
+  "toc_do_tau_den_IAS": {
+    "tai_25NM": [200, 230],
+    "tai_10NM_truc_chot": [160, 180],
+    "tai_5NM_truc_chot": [150, 160],
+    "ghi_chu": "Moi loai tau dung toc do rieng trong dai nay theo tinh nang. Du an da co bang toc do IAS THAT theo tung loai tai cac moc DOTEN/TRACO/CADAS/MONRY/TAMLA/KALET/NB2/DN351/nguong, trich tu cac file _KB5GEN_ARR_APPROACH_ARRxxx.scn.",
+    "nguon": "Muc 3h prompt + du lieu do duoc trong du an",
+    "can_xac_nhan": false
+  },
+
+  "canh_bao_xung_dot": {
+    "tau_cat_canh_cao_hon_ft": 400,
+    "tau_ha_canh_thap_hon_ft": 3000,
+    "cu_ly_ngang_toi_thieu_NM": 3,
+    "bo_qua": "hai tau deu o mat dat",
+    "dien_giai_khi_kiem_chung": "'Tau ha canh thap hon 3000 ft' duoc hieu la tau DANG TIEP CAN, CHUA cham banh. Tau da cham banh (cao do ~0) dang lan tren san khong tham gia xung dot tren khong voi tau dang cat canh, nen bi loai khoi phep do -- neu khong, moi cap ARR/DEP ke tiep nhau deu bi bao sai (da do: 49 cap canh bao gia).",
+    "nguon": "Muc 3i prompt nguoi dung",
+    "can_xac_nhan": false
+  },
+
+  "phan_cach_ha_canh_lien_tiep_35L": {
+    "_mo_ta": "Phan cach nhieu dong xoay khi ha canh lien tiep tren cung duong CHC 35L.",
+    "don_vi": "NM",
+    "radar_toi_thieu": 3,
+    "ma_tran": {
+      "HEAVY_sau_HEAVY": 4,
+      "MEDIUM_sau_HEAVY": 5,
+      "MEDIUM_sau_MEDIUM": 3,
+      "HEAVY_sau_MEDIUM": 3
+    },
+    "nguon": "Muc 4 prompt ghi ro la 'tham khao' (ICAO Doc 4444 + quy dinh Cuc HKVN)",
+    "can_xac_nhan": true,
+    "ly_do_can_xac_nhan": "Prompt chi ghi 'tham khao: radar toi thieu 3NM; sau Heavy: 4NM cho Heavy, 5NM cho Medium'. Cac o con lai (HEAVY sau MEDIUM, MEDIUM sau MEDIUM) suy ra tu nguyen tac radar toi thieu 3NM chu KHONG duoc neu truc tiep. Du an con mot ma tran nhieu dong khac (baseline 5NM theo du thao VVDN 2026 chua ky) chua thong nhat - xem ghi chu du an. Can nguoi dung xac nhan ap dung ma tran nao."
+  },
+
+  "phan_cach_cat_canh_lien_tiep_35R": {
+    "_mo_ta": "Phan cach thoi gian nhieu dong xoay khi cat canh lien tiep tren 35R.",
+    "don_vi": "giay",
+    "ma_tran": {
+      "MEDIUM_sau_HEAVY": 120,
+      "HEAVY_sau_HEAVY": 120,
+      "MEDIUM_sau_MEDIUM": 60,
+      "HEAVY_sau_MEDIUM": 60
+    },
+    "phan_cach_theo_SID": {
+      "cung_duong_bay_giay": 120,
+      "phan_ky_giay": 60,
+      "ghi_chu": "Hai SID duoc coi la PHAN KY khi goc tach giua hai duong bay >= 45 do tai diem phan ky dau tien."
+    },
+    "nguon": "Muc 4 prompt ghi ro la 'tham khao' (2 phut khi Medium sau Heavy)",
+    "can_xac_nhan": true,
+    "ly_do_can_xac_nhan": "Prompt chi neu truc tiep 1 gia tri (2 phut khi Medium sau Heavy). Cac o con lai va nguong goc phan ky 45 do la SUY DIEN theo thong le ICAO Doc 4444, chua co van ban cu the cua Cuc HKVN trong du an de doi chieu."
+  },
+
+  "tham_so_lan": {
+    "toc_do_lan_doan_thang_kt": 15,
+    "toc_do_lan_khi_re_kt": 10,
+    "toc_do_lan_vao_ben_kt": 6,
+    "khoang_cach_toi_thieu_xep_hang_m": {
+      "cong_thuc": "nua chieu dai hai tau + 20 m tinh tu duoi tau truoc",
+      "nguon": "Muc 6 prompt nguoi dung"
+    },
+    "nguon": "Muc 6 prompt nguoi dung (mac dinh 15 kt doan thang, giam khi re)",
+    "can_xac_nhan": false
+  },
+
+  "gioi_han_diem_cho": {
+    "so_tau_toi_da": 3,
+    "muc_tieu_pha_mat_do_cao": [2, 3],
+    "nguon": "Muc 6 prompt nguoi dung - yeu cau cung",
+    "can_xac_nhan": false
+  },
+
+  "so_do_san_bay": {
+    "_nguon_du_lieu": "FTS Server/data/aerodrome_layout/datasets/vietnam_kml_layout/normalized/airports/VVDN/ (gates.geojson, taxiway_centerlines.geojson, taxiway_labels.geojson)",
+    "nguong_35L": [16.030133, 108.200372],
+    "diem_cho_cat_canh_35R": {
+      "RWYHOLD": [16.029200, 108.202500, 352.1],
+      "PREHOLD": [16.029259, 108.203066, 263.0],
+      "nguon": "_gen_kb5_1hour.py cua kich ban 40 chuyen da kiem chung"
+    },
+    "duong_lan_thoat_ly": {
+      "G4": [16.048864, 108.198650],
+      "G6": [16.057240, 108.197425],
+      "nguon": "taxiway_labels.geojson"
+    },
+    "ben_do": {
+      "ben_28": [16.051747, 108.202278],
+      "ben_8": [16.059413, 108.201205],
+      "ben_26": [16.052622, 108.201973],
+      "ben_27": [16.052283, 108.202231],
+      "nguon": "gates.geojson"
+    },
+    "tuyen_lan_vao_ben": {
+      "G4_ben_28": "_ARR_RESUME_G4_GATE28.scn (lech tim duong lan TB 0.3 m)",
+      "G6_ben_8": "_ARR_RESUME_G6_GATE8.scn (lech tim duong lan TB 3.8 m)",
+      "ghi_chu": "Deu bam tim duong lan that, da kiem chung bang do khoang cach toi taxiway_centerlines.geojson"
+    },
+    "tuyen_lan_ra": {
+      "tu_ben_26": "TAXI_COMMON_G26 trong _gen_kb5_1hour.py",
+      "tu_ben_27": "TAXI_COMMON_G27 trong _gen_kb5_1hour.py",
+      "ghi_chu": "Tau bay DI xuat phat tu ben 26 va 27 - theo xac nhan cua nguoi dung, dung lai tuyen da kiem chung trong kich ban 40 chuyen"
+    }
+  },
+
+  "phuong_thuc_bay": {
+    "STAR": ["HUE", "CAHEO", "BUNTA", "KUMUN", "SADIN", "VILOT", "LATOM", "PAPRA"],
+    "SID": ["KONCO", "VIDEN", "PHULU", "BUNTA", "KUMUN", "SADIN", "XAQUA", "PAPRA"],
+    "diem_hoi_tu": "DOTEN",
+    "nguon": "STAR_IAF/STAR_CHAINS/SID_CHAINS trong _gen_kb5_1hour.py - trich tu phuong thuc RNAV RWY35L/R that cua VVDN",
+    "ghi_chu": "Da BO 'CQ 2K' vi day la STAR duy nhat khong bay qua DOTEN"
+  },
+
+  "thiet_ke_pha": {
+    "_mo_ta": "3 pha mat do tang dan trong 1 file 60 phut, theo xac nhan cua nguoi dung.",
+    "pha_1": {"tu_phut": 0, "den_phut": 20, "muc_tieu_chuyen_dong_gio": 30},
+    "pha_2": {"tu_phut": 20, "den_phut": 40, "muc_tieu_chuyen_dong_gio": 40},
+    "pha_3": {"tu_phut": 40, "den_phut": 60, "muc_tieu_chuyen_dong_gio": 50},
+    "ghi_chu": "Muc tieu chuyen dong/gio la TONG ca den va di. Lich thuc te do ma tran phan cach quyet dinh, khong dung nhip co dinh - neu phan cach yeu cau lon hon thi lich bi gian ra va thong luong thuc te thap hon muc tieu. Day chinh la cach xac dinh nang luc toi da."
+  }
+}
