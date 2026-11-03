@@ -37,15 +37,58 @@ pip install -r requirements.txt
 pip install python-docx          # để xuất báo cáo Word
 ```
 
-### 1.3 Kiểm tra — bắt buộc
+### 1.3 Xin dữ liệu BADA — **bắt buộc, không có trên GitHub**
+
+BADA (mô hình hiệu năng tàu bay của EUROCONTROL) **có bản quyền**, nên không được đưa lên GitHub. Bản clone về sẽ **thiếu** dữ liệu này.
+
+Đây không phải chuyện nhỏ. Đã đo được: cùng một file `.scn` **giống nhau từng byte**, máy có BADA cho **0 cặp cảnh báo xung đột**, máy thiếu BADA cho **4 cặp**. Thiếu BADA thì engine dùng mô hình hiệu năng khác, khả năng leo khác, và **mọi kết quả đều lệch** — không đối chiếu được với ai.
+
+Cách làm:
+
+1. Xin bộ dữ liệu BADA từ quản trị dự án (qua kênh nội bộ, **không** qua GitHub).
+2. Giải nén vào đúng thư mục:
+   ```
+   FTS Server/bluesky/resources/performance/BADA/
+   ```
+3. Kiểm tra: phải có khoảng **264 file `.APF`**.
+4. Mở `FTS Server/settings.cfg`, bảo đảm dòng:
+   ```
+   performance_model = 'bada'
+   ```
+
+> `settings.cfg` cũng không có trong repo — engine **tự sinh** ra nó lần chạy đầu, nhưng bản tự sinh mặc định `performance_model = 'openap'`. Phải sửa lại thành `'bada'`.
+
+Nếu không có BADA, vẫn chạy được với `'openap'`, nhưng **kết quả chỉ dùng nội bộ máy mình**, không so sánh với kết quả của người khác được.
+
+### 1.4 Kiểm tra — bắt buộc
 
 ```bash
 python "FTS Server/scenario/kiem_tra_moi_truong.py"
 ```
 
-Script kiểm tra 11 mục và **nói rõ thiếu gì, sửa thế nào**. Phải đạt cả 11 mục mới bắt đầu làm. Riêng mục 9 (chạy thử mô phỏng headless) là quan trọng nhất — không chạy được mô phỏng thì không kiểm chứng được kịch bản.
+Script kiểm tra 12 mục và **nói rõ thiếu gì, sửa thế nào**. Phải đạt cả 12 mục mới bắt đầu làm. Hai mục quan trọng nhất:
+
+- **Mục 9** — chạy thử mô phỏng headless. Không chạy được mô phỏng thì không kiểm chứng được kịch bản.
+- **Mục 12** — dữ liệu BADA. Không có thì kết quả lệch so với các máy khác.
 
 > Lần chạy đầu mất 1–2 phút để dựng bảng dữ liệu dẫn đường. Những lần sau nhanh.
+
+### 1.5 Tự kiểm chứng: máy bạn có cho ra kết quả giống không?
+
+Chạy lại kịch bản mẫu và so kết quả:
+
+```bash
+cd "FTS Server/scenario"
+python _gen_vvdn_xenke_60min.py
+python _verify_vvdn_xenke.py
+```
+
+Phải ra đúng:
+- `VVDN-XENKE-60MIN.scn` — **374.097 byte**, 17 ARR + 17 DEP, 6.302 lệnh
+- Kiểm chứng: **22/22 ĐẠT**
+- B3: cặp hạ cánh gần nhất **6,64 NM** · B4: **0 cặp** xung đột · B8: **0 cặp** vi phạm khi lăn
+
+Lệch bất kỳ con số nào ⇒ môi trường chưa đúng. Thường là thiếu BADA (mục 1.3).
 
 ### 1.4 Lưu ý về trình Python
 
@@ -262,7 +305,9 @@ Và một lỗi kinh điển: tàu **đã hạ cánh xong** bị báo "đứng y
 | Tàu bay đứng yên vĩnh viễn | Thiếu lệnh `SPD` sau `VNAV ON` (4.1) |
 | Tàu bay vọt đi hàng nghìn mét | Khoảng trống giữa hai lệnh `MOVE` (4.2) |
 | Hai tàu lăn chồng lên nhau | Chưa giải xung đột khi lập lịch (4.2) |
-| Kết quả máy mình khác máy người khác | Môi trường — chạy `kiem_tra_moi_truong.py` |
-| Ứng dụng web không khởi động | Dùng nhầm `py` thay vì Python của môi trường ảo (1.4) |
+| **Kết quả máy mình khác máy người khác** | **Hầu như luôn là thiếu BADA (1.3)** — chạy `kiem_tra_moi_truong.py` mục 12 |
+| Ứng dụng web không khởi động | Dùng nhầm `py` thay vì Python của môi trường ảo (1.5) |
+| `git clone` báo `Filename too long` | Đặt repo ở đường dẫn ngắn (ví dụ `D:\FTS`) hoặc bật `core.longpaths` (1.1) |
+| Clone xong thiếu hàng nghìn file | Cùng nguyên nhân trên — `git status` sẽ liệt kê file `D` (deleted) |
 
 Nếu vẫn tắc: mở một mục trong Issues của repo, kèm **lệnh đã chạy**, **thông báo lỗi đầy đủ**, và kết quả `kiem_tra_moi_truong.py`.

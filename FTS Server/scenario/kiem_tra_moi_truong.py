@@ -127,6 +127,32 @@ def c8_du_lieu_phuong_thuc():
          f"{len(d)} san bay, {tong} phuong thuc", "")
 
 
+def c12_bada():
+    """Du lieu hieu nang BADA -- khong co trong repo vi co BAN QUYEN.
+
+    Day la muc quan trong nhat de hai may cho ra CUNG KET QUA: thieu BADA thi
+    engine dung mo hinh hieu nang khac, kha nang leo khac, va ket qua mo phong
+    LECH. Da do duoc: cung mot file .scn giong nhau tung byte, may co BADA cho
+    0 cap canh bao xung dot, may thieu BADA cho 4 cap.
+    """
+    thu_muc = FTS / "bluesky/resources/performance/BADA"
+    n = len(list(thu_muc.glob("*.APF"))) if thu_muc.is_dir() else 0
+    cfg = FTS / "settings.cfg"
+    dung_bada = (cfg.is_file()
+                 and "performance_model = 'bada'" in cfg.read_text(encoding="utf-8",
+                                                                   errors="ignore"))
+    ok = n > 100 or not dung_bada
+    kiem("12. Du lieu hieu nang BADA", ok,
+         f"{n} file .APF trong bluesky/resources/performance/BADA"
+         + (f"; settings.cfg dang dat performance_model = 'bada'" if dung_bada
+            else "; settings.cfg KHONG dung bada nen khong bat buoc"),
+         "BADA co BAN QUYEN cua EUROCONTROL nen KHONG duoc dua len GitHub.\n"
+         "   Xin bo du lieu tu quan tri du an (kenh noi bo), giai nen vao:\n"
+         "        FTS Server/bluesky/resources/performance/BADA/\n"
+         "   Neu khong co BADA, sua settings.cfg thanh performance_model = 'openap'\n"
+         "   -- NHUNG ket qua se LECH so voi may co BADA, khong doi chieu duoc.")
+
+
 def c9_chay_thu_mo_phong():
     """Kiem tra quan trong nhat: co THUC SU chay duoc mo phong khong."""
     # Duong dan repo co the chua dau tieng Viet ("Du an FTS"). KHONG nhung no
@@ -211,7 +237,7 @@ def main():
 
     for ham in (c1_python, c2_moi_truong_ao, c3_thu_vien, c4_thu_vien_bao_cao,
                 c5_bluesky, c6_scenario_path, c7_du_lieu_san_bay,
-                c8_du_lieu_phuong_thuc, c11_duong_dan_dai, c10_git,
+                c8_du_lieu_phuong_thuc, c12_bada, c11_duong_dan_dai, c10_git,
                 c9_chay_thu_mo_phong):
         try:
             ham()
