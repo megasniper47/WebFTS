@@ -389,4 +389,22 @@ docker run -p 8082:8082 webatm:latest
 - Production deployments require `WEB_HOST=0.0.0.0`
 - Vatm-Engine ports (11000/11001) are not configurable
 
+## Authoring simulation scenarios
+
+If the task involves creating or modifying a simulation scenario (`.scn` file) — traffic scenarios, airport capacity tests, departure/arrival sequencing — **read `FTS Server/scenario/HUONG_DAN_TAO_KICH_BAN.md` first.**
+
+That guide is the single source of truth for scenario work. It covers the mandatory 7-step process (survey sources → rules config → generator → calibration → independent verification → headless run → report) and, more importantly, **every engine pitfall the project has paid for**: the `IC` double-prefix hang, aircraft deleted at the last waypoint, `MOVE` cadence and the free-flight gap, `VNAV` stalling after `DELRTE`, SID chains starting outside the runway, and four measurement traps that make correct scenarios look broken.
+
+Non-negotiable rules for this work:
+
+- **Never invent data.** Missing coordinate, altitude, speed, or regulation → stop and ask. If a value must be inferred, flag it `can_xac_nhan: true` with the reason in the rules JSON.
+- **Verify by running the simulation**, not by checking the schedule. A schedule that passes every static check can still have two aircraft taxi 3 m through each other — that happened.
+- The verification script must be **independent** of the generator: it reads the rules file and recomputes from scratch. Reusing the generator's own functions only proves self-consistency.
+- Fixed seed; same source and parameters must reproduce identical output on any machine.
+- Back up before overwriting an existing `.scn`.
+
+Confirm the environment first with `python "FTS Server/scenario/kiem_tra_moi_truong.py"` (11 checks, including an actual headless simulation run).
+
+Reference implementation covering all seven steps: the VVDN alternating-departure scenario — `vvdn_xenke_rules.json`, `_gen_vvdn_xenke_60min.py`, `_calib_vvdn_xenke.py`, `_verify_vvdn_xenke.py` (22 verification checks).
+
 **Naming note:** the underlying simulation engine is referred to as **Vatm-Engine** throughout user-facing text and documentation. Internal code (the vendored `FTS Server/bluesky/` package, its imports, the `bluesky_client.py`/`BlueSkyProxy` identifiers, the `BLUESKY_SERVER_HOST` env var, and `/api/bluesky/*` routes) intentionally keeps its original "bluesky" naming — only prose/UI was rebranded, not the internal implementation.
