@@ -12,8 +12,8 @@
 |---|---|
 | **Năng lực điều hành bay tối đa** | **46,8 lần chuyến/giờ** (≈ 23,4 đến + 23,4 đi) |
 | **Nhịp hạ cánh nhỏ nhất đạt được** | **142 giây** giữa hai chuyến đến liên tiếp |
-| Số mục kiểm chứng | **20/20 ĐẠT** (10 mục tĩnh + 7 mục đo trong mô phỏng + 3 mục số liệu) |
-| Vi phạm phân cách | **0** |
+| Số mục kiểm chứng | **22/22 ĐẠT** (10 mục tĩnh + 9 mục đo trong mô phỏng + 3 mục số liệu) |
+| Vi phạm phân cách (trên không và mặt đất) | **0** |
 | Cảnh báo xung đột trên không | **0** |
 
 **Phát hiện nghiệp vụ cốt lõi:** yếu tố khống chế năng lực **không phải** phân cách giữa hai chuyến hạ cánh liên tiếp (3–5 NM), mà là **ma trận cất cánh 35R khi có tàu đang tiếp cận 35L (5–7 NM)**. Ma trận này chặt hơn, nên muốn chen được một chuyến cất cánh giữa hai chuyến hạ cánh thì **phải giãn chuyến đến ra xa hơn mức phân cách nhiễu động xoáy yêu cầu**. Cụ thể, với cặp MEDIUM–MEDIUM:
@@ -61,7 +61,9 @@ Thuật toán lập lịch **luôn ưu tiên phân cách tối thiểu**, nên k
 2. **Pha lăn điều khiển bằng lệnh `MOVE` theo nhịp thời gian đều 2 giây**, không dùng LNAV/VNAV. Lý do: kiểm soát chính xác thời điểm tới/rời điểm chờ để số liệu kiểm chứng có ý nghĩa; đồng thời tránh hai lỗi đã ghi nhận của BlueSky (xem mục V).
 3. **Tàu đi bị xoá 420 giây sau khi bắt đầu chạy đà** — khi đó đã ra khỏi khu vực TMA gần, không còn ảnh hưởng tới phân cách tại sân bay.
 4. **Chưa mô phỏng cắt qua đường CHC 35R:** cả hai tuyến lăn vào bến (bến 28 và bến 8) đều nằm cùng phía tây với đường lăn thoát ly, không phải cắt qua 35R. Điều kiện cắt qua (≥ 6 NM) đã được cấu hình trong `vvdn_xenke_rules.json` nhưng chưa có tình huống nào kích hoạt.
-5. **Chuyến đến đầu tiên chạm càng ở phút thứ 8:50.** Không thể sớm hơn: tàu đến sớm nhất cũng phải sinh tại CADAS (25 NM) ở thời điểm T=0, và bay từ CADAS vào ngưỡng 35L mất 455–506 giây tuỳ loại tàu. Vì vậy **pha 1 chỉ có 3 cặp chuyến** — đây là ràng buộc vật lý, không phải lỗi lập lịch.
+5. **Tránh nhau khi lăn giải bằng lập lịch, không phải điều khiển động.** Plugin `surfacetaxi.py` của dự án không áp dụng được cho kịch bản này (lý do kỹ thuật ở mục V-6), nên **cùng quy tắc ưu tiên** được áp ngay khi lập lịch. Hệ quả: kịch bản bảo đảm **không bao giờ có hai tàu lăn quá gần nhau**, nhưng **không mô phỏng hành vi phanh/dừng nhường đường** của phi công trong tình huống bất ngờ.
+6. **Cự ly chạy đà là giá trị đại diện theo nhóm nhiễu động xoáy** (MEDIUM 2.000 m, HEAVY 2.600 m) ở điều kiện kịch bản (CHC khô, không gió, mực nước biển), không tính theo khối lượng cất cánh thực của từng chuyến.
+7. **Chuyến đến đầu tiên chạm càng ở phút thứ 8:50.** Không thể sớm hơn: tàu đến sớm nhất cũng phải sinh tại CADAS (25 NM) ở thời điểm T=0, và bay từ CADAS vào ngưỡng 35L mất 455–506 giây tuỳ loại tàu. Vì vậy **pha 1 chỉ có 3 cặp chuyến** — đây là ràng buộc vật lý, không phải lỗi lập lịch.
 
 ### 2.3 Hai mục **CẦN XÁC NHẬN** trước khi dùng kết quả vào công tác chuyên môn
 
@@ -120,10 +122,12 @@ Script `_verify_vvdn_xenke.py` **không dùng lại** hàm lập lịch của ge
 | B5 | Pha lăn bám tim đường lăn thật | ✅ ĐẠT | 34 tàu, lệch TB **1,8 m**, lớn nhất 2,3 m |
 | B6 | Không có tàu bị "trôi" trong pha lăn | ✅ ĐẠT | tốc độ lăn lớn nhất **23,2 kt** |
 | B7 | Mọi chuyến đến đều lăn về tới bến đỗ | ✅ ĐẠT | **17/17** |
+| B8 | Cự ly giữa hai tàu **đang lăn** (tránh nhau khi lăn) | ✅ ĐẠT | **0 cặp vi phạm**; cặp sát nhau nhất 66 m (yêu cầu 59 m) |
+| B9 | Lên đường CHC và chạy đà đúng tim 35R | ✅ ĐẠT | lệch **0,0 m** tại lúc chạy đà, **0,1 m** suốt pha chạy đà |
 
 ---
 
-## V. BỐN LỖI ĐÃ PHÁT HIỆN VÀ KHẮC PHỤC TRONG QUÁ TRÌNH KIỂM CHỨNG
+## V. BẢY LỖI ĐÃ PHÁT HIỆN VÀ KHẮC PHỤC TRONG QUÁ TRÌNH KIỂM CHỨNG
 
 Ghi lại đầy đủ vì đây là kinh nghiệm dùng được cho các kịch bản sau.
 
@@ -135,9 +139,19 @@ Ghi lại đầy đủ vì đây là kinh nghiệm dùng được cho các kịc
 
 **4. Tốc độ lăn lên đường CHC quá nhỏ** — quãng đường lên 35R (~130 m) bị trải ra suốt thời gian chờ (240 s) → tốc độ `MOVE` tụt xuống **1,7 kt**, BlueSky không giữ nổi tàu ở tốc độ đó, đo được **dao động qua lại 294 m mỗi giây (577 kt)**. Khắc phục: lăn lên đường CHC ở đúng tốc độ lăn khi rẽ (10 kt) rồi **ghim đứng tại chỗ** đến lúc chạy đà — giống điều hành thật.
 
+**5. Tọa độ lên đường CHC 35R lệch tim 41,2 m** — giá trị `(16.030000, 108.202000)` kế thừa từ kịch bản 40 chuyến **không nằm trên tim đường CHC**: đo bằng `runway_centerlines.geojson` cho thấy lệch **41,2 m**, tức tàu bay "chạy đà bên cạnh đường CHC". (Điểm chờ `RWYHOLD` thì đúng — chỉ lệch 0,4 m.) Khắc phục: tính trực tiếp từ tim thật (ngưỡng 35R `16.029038,108.202528` → ngưỡng 17L `16.060366,108.198004`, dài 3.517 m, hướng 352,1°), chọn vị trí cách ngưỡng 150 m. Sau sửa: lệch **0,0 m**.
+
+**6. Không có cơ chế tránh nhau khi lăn** — đo được **5 cặp vi phạm, gần nhất 3 m**, đối đầu **180°** trên cùng đoạn đường lăn: tàu đến lăn hướng 352,6° vào bến 28 và tàu đi lăn hướng 172,5° ra 35R **xuyên qua nhau**. Dự án đã có sẵn plugin `surfacetaxi.py` (Stop & Go), nhưng nó **cố ý không can thiệp** vào tàu bay có `swlnav = False` (đang điều khiển bằng `MOVE`) — xem `surfacetaxi.py` dòng 201–212 — mà kịch bản này dùng `MOVE` cho cả hai bên. Plugin `taxiway_reroute.py` (đổi sang đường lăn D) cũng không giải được: đo được tuyến D vẫn cách tuyến vào bến 28 chỉ **3,9 m** (nó được thiết kế cho bến 11 của kịch bản 40 chuyến). Khắc phục: áp dụng **đúng quy tắc ưu tiên của `surfacetaxi.py`** (tàu còn quãng đường tới đích ngắn hơn được đi trước ⇒ tàu đi nhường tàu đến) ngay trong khâu lập lịch, nơi đã biết trước vị trí mọi tàu tại mọi thời điểm. Nhường gần như **không tốn gì** vì tàu đi còn phải chờ ở điểm chờ trước 35R — đổi giờ rời bến chỉ thay đổi thời gian chờ, **không làm trễ thời điểm cất cánh**. Kết quả: **5 chuyến** được điều chỉnh (đẩy sớm 30–155 s), còn **0 cặp vi phạm**.
+
+> Lần đầu thuật toán dò theo bước cố định 15 s và **dao động vô tận** (đẩy sớm 15 s rồi lùi 15 s lặp lại) vì bước cố định không bao giờ đạt đúng mép cửa sổ an toàn. Thay bằng: xếp lần lượt từng chuyến đi, mỗi chuyến chọn **độ lệch nhỏ nhất** so với giờ gốc sao cho không va chạm với mọi tàu đã xếp.
+
+**7. Tàu bay trượt trên mặt đất ra ngoài đường CHC rồi mới rời đất** — mọi chuỗi SID của VVDN đều bắt đầu tại `(16.076637, 108.195656)` cao độ 1.500 ft, **cách ngưỡng 35R 5.343 m**, tức ngoài đường CHC (dài 3.517 m) tới **1.826 m**. VNAV trải đoạn leo đều tới điểm đó và giữ tàu ở cao độ 0 ft suốt cả đoạn — đo được tàu "trượt" ở **180 kt ra ngoài đầu bắc đường CHC 1.428 m** rồi mới bắt đầu leo. Khắc phục: chèn một **điểm rời đất nằm trong phạm vi đường CHC** trước chuỗi SID, đặt tại cự ly chạy đà thực tế theo nhóm nhiễu động xoáy (MEDIUM 2.000 m, HEAVY 2.600 m) ở cao độ 35 ft (screen height tiêu chuẩn ICAO). Sau sửa: **17/17 chuyến rời đất trong phạm vi đường CHC** (MEDIUM 2.315–2.393 m, HEAVY 2.949–3.009 m).
+
 Ngoài ra, **hai "vi phạm" ban đầu là lỗi tiêu chí kiểm tra, không phải lỗi kịch bản**, đã sửa tiêu chí và ghi diễn giải vào file quy tắc:
 - Tính cả tàu **đã chạm càng** (cao độ 0 < 3000 ft) là "tàu đang tiếp cận" → báo sai **49 cặp** xung đột.
 - Đo "trôi" bằng `gs` tức thời của BlueSky: tại đúng bước có lệnh `MOVE`, quãng đường `MOVE` dịch tàu bị quy ra tốc độ của **một bước 0,05 s** → cho trị số vô nghĩa (1021 kt trong khi dịch chuyển thật chỉ 6,2 m/s).
+- Đo độ lệch tim đường CHC từ lúc **lên** đường CHC: trong khoảng đó tàu còn đang lăn **từ điểm chờ vào**, mà điểm chờ (PREHOLD) nằm cách tim đường CHC 112 m — đúng như nó phải thế, vì điểm chờ bắt buộc nằm **ngoài** đường CHC.
+- Đo độ lệch tim suốt pha chạy đà mà không giới hạn phạm vi: sau khi rời đất tàu vào SID và nhanh chóng ra khỏi đường CHC, khoảng cách tới tim lúc đó vô nghĩa (đo được 2.208 m — chính là cự ly tới đầu bắc đường CHC khi tàu đã bay qua nó).
 
 ---
 
@@ -199,11 +213,14 @@ Pha 1 thấp vì ràng buộc vật lý nêu ở mục 2.2.5 (chuyến đến đ
 | Chỉ tiêu | Giá trị |
 |---|---|
 | Thời gian lăn ra (bến 26/27 → điểm chờ 35R) | TB **335 s**, dao động 333–337 s |
-| Thời gian chờ tại điểm chờ trước 35R | TB **175 s**, lớn nhất **240 s** |
+| Thời gian chờ tại điểm chờ trước 35R | TB **204 s**, dao động 60–335 s |
 | Thời gian giải phóng đường CHC (chạm càng → thoát ly) | TB **96 s**, lớn nhất **109 s** |
 | Thời gian lăn vào bến (đường lăn thoát ly → bến) | TB **235 s** |
 | Số tàu tại điểm chờ lớn nhất | **2** (giới hạn đề bài: 3) |
-| Độ lệch tim đường lăn | TB **1,8 m**, lớn nhất 2,3 m |
+| Độ lệch tim đường lăn | TB **1,9 m**, lớn nhất 2,6 m |
+| Độ lệch tim đường CHC 35R khi chạy đà | **0,0–0,1 m** |
+| Cặp tàu lăn sát nhau nhất | **66 m** (yêu cầu 59 m) — ARR007 ↔ DEP011 lúc 32:19 |
+| Cự ly chạy đà đo được | MEDIUM 2.315–2.393 m · HEAVY 2.949–3.009 m (đường CHC dài 3.517 m) |
 
 **Nhận xét:** thời gian giải phóng đường CHC trung bình 96 s, lớn nhất 109 s — **vượt mốc tham chiếu 100 s** nêu trong đề bài ở một số chuyến. Nguyên nhân: chuỗi thoát ly lấy từ kịch bản 40 chuyến giảm tốc tương đối chậm. Không ảnh hưởng tới kết luận năng lực (yếu tố khống chế là ma trận cất cánh vs tàu đến, không phải thời gian chiếm dụng đường CHC), nhưng nên rà lại nếu dùng cho bài toán chiếm dụng đường CHC.
 
@@ -220,6 +237,7 @@ Số tàu tại điểm chờ chỉ đạt lớn nhất 2/3 vì nhịp cất cá
 | `vvdn_xenke_rules.json` | **Cấu hình quy tắc phân cách và tham số lăn**, mỗi nhóm ghi điều khoản nguồn, 2 nhóm đánh dấu `can_xac_nhan: true` |
 | `_verify_vvdn_xenke.py` | **Script kiểm chứng độc lập** — 20 mục, tự tính lại từ file quy tắc, chạy mô phỏng headless thật |
 | `_calib_vvdn_xenke.py` | Script hiệu chuẩn thời điểm tạo tàu đến |
+| `_md2docx_baocao.py` | Script xuất báo cáo sang .docx |
 | `_sweep_vvdn_xenke.py` | Script quét năng lực |
 | `VVDN-XENKE-60MIN.plan.json` | Lịch chi tiết (đầu vào của script kiểm chứng) |
 | `VVDN-XENKE-60MIN.calib.json` | Bảng hiệu chuẩn |

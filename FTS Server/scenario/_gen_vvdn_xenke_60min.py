@@ -110,8 +110,40 @@ MOVE_DT = 2.0        # nhip phat lenh MOVE khi lan (giay)
 HOLD_DT = 10.0       # nhip ghim tau dung yen tai diem cho (giay)
 DEP_KEEP_S = 420.0   # giu tau di trong mo phong sau khi chay da (giay)
 HOLD_MARGIN_S = 10.0 # dem an toan truoc khi chuoi MOVE lan vao ben tiep quan
-LINEUP_35R = (16.030000, 108.202000)   # vi tri bat dau chay da tren 35R
-                                       # (_KB5GEN_DEP_ENTER_RWY.scn, kich ban 40 chuyen)
+
+# Tranh nhau khi lan -- lay DUNG tham so cua plugin bluesky/plugins/surfacetaxi.py
+# (settings.taxi_tail_buffer = 20.0 m). Plugin do khong tu can thiep duoc vao
+# kich ban nay vi no CO Y khong dung toi selspd cua tau bay dang bi dieu khien
+# bang MOVE (swlnav = False -- xem surfacetaxi.py dong 201-212), ma ca tau den
+# lan vao ben lan tau di lan ra deu dung MOVE. Vi vay ap dung CUNG quy tac do
+# ngay trong khau lap lich, noi ta biet truoc vi tri moi tau tai moi thoi diem.
+TAXI_TAIL_BUFFER_M = 20.0
+# Cu ly chay da (take-off run) tren 35R, tinh tu nguong. Gia tri dai dien
+# theo nhom nhieu dong xoay o dieu kien kich ban (CHC kho, khong gio, muc
+# nuoc bien): MEDIUM ~2000 m, HEAVY ~2600 m. Duong CHC 35R dai 3517 m nen
+# ca hai deu roi dat TRONG pham vi duong CHC.
+TOR_MEDIUM_M = 2000.0
+TOR_HEAVY_M = 2600.0
+LIFTOFF_ALT_FT = 35.0   # screen height tieu chuan ICAO
+NHUONG_BUOC_S = 15.0   # buoc lui/day moi vong khi giai xung dot lan
+# Tim duong CHC 17L/35R LAY TU DU LIEU SAN BAY THAT (runway_centerlines.geojson):
+# nguong 35R (dau nam) -> nguong 17L (dau bac), dai 3517 m, huong 352.1 do.
+THR35R = (16.029038, 108.202528)
+END17L = (16.060366, 108.198004)
+
+def _diem_tren_tim_35R(m_tu_nguong):
+    """Toa do tren TIM duong CHC 35R, cach nguong 35R m_tu_nguong met."""
+    f = m_tu_nguong / haversine_m(*THR35R, *END17L)
+    return (THR35R[0] + (END17L[0] - THR35R[0]) * f,
+            THR35R[1] + (END17L[1] - THR35R[1]) * f)
+
+# Vi tri bat dau chay da. Gia tri cu (16.030000,108.202000) lay tu
+# _KB5GEN_DEP_ENTER_RWY.scn cua kich ban 40 chuyen LECH TIM 35R toi 41.2 m
+# (do bang runway_centerlines.geojson) -- tau bay "chay da ben canh duong
+# CHC". Nay tinh truc tiep tu tim that. Chon 150 m tu nguong: du de tau quay
+# mui on dinh sau khi vao tu RWYHOLD (RWYHOLD nam ngay nguong, cach 18 m doc
+# tim, lech 0.5 m), van con 3367 m duong CHC -- thua cho moi loai tau bay.
+LINEUP_35R = _diem_tren_tim_35R(150.0)
 
 THR35L = (16.030133, 108.200372)
 G4 = (16.048864, 108.198650)
@@ -346,6 +378,190 @@ def schedule(rng, first_td=FIRST_ARR_TD, n_arr=40, n_dep=40):
     return arrs, deps, quota
 
 
+_CACHE_HINH: dict = {}
+
+
+def vi_tri_theo_thoi_gian(pts, t0, t1):
+    """Tra ve ham t -> (lat, lon): di deu doc tuyen pts tu t0 den t1.
+
+    Dung CHUNG mot phep noi suy voi taxi_moves() de vi tri dung de kiem tra
+    xung dot KHOP CHINH XAC voi vi tri se duoc phat ra bang lenh MOVE."""
+    key = (pts[0], pts[-1], len(pts))
+    if key not in _CACHE_HINH:
+        sh = densify(pts, 3.0)
+        cm = [0.0]
+        for k in range(len(sh) - 1):
+            cm.append(cm[-1] + haversine_m(*sh[k], *sh[k + 1]))
+        _CACHE_HINH[key] = (sh, cm)
+    shape, cum = _CACHE_HINH[key]
+    total, dur = cum[-1], max(t1 - t0, 1.0)
+
+    def at(t):
+        if t <= t0:
+            return shape[0]
+        if t >= t1:
+            return shape[-1]
+        s = total * (t - t0) / dur
+        k = 0
+        while k < len(cum) - 2 and cum[k + 1] < s:
+            k += 1
+        f = (s - cum[k]) / max(cum[k + 1] - cum[k], 1e-9)
+        return (shape[k][0] + (shape[k + 1][0] - shape[k][0]) * f,
+                shape[k][1] + (shape[k + 1][1] - shape[k][1]) * f)
+    return at
+
+
+_CACHE_TUYEN: dict = {}
+
+
+def _tuyen_lan_vao_ben(exit_name):
+    """Hinh tuyen + thoi luong lan vao ben, doc tu file _ARR_RESUME_*.
+    Co cache: khau giai xung dot goi ham nay hang nghin lan."""
+    if exit_name in _CACHE_TUYEN:
+        return _CACHE_TUYEN[exit_name]
+    seq = load_move_seq(ARR_TAXI_FILES[exit_name])
+    pts = []
+    for (_dt, cmd) in seq:
+        if cmd.startswith("MOVE"):
+            f = cmd.split("MOVE %0,")[1].split(",")
+            pts.append((float(f[0]), float(f[1])))
+    _CACHE_TUYEN[exit_name] = (pts, seq[-1][0] - seq[0][0])
+    return _CACHE_TUYEN[exit_name]
+
+
+def tinh_moc_lan_vao_ben(arrs):
+    """Dat t_vacated (thoat ly xong duong CHC, bat dau lan tren duong lan) va
+    t_onblock (toi ben) cho tung chuyen den. Tach rieng khoi build_arr_lines
+    vi khau giai xung dot lan can biet cac moc nay TRUOC khi sinh lenh."""
+    for a in arrs:
+        a["t_vacated"] = (a["td"] + occupancy_s(a["exit"], approach_speeds(a["type"])[3])
+                          + HOLD_MARGIN_S)
+        a["t_onblock"] = a["t_vacated"] + _tuyen_lan_vao_ben(a["exit"])[1]
+    return arrs
+
+
+def quy_dao_lan(arrs, deps):
+    """{acid: (t_bat_dau, t_ket_thuc, ham_vi_tri, chieu_dai_m)} cho pha LAN
+    TREN DUONG LAN cua moi chuyen (khong tinh doan chay da/thoat ly tren
+    duong CHC)."""
+    out = {}
+    for a in arrs:
+        if "t_vacated" not in a:
+            continue
+        pts, dur = _tuyen_lan_vao_ben(a["exit"])
+        t0 = a["t_vacated"]
+        out[a["id"]] = (t0, t0 + dur, vi_tri_theo_thoi_gian(pts, t0, t0 + dur),
+                        aircraft_length_m(a["type"]))
+    for d in deps:
+        gate = GATE26 if d["gate"] == "G26" else GATE27
+        path = TAXI_COMMON_G26 if d["gate"] == "G26" else TAXI_COMMON_G27
+        pts = [(gate[0], gate[1])] + [(p[0], p[1]) for p in path]
+        t0, t1 = d["start_taxi"], d["start_taxi"] + d["taxi_s"]
+        out[d["id"]] = (t0, t1, vi_tri_theo_thoi_gian(pts, t0, t1),
+                        aircraft_length_m(d["type"]))
+    return out
+
+
+def cap_vi_pham_mat_dat(qd, buoc_s=1.0):
+    """Moi cap tau bay lan qua gan nhau. Khoang cach yeu cau lay DUNG cong
+    thuc cua plugin surfacetaxi.py: nua chieu dai hai tau + TAXI_TAIL_BUFFER
+    ('con lai sau duoi tau truoc'), khong phai khoang cach tam-toi-tam."""
+    ds = sorted(qd.items(), key=lambda kv: kv[1][0])
+    xau = []
+    for p in range(len(ds)):
+        ida, (a0, a1, fa, la) = ds[p]
+        for q in range(p + 1, len(ds)):
+            idb, (b0, b1, fb, lb) = ds[q]
+            if b0 >= a1:
+                break                      # da sap xep theo t0 -> khong con giao
+            req = (la + lb) / 2.0 + TAXI_TAIL_BUFFER_M
+            t, hep = max(a0, b0), None
+            while t <= min(a1, b1):
+                pa, pb = fa(t), fb(t)
+                dd = haversine_m(*pa, *pb)
+                if dd < req and (hep is None or dd < hep[1]):
+                    hep = (t, dd)
+                t += buoc_s
+            if hep:
+                xau.append({"t": hep[0], "d": hep[1], "req": req, "a": ida, "b": idb})
+    return xau
+
+
+def _va_cham(qd_a, qd_b, buoc_s=2.0):
+    """Khoang cach nho nhat giua hai quy dao lan (None neu khong vi pham)."""
+    a0, a1, fa, la = qd_a
+    b0, b1, fb, lb = qd_b
+    t0, t1 = max(a0, b0), min(a1, b1)
+    if t0 > t1:
+        return None
+    req = (la + lb) / 2.0 + TAXI_TAIL_BUFFER_M
+    t, nho_nhat = t0, None
+    while t <= t1:
+        dd = haversine_m(*fa(t), *fb(t))
+        if dd < req and (nho_nhat is None or dd < nho_nhat):
+            nho_nhat = dd
+        t += buoc_s
+    return nho_nhat
+
+
+def _qd_dep(d, start_taxi):
+    gate = GATE26 if d["gate"] == "G26" else GATE27
+    path = TAXI_COMMON_G26 if d["gate"] == "G26" else TAXI_COMMON_G27
+    pts = [(gate[0], gate[1])] + [(p[0], p[1]) for p in path]
+    t1 = start_taxi + d["taxi_s"]
+    return (start_taxi, t1, vi_tri_theo_thoi_gian(pts, start_taxi, t1),
+            aircraft_length_m(d["type"]))
+
+
+def nhuong_duong_khi_lan(arrs, deps):
+    """Giai xung dot DOI DAU khi lan giua tau vao ben va tau ra duong CHC.
+
+    Quy tac uu tien lay DUNG tu plugin surfacetaxi.py cua du an: tau bay con
+    QUANG DUONG TOI DICH NGAN HON thi duoc di truoc. Luc hai tau gap nhau,
+    tau DEN sap vao ben (gan dich) con tau DI vua roi ben (xa dich), nen tau
+    DI phai nhuong. Nhuong duoc gan nhu "mien phi" vi tau DI con phai cho o
+    diem cho truoc 35R (trung binh 175 s): doi gio roi ben chi lam thay doi
+    thoi gian cho, KHONG lam tre thoi diem cat canh.
+
+    Cach giai: xep lan luot tung chuyen di theo thu tu gio roi ben, moi chuyen
+    chon do LECH NHO NHAT so voi gio goc sao cho khong va cham voi bat ky tau
+    nao DA XEP (moi chuyen den + moi chuyen di truoc no). Khong do tung buoc
+    co dinh nhu ban dau -- cach do dao dong vo tan (day som 15s roi lui 15s
+    lap lai) vi buoc co dinh khong bao gio dat dung mep cua so an toan.
+    """
+    qd_arr = {a["id"]: v for a, v in
+              ((a, quy_dao_lan([a], [])[a["id"]]) for a in arrs if "t_vacated" in a)}
+    da_xep = dict(qd_arr)
+    nhat_ky = []
+
+    for d in sorted(deps, key=lambda x: x["start_taxi"]):
+        goc = d["start_taxi"]
+        som_nhat = 0.0
+        muon_nhat = d["lineup"] - d["taxi_s"]          # con kip toi diem cho
+        chon = None
+        for delta in sorted(range(-600, 601, 5), key=abs):
+            t = goc + delta
+            if t < som_nhat - 1e-6 or t > muon_nhat + 1e-6:
+                continue
+            qd = _qd_dep(d, t)
+            if any(_va_cham(qd, v) is not None for v in da_xep.values()):
+                continue
+            chon = t
+            break
+        if chon is None:
+            nhat_ky.append(f"{d['id']}: KHONG tim duoc gio roi ben nao tranh duoc "
+                           f"va cham (khoang cho phep "
+                           f"{fmt(som_nhat)}-{fmt(muon_nhat)})")
+            da_xep[d["id"]] = _qd_dep(d, goc)
+            continue
+        if abs(chon - goc) > 1e-6:
+            nhat_ky.append(f"{d['id']} {'lui' if chon > goc else 'day som'} "
+                           f"{abs(chon-goc):.0f}s de nhuong duong khi lan")
+        d["start_taxi"] = chon
+        da_xep[d["id"]] = _qd_dep(d, chon)
+    return deps, nhat_ky
+
+
 def schedule_taxi_out(deps):
     """Lap lich lan ra: tinh nguoc tu thoi diem len duong CHC, roi lui thoi
     diem bat dau lan neu so tau tai diem cho vuot MAX_AT_HOLD."""
@@ -506,8 +722,7 @@ def build_arr_lines(a):
     L.append((t_cre, f"{a['id']} VNAV ON"))
 
     # Toi diem cho sau khi thoat ly -> chuyen sang dieu khien bang MOVE
-    t_hold = a["td"] + occupancy_s(a["exit"], approach_speeds(actype)[3]) + HOLD_MARGIN_S
-    a["t_vacated"] = t_hold
+    t_hold = a["t_vacated"]
     L.append((t_hold, f"{a['id']} LNAV OFF"))
     L.append((t_hold, f"{a['id']} VNAV OFF"))
 
@@ -517,18 +732,10 @@ def build_arr_lines(a):
     # chot van dat 5 kt -- da do duoc tau bay tu do 674 m trong khoang trong do
     # (hien thanh 1019 kt). Lenh cuoi dat 0 kt roi ghim them vai lan tai ben
     # (da kiem chung: sau lenh MOVE 0 kt tau dung yen tuyet doi).
-    seq = load_move_seq(ARR_TAXI_FILES[a["exit"]])
-    pts = []
-    for (_dt, cmd) in seq:
-        if not cmd.startswith("MOVE"):
-            continue
-        f = cmd.split("MOVE %0,")[1].split(",")
-        pts.append((float(f[0]), float(f[1])))
-    dur = seq[-1][0] - seq[0][0]
+    pts, dur = _tuyen_lan_vao_ben(a["exit"])
     t_on = t_hold + dur
     L += taxi_moves(a["id"], pts, t_hold, t_on)
     L += hold_moves(a["id"], pts[-1], bearing_deg(*pts[-2], *pts[-1]), t_on, t_on + 30.0)
-    a["t_onblock"] = t_on
     L.append((t_on + 32.0, f"DEL {a['id']}"))
     return L
 
@@ -562,8 +769,19 @@ def build_dep_lines(d):
     t_xong = min(d["roll"], d["lineup"] + dai / (TAXI_SPD_TURN * 0.514444))
     L += taxi_moves(d["id"], lineup_pts, d["lineup"], t_xong)
     L += hold_moves(d["id"], LINEUP_35R, RWYHOLD[2], t_xong, d["roll"])
-    # 4) Chay da theo SID that
+    # 4) Chay da theo SID that.
+    #    Chen them MOT diem ROI DAT nam TRONG pham vi duong CHC truoc chuoi
+    #    SID: moi chuoi SID cua VVDN deu bat dau tai (16.076637,108.195656)
+    #    alt 1500 ft -- cach nguong 35R 5343 m, tuc NGOAI duong CHC (dai
+    #    3517 m) 1826 m. Neu khong chen, VNAV trai doan leo deu toi diem do
+    #    va giu tau o cao do 0 ft suot ca doan -- da do duoc tau bay "truot
+    #    tren mat dat" o 180 kt ra ngoai dau bac duong CHC 1428 m roi moi
+    #    bat dau leo. Diem chen dat tai cu ly chay da thuc te theo nhom
+    #    nhieu dong xoay, cao do 35 ft (screen height tieu chuan ICAO).
     L.append((d["roll"], f"{d['id']} DELRTE"))
+    lift = _diem_tren_tim_35R(TOR_HEAVY_M if wake(d["type"]) == "HEAVY" else TOR_MEDIUM_M)
+    L.append((d["roll"], f"{d['id']} ADDWPT {lift[0]:.6f},{lift[1]:.6f} "
+                         f"{LIFTOFF_ALT_FT:.0f} {SID_CHAINS[d['sid']][0][3]}"))
     for (la, lo, al, sp) in SID_CHAINS[d["sid"]]:
         L.append((d["roll"], f"{d['id']} ADDWPT {la:.6f},{lo:.6f} {al} {sp}"))
     L.append((d["roll"], f"{d['id']} LNAV ON"))
@@ -649,7 +867,9 @@ def main():
     n_arr = n_dep = 40
     for _ in range(12):
         arrs, deps, quota = schedule(random.Random(SEED), first_td, n_arr, n_dep)
+        arrs = tinh_moc_lan_vao_ben(arrs)
         deps = schedule_taxi_out(deps)
+        deps, nhat_ky_nhuong = nhuong_duong_khi_lan(arrs, deps)
         earliest = min(d["start_taxi"] for d in deps)
         if earliest < 0:
             first_td += -earliest + 10.0
@@ -661,6 +881,15 @@ def main():
         raise SystemExit("Khong hoi tu duoc so chuyen / lich lan ra")
     print(f"Chuyen den dau tien cham banh luc {fmt(first_td)} "
           f"(de chuyen di dau tien kip lan ra tu ben, som nhat {fmt(earliest)})")
+    if nhat_ky_nhuong:
+        print(f"Nhuong duong khi lan: {len(nhat_ky_nhuong)} lan dieu chinh")
+        for d in nhat_ky_nhuong[:6]:
+            print(f"   {d}")
+        con = cap_vi_pham_mat_dat(quy_dao_lan(arrs, deps))
+        print(f"   -> con lai {len(con)} cap vi pham"
+              + (f": {con[0]['a']}<->{con[0]['b']} {con[0]['d']:.0f}m" if con else ""))
+    else:
+        print("Nhuong duong khi lan: khong co xung dot nao can giai")
 
     L = []
     for a in arrs:

@@ -116,6 +116,14 @@
       "cong_thuc": "nua chieu dai hai tau + 20 m tinh tu duoi tau truoc",
       "nguon": "Muc 6 prompt nguoi dung"
     },
+    "dem_sau_duoi_tau_truoc_m": 20.0,
+    "tranh_nhau_khi_lan": {
+      "quy_tac_uu_tien": "Tau bay con QUANG DUONG TOI DICH ngan hon duoc di truoc (distance-to-go). Luc tau den va tau di gap nhau doi dau, tau den sap vao ben (gan dich) nen tau di phai nhuong.",
+      "cach_nhuong": "Doi thoi diem roi ben cua chuyen di. Nhuong gan nhu khong ton kem vi chuyen di con phai cho o diem cho truoc 35R (trung binh 175 s) -- doi gio roi ben chi thay doi thoi gian cho, KHONG lam tre thoi diem cat canh.",
+      "nguon": "bluesky/plugins/surfacetaxi.py (SurfaceTaxiController, thuat toan Stop&Go, settings.taxi_tail_buffer = 20.0 m)",
+      "ghi_chu_ky_thuat": "Plugin SURFACETAXI khong tu can thiep duoc vao kich ban nay: no CO Y khong dung toi selspd cua tau bay co swlnav = False (dang bi dieu khien bang lenh MOVE) -- xem surfacetaxi.py dong 201-212. Ca tau den lan vao ben lan tau di lan ra deu dung MOVE de kiem soat chinh xac thoi diem toi/roi diem cho. Vi vay CUNG quy tac uu tien do duoc ap dung ngay trong khau lap lich, noi da biet truoc vi tri moi tau tai moi thoi diem.",
+      "can_xac_nhan": false
+    },
     "nguon": "Muc 6 prompt nguoi dung (mac dinh 15 kt doan thang, giam khi re)",
     "can_xac_nhan": false
   },

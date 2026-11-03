@@ -483,6 +483,99 @@ def B6_toc_do_lan(track):
           f"vvdn_xenke_rules.json > tham_so_lan (muc 6 prompt)")
 
 
+AC_LEN = {"A320":37.57,"A321":44.51,"A20N":37.57,"A21N":44.51,"B738":39.47,"B38M":39.47,
+          "B739":42.11,"E190":36.24,"A332":58.82,"A333":63.67,"A359":66.80,"B744":70.66,
+          "B763":54.94,"B772":63.73,"B773":73.86,"B77W":73.86,"B788":56.72,"B789":62.81,
+          "B748":76.30,"B78X":68.28}
+TY = {**{a["id"]: a["type"] for a in ARRS}, **{d["id"]: d["type"] for d in DEPS}}
+
+
+def B8_xung_dot_mat_dat(track):
+    """Cu ly giua hai tau bay DANG LAN tren duong lan -- do trong mo phong.
+
+    Nguong lay DUNG cong thuc cua plugin bluesky/plugins/surfacetaxi.py:
+    nua chieu dai hai tau + taxi_tail_buffer (20 m), tuc "con lai sau duoi
+    tau truoc", khong phai khoang cach tam-toi-tam.
+    """
+    buf = RULES["tham_so_lan"].get("dem_sau_duoi_tau_truoc_m", 20.0)
+    win = cua_so_lan()
+    byt = {}
+    for acid, pts in track.items():
+        t0, t1 = win.get(acid, (0, 1e9))
+        for p in pts:
+            if t0 <= p[0] <= t1 and p[3] < 10:
+                byt.setdefault(round(p[0]), []).append((acid, p))
+    xau, gan_nhat = {}, None
+    for t, lst in byt.items():
+        for i in range(len(lst)):
+            for j in range(i + 1, len(lst)):
+                a, pa = lst[i]
+                b, pb = lst[j]
+                d = hav_m(pa[1], pa[2], pb[1], pb[2])
+                req = (AC_LEN.get(TY.get(a, ""), 40) + AC_LEN.get(TY.get(b, ""), 40)) / 2 + buf
+                if gan_nhat is None or d - req < gan_nhat[0] - gan_nhat[1]:
+                    gan_nhat = (d, req, t, a, b)
+                if d < req:
+                    k = tuple(sorted((a, b)))
+                    if k not in xau or d < xau[k][0]:
+                        xau[k] = (d, req, t)
+    ct = (f"{len(byt)} giay co tau dang lan, {len(xau)} cap vi pham")
+    if gan_nhat:
+        ct += (f"; cap sat nhau nhat {gan_nhat[3]}<->{gan_nhat[4]} "
+               f"{gan_nhat[0]:.0f} m (yeu cau {gan_nhat[1]:.0f} m) luc {fmt(gan_nhat[2])}")
+    if xau:
+        ct += "; " + "; ".join(f"{k[0]}<->{k[1]} {v[0]:.0f}m<{v[1]:.0f}m luc {fmt(v[2])}"
+                               for k, v in list(xau.items())[:4])
+    check("B8. Cu ly giua hai tau bay dang lan (tranh nhau khi lan)", not xau, ct,
+          "bluesky/plugins/surfacetaxi.py (taxi_tail_buffer = 20 m) "
+          "+ vvdn_xenke_rules.json > tham_so_lan (muc 6 prompt)")
+
+
+def B9_lineup_dung_tim_35R(track):
+    """Tau bay len duong CHC 35R phai nam tren TIM 35R that."""
+    rc = json.loads((LAYOUT / "runway_centerlines.geojson").read_text(encoding="utf-8"))
+    cl = None
+    for f in rc["features"]:
+        if f["properties"].get("name") == "17L/35R":
+            c = f["geometry"]["coordinates"]
+            pts = c if f["geometry"]["type"] == "LineString" else c[0]
+            cl = [(p[1], p[0]) for p in pts]
+    if cl is None:
+        return check("B9. Tau bay len duong CHC dung tim 35R", False,
+                     "khong tim thay tim 17L/35R trong runway_centerlines.geojson", "-")
+    # Do tu DUNG thoi diem bat dau chay da den khi roi dat. KHONG do tu
+    # thoi diem "len duong CHC": trong khoang do tau bay con dang lan TU
+    # diem cho vao, ma diem cho (PREHOLD, cuoi tuyen lan ra) nam cach tim
+    # duong CHC 112 m -- dung nhu no phai the, vi diem cho bat buoc nam
+    # NGOAI duong CHC.
+    lech, tai_roll = [], []
+    for d in DEPS:
+        pts = track.get(d["id"])
+        if not pts:
+            continue
+        p0 = min(pts, key=lambda q: abs(q[0] - d["roll"]))
+        tai_roll.append((d["id"], min(pt_seg_m((p0[1], p0[2]), cl[k], cl[k + 1])
+                                      for k in range(len(cl) - 1))))
+        # Chi lay doan tau bay CON LAN BANH tren duong CHC (alt ~ 0). Sau khi
+        # roi dat tau bay vao SID va rat nhanh ra khoi pham vi duong CHC -- do
+        # khoang cach toi tim luc do la vo nghia (da do 2208 m, chinh la cu ly
+        # toi dau bac duong CHC khi tau da bay qua no).
+        seg = [q for q in pts if d["roll"] <= q[0] and q[3] < 10]
+        if seg:
+            lech.append((d["id"], max(min(pt_seg_m((q[1], q[2]), cl[k], cl[k + 1])
+                                          for k in range(len(cl) - 1)) for q in seg)))
+    if not tai_roll:
+        return check("B9. Tau bay len duong CHC dung tim 35R", False,
+                     "khong do duoc chuyen di nao", "-")
+    xau = [x for x in tai_roll if x[1] > 10.0] + [x for x in lech if x[1] > 10.0]
+    check("B9. Tau bay len duong CHC va chay da dung tim 35R", not xau,
+          f"{len(tai_roll)} chuyen di: lech tim tai thoi diem bat dau chay da "
+          f"lon nhat {max(x[1] for x in tai_roll):.1f} m; suot pha chay da "
+          f"lon nhat {max((x[1] for x in lech), default=0):.1f} m"
+          + (f"; {len(xau)} truong hop lech >10 m: {[x[0] for x in xau[:4]]}" if xau else ""),
+          "runway_centerlines.geojson (tim duong CHC 17L/35R that cua VVDN)")
+
+
 def B7_ve_den_ben(track):
     bens = {"ben 28": (16.051747, 108.202278), "ben 8": (16.059413, 108.201205)}
     xa = []
@@ -545,6 +638,8 @@ def main():
         B5_lech_tim_duong_lan(track)
         B6_toc_do_lan(track)
         B7_ve_den_ben(track)
+        B8_xung_dot_mat_dat(track)
+        B9_lineup_dung_tim_35R(track)
 
     n = bao_cao()
     sys.exit(1 if n else 0)
