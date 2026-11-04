@@ -1,0 +1,196 @@
+{
+ "toc_do_5NM_tb_kt": {
+  "M": 155.0,
+  "H": 157.0
+ },
+ "yeu_cau": [
+  {
+   "loai": "Đến-Đến",
+   "cap": "H-H",
+   "nhieu_dong_NM": 4.0,
+   "yeu_cau_NM": 8.0,
+   "giay_tai_nguong": 183
+  },
+  {
+   "loai": "Đến-Đến",
+   "cap": "H-M",
+   "nhieu_dong_NM": 5.0,
+   "yeu_cau_NM": 8.0,
+   "giay_tai_nguong": 186
+  },
+  {
+   "loai": "Đến-Đến",
+   "cap": "M-H",
+   "nhieu_dong_NM": 3.0,
+   "yeu_cau_NM": 8.0,
+   "giay_tai_nguong": 183
+  },
+  {
+   "loai": "Đến-Đến",
+   "cap": "M-M",
+   "nhieu_dong_NM": 3.0,
+   "yeu_cau_NM": 8.0,
+   "giay_tai_nguong": 186
+  },
+  {
+   "loai": "Đi-Đến",
+   "cap": "H-H",
+   "yeu_cau_NM": 6,
+   "giay_tai_nguong": 138
+  },
+  {
+   "loai": "Đi-Đến",
+   "cap": "H-M",
+   "yeu_cau_NM": 7,
+   "giay_tai_nguong": 163
+  },
+  {
+   "loai": "Đi-Đến",
+   "cap": "M-H",
+   "yeu_cau_NM": 5,
+   "giay_tai_nguong": 115
+  },
+  {
+   "loai": "Đi-Đến",
+   "cap": "M-M",
+   "yeu_cau_NM": 5,
+   "giay_tai_nguong": 116
+  },
+  {
+   "loai": "Đến-Đi",
+   "cap": "moi cap",
+   "yeu_cau_NM": null,
+   "giay_tai_nguong": 30,
+   "ghi_chu": "chay da sau cham cang (huan lenh sau cham cang, muc 4.2.1.a)"
+  },
+  {
+   "loai": "Đi-Đi",
+   "cap": "H-H",
+   "yeu_cau_NM": null,
+   "giay_tai_nguong": 120
+  },
+  {
+   "loai": "Đi-Đi",
+   "cap": "H-M",
+   "yeu_cau_NM": null,
+   "giay_tai_nguong": 120
+  },
+  {
+   "loai": "Đi-Đi",
+   "cap": "M-H",
+   "yeu_cau_NM": null,
+   "giay_tai_nguong": 60
+  },
+  {
+   "loai": "Đi-Đi",
+   "cap": "M-M",
+   "yeu_cau_NM": null,
+   "giay_tai_nguong": 60
+  }
+ ],
+ "thuc_do_den_den_NM": {
+  "M-M": {
+   "10NM": {
+    "nho_nhat": 9.47,
+    "trung_binh": 10.65,
+    "so_cap": 9
+   },
+   "5NM": {
+    "nho_nhat": 8.9,
+    "trung_binh": 9.55,
+    "so_cap": 9
+   },
+   "2NM": {
+    "nho_nhat": 8.51,
+    "trung_binh": 8.89,
+    "so_cap": 9
+   },
+   "nguong": {
+    "nho_nhat": 8.34,
+    "trung_binh": 8.57,
+    "so_cap": 9
+   },
+   "DOTEN": {
+    "nho_nhat": 15.95,
+    "trung_binh": 15.95,
+    "so_cap": 1
+   }
+  },
+  "M-H": {
+   "DOTEN": {
+    "nho_nhat": 16.46,
+    "trung_binh": 16.46,
+    "so_cap": 1
+   },
+   "10NM": {
+    "nho_nhat": 10.52,
+    "trung_binh": 11.89,
+    "so_cap": 3
+   },
+   "5NM": {
+    "nho_nhat": 9.41,
+    "trung_binh": 10.29,
+    "so_cap": 3
+   },
+   "2NM": {
+    "nho_nhat": 8.71,
+    "trung_binh": 9.39,
+    "so_cap": 3
+   },
+   "nguong": {
+    "nho_nhat": 8.4,
+    "trung_binh": 8.89,
+    "so_cap": 3
+   }
+  },
+  "H-H": {
+   "10NM": {
+    "nho_nhat": 9.98,
+    "trung_binh": 12.94,
+    "so_cap": 2
+   },
+   "5NM": {
+    "nho_nhat": 9.21,
+    "trung_binh": 14.1,
+    "so_cap": 2
+   },
+   "2NM": {
+    "nho_nhat": 8.63,
+    "trung_binh": 13.09,
+    "so_cap": 2
+   },
+   "nguong": {
+    "nho_nhat": 8.41,
+    "trung_binh": 12.56,
+    "so_cap": 2
+   }
+  },
+  "H-M": {
+   "10NM": {
+    "nho_nhat": 10.02,
+    "trung_binh": 10.16,
+    "so_cap": 3
+   },
+   "5NM": {
+    "nho_nhat": 9.23,
+    "trung_binh": 9.38,
+    "so_cap": 3
+   },
+   "2NM": {
+    "nho_nhat": 8.64,
+    "trung_binh": 8.84,
+    "so_cap": 3
+   },
+   "nguong": {
+    "nho_nhat": 8.61,
+    "trung_binh": 8.68,
+    "so_cap": 2
+   },
+   "DOTEN": {
+    "nho_nhat": 24.28,
+    "trung_binh": 24.28,
+    "so_cap": 1
+   }
+  }
+ }
+}

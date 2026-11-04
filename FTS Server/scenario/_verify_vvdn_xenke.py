@@ -92,6 +92,16 @@ def A1_co_cau_doi_tau():
               f"{n - nh} MEDIUM + {nh} HEAVY tren {n} chuyen "
               f"({(n-nh)/n*100:.0f}%/{nh/n*100:.0f}%), han ngach yeu cau {n-want_h}M+{want_h}H",
               "vvdn_xenke_rules.json > co_cau_tau_bay (muc 2 prompt)")
+        thu_tu = [wake(d["type"])[0] for d in sorted(ds, key=lambda x: x.get("td", x.get("roll")))]
+        cap = {}
+        for k in range(len(thu_tu) - 1):
+            key = f"{thu_tu[k]}-{thu_tu[k + 1]}"
+            cap[key] = cap.get(key, 0) + 1
+        thieu = [c for c in ("H-H", "H-M", "M-H", "M-M") if c not in cap]
+        check(f"A1b. Du cac cap ke tiep H-H/H-M/M-H/M-M ({ten})", not thieu,
+              ", ".join(f"{k}: {v}" for k, v in sorted(cap.items()))
+              + (f"; THIEU {thieu}" if thieu else ""),
+              "Muc 2 prompt: bao dam xuat hien du cac to hop cap ke tiep")
 
 
 NGUON_HA_CANH = ("vvdn_xenke_rules.json > phan_cach_ha_canh_lien_tiep_35L: nhieu dong/giam sat ATS "
@@ -210,7 +220,8 @@ def A6_diem_cho():
     lim = RULES["gioi_han_diem_cho"]["so_tau_toi_da"]
     busy, peak_t = {}, None
     for d in DEPS:
-        for t in range(int(d["start_taxi"] + d["taxi_s"]), int(d["roll"]) + 1):
+        # tu luc VAO HANG CHO (vi tri thu hai neu phai xep hang) den luc chay da
+        for t in range(int(d.get("t_xep_hang", d["start_taxi"] + d["taxi_s"])), int(d["roll"]) + 1):
             busy[t] = busy.get(t, 0) + 1
     peak = max(busy.values()) if busy else 0
     if busy:
@@ -254,14 +265,30 @@ def A8_xen_ke():
 
 def A9_thong_luong():
     T = RULES["thiet_ke_lich"]["thoi_luong_phut"] * 60
-    na = sum(1 for a in ARRS if a["td"] < T)
-    nd = sum(1 for d in DEPS if d["roll"] < T)
+    t0 = min(a["td"] for a in ARRS)          # cua so do bat dau tu lan cham banh dau tien
+    na = sum(1 for a in ARRS if t0 <= a["td"] < t0 + T)
+    nd = sum(1 for d in DEPS if t0 <= d["roll"] < t0 + T)
     gaps = [ARRS[i]["td"] - ARRS[i - 1]["td"] for i in range(1, len(ARRS))]
-    results.append((f"A9. Thong luong ca {T // 60:.0f} phut (mot pha, sat phan cach toi thieu)",
-                    "SO LIEU",
-                    f"{na} den + {nd} di = {na + nd} chuyen dong; nhip den "
+    results.append((f"A9. Thong luong cua so {T // 60:.0f} phut ({fmt(t0)} - {fmt(t0 + T)}, "
+                    f"sau pha khoi dong)", "SO LIEU",
+                    f"{na} den + {nd} di = {na + nd} chuyen dong/gio; nhip den "
                     f"TB {sum(gaps) / len(gaps):.0f}s, nho nhat {min(gaps):.0f}s",
                     "vvdn_xenke_rules.json > thiet_ke_lich"))
+
+
+def A11_tao_tai_IAF():
+    """Muc 5 prompt: moi chuyen den duoc tao (CRE) TAI IAF cua STAR duoc gan --
+    doc truc tiep chu thich cua tung lenh CRE trong file .scn."""
+    xau, n = [], 0
+    for line in SCN.read_text(encoding="utf-8").splitlines():
+        if line.startswith("# ARR") and " -- " in line:
+            n += 1
+            if "CRE tai IAF" not in line:
+                xau.append(line.split()[1])
+    check("A11. Moi chuyen den duoc tao tai IAF cua STAR", n == len(ARRS) and not xau,
+          f"{n - len(xau)}/{len(ARRS)} chuyen tao tai IAF"
+          + (f"; tao giua STAR: {xau}" if xau else ""),
+          "Muc 5 prompt (tinh nguoc CRE tu IAF; thieu thoi gian thi them pha khoi dong)")
 
 
 def A10_lan_khong_am():
@@ -860,6 +887,34 @@ def B13_thoat_ly_35L(track, td):
           "MANOP Phu luc 2 CHC song song (thoat ly trong vong 100 giay)")
 
 
+def B14_diem_cho_that(track):
+    """Do trong mo phong: so tau DI dang o khu diem cho truoc 35R (trong vong
+    dung sai loai tru quanh PREHOLD, hoac da len duong CHC cho chay da) tai
+    tung giay, tu luc vao khu do den luc bat dau chay da. Muc 6 prompt: <= 3."""
+    lim = RULES["gioi_han_diem_cho"]["so_tau_toi_da"]
+    vung = RULES["han_che_duong_lan_E"]["loai_tru_quanh_PREHOLD_m"] + 10.0
+    ph = RULES["so_do_san_bay"]["diem_cho_cat_canh_35R"]["PREHOLD"]
+    dem = {}
+    for d in DEPS:
+        for (t, la, lo, alt, gs) in track.get(d["id"], []):
+            if t >= d["roll"] or alt > 10:
+                continue
+            s, x = ST35R(la, lo)
+            tren_chc = abs(x) < 30 and s < 400
+            if tren_chc or hav_m(la, lo, ph[0], ph[1]) < vung:
+                dem.setdefault(int(t), set()).add(d["id"])
+    peak_t = max(dem, key=lambda k: len(dem[k])) if dem else None
+    peak = len(dem[peak_t]) if dem else 0
+    phut = {}
+    for t, s in dem.items():
+        phut[t // 300] = max(phut.get(t // 300, 0), len(s))
+    check("B14. So tau tai diem cho truoc 35R (do trong mo phong)", peak <= lim,
+          f"lon nhat {peak} tau (luc {fmt(peak_t) if peak_t is not None else '-'}), gioi han {lim}; "
+          "lon nhat theo khoang 5 phut: "
+          + " ".join(f"{fmt(k * 300)[:5]}={v}" for k, v in sorted(phut.items())),
+          "Muc 6 prompt -- yeu cau cung")
+
+
 def bao_cao():
     w = max(len(r[0]) for r in results)
     n_fail = sum(1 for r in results if r[1] == "KHONG DAT")
@@ -887,6 +942,7 @@ def main():
     A7_len_duong_chc()
     A8_xen_ke()
     A10_lan_khong_am()
+    A11_tao_tai_IAF()
     A9_thong_luong()
 
     if not static_only:
@@ -909,6 +965,7 @@ def main():
         B11_cat_qua_35R(track, td)
         B12_duong_lan_E(track)
         B13_thoat_ly_35L(track, td)
+        B14_diem_cho_that(track)
 
     n = bao_cao()
     sys.exit(1 if n else 0)

@@ -403,6 +403,13 @@ def build_fleet(n_arr, n_dep, rng):
         p = ([rng.choice(MEDIUM_TYPES) for _ in range(n_m)] +
              [rng.choice(HEAVY_TYPES) for _ in range(n_h)])
         rng.shuffle(p)
+        # Muc 2 prompt: bao dam xuat hien du cac cap ke tiep H-H, H-M, M-H, M-M.
+        # Xao lai (van bang cung rng -> tai lap) den khi du; gioi han 5000 lan.
+        for _ in range(5000):
+            cap = {(wake(p[k]), wake(p[k + 1])) for k in range(len(p) - 1)}
+            if n_h < 2 or n_m < 2 or len(cap) == 4:
+                break
+            rng.shuffle(p)
         return p, n_m, n_h
     arr, am, ah = pool(n_arr)
     dep, dm, dh = pool(n_dep)
@@ -455,7 +462,7 @@ def schedule(rng, first_td=FIRST_ARR_TD, n_arr=40, n_dep=40, tre_them=None):
             need = dep_vs_arr_nm(deps[-1]["type"], arr_types[i])
             t_arr = max(t_arr, deps[-1]["roll"]
                         + need / approach_speeds(arr_types[i])[2] * 3600.0)
-        if t_arr >= DURATION_S:
+        if t_arr >= first_td + DURATION_S:
             break
         arrs.append({"i": i + 1, "id": f"ARR{i+1:03d}", "type": arr_types[i],
                      "star": arr_stars[i], "exit": arr_exits[i], "td": t_arr})
@@ -495,7 +502,7 @@ def schedule(rng, first_td=FIRST_ARR_TD, n_arr=40, n_dep=40, tre_them=None):
                         t_roll, doi = e1 + 1.0, True
             if not doi:
                 break
-        if t_roll >= DURATION_S:
+        if t_roll >= first_td + DURATION_S:
             break
         deps.append({"i": j + 1, "id": f"DEP{j+1:03d}", "type": dep_types[j],
                      "sid": dep_sids[j], "gate": dep_gates[j], "roll": t_roll})
@@ -705,6 +712,10 @@ def quy_dao_lan(arrs, deps):
         out[a["id"]] = (a["t_vacated"], a["t_onblock"], ham_vi_tri_nhieu_doan(doan_lan_vao(a)),
                         aircraft_length_m(a["type"]))
     for d in deps:
+        if "_doan" in d:
+            out[d["id"]] = (d["start_taxi"], d["lineup"], ham_vi_tri_nhieu_doan(d["_doan"]),
+                            aircraft_length_m(d["type"]))
+            continue
         gate = GATE26 if d["gate"] == "G26" else GATE27
         path = TAXI_COMMON_G26 if d["gate"] == "G26" else TAXI_COMMON_G27
         pts = [(gate[0], gate[1])] + [(p[0], p[1]) for p in path]
@@ -784,10 +795,14 @@ def thoi_gian_tren_E_lan_ra(gate_name):
     return (e[-1][1] - e[0][0]) if e else 0.0
 
 
-def vi_pham_E_khi_lan_ra(d, start_taxi, deps):
+def vi_pham_E_khi_lan_ra(d, start_taxi, deps, doan=None):
     """id chuyen di dang cat canh ma d (lan ra tu start_taxi) lai o tren duong
-    lan E trai MANOP; None neu khong vi pham."""
-    my = _khoang_E_theo_gio(_tuyen_lan_ra(d), start_taxi, start_taxi + d["taxi_s"])
+    lan E trai MANOP; None neu khong vi pham. `doan` = cac doan lan thuc te
+    (co xep hang); mac dinh lan thang mot mach toi PREHOLD."""
+    if doan is None:
+        my = _khoang_E_theo_gio(_tuyen_lan_ra(d), start_taxi, start_taxi + d["taxi_s"])
+    else:
+        my = [e for pts, a, b in doan if len(pts) > 1 for e in _khoang_E_theo_gio(pts, a, b)]
     for h in deps:
         if h is d or duoc_tren_E(CODE[h["type"]], CODE[d["type"]]):
             continue
@@ -796,11 +811,16 @@ def vi_pham_E_khi_lan_ra(d, start_taxi, deps):
     return None
 
 
-def qua_tai_diem_cho(d, start_taxi, deps):
-    """True neu d toi diem cho luc start_taxi + taxi_s lam so tau o diem cho
-    vuot MAX_AT_HOLD (cung cach dem theo giay nguyen nhu schedule_taxi_out)."""
-    a0, a1 = int(start_taxi + d["taxi_s"]), int(d["roll"])
-    khac = [(int(o["start_taxi"] + o["taxi_s"]), int(o["roll"])) for o in deps if o is not d]
+def _t_vao_diem_cho(o):
+    return o.get("t_xep_hang", o["start_taxi"] + o["taxi_s"])
+
+
+def qua_tai_diem_cho(d, t_xep, deps):
+    """True neu d vao khu diem cho luc t_xep lam so tau o diem cho (tinh tu
+    luc vao hang cho den luc bat dau chay da, gom ca tau da len duong CHC)
+    vuot MAX_AT_HOLD."""
+    a0, a1 = int(t_xep), int(d["roll"])
+    khac = [(int(_t_vao_diem_cho(o)), int(o["roll"])) for o in deps if o is not d]
     for p in [a0] + [s for s, _ in khac if a0 <= s <= a1]:
         if 1 + sum(1 for s, e in khac if s <= p <= e) > MAX_AT_HOLD:
             return True
@@ -808,25 +828,53 @@ def qua_tai_diem_cho(d, start_taxi, deps):
 
 
 CHO_CACH_S = 20.0   # tau sau toi PREHOLD it nhat 20 s sau khi tau truoc roi PREHOLD
+HANG2_DEM_M = 2.0   # dem them sau khoang cach toi thieu xep hang
+_CACHE_HINH_RA: dict = {}
 
 
-def trung_vi_tri_cho(d, start_taxi, deps):
-    """True neu d phai dung cho tai PREHOLD cung luc voi mot tau khac.
+def _hinh_lan_ra(d):
+    if d["gate"] not in _CACHE_HINH_RA:
+        sh = densify(_tuyen_lan_ra(d), 3.0)
+        cum = [0.0]
+        for k in range(len(sh) - 1):
+            cum.append(cum[-1] + haversine_m(*sh[k], *sh[k + 1]))
+        _CACHE_HINH_RA[d["gate"]] = (sh, cum)
+    return _CACHE_HINH_RA[d["gate"]]
 
-    Diem cho E chi co MOT vi tri dung (PREHOLD); tau thu hai khong the dung
-    chong len tau thu nhat. Khong cho xep hang ve phia bac tren duong lan E: tau
-    xep hang tren E se vi pham han che duong lan E (MANOP) moi khi co tau code
-    D/E cat canh. Khoang dung cho cua d: tu luc toi PREHOLD den luc len CHC."""
-    a = start_taxi + d["taxi_s"]
-    b = max(d["lineup"], a)
-    for o in deps:
-        if o is d:
-            continue
-        oa = o["start_taxi"] + o["taxi_s"]
-        ob = max(o["lineup"], oa)
-        if a < ob + CHO_CACH_S and oa < b + CHO_CACH_S:
-            return True
-    return False
+
+def ke_hoach_lan_ra(d, start, truoc):
+    """Ke hoach lan ra cua d (bat dau lan luc `start`), co XEP HANG tai diem cho E.
+
+    `truoc` = chuyen di chay da ngay truoc d (da xep xong) hoac None. Neu d toi
+    PREHOLD khi tau truoc con dang dung o do, d dung o VI TRI THU HAI phia sau,
+    cach tam tau truoc = nua chieu dai hai tau + 20 m (+2 m dem) -- dung muc 6
+    prompt; 10 s sau khi tau truoc len duong CHC thi d lan len PREHOLD o toc do
+    lan khi re. Diem cho chi co hai vi tri (PREHOLD + vi tri thu hai) cong voi
+    tau da len duong CHC = toi da 3 tau. Tra ve None neu d toi khi ca hai vi tri
+    con kin (tau truoc chua len toi PREHOLD).
+
+    Tra ve dict: t_xep_hang (vao khu diem cho), t_prehold, lineup, hang2,
+    doan = [(pts, t0, t1)] cac doan di chuyen (giua cac doan tau dung yen)."""
+    sh, cum = _hinh_lan_ra(d)
+    v = cum[-1] / d["taxi_s"]
+    a_full = start + d["taxi_s"]
+    if truoc is None or a_full >= truoc["lineup"] + CHO_CACH_S:
+        return {"t_xep_hang": a_full, "t_prehold": a_full, "hang2": False,
+                "lineup": max(d["lineup_min"], a_full), "doan": [(sh, start, a_full)]}
+    off = ((aircraft_length_m(truoc["type"]) + aircraft_length_m(d["type"])) / 2.0
+           + TAXI_TAIL_BUFFER_M + HANG2_DEM_M)
+    k = len(sh) - 1
+    while k > 0 and haversine_m(*sh[k], *sh[-1]) < off:
+        k -= 1
+    t_s1 = start + cum[k] / v
+    if t_s1 < truoc.get("t_prehold", truoc["start_taxi"] + truoc["taxi_s"]):
+        return None                        # vi tri thu hai con chua trong
+    t_len = max(truoc["lineup"] + CHO_CACH_S / 2.0, t_s1)
+    pts2 = sh[k:]
+    t_pre = t_len + _do_dai(pts2) / (TAXI_SPD_TURN * 0.514444)
+    return {"t_xep_hang": t_s1, "t_prehold": t_pre, "hang2": True,
+            "lineup": max(d["lineup_min"], t_pre),
+            "doan": [(sh[:k + 1], start, t_s1), (pts2, t_len, t_pre)]}
 
 
 def nhuong_duong_khi_lan(arrs, deps):
@@ -850,40 +898,45 @@ def nhuong_duong_khi_lan(arrs, deps):
     da_xep = dict(qd_arr)
     nhat_ky = []
 
-    for d in sorted(deps, key=lambda x: x["start_taxi"]):
+    # Xep theo THU TU CAT CANH: ke hoach xep hang cua mot chuyen phu thuoc
+    # chuyen cat canh ngay truoc no, nen chuyen do phai xep xong truoc.
+    truoc = None
+    for d in sorted(deps, key=lambda x: x["roll"]):
         goc = d["start_taxi"]
-        som_nhat = 0.0
-        # Muon nhat: toi diem cho van con du thoi gian lan len duong CHC truoc
-        # luc chay da (khong bat buoc phai toi dung luc tau truoc chay da --
-        # toi muon hon thi len duong CHC ngay khi toi).
-        muon_nhat = d["roll"] - d["taxi_s"] - LINEUP_S
         chon = None
         for delta in sorted(range(-600, 601, 5), key=lambda x: (abs(x), x < 0)):
             t = goc + delta
-            if t < som_nhat - 1e-6 or t > muon_nhat + 1e-6:
+            if t < -1e-6:
                 continue
-            if (vi_pham_E_khi_lan_ra(d, t, deps) or qua_tai_diem_cho(d, t, deps)
-                    or trung_vi_tri_cho(d, t, deps)):
+            kh = ke_hoach_lan_ra(d, t, truoc)
+            # toi PREHOLD van con du thoi gian lan len duong CHC truoc luc chay da
+            if kh is None or kh["t_prehold"] > d["roll"] - LINEUP_S + 1e-6:
                 continue
-            qd = _qd_dep(d, t)
+            if (vi_pham_E_khi_lan_ra(d, t, deps, kh["doan"])
+                    or qua_tai_diem_cho(d, kh["t_xep_hang"], deps)):
+                continue
+            qd = (t, kh["lineup"], ham_vi_tri_nhieu_doan(kh["doan"]), aircraft_length_m(d["type"]))
             if any(_va_cham(qd, v) is not None for v in da_xep.values()):
                 continue
-            chon = t
+            chon = (t, kh)
             break
         if chon is None:
             nhat_ky.append(f"{d['id']}: KHONG tim duoc gio roi ben nao tranh duoc "
-                           f"va cham / duong lan E / diem cho (khoang cho phep "
-                           f"{fmt(som_nhat)}-{fmt(muon_nhat)})")
+                           f"va cham / duong lan E / diem cho")
             d["khong_xep_duoc"] = True
-            da_xep[d["id"]] = _qd_dep(d, goc)
-            continue
-        if abs(chon - goc) > 1e-6:
+            chon = (goc, ke_hoach_lan_ra(d, goc, None))
+        t, kh = chon
+        if abs(t - goc) > 1e-6 and not d.get("khong_xep_duoc"):
             ly_do = ("duong lan E" if vi_pham_E_khi_lan_ra(d, goc, deps) else "nhuong duong khi lan")
-            nhat_ky.append(f"{d['id']} {'lui' if chon > goc else 'day som'} "
-                           f"{abs(chon-goc):.0f}s ({ly_do})")
-        d["start_taxi"] = chon
-        d["lineup"] = max(d["lineup"], chon + d["taxi_s"])
-        da_xep[d["id"]] = _qd_dep(d, chon)
+            nhat_ky.append(f"{d['id']} {'lui' if t > goc else 'day som'} "
+                           f"{abs(t-goc):.0f}s ({ly_do})")
+        d["start_taxi"] = t
+        d["lineup"] = kh["lineup"]
+        d["t_xep_hang"], d["t_prehold"], d["hang2"] = kh["t_xep_hang"], kh["t_prehold"], kh["hang2"]
+        d["_doan"] = kh["doan"]
+        da_xep[d["id"]] = (t, d["lineup"], ham_vi_tri_nhieu_doan(kh["doan"]),
+                           aircraft_length_m(d["type"]))
+        truoc = d
     return deps, nhat_ky
 
 
@@ -895,7 +948,8 @@ def schedule_taxi_out(deps):
         d["taxi_s"] = taxi_time_s(path)
         # Tau sau duoc LEN duong CHC khi tau truoc BAT DAU CHAY DA (muc 3e)
         d["lineup"] = deps[j - 1]["roll"] if j > 0 else d["roll"] - 60.0
-        d["lineup"] = min(d["lineup"], d["roll"])
+        d["lineup"] = min(d["lineup"], d["roll"] - LINEUP_S)
+        d["lineup_min"] = d["lineup"]          # som nhat duoc len duong CHC (tau truoc chay da)
         d["start_taxi"] = d["lineup"] - d["taxi_s"]
 
     # Dem so tau tai diem cho theo tung giay; neu >MAX thi lui tau den sau
@@ -1085,15 +1139,21 @@ def build_dep_lines(d):
 
     L.append((t0, f"CRE {d['id']},{d['type']},{gate[0]:.6f},{gate[1]:.6f},{gate[2]},0,0"))
     L.append((t0, f"# {d['id']} {d['type']} ({wake(d['type'])}) -- xuat phat {d['gate']}, "
-                  f"SID {d['sid']}; toi diem cho {fmt(t0 + d['taxi_s'])}, "
+                  f"SID {d['sid']}; vao hang cho {fmt(d['t_xep_hang'])}"
+                  f"{' (vi tri thu hai)' if d['hang2'] else ''}, toi diem cho {fmt(d['t_prehold'])}, "
                   f"len CHC {fmt(d['lineup'])}, chay da {fmt(d['roll'])}"))
     L.append((t0, f"TAXIOFF {d['id']}"))
 
-    # 1) Day lui + lan tu ben ra diem cho truoc nguong 35R
-    t_hold = t0 + d["taxi_s"]
-    L += taxi_moves(d["id"], [(gate[0], gate[1])] + [(p[0], p[1]) for p in path], t0, t_hold)
+    # 1) Lan tu ben ra diem cho truoc nguong 35R; neu tau truoc con dung tai
+    #    PREHOLD thi dung o vi tri thu hai phia sau roi tien len khi tau truoc
+    #    len duong CHC (xep hang, muc 6 prompt).
     # 2) Cho tai diem cho den khi duoc phep len duong CHC
-    L += hold_moves(d["id"], (path[-1][0], path[-1][1]), PREHOLD[2], t_hold, d["lineup"])
+    doan = d["_doan"]
+    for k, (pts, a, b) in enumerate(doan):
+        L += taxi_moves(d["id"], pts, a, b)
+        cuoi = k == len(doan) - 1
+        L += hold_moves(d["id"], pts[-1], PREHOLD[2] if cuoi else bearing_deg(*pts[-2], *pts[-1]),
+                        b, d["lineup"] if cuoi else doan[k + 1][1])
     # 3) Len duong CHC 35R roi GHIM tai cho den khi duoc phep chay da.
     #    Khong duoc trai quang duong ngan nay (~130 m) ra suot thoi gian cho:
     #    lam vay toc do MOVE tut xuong 1.7 kt va BlueSky khong giu noi tau o
@@ -1207,8 +1267,16 @@ def main():
     for _vong in range(120):
         first_td = FIRST_ARR_TD
         n_arr = n_dep = 40
-        for _ in range(12):
+        for _ in range(40):
             arrs, deps, quota = schedule(random.Random(SEED), first_td, n_arr, n_dep, tre_them)
+            # PHA KHOI DONG (muc 5 prompt): moi chuyen den phai duoc tao TAI IAF
+            # cua STAR. Lui moc cham banh dau tien den khi chuyen nao cung du
+            # thoi gian bay tu IAF (dem 60 s; tinh ca bu hieu chuan neu duong).
+            thieu = max(_STAR_TRANSIT[a["star"]] + cadas_to_thr_s(a["type"])
+                        + max(CALIB.get(a["id"], 0.0), 0.0) + 60.0 - a["td"] for a in arrs)
+            if thieu > 0:
+                first_td += thieu
+                continue
             deps = schedule_taxi_out(deps)
             deps, nhat_ky_nhuong = nhuong_duong_khi_lan(arrs, deps)
             earliest = min(d["start_taxi"] for d in deps)
@@ -1263,7 +1331,7 @@ def main():
     meta = {
         "seed": SEED,
         "arrivals": [{k: v for k, v in a.items()} for a in arrs],
-        "departures": [{k: v for k, v in d.items()} for d in deps],
+        "departures": [{k: v for k, v in d.items() if not k.startswith("_")} for d in deps],
     }
     (HERE / "VVDN-XENKE-60MIN.plan.json").write_text(
         json.dumps(meta, indent=1, ensure_ascii=False), encoding="utf-8")

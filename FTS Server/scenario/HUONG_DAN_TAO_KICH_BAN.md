@@ -84,9 +84,9 @@ python _verify_vvdn_xenke.py
 ```
 
 Phải ra đúng:
-- `VVDN-XENKE-60MIN.scn` — **266.665 byte**, 13 ARR + 13 DEP, 4.459 lệnh
-- Kiểm chứng: **26 mục, 0 mục KHÔNG ĐẠT** (24 ĐẠT + 2 mục số liệu)
-- B2: lệch chạm bánh lớn nhất **4,0 s** · B3: cặp hạ cánh gần nhất **8,43 NM** · B4: **0 cặp** xung đột · B8: **0 cặp** vi phạm khi lăn · B13: thoát ly 35L lâu nhất **97 s**
+- `VVDN-XENKE-60MIN.scn` — **369.001 byte**, 18 ARR + 18 DEP, 6.191 lệnh
+- Kiểm chứng: **30 mục, 0 mục KHÔNG ĐẠT** (28 ĐẠT + 2 mục số liệu)
+- B2: lệch chạm bánh lớn nhất **0,9 s** · B3: cặp hạ cánh gần nhất **8,53 NM** · B4: **0 cặp** xung đột · B8: **0 cặp** vi phạm khi lăn · B13: thoát ly 35L lâu nhất **94 s**
 
 Lệch bất kỳ con số nào ⇒ môi trường chưa đúng. Thường là thiếu BADA (mục 1.3).
 
@@ -124,14 +124,14 @@ Chi tiết kỹ thuật và **toàn bộ bẫy của engine** nằm trong phần
 
 ### Kịch bản mẫu đầy đủ
 
-**VVDN cất cánh xen kẽ** là bản tham chiếu hoàn chỉnh nhất — có đủ cả 7 bước, 26 mục kiểm chứng. Từ 2026-11-04 kịch bản chạy MỘT pha suốt 60 phút, cất/hạ cánh xen kẽ, xếp sát phân cách tối thiểu theo dự thảo Phương thức 2 CHC song song Đà Nẵng (24.7.2026), dự thảo MANOP APP/TWR Đà Nẵng và ICAO Doc 4444 — **không** dùng `compliance_rulesets/VVDN.json` (xem bẫy ở mục 4.3):
+**VVDN cất cánh xen kẽ** là bản tham chiếu hoàn chỉnh nhất — có đủ cả 7 bước, 30 mục kiểm chứng. Từ 2026-11-04 kịch bản chạy MỘT pha suốt 60 phút, cất/hạ cánh xen kẽ, xếp sát phân cách tối thiểu theo dự thảo Phương thức 2 CHC song song Đà Nẵng (24.7.2026), dự thảo MANOP APP/TWR Đà Nẵng và ICAO Doc 4444 — **không** dùng `compliance_rulesets/VVDN.json` (xem bẫy ở mục 4.3):
 
 | File | Vai trò |
 |---|---|
 | `vvdn_xenke_rules.json` | Cấu hình quy tắc phân cách, ghi điều khoản nguồn |
 | `_gen_vvdn_xenke_60min.py` | Generator, seed cố định |
 | `_calib_vvdn_xenke.py` | Hiệu chuẩn thời điểm tạo tàu |
-| `_verify_vvdn_xenke.py` | Kiểm chứng độc lập (26 mục) |
+| `_verify_vvdn_xenke.py` | Kiểm chứng độc lập (30 mục) |
 | `_md2docx_baocao.py` | Xuất báo cáo Word |
 | `BaoCao_KiemChung_VVDN_XenKe.md` | Báo cáo mẫu |
 
@@ -144,7 +144,7 @@ python _verify_vvdn_xenke.py --static  # kiểm tra nhanh trên lịch (vài gi�
 python _verify_vvdn_xenke.py           # kiểm chứng đầy đủ, có chạy mô phỏng (~10 phút)
 ```
 
-Kết quả phải là **26 mục, 0 mục KHÔNG ĐẠT**. Nếu máy bạn ra kết quả khác máy khác, môi trường có vấn đề — chạy lại `kiem_tra_moi_truong.py`.
+Kết quả phải là **30 mục, 0 mục KHÔNG ĐẠT**. Nếu máy bạn ra kết quả khác máy khác, môi trường có vấn đề — chạy lại `kiem_tra_moi_truong.py`.
 
 ---
 
