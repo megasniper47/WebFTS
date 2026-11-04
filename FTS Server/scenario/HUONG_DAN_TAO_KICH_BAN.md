@@ -86,7 +86,7 @@ python _verify_vvdn_xenke.py
 Phải ra đúng:
 - `VVDN-XENKE-60MIN.scn` — **370.190 byte**, 18 ARR + 18 DEP, 6.211 lệnh
 - Kiểm chứng: **30 mục, 0 mục KHÔNG ĐẠT** (28 ĐẠT + 2 mục số liệu)
-- B2: lệch chạm bánh lớn nhất **0,7 s** · B3: cặp hạ cánh gần nhất **7,44 NM** · B4: **0 cặp** xung đột · B8: **0 cặp** vi phạm khi lăn · B13: thoát ly 35L lâu nhất **94 s**
+- B2: lệch chạm bánh lớn nhất **0,8 s** · B3: cặp hạ cánh gần nhất **7,44 NM** · B4: **0 cặp** xung đột · B8: **0 cặp** vi phạm khi lăn · B13: thoát ly 35L lâu nhất **94 s**
 
 Lệch bất kỳ con số nào ⇒ môi trường chưa đúng. Thường là thiếu BADA (mục 1.3).
 

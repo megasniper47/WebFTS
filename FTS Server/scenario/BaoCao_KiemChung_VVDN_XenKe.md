@@ -1,7 +1,7 @@
 # BÁO CÁO KIỂM CHỨNG KỊCH BẢN CẤT/HẠ CÁNH XEN KẼ — CẢNG HKQT ĐÀ NẴNG (VVDN)
 
 **Cấu hình khai thác:** hướng 35, hai đường CHC song song (cách nhau 214 m) khai thác **phụ thuộc** — 35L hạ cánh (ILS), 35R cất cánh, cất/hạ cánh **xen kẽ**
-**Thời lượng:** pha khởi động 0:00–0:28:38 (tàu đến bay STAR từ IAF, tàu đi lăn ra) + **cửa sổ đo 60 phút** 0:28:38–1:28:38 · **Seed:** 20261102 (tái lập 100 %, đã kiểm tra sinh lại giống từng byte) · **Mô hình hiệu năng:** BADA 3.16
+**Thời lượng:** pha khởi động 0:00–0:21:29 (tàu đến bay STAR từ IAF, tàu đi lăn ra) + **cửa sổ đo 60 phút** 0:21:29–1:21:29 · **Seed:** 20261102 (tái lập 100 %, đã kiểm tra sinh lại giống từng byte) · **Mô hình hiệu năng:** BADA 3.16
 **Phân cách áp dụng:** dự thảo *Phương thức khai thác 2 đường CHC song song Đà Nẵng* (24.7.2026), dự thảo *MANOP APP/TWR Đà Nẵng* (011026_Du-thao-Manop-DN-PB03) — **bỏ qua giãn cách hạ cánh 8 NM** theo chỉ định của người dùng —, ICAO Doc 4444 và prompt *"kịch bản cất cánh xen kẽ (Linh)"*
 **Ngày lập:** 04/11/2026 — thay toàn bộ các bản trước cùng ngày
 
@@ -38,7 +38,7 @@
 | Cơ cấu đội tàu | 70 % MEDIUM / 30 % HEAVY, **hạn ngạch chính xác** rồi xáo trộn bằng seed (18 chuyến ⇒ 13 M + 5 H mỗi chiều); bảo đảm đủ cặp kế tiếp H-H, H-M, M-H, M-M ở cả chiều đến và chiều đi |
 
 ### 2.2 Đơn giản hoá có chủ đích
-1. **Pha khởi động 28 phút 38 giây** để **mọi** chuyến đến được tạo tại IAF của STAR (mục 5 prompt); thông lượng chỉ tính trong cửa sổ 60 phút sau đó.
+1. **Pha khởi động 21 phút 29 giây** để **mọi** chuyến đến được tạo tại IAF của STAR (mục 5 prompt); thông lượng chỉ tính trong cửa sổ 60 phút sau đó. Tàu đầu tiên xuất hiện ở **0:00:29** (bản trước để trống 7 phút 38 giây đầu kịch bản — trông như kịch bản không chạy; nay lịch được kéo sớm tối đa, mọi mốc dịch đều nên lịch tương đối không đổi).
 2. **Pha lăn điều khiển bằng `MOVE`** theo nhịp đều 2 s, không dùng LNAV/VNAV, để kiểm soát chính xác thời điểm tới/rời điểm chờ.
 3. **Điểm chờ E có hai vị trí** (PREHOLD + vị trí thứ hai phía sau, cách tâm tàu trước nửa chiều dài hai tàu + 20 m) cộng tàu đã lên đường CHC = tối đa 3 tàu. Một chuyến đi đã phải dùng vị trí thứ hai.
 4. **Tránh nhau khi lăn giải bằng lập lịch** (quy tắc ưu tiên của plugin `surfacetaxi.py`). Không mô phỏng phanh/dừng nhường đường bất ngờ.
@@ -122,14 +122,14 @@ Script `_verify_vvdn_xenke.py` **không dùng lại** hàm của generator: tự
 | A7 | Lên đường CHC sau khi tàu trước chạy đà | ✅ | 17 cặp |
 | A8 | Xen kẽ | ✅ | chuỗi cùng loại dài nhất **1** |
 | A9 | Thông lượng cửa sổ 60 phút | 📊 | **18 đến + 18 đi = 36 lần chuyến/giờ**; nhịp đến TB 199 s, nhỏ nhất 162 s |
-| A10 | Mọi chuyến đi bắt đầu lăn trong kịch bản | ✅ | sớm nhất 0:22:35,8 |
+| A10 | Mọi chuyến đi bắt đầu lăn trong kịch bản | ✅ | sớm nhất 0:15:26,7 |
 | A11 | Mọi chuyến đến tạo tại IAF | ✅ | **18/18** |
 
 ### Phần B — đo trong mô phỏng headless thật (BADA 3.16)
 | # | Nội dung | Kết quả | Số liệu |
 |---|---|---|---|
 | B1 | Mọi chuyến đến chạm càng | ✅ | 18/18 |
-| B2 | Sai lệch chạm càng so với lịch | 📊 | TB **0,3 s**, lớn nhất **0,7 s** |
+| B2 | Sai lệch chạm càng so với lịch | 📊 | TB **0,3 s**, lớn nhất **0,8 s** |
 | B3 | Cự ly thật hai tàu hạ cánh liên tiếp | ✅ | nhỏ nhất **7,44 NM** (yêu cầu 3–5 NM theo cặp) |
 | B4 | Cảnh báo xung đột trên không | ✅ | 0 cặp |
 | B5 | Bám tim đường lăn | ✅ | 36 tàu, lệch TB 1,7 m |
@@ -184,42 +184,42 @@ Script `_phan_tich_mat_do_vvdn_xenke.py` (độc lập với generator) **nén**
 
 | Thời điểm | Loại | Số hiệu | Tàu bay | NĐX/Mã | SID/STAR | Đường lăn / bến | Giãn cách |
 |---|---|---|---|---|---|---|---|
-| 0:28:38,3 | Đ | ARR001 | A21N | M/C | VILOT | G4 → bến 28 | — |
-| 0:29:08,3 | I | DEP001 | A321 | M/C | PAPRA | bến 27 | +30 s |
-| 0:31:20,1 | Đ | ARR002 | A21N | M/C | LATOM | G6 → bến 8 | +132 s |
-| 0:31:50,1 | I | DEP002 | B38M | M/C | PAPRA | bến 26 | +30 s |
-| 0:34:13,6 | Đ | ARR003 | B38M | M/C | BUNTA | G6 → bến 8 | +143 s |
-| 0:34:43,6 | I | DEP003 | B38M | M/C | PAPRA | bến 27 | +30 s |
-| 0:37:06,4 | Đ | ARR004 | B38M | M/C | LATOM | G6 → bến 8 | +143 s |
-| 0:37:36,4 | I | DEP004 | B38M | M/C | KONCO | bến 27 | +30 s |
-| 0:40:09,5 | Đ | ARR005 | A320 | M/C | CAHEO | G6 → bến 8 | +153 s |
-| 0:41:54,5 | I | DEP005 | A20N | M/C | KONCO | bến 27 | +105 s |
-| 0:44:09,2 | Đ | ARR006 | B77W | H/E | KUMUN | G6 → bến 8 | +135 s |
-| 0:44:39,2 | I | DEP006 | B739 | M/C | KONCO | bến 26 | +30 s |
-| 0:47:08,7 | Đ | ARR007 | B789 | H/E | PAPRA | G6 → bến 8 | +150 s |
-| 0:47:53,7 | I | DEP007 | B789 | H/E | VIDEN | bến 27 | +45 s |
-| 0:50:41,7 | Đ | ARR008 | A320 | M/C | LATOM | G6 → bến 8 | +168 s |
-| 0:51:11,7 | I | DEP008 | B738 | M/C | BUNTA | bến 27 | +30 s |
-| 0:53:41,6 | Đ | ARR009 | B738 | M/C | SADIN | G6 → bến 8 | +150 s |
-| 0:54:11,6 | I | DEP009 | B739 | M/C | VIDEN | bến 26 | +30 s |
-| 0:56:39,5 | Đ | ARR010 | B739 | M/C | SADIN | G6 → bến 8 | +148 s |
-| 0:58:39,5 | I | DEP010 | B788 | H/E | VIDEN | bến 26 | +120 s |
-| 1:01:27,5 | Đ | ARR011 | A320 | M/C | HUE | G6 → bến 8 | +168 s |
-| 1:01:57,5 | I | DEP011 | B738 | M/C | SADIN | bến 26 | +30 s |
-| 1:04:21,0 | Đ | ARR012 | B38M | M/C | SADIN | G4 → bến 28 | +144 s |
-| 1:04:51,0 | I | DEP012 | B738 | M/C | VIDEN | bến 26 | +30 s |
-| 1:07:04,2 | Đ | ARR013 | A321 | M/C | SADIN | G4 → bến 28 | +133 s |
-| 1:07:34,2 | I | DEP013 | B763 | H/D | VIDEN | bến 26 | +30 s |
-| 1:09:49,2 | Đ | ARR014 | B744 | H/E | CAHEO | G6 → bến 8 | +135 s |
-| 1:10:19,2 | I | DEP014 | A320 | M/C | PAPRA | bến 27 | +30 s |
-| 1:12:48,9 | Đ | ARR015 | B739 | M/C | BUNTA | G6 → bến 8 | +150 s |
-| 1:13:18,9 | I | DEP015 | A21N | M/C | XAQUA | bến 27 | +30 s |
-| 1:15:46,9 | Đ | ARR016 | B788 | H/E | SADIN | G4 → bến 28 | +148 s |
-| 1:19:32,6 | I | DEP016 | A320 | M/C | PHULU | bến 27 | +226 s |
-| 1:21:28,7 | Đ | ARR017 | B773 | H/E | BUNTA | G4 → bến 28 | +116 s |
-| 1:22:13,7 | I | DEP017 | B748 | H/F | SADIN | bến 27 | +45 s |
-| 1:24:56,3 | Đ | ARR018 | A321 | M/C | SADIN | G4 → bến 28 | +163 s |
-| 1:25:26,3 | I | DEP018 | A333 | H/E | SADIN | bến 27 | +30 s |
+| 0:21:29,2 | Đ | ARR001 | A21N | M/C | VILOT | G4 → bến 28 | — |
+| 0:21:59,2 | I | DEP001 | A321 | M/C | PAPRA | bến 27 | +30 s |
+| 0:24:11,1 | Đ | ARR002 | A21N | M/C | LATOM | G6 → bến 8 | +132 s |
+| 0:24:41,1 | I | DEP002 | B38M | M/C | PAPRA | bến 26 | +30 s |
+| 0:27:04,6 | Đ | ARR003 | B38M | M/C | BUNTA | G6 → bến 8 | +143 s |
+| 0:27:34,6 | I | DEP003 | B38M | M/C | PAPRA | bến 27 | +30 s |
+| 0:29:57,3 | Đ | ARR004 | B38M | M/C | LATOM | G6 → bến 8 | +143 s |
+| 0:30:27,3 | I | DEP004 | B38M | M/C | KONCO | bến 27 | +30 s |
+| 0:33:00,4 | Đ | ARR005 | A320 | M/C | CAHEO | G6 → bến 8 | +153 s |
+| 0:34:45,4 | I | DEP005 | A20N | M/C | KONCO | bến 27 | +105 s |
+| 0:37:00,1 | Đ | ARR006 | B77W | H/E | KUMUN | G6 → bến 8 | +135 s |
+| 0:37:30,1 | I | DEP006 | B739 | M/C | KONCO | bến 26 | +30 s |
+| 0:39:59,6 | Đ | ARR007 | B789 | H/E | PAPRA | G6 → bến 8 | +150 s |
+| 0:40:44,6 | I | DEP007 | B789 | H/E | VIDEN | bến 27 | +45 s |
+| 0:43:32,6 | Đ | ARR008 | A320 | M/C | LATOM | G6 → bến 8 | +168 s |
+| 0:44:02,6 | I | DEP008 | B738 | M/C | BUNTA | bến 27 | +30 s |
+| 0:46:32,6 | Đ | ARR009 | B738 | M/C | SADIN | G6 → bến 8 | +150 s |
+| 0:47:02,6 | I | DEP009 | B739 | M/C | VIDEN | bến 26 | +30 s |
+| 0:49:30,4 | Đ | ARR010 | B739 | M/C | SADIN | G6 → bến 8 | +148 s |
+| 0:51:30,4 | I | DEP010 | B788 | H/E | VIDEN | bến 26 | +120 s |
+| 0:54:18,4 | Đ | ARR011 | A320 | M/C | HUE | G6 → bến 8 | +168 s |
+| 0:54:48,4 | I | DEP011 | B738 | M/C | SADIN | bến 26 | +30 s |
+| 0:57:11,9 | Đ | ARR012 | B38M | M/C | SADIN | G4 → bến 28 | +144 s |
+| 0:57:41,9 | I | DEP012 | B738 | M/C | VIDEN | bến 26 | +30 s |
+| 0:59:55,1 | Đ | ARR013 | A321 | M/C | SADIN | G4 → bến 28 | +133 s |
+| 1:00:25,1 | I | DEP013 | B763 | H/D | VIDEN | bến 26 | +30 s |
+| 1:02:40,1 | Đ | ARR014 | B744 | H/E | CAHEO | G6 → bến 8 | +135 s |
+| 1:03:10,1 | I | DEP014 | A320 | M/C | PAPRA | bến 27 | +30 s |
+| 1:05:39,8 | Đ | ARR015 | B739 | M/C | BUNTA | G6 → bến 8 | +150 s |
+| 1:06:09,8 | I | DEP015 | A21N | M/C | XAQUA | bến 27 | +30 s |
+| 1:08:37,8 | Đ | ARR016 | B788 | H/E | SADIN | G4 → bến 28 | +148 s |
+| 1:12:23,5 | I | DEP016 | A320 | M/C | PHULU | bến 27 | +226 s |
+| 1:14:19,7 | Đ | ARR017 | B773 | H/E | BUNTA | G4 → bến 28 | +116 s |
+| 1:15:04,7 | I | DEP017 | B748 | H/F | SADIN | bến 27 | +45 s |
+| 1:17:47,2 | Đ | ARR018 | A321 | M/C | SADIN | G4 → bến 28 | +163 s |
+| 1:18:17,2 | I | DEP018 | A333 | H/E | SADIN | bến 27 | +30 s |
 
 ---
 
@@ -229,29 +229,29 @@ Thời gian lăn tính từ chiều dài tuyến lăn thật (bến 26/27 → đ
 
 | Chuyến | Tàu | Bến | Bắt đầu lăn | Thời gian lăn | Tới điểm chờ | Vị trí 2 | Lên CHC | Chạy đà | Chờ |
 |---|---|---|---|---|---|---|---|---|---|
-| DEP001 | A321 | bến 27 | 0:22:35,8 | 333 s | 0:28:08,3 | — | 0:28:08,3 | 0:29:08,3 | 60 s |
-| DEP002 | B38M | bến 26 | 0:23:30,8 | 337 s | 0:29:08,3 | — | 0:29:08,3 | 0:31:50,1 | 162 s |
-| DEP003 | B38M | bến 27 | 0:26:17,6 | 333 s | 0:31:50,1 | — | 0:31:50,1 | 0:34:43,6 | 173 s |
-| DEP004 | B38M | bến 27 | 0:29:11,1 | 333 s | 0:34:43,6 | — | 0:34:43,6 | 0:37:36,4 | 173 s |
-| DEP005 | A20N | bến 27 | 0:32:43,8 | 333 s | 0:38:16,4 | — | 0:38:16,4 | 0:41:54,5 | 218 s |
-| DEP006 | B739 | bến 26 | 0:36:17,0 | 337 s | 0:41:54,5 | — | 0:41:54,5 | 0:44:39,2 | 165 s |
-| DEP007 | B789 | bến 27 | 0:39:06,6 | 333 s | 0:44:39,2 | — | 0:44:39,2 | 0:47:53,7 | 195 s |
-| DEP008 | B738 | bến 27 | 0:42:21,2 | 333 s | 0:47:53,7 | — | 0:47:53,7 | 0:51:11,7 | 198 s |
-| DEP009 | B739 | bến 26 | 0:45:34,2 | 337 s | 0:51:11,7 | — | 0:51:11,7 | 0:54:11,6 | 180 s |
-| DEP010 | B788 | bến 26 | 0:48:44,2 | 337 s | 0:54:21,6 | — | 0:54:21,6 | 0:58:39,5 | 258 s |
-| DEP011 | B738 | bến 26 | 0:53:02,1 | 337 s | 0:58:39,5 | — | 0:58:39,5 | 1:01:57,5 | 198 s |
-| DEP012 | B738 | bến 26 | 0:56:20,1 | 337 s | 1:01:57,5 | — | 1:01:57,5 | 1:04:51,0 | 174 s |
-| DEP013 | B763 | bến 26 | 0:59:28,6 | 337 s | 1:05:06,0 | — | 1:05:06,0 | 1:07:34,2 | 148 s |
-| DEP014 | A320 | bến 27 | 1:02:01,7 | 333 s | 1:07:34,2 | — | 1:07:34,2 | 1:10:19,2 | 165 s |
-| DEP015 | A21N | bến 27 | 1:04:46,7 | 333 s | 1:10:19,2 | — | 1:10:19,2 | 1:13:18,9 | 180 s |
-| DEP016 | A320 | bến 27 | 1:05:06,3 | 333 s | 1:10:30,2 | có | 1:13:18,9 | 1:19:32,6 | 542 s |
-| DEP017 | B748 | bến 27 | 1:14:05,1 | 333 s | 1:19:37,6 | — | 1:19:37,6 | 1:22:13,7 | 156 s |
-| DEP018 | A333 | bến 27 | 1:16:16,2 | 333 s | 1:21:48,7 | — | 1:22:13,7 | 1:25:26,3 | 218 s |
+| DEP001 | A321 | bến 27 | 0:15:26,7 | 333 s | 0:20:59,2 | — | 0:20:59,2 | 0:21:59,2 | 60 s |
+| DEP002 | B38M | bến 26 | 0:16:21,8 | 337 s | 0:21:59,2 | — | 0:21:59,2 | 0:24:41,1 | 162 s |
+| DEP003 | B38M | bến 27 | 0:19:08,6 | 333 s | 0:24:41,1 | — | 0:24:41,1 | 0:27:34,6 | 173 s |
+| DEP004 | B38M | bến 27 | 0:22:02,1 | 333 s | 0:27:34,6 | — | 0:27:34,6 | 0:30:27,3 | 173 s |
+| DEP005 | A20N | bến 27 | 0:25:34,8 | 333 s | 0:31:07,3 | — | 0:31:07,3 | 0:34:45,4 | 218 s |
+| DEP006 | B739 | bến 26 | 0:29:08,0 | 337 s | 0:34:45,4 | — | 0:34:45,4 | 0:37:30,1 | 165 s |
+| DEP007 | B789 | bến 27 | 0:31:57,6 | 333 s | 0:37:30,1 | — | 0:37:30,1 | 0:40:44,6 | 195 s |
+| DEP008 | B738 | bến 27 | 0:35:12,1 | 333 s | 0:40:44,6 | — | 0:40:44,6 | 0:44:02,6 | 198 s |
+| DEP009 | B739 | bến 26 | 0:38:25,2 | 337 s | 0:44:02,6 | — | 0:44:02,6 | 0:47:02,6 | 180 s |
+| DEP010 | B788 | bến 26 | 0:41:35,1 | 337 s | 0:47:12,6 | — | 0:47:12,6 | 0:51:30,4 | 258 s |
+| DEP011 | B738 | bến 26 | 0:45:53,0 | 337 s | 0:51:30,4 | — | 0:51:30,4 | 0:54:48,4 | 198 s |
+| DEP012 | B738 | bến 26 | 0:49:11,0 | 337 s | 0:54:48,4 | — | 0:54:48,4 | 0:57:41,9 | 174 s |
+| DEP013 | B763 | bến 26 | 0:52:19,5 | 337 s | 0:57:56,9 | — | 0:57:56,9 | 1:00:25,1 | 148 s |
+| DEP014 | A320 | bến 27 | 0:54:52,6 | 333 s | 1:00:25,1 | — | 1:00:25,1 | 1:03:10,1 | 165 s |
+| DEP015 | A21N | bến 27 | 0:57:37,6 | 333 s | 1:03:10,1 | — | 1:03:10,1 | 1:06:09,8 | 180 s |
+| DEP016 | A320 | bến 27 | 0:57:57,3 | 333 s | 1:03:21,2 | có | 1:06:09,8 | 1:12:23,5 | 542 s |
+| DEP017 | B748 | bến 27 | 1:06:56,0 | 333 s | 1:12:28,5 | — | 1:12:28,5 | 1:15:04,7 | 156 s |
+| DEP018 | A333 | bến 27 | 1:09:07,1 | 333 s | 1:14:39,7 | — | 1:15:04,7 | 1:18:17,2 | 218 s |
 
 | Chỉ tiêu | Giá trị |
 |---|---|
 | Thời gian chờ tại điểm chờ | TB **198 s**, 60–542 s |
-| Số tàu tại điểm chờ theo thời gian (đo trong mô phỏng, lớn nhất mỗi 5 phút) | 0:25 → 1:25: **2** ở hầu hết các khoảng (0:35 và 1:25: 1) |
+| Số tàu tại điểm chờ theo thời gian (đo trong mô phỏng, lớn nhất mỗi 5 phút) | 0:20 → 1:15: **2** ở hầu hết các khoảng (0:45 và 0:55: 1) |
 | Số tàu tại điểm chờ lớn nhất | **2** (giới hạn 3) |
 | Cắt qua 35R | lâu nhất 33 s; chờ trước vạch 35R 0–89 s |
 | Thoát ly 35L (qua ngưỡng → vị trí dừng chờ) | lâu nhất 94 s |

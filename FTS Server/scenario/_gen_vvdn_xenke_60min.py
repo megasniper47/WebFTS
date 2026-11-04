@@ -1265,37 +1265,58 @@ def main():
     # duong lan E / diem cho day), lui gio CAT CANH cua no 15 s roi lap lai ca
     # lich -- tat ca chuyen sau tu dich theo. Dung la cach dieu hanh that.
     tre_them: dict = {}
-    for _vong in range(120):
-        first_td = FIRST_ARR_TD
-        n_arr = n_dep = 40
-        for _ in range(40):
-            arrs, deps, quota = schedule(random.Random(SEED), first_td, n_arr, n_dep, tre_them)
-            # PHA KHOI DONG (muc 5 prompt): moi chuyen den phai duoc tao TAI IAF
-            # cua STAR. Lui moc cham banh dau tien den khi chuyen nao cung du
-            # thoi gian bay tu IAF (dem 60 s; tinh ca bu hieu chuan neu duong).
-            thieu = max(_STAR_TRANSIT[a["star"]] + cadas_to_thr_s(a["type"])
-                        + max(CALIB.get(a["id"], 0.0), 0.0) + 60.0 - a["td"] for a in arrs)
-            if thieu > 0:
-                first_td += thieu
-                continue
-            deps = schedule_taxi_out(deps)
-            deps, nhat_ky_nhuong = nhuong_duong_khi_lan(arrs, deps)
-            earliest = min(d["start_taxi"] for d in deps)
-            if earliest < 0:
-                first_td += -earliest + 10.0
-                continue
-            if (len(arrs), len(deps)) == (n_arr, n_dep):
-                break
-            n_arr, n_dep = len(arrs), len(deps)
-        else:
-            raise SystemExit("Khong hoi tu duoc so chuyen / lich lan ra")
-        loi = [d for d in deps if d.get("khong_xep_duoc")]
-        if not loi:
-            break
-        k = loi[0]["i"] - 1
-        tre_them[k] = tre_them.get(k, 0.0) + 15.0
-    else:
+    IAF_DEM_S = 10.0
+
+    def can_som_nhat(arrs, deps):
+        """Bao nhieu giay co the KEO SOM toan bo lich ma moi chuyen den van tao
+        duoc tai IAF (dem IAF_DEM_S) va moi chuyen di van bat dau lan sau T=0."""
+        du_iaf = min(a["td"] - (_STAR_TRANSIT[a["star"]] + cadas_to_thr_s(a["type"])
+                                + max(CALIB.get(a["id"], 0.0), 0.0) + IAF_DEM_S) for a in arrs)
+        return min(du_iaf, min(d["start_taxi"] for d in deps) - 5.0)
+
+    def lap_lich(first_td, n_arr, n_dep):
+        for _vong in range(120):
+            ft, na, nd = first_td, n_arr, n_dep
+            for _ in range(40):
+                arrs, deps, quota = schedule(random.Random(SEED), ft, na, nd, tre_them)
+                # PHA KHOI DONG (muc 5 prompt): moi chuyen den phai duoc tao TAI
+                # IAF cua STAR. Lui moc cham banh dau tien den khi chuyen nao
+                # cung du thoi gian bay tu IAF (tinh ca bu hieu chuan neu duong).
+                thieu = max(_STAR_TRANSIT[a["star"]] + cadas_to_thr_s(a["type"])
+                            + max(CALIB.get(a["id"], 0.0), 0.0) + IAF_DEM_S - a["td"] for a in arrs)
+                if thieu > 0:
+                    ft += thieu
+                    continue
+                deps = schedule_taxi_out(deps)
+                deps, nk = nhuong_duong_khi_lan(arrs, deps)
+                earliest = min(d["start_taxi"] for d in deps)
+                if earliest < 0:
+                    ft += -earliest + 10.0
+                    continue
+                if (len(arrs), len(deps)) == (na, nd):
+                    break
+                na, nd = len(arrs), len(deps)
+            else:
+                raise SystemExit("Khong hoi tu duoc so chuyen / lich lan ra")
+            loi = [d for d in deps if d.get("khong_xep_duoc")]
+            if not loi:
+                return arrs, deps, quota, ft, nk, earliest
+            k = loi[0]["i"] - 1
+            tre_them[k] = tre_them.get(k, 0.0) + 15.0
         raise SystemExit(f"Khong xep duoc lich lan ra sau 120 vong (lui them: {tre_them})")
+
+    arrs, deps, quota, first_td, nhat_ky_nhuong, earliest = lap_lich(FIRST_ARR_TD, 40, 40)
+    # Moc cham banh dau tien chi tang dan trong luc tim so chuyen, nen thuong
+    # bi day qua tay (ban truoc: 7 phut 38 giay dau kich ban KHONG co tau nao --
+    # nguoi dung tuong kich ban khong chay). Keo som toan bo lich toi muc toi
+    # thieu: moi moc dich cung mot luong nen lich tuong doi giua cac chuyen
+    # khong doi.
+    for _ in range(5):
+        som = can_som_nhat(arrs, deps)
+        if som <= 1.0:
+            break
+        arrs, deps, quota, first_td, nhat_ky_nhuong, earliest = lap_lich(
+            first_td - som, len(arrs), len(deps))
     if tre_them:
         print("Lui gio cat canh de co gio lan ra hop le: "
               + ", ".join(f"DEP{k+1:03d} +{v:.0f}s" for k, v in sorted(tre_them.items())))

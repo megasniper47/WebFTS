@@ -96,7 +96,7 @@
     "so_cap": 9
    },
    "5NM": {
-    "nho_nhat": 7.74,
+    "nho_nhat": 7.73,
     "trung_binh": 9.39,
     "so_cap": 9
    },
@@ -111,25 +111,25 @@
     "so_cap": 9
    },
    "DOTEN": {
-    "nho_nhat": 15.35,
-    "trung_binh": 15.35,
+    "nho_nhat": 15.34,
+    "trung_binh": 15.34,
     "so_cap": 1
    }
   },
   "M-H": {
    "DOTEN": {
-    "nho_nhat": 21.6,
-    "trung_binh": 21.6,
+    "nho_nhat": 21.59,
+    "trung_binh": 21.59,
     "so_cap": 1
    },
    "10NM": {
-    "nho_nhat": 10.05,
+    "nho_nhat": 10.04,
     "trung_binh": 11.79,
     "so_cap": 3
    },
    "5NM": {
     "nho_nhat": 8.72,
-    "trung_binh": 10.53,
+    "trung_binh": 10.54,
     "so_cap": 3
    },
    "2NM": {
@@ -146,7 +146,7 @@
   "H-H": {
    "10NM": {
     "nho_nhat": 9.6,
-    "trung_binh": 12.58,
+    "trung_binh": 12.59,
     "so_cap": 2
    },
    "5NM": {
@@ -168,7 +168,7 @@
   "H-M": {
    "10NM": {
     "nho_nhat": 9.76,
-    "trung_binh": 10.62,
+    "trung_binh": 10.63,
     "so_cap": 3
    },
    "5NM": {
