@@ -84,9 +84,9 @@ python _verify_vvdn_xenke.py
 ```
 
 Phải ra đúng:
-- `VVDN-XENKE-60MIN.scn` — **369.001 byte**, 18 ARR + 18 DEP, 6.191 lệnh
+- `VVDN-XENKE-60MIN.scn` — **370.190 byte**, 18 ARR + 18 DEP, 6.211 lệnh
 - Kiểm chứng: **30 mục, 0 mục KHÔNG ĐẠT** (28 ĐẠT + 2 mục số liệu)
-- B2: lệch chạm bánh lớn nhất **0,9 s** · B3: cặp hạ cánh gần nhất **8,53 NM** · B4: **0 cặp** xung đột · B8: **0 cặp** vi phạm khi lăn · B13: thoát ly 35L lâu nhất **94 s**
+- B2: lệch chạm bánh lớn nhất **0,7 s** · B3: cặp hạ cánh gần nhất **7,44 NM** · B4: **0 cặp** xung đột · B8: **0 cặp** vi phạm khi lăn · B13: thoát ly 35L lâu nhất **94 s**
 
 Lệch bất kỳ con số nào ⇒ môi trường chưa đúng. Thường là thiếu BADA (mục 1.3).
 
@@ -253,7 +253,7 @@ Mỗi mục dưới đây là một lỗi **đã xảy ra thật và đã đo đ
 
 **Chuỗi SID bắt đầu ngoài đường CHC.** Mọi SID của VVDN bắt đầu cách ngưỡng 5.343 m ở 1.500 ft — ngoài đường CHC (3.517 m) tới 1.826 m. VNAV trải đoạn leo đều và giữ tàu ở 0 ft suốt chặng: tàu **trượt trên mặt đất ở 180 kt ra ngoài sân bay 1.428 m** rồi mới leo. Chèn waypoint rời đất **trong phạm vi đường CHC** (cự ly chạy đà thật: MEDIUM ~2.000 m, HEAVY ~2.600 m, cao độ 35 ft).
 
-**Bộ quy tắc số hoá có thể đọc sai văn bản gốc — luôn đối chiếu nguyên văn.** `compliance_rulesets/VVDN.json` lấy bảng *cất cánh 35R vs tàu đến 35L* (hàng = tàu cất cánh, cột = tàu hạ cánh: 5/5/6/7 NM) của dự thảo Phương thức 2 CHC song song mục 4.2.1 rồi hiểu nhầm thành ma trận *hạ cánh liên tiếp*. Nó còn đưa vào mức 8 NM tại điểm chờ E, trích từ một văn bản không có trong dự án. Dự thảo không có ma trận hạ cánh liên tiếp. Nguồn đúng là MANOP (mục Phân cách giám sát ATS, trùng ICAO Doc 4444 8.7.3.4): HEAVY sau HEAVY 4, MEDIUM sau HEAVY 5, các cặp còn lại 3 NM; APP giãn cách hạ cánh liên tiếp 8 NM. Trước khi dùng bất kỳ giá trị nào trong `compliance_rulesets/`, mở văn bản nguồn và đọc **tiêu đề hàng/cột** của bảng.
+**Bộ quy tắc số hoá có thể đọc sai văn bản gốc — luôn đối chiếu nguyên văn.** `compliance_rulesets/VVDN.json` lấy bảng *cất cánh 35R vs tàu đến 35L* (hàng = tàu cất cánh, cột = tàu hạ cánh: 5/5/6/7 NM) của dự thảo Phương thức 2 CHC song song mục 4.2.1 rồi hiểu nhầm thành ma trận *hạ cánh liên tiếp*. Nó còn đưa vào mức 8 NM tại điểm chờ E, trích từ một văn bản không có trong dự án. Dự thảo không có ma trận hạ cánh liên tiếp. Nguồn đúng là MANOP (mục Phân cách giám sát ATS, trùng ICAO Doc 4444 8.7.3.4): HEAVY sau HEAVY 4, MEDIUM sau HEAVY 5, các cặp còn lại 3 NM. MANOP còn có giãn cách hạ cánh liên tiếp "có thể là 8NM" (hướng dẫn của APP) — kịch bản VVDN xen kẽ **không áp dụng** theo chỉ định của người dùng (lưu ở `gian_cach_toi_thieu_MANOP_khong_ap_dung`). Trước khi dùng bất kỳ giá trị nào trong `compliance_rulesets/`, mở văn bản nguồn và đọc **tiêu đề hàng/cột** của bảng.
 
 **Tàu đến VVDN phải cắt qua 35R.** G4/G6 nằm **giữa** hai CHC (35L/35R cách nhau 214 m). Vạch dừng chờ đo từ `taxiway_centerlines.geojson`: 35R ở −91 m (phía tây) và +94 m (phía đông); 35L ở −122 m. Tàu dài trên 32 m dừng giữa hai CHC luôn lấn vạch của một trong hai đường. Vì vậy MANOP quy định: khi có tàu dừng chờ giữa hai CHC trước 35R thì **không sử dụng 35L**. Điểm cuối cũ của chuỗi thoát ly G6 cách tim 35R chỉ 112 m, nên tàu dài đã lấn mũi qua vạch 35R. Phải tách tuyến lăn vào bến thành ba đoạn: tới vị trí dừng chờ, cắt qua (15 kt, ≤ 45 s), rồi về bến. Chỉ cắt qua sau khi tàu cất cánh đã qua điểm cắt.
 

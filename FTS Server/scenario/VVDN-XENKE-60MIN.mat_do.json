@@ -2,12 +2,7 @@
  "phuong_phap": "nen moc cham banh/chay da quanh moc dau tien theo he so f; khoang mat dat giu nguyen",
  "he_so_toi_han": [
   {
-   "quy_tac": "Cat canh vs tau den (muc 4.2.1)",
-   "cap": "IH-ĐH",
-   "f_toi_han": 1.0
-  },
-  {
-   "quy_tac": "Gian cach ha canh 8 NM (MANOP)",
+   "quy_tac": "Giai phong 35L truoc 2 NM",
    "cap": "M-M",
    "f_toi_han": 1.0
   },
@@ -17,7 +12,7 @@
    "f_toi_han": 1.0
   },
   {
-   "quy_tac": "Gian cach ha canh 8 NM (MANOP)",
+   "quy_tac": "Giai phong 35L truoc 2 NM",
    "cap": "M-H",
    "f_toi_han": 1.0
   },
@@ -27,39 +22,24 @@
    "f_toi_han": 1.0
   },
   {
-   "quy_tac": "Gian cach ha canh 8 NM (MANOP)",
-   "cap": "H-H",
-   "f_toi_han": 1.0
-  },
-  {
-   "quy_tac": "Gian cach ha canh 8 NM (MANOP)",
-   "cap": "H-M",
+   "quy_tac": "Cat canh vs tau den (muc 4.2.1)",
+   "cap": "IH-ĐH",
    "f_toi_han": 1.0
   },
   {
    "quy_tac": "Giai phong 35L truoc 2 NM",
-   "cap": "M-M",
-   "f_toi_han": 0.977
-  },
-  {
-   "quy_tac": "Giai phong 35L truoc 2 NM",
-   "cap": "M-H",
-   "f_toi_han": 0.9639
-  },
-  {
-   "quy_tac": "Giai phong 35L truoc 2 NM",
    "cap": "H-M",
-   "f_toi_han": 0.9497
+   "f_toi_han": 0.9822
   },
   {
    "quy_tac": "Giai phong 35L truoc 2 NM",
    "cap": "H-H",
-   "f_toi_han": 0.949
+   "f_toi_han": 0.9822
   },
   {
    "quy_tac": "Cat canh vs tau den (muc 4.2.1)",
    "cap": "IM-ĐM",
-   "f_toi_han": 0.8229
+   "f_toi_han": 0.8806
   },
   {
    "quy_tac": "Nhieu dong cat canh 2 phut (MANOP)",
@@ -69,12 +49,12 @@
   {
    "quy_tac": "Nhieu dong ha canh (MANOP/ICAO)",
    "cap": "H-M",
-   "f_toi_han": 0.625
+   "f_toi_han": 0.6464
   },
   {
-   "quy_tac": "Huan lenh cat canh sau cham cang (4.2.1.a)",
-   "cap": "ĐH-IH",
-   "f_toi_han": 0.5
+   "quy_tac": "Nhieu dong ha canh (MANOP/ICAO)",
+   "cap": "H-H",
+   "f_toi_han": 0.5174
   },
   {
    "quy_tac": "Huan lenh cat canh sau cham cang (4.2.1.a)",
@@ -83,18 +63,13 @@
   },
   {
    "quy_tac": "Nhieu dong ha canh (MANOP/ICAO)",
-   "cap": "H-H",
-   "f_toi_han": 0.5
-  },
-  {
-   "quy_tac": "Nhieu dong ha canh (MANOP/ICAO)",
    "cap": "M-M",
-   "f_toi_han": 0.375
+   "f_toi_han": 0.4304
   },
   {
    "quy_tac": "Nhieu dong ha canh (MANOP/ICAO)",
    "cap": "M-H",
-   "f_toi_han": 0.375
+   "f_toi_han": 0.4091
   },
   {
    "quy_tac": "Huan lenh cat canh sau cham cang (4.2.1.a)",
@@ -104,6 +79,11 @@
   {
    "quy_tac": "Huan lenh cat canh sau cham cang (4.2.1.a)",
    "cap": "ĐH-IM",
+   "f_toi_han": 0.3333
+  },
+  {
+   "quy_tac": "Huan lenh cat canh sau cham cang (4.2.1.a)",
+   "cap": "ĐH-IH",
    "f_toi_han": 0.3333
   }
  ],
@@ -116,11 +96,11 @@
   },
   {
    "he_so": 0.98,
-   "chuyen_dong_moi_gio": 37.8,
-   "so_vi_pham": 16,
+   "chuyen_dong_moi_gio": 37.7,
+   "so_vi_pham": 13,
    "chi_tiet": {
-    "Gian cach ha canh 8 NM (MANOP)": {
-     "M-M": 7,
+    "Giai phong 35L truoc 2 NM": {
+     "M-M": 4,
      "M-H": 2,
      "H-H": 1,
      "H-M": 1
@@ -135,17 +115,13 @@
   {
    "he_so": 0.96,
    "chuyen_dong_moi_gio": 38.5,
-   "so_vi_pham": 23,
+   "so_vi_pham": 15,
    "chi_tiet": {
-    "Gian cach ha canh 8 NM (MANOP)": {
-     "M-M": 8,
+    "Giai phong 35L truoc 2 NM": {
+     "M-M": 6,
      "M-H": 2,
      "H-H": 1,
-     "H-M": 3
-    },
-    "Giai phong 35L truoc 2 NM": {
-     "M-M": 3,
-     "M-H": 1
+     "H-M": 1
     },
     "Cat canh vs tau den (muc 4.2.1)": {
      "IH-ĐM": 3,
@@ -156,17 +132,11 @@
   },
   {
    "he_so": 0.94,
-   "chuyen_dong_moi_gio": 39.4,
-   "so_vi_pham": 29,
+   "chuyen_dong_moi_gio": 39.3,
+   "so_vi_pham": 18,
    "chi_tiet": {
-    "Gian cach ha canh 8 NM (MANOP)": {
-     "M-M": 8,
-     "M-H": 2,
-     "H-H": 1,
-     "H-M": 3
-    },
     "Giai phong 35L truoc 2 NM": {
-     "M-M": 5,
+     "M-M": 8,
      "M-H": 3,
      "H-H": 1,
      "H-M": 1
@@ -181,16 +151,10 @@
   {
    "he_so": 0.92,
    "chuyen_dong_moi_gio": 40.2,
-   "so_vi_pham": 29,
+   "so_vi_pham": 18,
    "chi_tiet": {
-    "Gian cach ha canh 8 NM (MANOP)": {
-     "M-M": 8,
-     "M-H": 2,
-     "H-H": 1,
-     "H-M": 3
-    },
     "Giai phong 35L truoc 2 NM": {
-     "M-M": 5,
+     "M-M": 8,
      "M-H": 3,
      "H-H": 1,
      "H-M": 1
@@ -205,16 +169,10 @@
   {
    "he_so": 0.9,
    "chuyen_dong_moi_gio": 41.1,
-   "so_vi_pham": 30,
+   "so_vi_pham": 18,
    "chi_tiet": {
-    "Gian cach ha canh 8 NM (MANOP)": {
-     "M-M": 8,
-     "M-H": 2,
-     "H-H": 1,
-     "H-M": 3
-    },
     "Giai phong 35L truoc 2 NM": {
-     "M-M": 6,
+     "M-M": 8,
      "M-H": 3,
      "H-H": 1,
      "H-M": 1
@@ -229,21 +187,16 @@
   {
    "he_so": 0.85,
    "chuyen_dong_moi_gio": 43.5,
-   "so_vi_pham": 34,
+   "so_vi_pham": 22,
    "chi_tiet": {
-    "Gian cach ha canh 8 NM (MANOP)": {
-     "M-M": 9,
-     "M-H": 3,
-     "H-H": 1,
-     "H-M": 3
-    },
     "Giai phong 35L truoc 2 NM": {
-     "M-M": 7,
+     "M-M": 9,
      "M-H": 3,
      "H-H": 1,
      "H-M": 2
     },
     "Cat canh vs tau den (muc 4.2.1)": {
+     "IM-ĐM": 2,
      "IH-ĐM": 3,
      "IH-ĐH": 1,
      "IM-ĐH": 1
@@ -253,14 +206,8 @@
   {
    "he_so": 0.8,
    "chuyen_dong_moi_gio": 46.2,
-   "so_vi_pham": 38,
+   "so_vi_pham": 24,
    "chi_tiet": {
-    "Gian cach ha canh 8 NM (MANOP)": {
-     "M-M": 9,
-     "M-H": 3,
-     "H-H": 1,
-     "H-M": 3
-    },
     "Giai phong 35L truoc 2 NM": {
      "M-M": 9,
      "M-H": 3,
@@ -268,10 +215,10 @@
      "H-M": 3
     },
     "Cat canh vs tau den (muc 4.2.1)": {
+     "IM-ĐM": 2,
+     "IM-ĐH": 2,
      "IH-ĐM": 3,
-     "IM-ĐM": 1,
-     "IH-ĐH": 1,
-     "IM-ĐH": 1
+     "IH-ĐH": 1
     }
    }
   }

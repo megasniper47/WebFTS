@@ -8,29 +8,29 @@
    "loai": "Đến-Đến",
    "cap": "H-H",
    "nhieu_dong_NM": 4.0,
-   "yeu_cau_NM": 8.0,
-   "giay_tai_nguong": 183
+   "yeu_cau_NM": 4.0,
+   "giay_tai_nguong": 92
   },
   {
    "loai": "Đến-Đến",
    "cap": "H-M",
    "nhieu_dong_NM": 5.0,
-   "yeu_cau_NM": 8.0,
-   "giay_tai_nguong": 186
+   "yeu_cau_NM": 5.0,
+   "giay_tai_nguong": 116
   },
   {
    "loai": "Đến-Đến",
    "cap": "M-H",
    "nhieu_dong_NM": 3.0,
-   "yeu_cau_NM": 8.0,
-   "giay_tai_nguong": 183
+   "yeu_cau_NM": 3.0,
+   "giay_tai_nguong": 69
   },
   {
    "loai": "Đến-Đến",
    "cap": "M-M",
    "nhieu_dong_NM": 3.0,
-   "yeu_cau_NM": 8.0,
-   "giay_tai_nguong": 186
+   "yeu_cau_NM": 3.0,
+   "giay_tai_nguong": 70
   },
   {
    "loai": "Đi-Đến",
@@ -91,104 +91,104 @@
  "thuc_do_den_den_NM": {
   "M-M": {
    "10NM": {
-    "nho_nhat": 9.47,
-    "trung_binh": 10.65,
+    "nho_nhat": 8.18,
+    "trung_binh": 10.38,
     "so_cap": 9
    },
    "5NM": {
-    "nho_nhat": 8.9,
-    "trung_binh": 9.55,
+    "nho_nhat": 7.74,
+    "trung_binh": 9.39,
     "so_cap": 9
    },
    "2NM": {
-    "nho_nhat": 8.51,
-    "trung_binh": 8.89,
+    "nho_nhat": 7.42,
+    "trung_binh": 8.73,
     "so_cap": 9
    },
    "nguong": {
-    "nho_nhat": 8.34,
-    "trung_binh": 8.57,
+    "nho_nhat": 7.2,
+    "trung_binh": 8.42,
     "so_cap": 9
    },
    "DOTEN": {
-    "nho_nhat": 15.95,
-    "trung_binh": 15.95,
+    "nho_nhat": 15.35,
+    "trung_binh": 15.35,
     "so_cap": 1
    }
   },
   "M-H": {
    "DOTEN": {
-    "nho_nhat": 16.46,
-    "trung_binh": 16.46,
+    "nho_nhat": 21.6,
+    "trung_binh": 21.6,
     "so_cap": 1
    },
    "10NM": {
-    "nho_nhat": 10.52,
-    "trung_binh": 11.89,
+    "nho_nhat": 10.05,
+    "trung_binh": 11.79,
     "so_cap": 3
    },
    "5NM": {
-    "nho_nhat": 9.41,
-    "trung_binh": 10.29,
+    "nho_nhat": 8.72,
+    "trung_binh": 10.53,
     "so_cap": 3
    },
    "2NM": {
-    "nho_nhat": 8.71,
-    "trung_binh": 9.39,
+    "nho_nhat": 7.97,
+    "trung_binh": 9.58,
     "so_cap": 3
    },
    "nguong": {
-    "nho_nhat": 8.4,
-    "trung_binh": 8.89,
+    "nho_nhat": 7.57,
+    "trung_binh": 9.08,
     "so_cap": 3
    }
   },
   "H-H": {
    "10NM": {
-    "nho_nhat": 9.98,
-    "trung_binh": 12.94,
+    "nho_nhat": 9.6,
+    "trung_binh": 12.58,
     "so_cap": 2
    },
    "5NM": {
-    "nho_nhat": 9.21,
-    "trung_binh": 14.1,
+    "nho_nhat": 8.87,
+    "trung_binh": 14.17,
     "so_cap": 2
    },
    "2NM": {
-    "nho_nhat": 8.63,
-    "trung_binh": 13.09,
+    "nho_nhat": 8.31,
+    "trung_binh": 13.17,
     "so_cap": 2
    },
    "nguong": {
-    "nho_nhat": 8.41,
-    "trung_binh": 12.56,
+    "nho_nhat": 8.1,
+    "trung_binh": 12.64,
     "so_cap": 2
    }
   },
   "H-M": {
    "10NM": {
-    "nho_nhat": 10.02,
-    "trung_binh": 10.16,
+    "nho_nhat": 9.76,
+    "trung_binh": 10.62,
     "so_cap": 3
    },
    "5NM": {
-    "nho_nhat": 9.23,
-    "trung_binh": 9.38,
+    "nho_nhat": 8.89,
+    "trung_binh": 9.79,
     "so_cap": 3
    },
    "2NM": {
-    "nho_nhat": 8.64,
-    "trung_binh": 8.84,
+    "nho_nhat": 8.32,
+    "trung_binh": 9.24,
     "so_cap": 3
    },
    "nguong": {
-    "nho_nhat": 8.61,
-    "trung_binh": 8.68,
-    "so_cap": 2
+    "nho_nhat": 8.12,
+    "trung_binh": 8.97,
+    "so_cap": 3
    },
    "DOTEN": {
-    "nho_nhat": 24.28,
-    "trung_binh": 24.28,
+    "nho_nhat": 24.09,
+    "trung_binh": 24.09,
     "so_cap": 1
    }
   }

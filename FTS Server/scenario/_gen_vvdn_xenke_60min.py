@@ -235,7 +235,7 @@ MAX_AT_HOLD = RULES["gioi_han_diem_cho"]["so_tau_toi_da"]
 TAXI_SPD_STRAIGHT = RULES["tham_so_lan"]["toc_do_lan_doan_thang_kt"]
 TAXI_SPD_TURN = RULES["tham_so_lan"]["toc_do_lan_khi_re_kt"]
 
-# Ha canh lien tiep: gian cach toi thieu 8 NM (MANOP, APP) + giai phong 35L
+# Ha canh lien tiep: gian cach toi thieu (0 = khong ap dung; 8 NM MANOP da bo theo nguoi dung) + giai phong 35L
 # truoc khi tau sau toi 2 NM (cap huan lenh ha canh).
 _R_ARR_CFG = RULES["phan_cach_ha_canh_lien_tiep_35L"]
 ARR_MIN_SPACING_NM = _R_ARR_CFG.get("gian_cach_toi_thieu_NM", 0.0)
@@ -424,7 +424,7 @@ def schedule(rng, first_td=FIRST_ARR_TD, n_arr=40, n_dep=40, tre_them=None):
     hanh bay toi da cua cau hinh khai thac nay.
 
     Rang buoc cho chuyen den (moc cham banh):
-      - ha canh lien tiep: max(nhieu dong MANOP/ICAO, 3 NM, 8 NM MANOP);
+      - ha canh lien tiep: max(nhieu dong MANOP/ICAO, 3 NM) (8 NM MANOP da bo);
       - tau truoc da cat qua HET 35R (35L moi duoc coi la giai phong) truoc
         khi tau nay toi 2 NM -- cap huan lenh ha canh;
       - cach chuyen di vua cat canh theo bang du thao/MANOP muc 4.2.1.
@@ -453,7 +453,7 @@ def schedule(rng, first_td=FIRST_ARR_TD, n_arr=40, n_dep=40, tre_them=None):
             if "t_ce" not in lead:
                 lap_lich_lan_vao(lead, deps)
             t_arr = max(
-                lead["td"] + arr_sep_nm(lead["type"], arr_types[i])        # nhieu dong / 8 NM
+                lead["td"] + arr_sep_nm(lead["type"], arr_types[i])        # nhieu dong / giam sat ATS
                 / approach_speeds(arr_types[i])[2] * 3600.0,
                 lead["t_ce"] + LAND_CLR_NM                                 # 35L giai phong truoc 2 NM
                 / approach_speeds(arr_types[i])[3] * 3600.0,
@@ -1219,7 +1219,8 @@ def header(arrs, deps, quota):
         f"#   Ha canh lien tiep 35L (NM, MANOP = ICAO 8.7.3.4): H sau H={R_ARR['HEAVY_sau_HEAVY']:g}, "
         f"M sau H={R_ARR['MEDIUM_sau_HEAVY']:g}, M sau M={R_ARR['MEDIUM_sau_MEDIUM']:g}, "
         f"H sau M={R_ARR['HEAVY_sau_MEDIUM']:g}; toi thieu {_R_ARR_CFG['radar_toi_thieu']:g} NM",
-        f"#     va gian cach toi thieu {ARR_MIN_SPACING_NM:g} NM (MANOP -- CAN XAC NHAN cach hieu 'co the la')",
+        (f"#     va gian cach toi thieu {ARR_MIN_SPACING_NM:g} NM" if ARR_MIN_SPACING_NM else
+         "#     KHONG ap dung gian cach 8 NM cua MANOP (nguoi dung chi dinh 2026-11-04)"),
         f"#   Tau ha canh truoc phai cat qua het 35R truoc khi tau sau toi {LAND_CLR_NM:g} NM",
         f"#   Cat canh lien tiep 35R (giay): M sau H={R_DEP['MEDIUM_sau_HEAVY']} (MANOP), "
         f"H sau H={R_DEP['HEAVY_sau_HEAVY']}, M sau M={R_DEP['MEDIUM_sau_MEDIUM']}, "

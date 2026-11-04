@@ -139,7 +139,7 @@
     "can_xac_nhan": false
   },
   "phan_cach_ha_canh_lien_tiep_35L": {
-    "_mo_ta": "Phan cach giua hai tau HA CANH lien tiep tren 35L, do tai thoi diem tau truoc cham banh: cu ly tau sau toi nguong 35L >= max(phan cach nhieu dong, phan cach giam sat ATS toi thieu, gian cach toi thieu ha canh lien tiep).",
+    "_mo_ta": "Phan cach giua hai tau HA CANH lien tiep tren 35L, do tai thoi diem tau truoc cham banh: cu ly tau sau toi nguong 35L >= max(phan cach nhieu dong, phan cach giam sat ATS toi thieu). Gian cach 8 NM cua MANOP KHONG ap dung (xem gian_cach_toi_thieu_MANOP_khong_ap_dung).",
     "don_vi": "NM",
     "radar_toi_thieu": 3.0,
     "ma_tran": {
@@ -150,10 +150,12 @@
     },
     "nguon": "011026_Du-thao-Manop-DN-PB03.docx (Du thao MANOP APP/TWR Da Nang), muc 'Phuong thuc kiem soat su dung tin hieu giam sat ATS' > 'Tieu chuan phan cach giam sat ATS': toi thieu 03 NM trong ban kinh 40 NM DAN den FL155; bang 'Truong hop co nhieu dong' (HEAVY-HEAVY 4, HEAVY-MEDIUM 5, MEDIUM-MEDIUM 3, MEDIUM-HEAVY 3 NM), ap dung khi hai tau dung cung duong CHC hoac 2 CHC song song cach nhau < 760 m. Trung khop ICAO Doc 4444 muc 8.7.3.4. Khoa 'X_sau_Y' = tau X bay SAU tau Y.",
     "can_xac_nhan": false,
-    "gian_cach_toi_thieu_NM": 8.0,
+    "gian_cach_toi_thieu_NM": 0.0,
+    "gian_cach_toi_thieu_MANOP_khong_ap_dung": {
+      "gia_tri_MANOP_NM": 8.0,
+      "quyet_dinh": "Nguoi dung chi dinh 2026-11-04: BO QUA gian cach ha canh lien tiep 8 NM cua MANOP (van ban viet 'co the la 8NM' -- huong dan lap ke hoach cua APP, khong phai phan cach toi thieu). Ha canh lien tiep chi con phan cach nhieu dong/giam sat ATS va dieu kien giai phong 35L truoc 2 NM."
+    },
     "gian_cach_toi_thieu_nguon": "011026_Du-thao-Manop-DN-PB03.docx (Du thao MANOP APP/TWR Da Nang), muc 'Quy trinh dieu hanh tai APP/TWR Da Nang' > KSVKL APP Da Nang: 'Gian cach toi thieu giua cac tau bay ha canh lien tiep co the la 8NM (tau bay truoc ha canh tau bay sau con 8NM cach diem cham banh), neu co tau bay khoi hanh xen giua hai tau bay ha canh nay thi phai gia tang gian cach can thiet nay mot cach thich hop'.",
-    "gian_cach_toi_thieu_can_xac_nhan": true,
-    "gian_cach_toi_thieu_ly_do": "Van ban viet 'CO THE la 8NM' -- kich ban HIEU la muc toi thieu bat buoc (cach hieu chat hon). Phan 'gia tang thich hop' khi co tau cat canh xen giua duoc dam bao bang dieu kien cat canh vs tau den (muc 4.2.1) + cham cang -> chay da + giai phong duong CHC.",
     "giai_phong_truoc_huan_lenh_ha_canh": {
       "cu_ly_cap_huan_lenh_ha_canh_NM": 2.0,
       "quy_tac": "Tau ha canh truoc phai giai phong hoan toan duong CHC truoc khi tau sau toi 2 NM cach diem cham banh. Tau thoat ly 35L ra G4/G6 nam GIUA hai CHC (cach 35R ~107 m, vach dung cho 35R o 91 m, vach dung cho 35L o 123 m) nen than tau luon lan vach dung cho cua mot trong hai CHC; theo MANOP, khi co tau dung cho giua hai CHC truoc 35R thi KHONG su dung 35L -> 35L chi duoc coi la giai phong khi tau da CAT QUA HET 35R.",

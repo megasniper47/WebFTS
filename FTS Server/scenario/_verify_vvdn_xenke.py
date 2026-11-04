@@ -105,8 +105,8 @@ def A1_co_cau_doi_tau():
 
 
 NGUON_HA_CANH = ("vvdn_xenke_rules.json > phan_cach_ha_canh_lien_tiep_35L: nhieu dong/giam sat ATS "
-                 "theo MANOP (= ICAO Doc 4444 8.7.3.4), gian cach toi thieu 8 NM theo MANOP "
-                 "[CAN XAC NHAN cach hieu 'co the la 8NM']")
+                 "theo MANOP (= ICAO Doc 4444 8.7.3.4); KHONG ap dung gian cach 8 NM cua MANOP "
+                 "(nguoi dung chi dinh 2026-11-04)")
 NGUON_CAT_VS_DEN = ("vvdn_xenke_rules.json > phan_cach_cat_canh_vs_tau_den_35L: du thao Phuong thuc 2 CHC "
                     "song song Da Nang 24.7.2026 muc 4.2.1 = MANOP Phu luc muc 4.2.1 (bang co giam sat ATS)")
 

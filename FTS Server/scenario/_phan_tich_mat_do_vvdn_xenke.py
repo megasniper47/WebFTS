@@ -58,8 +58,9 @@ def rang_buoc():
         key = f"{wake(b['type'])}_sau_{wake(a['type'])}"
         nm_nd = max(M.get(key, M["MEDIUM_sau_MEDIUM"]), cfg["radar_toi_thieu"])
         out.append(("Nhieu dong ha canh (MANOP/ICAO)", cap, b["td"] - a["td"], 0.0, nm_nd / v * 3600))
-        out.append(("Gian cach ha canh 8 NM (MANOP)", cap, b["td"] - a["td"], 0.0,
-                    cfg.get("gian_cach_toi_thieu_NM", 0.0) / v * 3600))
+        if cfg.get("gian_cach_toi_thieu_NM", 0.0) > 0:      # 8 NM MANOP: nguoi dung da bo
+            out.append((f"Gian cach ha canh {cfg['gian_cach_toi_thieu_NM']:g} NM (MANOP)", cap,
+                        b["td"] - a["td"], 0.0, cfg["gian_cach_toi_thieu_NM"] / v * 3600))
         out.append(("Giai phong 35L truoc 2 NM", cap, b["td"] - a["td"], a["t_ce"] - a["td"],
                     clr / v * 3600))
     Mt = RULES["phan_cach_cat_canh_vs_tau_den_35L"]["ma_tran"]
