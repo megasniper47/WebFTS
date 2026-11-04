@@ -84,9 +84,9 @@ python _verify_vvdn_xenke.py
 ```
 
 Phải ra đúng:
-- `VVDN-XENKE-60MIN.scn` — **374.097 byte**, 17 ARR + 17 DEP, 6.302 lệnh
-- Kiểm chứng: **22/22 ĐẠT**
-- B3: cặp hạ cánh gần nhất **6,64 NM** · B4: **0 cặp** xung đột · B8: **0 cặp** vi phạm khi lăn
+- `VVDN-XENKE-60MIN.scn` — **266.665 byte**, 13 ARR + 13 DEP, 4.459 lệnh
+- Kiểm chứng: **26 mục, 0 mục KHÔNG ĐẠT** (24 ĐẠT + 2 mục số liệu)
+- B2: lệch chạm bánh lớn nhất **4,0 s** · B3: cặp hạ cánh gần nhất **8,43 NM** · B4: **0 cặp** xung đột · B8: **0 cặp** vi phạm khi lăn · B13: thoát ly 35L lâu nhất **97 s**
 
 Lệch bất kỳ con số nào ⇒ môi trường chưa đúng. Thường là thiếu BADA (mục 1.3).
 
@@ -124,15 +124,14 @@ Chi tiết kỹ thuật và **toàn bộ bẫy của engine** nằm trong phần
 
 ### Kịch bản mẫu đầy đủ
 
-**VVDN cất cánh xen kẽ** là bản tham chiếu hoàn chỉnh nhất — có đủ cả 7 bước, 22 mục kiểm chứng:
+**VVDN cất cánh xen kẽ** là bản tham chiếu hoàn chỉnh nhất — có đủ cả 7 bước, 26 mục kiểm chứng. Từ 2026-11-04 kịch bản chạy MỘT pha suốt 60 phút, cất/hạ cánh xen kẽ, xếp sát phân cách tối thiểu theo dự thảo Phương thức 2 CHC song song Đà Nẵng (24.7.2026), dự thảo MANOP APP/TWR Đà Nẵng và ICAO Doc 4444 — **không** dùng `compliance_rulesets/VVDN.json` (xem bẫy ở mục 4.3):
 
 | File | Vai trò |
 |---|---|
 | `vvdn_xenke_rules.json` | Cấu hình quy tắc phân cách, ghi điều khoản nguồn |
 | `_gen_vvdn_xenke_60min.py` | Generator, seed cố định |
 | `_calib_vvdn_xenke.py` | Hiệu chuẩn thời điểm tạo tàu |
-| `_verify_vvdn_xenke.py` | Kiểm chứng độc lập (22 mục) |
-| `_sweep_vvdn_xenke.py` | Quét năng lực bão hoà |
+| `_verify_vvdn_xenke.py` | Kiểm chứng độc lập (26 mục) |
 | `_md2docx_baocao.py` | Xuất báo cáo Word |
 | `BaoCao_KiemChung_VVDN_XenKe.md` | Báo cáo mẫu |
 
@@ -145,7 +144,7 @@ python _verify_vvdn_xenke.py --static  # kiểm tra nhanh trên lịch (vài gi�
 python _verify_vvdn_xenke.py           # kiểm chứng đầy đủ, có chạy mô phỏng (~10 phút)
 ```
 
-Kết quả phải là **22/22 ĐẠT**. Nếu máy bạn ra kết quả khác máy khác, môi trường có vấn đề — chạy lại `kiem_tra_moi_truong.py`.
+Kết quả phải là **26 mục, 0 mục KHÔNG ĐẠT**. Nếu máy bạn ra kết quả khác máy khác, môi trường có vấn đề — chạy lại `kiem_tra_moi_truong.py`.
 
 ---
 
@@ -167,7 +166,7 @@ Ví dụ: `VVDN-XENKE-60MIN`, `VVNB-CAPACITY-3NM`, `VVPQ-VVDN-5ACFT`.
 | Generator | `_gen_vvdn_xenke_60min.py` (chữ thường, tiền tố `_gen_`) |
 | Kiểm chứng | `_verify_vvdn_xenke.py` |
 | Quy tắc | `vvdn_xenke_rules.json` |
-| Dữ liệu sinh ra | `VVDN-XENKE-60MIN.plan.json`, `.calib.json`, `.sweep.json` |
+| Dữ liệu sinh ra | `VVDN-XENKE-60MIN.plan.json`, `.calib.json` |
 
 **Tên gốc phải là duy nhất trong toàn dự án.** Kiểm tra trước khi đặt:
 
@@ -253,6 +252,12 @@ Mỗi mục dưới đây là một lỗi **đã xảy ra thật và đã đo đ
 **Tọa độ kế thừa có thể sai.** Điểm vào đường CHC lấy từ kịch bản cũ lệch tim **41,2 m**. Luôn **đo lại** mọi tọa độ kế thừa bằng `runway_centerlines.geojson` / `taxiway_centerlines.geojson`.
 
 **Chuỗi SID bắt đầu ngoài đường CHC.** Mọi SID của VVDN bắt đầu cách ngưỡng 5.343 m ở 1.500 ft — ngoài đường CHC (3.517 m) tới 1.826 m. VNAV trải đoạn leo đều và giữ tàu ở 0 ft suốt chặng: tàu **trượt trên mặt đất ở 180 kt ra ngoài sân bay 1.428 m** rồi mới leo. Chèn waypoint rời đất **trong phạm vi đường CHC** (cự ly chạy đà thật: MEDIUM ~2.000 m, HEAVY ~2.600 m, cao độ 35 ft).
+
+**Bộ quy tắc số hoá có thể đọc sai văn bản gốc — luôn đối chiếu nguyên văn.** `compliance_rulesets/VVDN.json` lấy bảng *cất cánh 35R vs tàu đến 35L* (hàng = tàu cất cánh, cột = tàu hạ cánh: 5/5/6/7 NM) của dự thảo Phương thức 2 CHC song song mục 4.2.1 rồi hiểu nhầm thành ma trận *hạ cánh liên tiếp*. Nó còn đưa vào mức 8 NM tại điểm chờ E, trích từ một văn bản không có trong dự án. Dự thảo không có ma trận hạ cánh liên tiếp. Nguồn đúng là MANOP (mục Phân cách giám sát ATS, trùng ICAO Doc 4444 8.7.3.4): HEAVY sau HEAVY 4, MEDIUM sau HEAVY 5, các cặp còn lại 3 NM; APP giãn cách hạ cánh liên tiếp 8 NM. Trước khi dùng bất kỳ giá trị nào trong `compliance_rulesets/`, mở văn bản nguồn và đọc **tiêu đề hàng/cột** của bảng.
+
+**Tàu đến VVDN phải cắt qua 35R.** G4/G6 nằm **giữa** hai CHC (35L/35R cách nhau 214 m). Vạch dừng chờ đo từ `taxiway_centerlines.geojson`: 35R ở −91 m (phía tây) và +94 m (phía đông); 35L ở −122 m. Tàu dài trên 32 m dừng giữa hai CHC luôn lấn vạch của một trong hai đường. Vì vậy MANOP quy định: khi có tàu dừng chờ giữa hai CHC trước 35R thì **không sử dụng 35L**. Điểm cuối cũ của chuỗi thoát ly G6 cách tim 35R chỉ 112 m, nên tàu dài đã lấn mũi qua vạch 35R. Phải tách tuyến lăn vào bến thành ba đoạn: tới vị trí dừng chờ, cắt qua (15 kt, ≤ 45 s), rồi về bến. Chỉ cắt qua sau khi tàu cất cánh đã qua điểm cắt.
+
+**Đường lăn E song song 35R chỉ cách 148 m.** MANOP: khi tàu code D/E cất cánh 35R thì chỉ tàu code C trở xuống được ở trên E. Tàu đi lăn trên E khoảng 300 s, còn nhịp cất cánh khoảng 190 s, nên tàu HEAVY phải tới điểm chờ trước khi tàu HEAVY khác chạy đà. Tàu code F (B748) không được nêu trong MANOP. Cách hiểu chặt là không lên E khi có bất kỳ tàu nào cất cánh, buộc phải bỏ trống một khe cất cánh.
 
 **Ước lượng thời gian bay sai hàng chục giây.** Đã đo: trung bình 52 s, lớn nhất 85 s. Nếu kịch bản cần tàu chạm bánh đúng mốc thì **bắt buộc hiệu chuẩn** (bước 3). Và bù vào *mốc đi qua điểm vào* chứ không bù vào thời điểm tạo tàu — chuyến đầu thường phải sinh ngay tại thời điểm 0 nên giá trị âm bị kẹp và hiệu chuẩn mất tác dụng.
 

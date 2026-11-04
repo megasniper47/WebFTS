@@ -10,7 +10,10 @@ Phan B chay mo phong HEADLESS that (khong qua Flask) de do:
   - cu ly that giua tau cat canh va tau dang tiep can khi bat dau chay da,
   - canh bao xung dot tren khong theo nguong trong file cau hinh,
   - lech tim duong lan cua pha lan (so voi taxiway_centerlines.geojson),
-  - tau bay bi "troi" (toc do mat dat vo ly trong pha lan).
+  - tau bay bi "troi" (toc do mat dat vo ly trong pha lan),
+  - cat qua 35R (thoi gian, xung dot voi tau cat canh, giai phong 35L truoc
+    2 NM), han che duong lan E theo ma chu, thoi gian thoat ly 35L -- theo
+    du thao MANOP Da Nang; hinh hoc doc truc tiep tu cac file .geojson.
 
 Cach dung:
     python _verify_vvdn_xenke.py            # ca phan A va B
@@ -91,14 +94,26 @@ def A1_co_cau_doi_tau():
               "vvdn_xenke_rules.json > co_cau_tau_bay (muc 2 prompt)")
 
 
-def A2_phan_cach_ha_canh():
+NGUON_HA_CANH = ("vvdn_xenke_rules.json > phan_cach_ha_canh_lien_tiep_35L: nhieu dong/giam sat ATS "
+                 "theo MANOP (= ICAO Doc 4444 8.7.3.4), gian cach toi thieu 8 NM theo MANOP "
+                 "[CAN XAC NHAN cach hieu 'co the la 8NM']")
+NGUON_CAT_VS_DEN = ("vvdn_xenke_rules.json > phan_cach_cat_canh_vs_tau_den_35L: du thao Phuong thuc 2 CHC "
+                    "song song Da Nang 24.7.2026 muc 4.2.1 = MANOP Phu luc muc 4.2.1 (bang co giam sat ATS)")
+
+
+def can_ha_canh_nm(lead_type, trail_type):
     cfg = RULES["phan_cach_ha_canh_lien_tiep_35L"]
-    M, rmin = cfg["ma_tran"], cfg["radar_toi_thieu"]
+    M = cfg["ma_tran"]
+    key = f"{wake(trail_type)}_sau_{wake(lead_type)}"
+    return max(M.get(key, M["MEDIUM_sau_MEDIUM"]), cfg["radar_toi_thieu"],
+               cfg.get("gian_cach_toi_thieu_NM", 0.0))
+
+
+def A2_phan_cach_ha_canh():
     xau = []
     for i in range(1, len(ARRS)):
         lead, tr = ARRS[i - 1], ARRS[i]
-        key = f"{wake(tr['type'])}_sau_{wake(lead['type'])}"
-        need = max(M.get(key, M["MEDIUM_sau_MEDIUM"]), rmin)
+        need = can_ha_canh_nm(lead["type"], tr["type"])
         dt = tr["td"] - lead["td"]
         got = dt / 3600.0 * approach_spd_5nm(tr["type"])
         if got < need - 0.05:
@@ -107,7 +122,7 @@ def A2_phan_cach_ha_canh():
     check("A2. Phan cach hai tau ha canh lien tiep 35L", not xau,
           f"{len(ARRS)-1} cap, {len(xau)} cap khong dat"
           + ("; " + "; ".join(xau[:4]) if xau else ""),
-          "vvdn_xenke_rules.json > phan_cach_ha_canh_lien_tiep_35L [CAN XAC NHAN]")
+          NGUON_HA_CANH)
 
 
 def A3_phan_cach_cat_canh():
@@ -171,7 +186,7 @@ def A4_cat_canh_vs_tau_den():
     check("A4. Cat canh 35R khi co tau dang tiep can 35L", not xau,
           f"{len(DEPS)} chuyen di, {len(xau)} chuyen khong dat"
           + ("; " + "; ".join(xau[:4]) if xau else ""),
-          "vvdn_xenke_rules.json > phan_cach_cat_canh_vs_tau_den_35L (muc 3d prompt)")
+          NGUON_CAT_VS_DEN)
 
 
 def A5_cham_cang_den_chay_da():
@@ -238,18 +253,15 @@ def A8_xen_ke():
 
 
 def A9_thong_luong():
-    ph = RULES["thiet_ke_pha"]
-    for k in ("pha_1", "pha_2", "pha_3"):
-        p = ph[k]
-        t0, t1 = p["tu_phut"] * 60, p["den_phut"] * 60
-        na = sum(1 for a in ARRS if t0 <= a["td"] < t1)
-        nd = sum(1 for d in DEPS if t0 <= d["roll"] < t1)
-        rate = (na + nd) * 3600 / (t1 - t0)
-        results.append((f"A9. Thong luong {k} ({p['tu_phut']}-{p['den_phut']} phut)",
-                        "SO LIEU",
-                        f"{na} den + {nd} di = {rate:.0f} chuyen dong/h "
-                        f"(muc tieu {p['muc_tieu_chuyen_dong_gio']}/h)",
-                        "vvdn_xenke_rules.json > thiet_ke_pha"))
+    T = RULES["thiet_ke_lich"]["thoi_luong_phut"] * 60
+    na = sum(1 for a in ARRS if a["td"] < T)
+    nd = sum(1 for d in DEPS if d["roll"] < T)
+    gaps = [ARRS[i]["td"] - ARRS[i - 1]["td"] for i in range(1, len(ARRS))]
+    results.append((f"A9. Thong luong ca {T // 60:.0f} phut (mot pha, sat phan cach toi thieu)",
+                    "SO LIEU",
+                    f"{na} den + {nd} di = {na + nd} chuyen dong; nhip den "
+                    f"TB {sum(gaps) / len(gaps):.0f}s, nho nhat {min(gaps):.0f}s",
+                    "vvdn_xenke_rules.json > thiet_ke_lich"))
 
 
 def A10_lan_khong_am():
@@ -312,8 +324,6 @@ def B1_cham_banh(track):
 
 def B3_phan_cach_that(track, td):
     """Cu ly THAT giua tau sau va tau truoc tai dung thoi diem tau truoc cham banh."""
-    cfg = RULES["phan_cach_ha_canh_lien_tiep_35L"]
-    M, rmin = cfg["ma_tran"], cfg["radar_toi_thieu"]
     xau, do_duoc = [], []
     for i in range(1, len(ARRS)):
         lead, tr = ARRS[i - 1], ARRS[i]
@@ -324,8 +334,7 @@ def B3_phan_cach_that(track, td):
         if abs(p[0] - t0) > 3:
             continue
         got = hav_m(p[1], p[2], *THR35L) / 1852.0
-        key = f"{wake(tr['type'])}_sau_{wake(lead['type'])}"
-        need = max(M.get(key, M["MEDIUM_sau_MEDIUM"]), rmin)
+        need = can_ha_canh_nm(lead["type"], tr["type"])
         do_duoc.append((lead["id"], tr["id"], got, need))
         if got < need - 0.1:
             xau.append(f"{lead['id']}->{tr['id']}: {got:.2f}NM < {need}NM")
@@ -333,7 +342,7 @@ def B3_phan_cach_that(track, td):
           f"{len(do_duoc)} cap do duoc, nho nhat "
           f"{min((x[2] for x in do_duoc), default=0):.2f}NM, {len(xau)} cap khong dat"
           + ("; " + "; ".join(xau[:4]) if xau else ""),
-          "vvdn_xenke_rules.json > phan_cach_ha_canh_lien_tiep_35L [CAN XAC NHAN]")
+          NGUON_HA_CANH)
     return do_duoc
 
 
@@ -595,6 +604,262 @@ def B7_ve_den_ben(track):
 
 
 # ===========================================================================
+# PHAN B (tiep) -- CAT QUA 35R, DUONG LAN E, GIAI PHONG 35L (MANOP)
+# Hinh hoc doc TRUC TIEP tu runway_centerlines.geojson / taxiway_centerlines
+# .geojson, khong lay tu generator.
+# ===========================================================================
+CODE = {k: v[0] for k, v in RULES["han_che_duong_lan_E"]["ma_chu_theo_loai"].items()}
+
+
+def _he_35R():
+    rc = json.loads((LAYOUT / "runway_centerlines.geojson").read_text(encoding="utf-8"))
+    f = next(f for f in rc["features"] if f["properties"].get("name") == "17L/35R")
+    c = f["geometry"]["coordinates"]
+    c = c if f["geometry"]["type"] == "LineString" else c[0]
+    pts = sorted((p[1], p[0]) for p in c)          # theo vi do: dau 35R (phia nam) truoc
+    o = pts[0]
+
+    def xy(la, lo):
+        return ((lo - o[1]) * math.cos(math.radians(o[0])) * 111320.0, (la - o[0]) * 110574.0)
+    ex, ey = xy(*pts[-1])
+    n = math.hypot(ex, ey)
+    ux, uy = ex / n, ey / n
+
+    def st(la, lo):
+        x, y = xy(la, lo)
+        return x * ux + y * uy, x * uy - y * ux     # (doc tim, lech ngang; + = phia dong)
+    return st, n, xy
+
+
+ST35R, LEN35R, XY = _he_35R()
+
+
+def vach_dung_cho():
+    """(vach 35R phia tay, vach 35R phia dong, vach 35L phia dong) theo lech ngang
+    so voi tim 35R (m), do tu cac doan 'hold' trong taxiway_centerlines.geojson
+    tai khu vuc hai duong lan thoat ly G4/G6 (doc tim 2100-3300 m)."""
+    tc = json.loads((LAYOUT / "taxiway_centerlines.geojson").read_text(encoding="utf-8"))
+    tay, dong, l35 = [], [], []
+    for f in tc["features"]:
+        if "hold" not in str(f["properties"].get("name", "")).lower():
+            continue
+        g = f["geometry"]
+        for ln in ([g["coordinates"]] if g["type"] == "LineString" else g["coordinates"]):
+            for c in ln:
+                s, x = ST35R(c[1], c[0])
+                if not 2100 < s < 3300:
+                    continue
+                if -110 < x < 0:
+                    tay.append(x)
+                elif 0 < x < 110:
+                    dong.append(x)
+                elif -140 < x < -110:
+                    l35.append(x)
+    return min(tay), max(dong), max(l35)
+
+
+def _phan_ung_s(actype):
+    pu = RULES["thoi_gian_phan_ung_mat_dat"]
+    return (pu["doi_chuan_den_chay_da_code_C_giay"] if CODE[actype] == "C"
+            else pu["doi_chuan_den_chay_da_code_D_tro_len_giay"])
+
+
+def _ho_so_dep(track):
+    """{dep: [(t, doc tim 35R)]} tu luc chay da."""
+    return {d["id"]: [(q[0], ST35R(q[1], q[2])[0]) for q in track.get(d["id"], [])
+                      if q[0] >= d["roll"] - 1] for d in DEPS}
+
+
+def _t_qua(ho_so, s_m, mac_dinh):
+    return next((t for t, s in ho_so if s >= s_m), mac_dinh)
+
+
+def B10_cat_canh_vs_den_that(track, td):
+    """Do trong mo phong: (1) huan lenh cat canh (= chay da - thoi gian phan
+    ung 10/15 s) SAU khi tau den truoc da cham cang; (2) tau den ke tiep con
+    cach nguong 35L khong nho hon bang du thao/MANOP muc 4.2.1 tai luc CHAY DA
+    (muon hon luc huan lenh -> tau den da gan hon -> do nhu vay la chat hon)."""
+    M = RULES["phan_cach_cat_canh_vs_tau_den_35L"]["ma_tran"]
+    xau, do = [], []
+    for d in DEPS:
+        t_clr = d["roll"] - _phan_ung_s(d["type"])
+        truoc = [td[a["id"]] for a in ARRS if a["id"] in td and td[a["id"]] <= d["roll"]]
+        if truoc and t_clr < max(truoc) - 0.5:
+            xau.append(f"{d['id']}: huan lenh ~{fmt(t_clr)} truoc khi tau den cham cang {fmt(max(truoc))}")
+        sau = [a for a in ARRS if a["id"] in td and td[a["id"]] > d["roll"]]
+        if not sau:
+            continue
+        a = min(sau, key=lambda x: td[x["id"]])
+        p = min(track[a["id"]], key=lambda q: abs(q[0] - d["roll"]))
+        got = hav_m(p[1], p[2], *THR35L) / 1852.0
+        need = M[wake(d["type"])][wake(a["type"])]
+        do.append(got - need)
+        if got < need - 0.05:
+            xau.append(f"{d['id']}({wake(d['type'])[0]}) chay da khi {a['id']}({wake(a['type'])[0]}) "
+                       f"con {got:.2f}NM < {need}NM")
+    check("B10. Cat canh 35R vs tau den 35L (do trong mo phong)", not xau,
+          f"{len(DEPS)} chuyen di; du cu ly nho nhat so voi bang {min(do, default=0):+.2f} NM; "
+          f"{len(xau)} truong hop khong dat" + ("; " + "; ".join(xau[:4]) if xau else ""),
+          NGUON_CAT_VS_DEN + "; huan lenh cat canh sau cham cang (muc 4.2.1.a)")
+
+
+def B11_cat_qua_35R(track, td):
+    """MANOP Phu luc 2 CHC song song: cat qua 35R <= 45 s (tu luc mui tau qua
+    vach dung cho phia tay den luc duoi tau qua vach phia dong); khong cat qua
+    trong khoang [huan lenh cat canh, tau cat canh qua diem cat + 100 m]; tau
+    nam giua hai CHC -> 35L chua giai phong, nen tau ha canh truoc phai cat
+    qua HET 35R truoc khi tau sau toi 2 NM (cap huan lenh ha canh)."""
+    cfg = RULES["dieu_kien_cat_qua_35R"]
+    clr_nm = RULES["phan_cach_ha_canh_lien_tiep_35L"]["giai_phong_truoc_huan_lenh_ha_canh"][
+        "cu_ly_cap_huan_lenh_ha_canh_NM"]
+    hl_w, hl_e, _ = vach_dung_cho()
+    hs = _ho_so_dep(track)
+    xau_tg, xau_dep, xau_hl, tg, dung = [], [], [], [], []
+    cat = {}
+    for a in ARRS:
+        if a["id"] not in td:
+            continue
+        L = AC_LEN[a["type"]]
+        pts = [(q[0],) + ST35R(q[1], q[2]) + (q[1], q[2]) for q in track[a["id"]] if q[0] > td[a["id"]]]
+        t_in = next((p[0] for p in pts if p[2] >= hl_w - L / 2), None)
+        t_out = next((p[0] for p in pts if p[2] >= hl_e + L / 2), None)
+        if t_in is None or t_out is None:
+            xau_tg.append(f"{a['id']}: khong thay cat qua 35R")
+            continue
+        s_c = min(pts, key=lambda p: abs(p[2]))[1]
+        cat[a["id"]] = (t_in, t_out)
+        tg.append(t_out - t_in)
+        if t_out - t_in > cfg["thoi_gian_cat_qua_toi_da_s"] + 0.5:
+            xau_tg.append(f"{a['id']}: {t_out - t_in:.0f}s")
+        # thoi gian dung yen giua hai CHC truoc vach 35R
+        n = 0
+        for p, q in zip(pts, pts[1:]):
+            if p[0] < t_in and -190 < p[2] < hl_w - L / 2 + 1 and hav_m(p[3], p[4], q[3], q[4]) < 0.5:
+                n += q[0] - p[0]
+        dung.append((a["id"], n))
+        for d in DEPS:
+            w0 = d["roll"] - _phan_ung_s(d["type"])
+            w1 = _t_qua(hs[d["id"]], s_c + 100.0, d["roll"] + 90.0)
+            if t_in < w1 and t_out > w0:
+                xau_dep.append(f"{a['id']} cat qua {fmt(t_in)}-{fmt(t_out)} khi {d['id']} "
+                               f"(huan lenh {fmt(w0)}, qua diem cat {fmt(w1)})")
+    for i in range(len(ARRS) - 1):
+        a, b = ARRS[i], ARRS[i + 1]
+        if a["id"] not in cat or b["id"] not in track:
+            continue
+        t_out = cat[a["id"]][1]
+        if b["id"] in td and td[b["id"]] <= t_out:
+            xau_hl.append(f"{b['id']} cham banh {fmt(td[b['id']])} khi {a['id']} chua cat qua het 35R")
+            continue
+        p = min(track[b["id"]], key=lambda q: abs(q[0] - t_out))
+        got = hav_m(p[1], p[2], *THR35L) / 1852.0
+        if got < clr_nm:
+            xau_hl.append(f"{a['id']} cat qua xong {fmt(t_out)} khi {b['id']} con {got:.2f}NM < {clr_nm}NM")
+    dmax = max(dung, key=lambda x: x[1]) if dung else ("-", 0)
+    check("B11a. Cat qua 35R xong trong gioi han thoi gian", not xau_tg,
+          f"{len(tg)} lan cat qua, lau nhat {max(tg, default=0):.0f}s (vach dung cho do duoc: "
+          f"{hl_w:.0f} m / +{hl_e:.0f} m)" + ("; " + "; ".join(xau_tg[:4]) if xau_tg else ""),
+          "MANOP Phu luc 2 CHC song song: cat qua duong CHC trong vong 45 giay")
+    check("B11b. Khong cat qua 35R khi tau cat canh chua qua diem cat", not xau_dep,
+          f"{len(cat)} lan cat qua x {len(DEPS)} chuyen di, {len(xau_dep)} xung dot; dung cho giua hai "
+          f"CHC lau nhat {dmax[1]:.0f}s ({dmax[0]})" + ("; " + "; ".join(xau_dep[:3]) if xau_dep else ""),
+          "vvdn_xenke_rules.json > dieu_kien_cat_qua_35R (MANOP Phu luc 2 CHC song song)")
+    check("B11c. Tau truoc cat qua het 35R truoc khi tau sau toi 2 NM", not xau_hl,
+          f"{max(len(ARRS) - 1, 0)} cap, {len(xau_hl)} cap khong dat"
+          + ("; " + "; ".join(xau_hl[:3]) if xau_hl else ""),
+          "MANOP: huan lenh ha canh truoc 2 NM, chi khi tau ha canh truoc da roi duong CHC; "
+          "tau dung cho giua hai CHC -> khong su dung 35L")
+
+
+def B12_duong_lan_E(track):
+    """MANOP: khi tau code D/E (kich ban ap ca F) cat canh 35R -- tu chay da den
+    khi roi duong CHC -- chi tau code C tro xuong o tren duong lan E; khi tau code
+    C cat canh, tau code E tro xuong duoc o tren E."""
+    cfg = RULES["han_che_duong_lan_E"]
+    allowed, tol, excl = cfg["khi_cat_canh_code"], cfg["dung_sai_quanh_tim_m"], cfg["loai_tru_quanh_PREHOLD_m"]
+    tc = json.loads((LAYOUT / "taxiway_centerlines.geojson").read_text(encoding="utf-8"))
+    segs = []
+    for f in tc["features"]:
+        if f["properties"].get("name") != "E":
+            continue
+        g = f["geometry"]
+        for ln in ([g["coordinates"]] if g["type"] == "LineString" else g["coordinates"]):
+            P = [XY(c[1], c[0]) for c in ln]
+            segs += list(zip(P, P[1:]))
+
+    def dseg(p, a, b):
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        l2 = dx * dx + dy * dy
+        f = 0.0 if l2 == 0 else max(0.0, min(1.0, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / l2))
+        return math.hypot(p[0] - a[0] - f * dx, p[1] - a[1] - f * dy)
+    ph = RULES["so_do_san_bay"]["diem_cho_cat_canh_35R"]["PREHOLD"]
+    php = XY(ph[0], ph[1])
+    types = {a["id"]: a["type"] for a in ARRS} | {d["id"]: d["type"] for d in DEPS}
+    tren_E = {}
+    for acid, pts in track.items():
+        s = set()
+        for (t, la, lo, alt, gs) in pts:
+            if alt > 10:
+                continue
+            p = XY(la, lo)
+            if math.dist(p, php) < excl:
+                continue
+            if min(dseg(p, *sg) for sg in segs) < tol:
+                s.add(int(t))
+        tren_E[acid] = s
+    hs = _ho_so_dep(track)
+    xau, n_kt = [], 0
+    for d in DEPS:
+        w0 = d["roll"]
+        w1 = _t_qua(hs[d["id"]], LEN35R, d["roll"] + 90.0)
+        ok_codes = allowed[CODE[d["type"]]]
+        for other, secs in tren_E.items():
+            if other == d["id"] or CODE[types[other]] in ok_codes:
+                continue
+            n_kt += 1
+            hit = sorted(t for t in secs if w0 <= t <= w1)
+            if hit:
+                xau.append(f"{d['id']}({CODE[d['type']]}) cat canh {fmt(w0)}-{fmt(w1)} khi "
+                           f"{other}({CODE[types[other]]}) tren E {fmt(hit[0])}-{fmt(hit[-1])}")
+    check("B12. Duong lan E khi tau code D/E/F cat canh 35R", not xau,
+          f"{len(DEPS)} lan cat canh, {len(xau)} vi pham"
+          + ("; " + "; ".join(xau[:3]) if xau else ""),
+          "MANOP Phu luc 2 CHC song song muc 3 'Phuong an khai thac duong lan E' "
+          "[vung duong lan E: CAN XAC NHAN cach hieu]")
+
+
+def B13_thoat_ly_35L(track, td):
+    """MANOP: thoat ly 35L trong 100 s tu luc qua nguong toi khi qua vach dung
+    cho cua duong lan thoat ly. Tau dung cho GIUA hai CHC truoc 35R (MANOP coi
+    la vi tri dung cho, khi do khong su dung 35L) cung tinh la da thoat ly."""
+    lim = RULES["thoi_gian_phan_ung_mat_dat"]["thoat_ly_duong_CHC_toi_da_giay"]
+    hl_w, _, hl_35l = vach_dung_cho()
+    s_thr = ST35R(*THR35L)[0]
+    ds, xau = [], []
+    for a in ARRS:
+        if a["id"] not in td:
+            continue
+        L = AC_LEN[a["type"]]
+        pts = [(q[0],) + ST35R(q[1], q[2]) for q in track[a["id"]] if q[0] >= td[a["id"]] - 90]
+        t_thr = next((t for t, s, x in pts if s >= s_thr and x < -150), None)
+        if t_thr is None:
+            xau.append(f"{a['id']}: khong thay qua nguong")
+            continue
+        muc = min(hl_35l + L / 2, hl_w - L / 2 - 5.0)
+        t_ok = next((t for t, s, x in pts if t > t_thr and x >= muc), None)
+        if t_ok is None:
+            xau.append(f"{a['id']}: khong thay thoat ly")
+            continue
+        ds.append((a["id"], t_ok - t_thr))
+        if t_ok - t_thr > lim + 0.5:
+            xau.append(f"{a['id']}: {t_ok - t_thr:.0f}s")
+    mx = max(ds, key=lambda x: x[1]) if ds else ("-", 0)
+    check("B13. Thoat ly 35L trong gioi han thoi gian", not xau,
+          f"{len(ds)} chuyen den, lau nhat {mx[1]:.0f}s ({mx[0]}), gioi han {lim}s"
+          + ("; " + "; ".join(xau[:4]) if xau else ""),
+          "MANOP Phu luc 2 CHC song song (thoat ly trong vong 100 giay)")
+
+
 def bao_cao():
     w = max(len(r[0]) for r in results)
     n_fail = sum(1 for r in results if r[1] == "KHONG DAT")
@@ -640,6 +905,10 @@ def main():
         B7_ve_den_ben(track)
         B8_xung_dot_mat_dat(track)
         B9_lineup_dung_tim_35R(track)
+        B10_cat_canh_vs_den_that(track, td)
+        B11_cat_qua_35R(track, td)
+        B12_duong_lan_E(track)
+        B13_thoat_ly_35L(track, td)
 
     n = bao_cao()
     sys.exit(1 if n else 0)

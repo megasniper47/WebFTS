@@ -10,6 +10,14 @@ tung chuyen -> cong do lech vao bang hieu chuan -> sinh lai. Lap den khi sai
 lech lon nhat duoi NGUONG_S giay.
 
 Chay:  python _calib_vvdn_xenke.py
+
+Tau sinh GIUA STAR (bo doan IAF xa) co phan hoi KHONG DON DIEU: do cao/toc do
+luc sinh thay doi theo vi tri, nen sinh xa hon co the lai den SOM hon. Khi do
+vong lap khong tu tim duoc gia tri dat nguong -> do truc tiep duong phan hoi
+(chay mo phong voi nhieu gia tri bu cho rieng chuyen do) roi ghi tay gia tri
+tot nhat vao file .calib.json; lan chay sau se xac nhan ngay o vong 1.
+Da gap (2026-11-04, BADA 3.16): ARR002 B744/SADIN chi dat trong cua so bu
+-74..-80s (bu -78s -> lech +4s); moi gia tri tu -60 den -36s deu lech 8-21s.
 """
 from __future__ import annotations
 
@@ -27,7 +35,7 @@ CALIB_FILE = HERE / "VVDN-XENKE-60MIN.calib.json"
 PLAN_FILE = HERE / "VVDN-XENKE-60MIN.plan.json"
 THR35L = (16.030133, 108.200372)
 NGUONG_S = 5.0
-SO_VONG = 6
+SO_VONG = 12
 
 
 def hav_m(la1, lo1, la2, lo2):
@@ -76,6 +84,7 @@ def do_moc_cham_banh(t_end):
 
 def main():
     calib = json.loads(CALIB_FILE.read_text(encoding="utf-8")) if CALIB_FILE.exists() else {}
+    lich_su = {}             # acid -> [(gia tri bu, sai lech do duoc)]
     for vong in range(1, SO_VONG + 1):
         CALIB_FILE.write_text(json.dumps(calib, indent=1), encoding="utf-8")
         sinh_kich_ban()
@@ -98,7 +107,26 @@ def main():
                   f"Bang hieu chuan: {CALIB_FILE.name}")
             return
         for acid, dv in lech.items():
-            calib[acid] = calib.get(acid, 0.0) + dv
+            c = calib.get(acid, 0.0)
+            lich_su.setdefault(acid, []).append((c, dv))
+            # Khi da co mot gia tri bu cho sai lech DUONG va mot gia tri cho sai
+            # lech AM thi diem dung nam giua -> CHIA DOI khoang kep thay vi cong
+            # thang sai lech. Phan hoi co diem GAY khi vi tri sinh tau truot qua
+            # mot waypoint cua STAR (da do voi ARR001 B748/BUNTA: bu -26s -> lech
+            # -3s, bu -27s -> lech +20s); cong thang thi nhay qua lai hai ben
+            # diem gay mai khong hoi tu.
+            duong = [x for x, e in lich_su[acid] if e > 0]
+            am = [x for x, e in lich_su[acid] if e < 0]
+            if duong and am and min(am) - max(duong) < 1.0:
+                # khoang kep da hep hon 1s ma van chua dat nguong -> diem gay nam
+                # o day; chon gia tri bu da DO DUOC sai lech nho nhat
+                calib[acid] = min(lich_su[acid], key=lambda xe: abs(xe[1]))[0]
+            elif duong and am:
+                # sai lech giam khi gia tri bu tang -> bien duong la gia tri bu
+                # LON NHAT cho sai lech duong, bien am la gia tri NHO NHAT cho am
+                calib[acid] = (max(duong) + min(am)) / 2.0
+            else:
+                calib[acid] = c + dv
     CALIB_FILE.write_text(json.dumps(calib, indent=1), encoding="utf-8")
     sinh_kich_ban()
     print(f"Het {SO_VONG} vong, chua dat nguong {NGUONG_S}s -- xem so lieu tung vong o tren.")
