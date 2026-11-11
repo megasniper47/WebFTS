@@ -1,0 +1,25 @@
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC P38___.APF CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC/
+CC                                                                                                 /
+CC                 AIRLINES PROCEDURES FILE                                                        /
+CC                                                                                                 /
+CC      File_name: P38___.APF                                                                      /
+CC                                                                                                 /
+CC      Creation_date: Dec 02 2021                                                                 /
+CC                                                                                                 /
+CC      Modification_date: Dec 02 2021                                                             /
+CC                                                                                                 /
+CC                                                                                                 /
+CC                                                                                                 /
+CC   LO= 005.79 to ---.--  /  AV= ---.-- to ---.--  /  HI= ---.-- to 009.70                        /
+CC                                                                                                 /
+CC=================================================================================================/
+CC  COM CO    Company name ------climb-------  --cruise--  -----descent------  --approach-  model- /
+CC                    mass  lo  hi              lo  hi         hi  lo            (unused)          /
+CC    version engines  ma  cas cas mc xxxx xx  cas cas mc  mc cas cas xxxx xx  xxx xxx xxx  opf___ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CD  *** **    Default Company                                                                      /
+CD    J                LO  155 148 44          183 183 48  48 156 156            0   0   0  P38___ /
+CD    J                AV  155 148 44          183 183 48  48 156 156            0   0   0  P38___ /
+CD    J                HI  155 148 44          183 183 48  48 156 156            0   0   0  P38___ /
+CC===:=======:=======::==::===:===:==:====:==::===:===:==::==:===:===:====:==::===:===:===::======:/
+CC/////////////////////////////////////////////THE END/////////////////////////////////////////////

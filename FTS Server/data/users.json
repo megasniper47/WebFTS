@@ -1,0 +1,38 @@
+[
+  {
+    "id": "user-admin",
+    "username": "admin",
+    "displayName": "WebFTS Administrator",
+    "email": "admin@webfts.local",
+    "role": "admin",
+    "passwordHash": "scrypt:32768:8:1$SJS4RS2mqR1jJE0c$ba0de01f996f299cbe681c59728b08024912b45df525c48710ac1e86b3f0370f2f5a50f2c694ead74c5fe8913f6849d1c18df1bb2f7c227bef7d1688b9f7e8a3",
+    "status": "active",
+    "createdAt": "2026-05-28T12:18:12.008796Z",
+    "updatedAt": "2026-05-28T12:18:12.008796Z",
+    "lastLoginAt": "2026-11-10T14:17:26.866823Z"
+  },
+  {
+    "id": "user-analyst",
+    "username": "analyst",
+    "displayName": "FTS Analyst",
+    "email": "analyst@webfts.local",
+    "role": "analyst",
+    "passwordHash": "scrypt:32768:8:1$hTE3h0D9cCPaneIW$6dcc83b18d0b8a0c029581d927e2d086f77fbc962c6251bed9e77130c2b44de8809f18e672e7cf05c09ac9fda948238484bbd9d63a65500b67546a7bf4a79134",
+    "status": "active",
+    "createdAt": "2026-05-28T12:18:12.008796Z",
+    "updatedAt": "2026-05-28T12:18:12.008796Z",
+    "lastLoginAt": "2026-10-15T08:31:46.434427Z"
+  },
+  {
+    "id": "user-demo",
+    "username": "demo",
+    "displayName": "Demo User",
+    "email": "demo@webfts.local",
+    "role": "demo",
+    "passwordHash": "scrypt:32768:8:1$O6wQJ0VdwN82jAr0$076bbe212c98ae5fb9a265df6532b8b6023c88ab2b5f25512c0df6e621538e3546496a4ff8b04b539f36c81c3fa7451075504cb4d3f33658859310f2701d5968",
+    "status": "active",
+    "createdAt": "2026-05-28T12:18:12.008796Z",
+    "updatedAt": "2026-05-28T12:18:12.008796Z",
+    "lastLoginAt": "2026-10-19T08:38:16.768032Z"
+  }
+]

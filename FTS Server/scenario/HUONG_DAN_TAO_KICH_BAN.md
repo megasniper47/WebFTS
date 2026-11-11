@@ -37,28 +37,20 @@ pip install -r requirements.txt
 pip install python-docx          # để xuất báo cáo Word
 ```
 
-### 1.3 Xin dữ liệu BADA — **bắt buộc, không có trên GitHub**
+### 1.3 Dữ liệu BADA — đã có sẵn khi clone
 
-BADA (mô hình hiệu năng tàu bay của EUROCONTROL) **có bản quyền**, nên không được đưa lên GitHub. Bản clone về sẽ **thiếu** dữ liệu này.
+BADA (mô hình hiệu năng tàu bay của EUROCONTROL) **có bản quyền**. Kể từ 2026-11-11, dự án đưa dữ liệu này vào repo theo quyết định tường minh của chủ dự án (phạm vi chia sẻ giới hạn trong các thành viên được mời vào repo riêng tư) — bản clone về sẽ có sẵn đủ **264 bộ file `.APF`/`.OPF`/`.PTF`/`.PTD`** trong `FTS Server/bluesky/resources/performance/BADA/`.
 
-Đây không phải chuyện nhỏ. Đã đo được: cùng một file `.scn` **giống nhau từng byte**, máy có BADA cho **0 cặp cảnh báo xung đột**, máy thiếu BADA cho **4 cặp**. Thiếu BADA thì engine dùng mô hình hiệu năng khác, khả năng leo khác, và **mọi kết quả đều lệch** — không đối chiếu được với ai.
+> **Không chuyển tiếp dữ liệu này ra ngoài phạm vi repo** (không đăng công khai, không gửi cho người ngoài dự án). Đây vẫn là dữ liệu có bản quyền, chỉ được chia sẻ trong nhóm vì quyết định nội bộ — không phải license cho phép phân phối tự do.
 
-Cách làm:
+Chỉ cần kiểm tra `FTS Server/settings.cfg` có dòng:
+```
+performance_model = 'bada'
+```
 
-1. Xin bộ dữ liệu BADA từ quản trị dự án (qua kênh nội bộ, **không** qua GitHub).
-2. Giải nén vào đúng thư mục:
-   ```
-   FTS Server/bluesky/resources/performance/BADA/
-   ```
-3. Kiểm tra: phải có khoảng **264 file `.APF`**.
-4. Mở `FTS Server/settings.cfg`, bảo đảm dòng:
-   ```
-   performance_model = 'bada'
-   ```
+`settings.cfg` **không có trong repo** — engine **tự sinh** ra nó lần chạy đầu, nhưng bản tự sinh mặc định `performance_model = 'openap'`. Phải sửa lại thành `'bada'`, nếu không thì dù có đủ dữ liệu BADA, engine vẫn không dùng tới.
 
-> `settings.cfg` cũng không có trong repo — engine **tự sinh** ra nó lần chạy đầu, nhưng bản tự sinh mặc định `performance_model = 'openap'`. Phải sửa lại thành `'bada'`.
-
-Nếu không có BADA, vẫn chạy được với `'openap'`, nhưng **kết quả chỉ dùng nội bộ máy mình**, không so sánh với kết quả của người khác được.
+Vì sao bắt buộc phải đúng mô hình này: đã đo được cùng một file `.scn` **giống nhau từng byte**, máy dùng `'bada'` cho **0 cặp cảnh báo xung đột**, máy lỡ dùng `'openap'` cho **4 cặp**. Sai mô hình hiệu năng thì khả năng leo khác, và **mọi kết quả đều lệch** — không đối chiếu được với ai.
 
 ### 1.4 Kiểm tra — bắt buộc
 
@@ -310,7 +302,7 @@ Và một lỗi kinh điển: tàu **đã hạ cánh xong** bị báo "đứng y
 | Tàu bay đứng yên vĩnh viễn | Thiếu lệnh `SPD` sau `VNAV ON` (4.1) |
 | Tàu bay vọt đi hàng nghìn mét | Khoảng trống giữa hai lệnh `MOVE` (4.2) |
 | Hai tàu lăn chồng lên nhau | Chưa giải xung đột khi lập lịch (4.2) |
-| **Kết quả máy mình khác máy người khác** | **Hầu như luôn là thiếu BADA (1.3)** — chạy `kiem_tra_moi_truong.py` mục 12 |
+| **Kết quả máy mình khác máy người khác** | **Hầu như luôn là `settings.cfg` sai `performance_model` (1.3)** — chạy `kiem_tra_moi_truong.py` mục 12 |
 | Ứng dụng web không khởi động | Dùng nhầm `py` thay vì Python của môi trường ảo (1.5) |
 | `git clone` báo `Filename too long` | Đặt repo ở đường dẫn ngắn (ví dụ `D:\FTS`) hoặc bật `core.longpaths` (1.1) |
 | Clone xong thiếu hàng nghìn file | Cùng nguyên nhân trên — `git status` sẽ liệt kê file `D` (deleted) |

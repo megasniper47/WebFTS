@@ -128,12 +128,15 @@ def c8_du_lieu_phuong_thuc():
 
 
 def c12_bada():
-    """Du lieu hieu nang BADA -- khong co trong repo vi co BAN QUYEN.
+    """Du lieu hieu nang BADA -- tu 2026-11-11 da duoc dua vao repo (quyet
+    dinh tuong minh cua chu du an, chi chia se trong pham vi thanh vien duoc
+    moi vao repo rieng tu -- VAN co ban quyen cua EUROCONTROL, khong duoc
+    chuyen tiep ra ngoai pham vi du an).
 
-    Day la muc quan trong nhat de hai may cho ra CUNG KET QUA: thieu BADA thi
-    engine dung mo hinh hieu nang khac, kha nang leo khac, va ket qua mo phong
-    LECH. Da do duoc: cung mot file .scn giong nhau tung byte, may co BADA cho
-    0 cap canh bao xung dot, may thieu BADA cho 4 cap.
+    Day la muc quan trong nhat de hai may cho ra CUNG KET QUA: sai mo hinh
+    hieu nang thi kha nang leo khac, ket qua mo phong LECH. Da do duoc: cung
+    mot file .scn giong nhau tung byte, may dung 'bada' cho 0 cap canh bao
+    xung dot, may dung 'openap' cho 4 cap.
     """
     thu_muc = FTS / "bluesky/resources/performance/BADA"
     n = len(list(thu_muc.glob("*.APF"))) if thu_muc.is_dir() else 0
@@ -141,16 +144,23 @@ def c12_bada():
     dung_bada = (cfg.is_file()
                  and "performance_model = 'bada'" in cfg.read_text(encoding="utf-8",
                                                                    errors="ignore"))
-    ok = n > 100 or not dung_bada
-    kiem("12. Du lieu hieu nang BADA", ok,
-         f"{n} file .APF trong bluesky/resources/performance/BADA"
-         + (f"; settings.cfg dang dat performance_model = 'bada'" if dung_bada
-            else "; settings.cfg KHONG dung bada nen khong bat buoc"),
-         "BADA co BAN QUYEN cua EUROCONTROL nen KHONG duoc dua len GitHub.\n"
-         "   Xin bo du lieu tu quan tri du an (kenh noi bo), giai nen vao:\n"
-         "        FTS Server/bluesky/resources/performance/BADA/\n"
-         "   Neu khong co BADA, sua settings.cfg thanh performance_model = 'openap'\n"
-         "   -- NHUNG ket qua se LECH so voi may co BADA, khong doi chieu duoc.")
+    ok = n > 100 and dung_bada
+    if n > 100:
+        kiem("12. Du lieu hieu nang BADA", ok,
+             f"{n} file .APF trong bluesky/resources/performance/BADA"
+             + ("; settings.cfg dang dat performance_model = 'bada'" if dung_bada
+                else "; settings.cfg dang dung mo hinh KHAC 'bada'"),
+             "Du lieu BADA da co san (clone git). Chi can sua settings.cfg:\n"
+             "        performance_model = 'bada'\n"
+             "   (file nay engine tu sinh lan chay dau, mac dinh 'openap' --\n"
+             "    phai tu sua lai thanh 'bada').")
+    else:
+        kiem("12. Du lieu hieu nang BADA", False,
+             f"chi {n} file .APF -- thieu du lieu BADA",
+             "Du lieu BADA nam trong repo (FTS Server/bluesky/resources/performance/BADA/)\n"
+             "   nhung ban clone cua ban lai thieu. Thu:\n"
+             "        git checkout -- FTS Server/bluesky/resources/performance/BADA\n"
+             "   Neu van thieu, clone lai tu dau hoac bao quan tri du an.")
 
 
 def c9_chay_thu_mo_phong():

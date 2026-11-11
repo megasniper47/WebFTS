@@ -6,9 +6,11 @@
 /bluesky/resources/grib
 /bluesky/resources/netcdf
 
-# Potentially locally-copied BADA installation
-/bluesky/resources/performance/BADA/*
-!/bluesky/resources/performance/BADA/README.md
+# BADA (EUROCONTROL aircraft performance data). Tracked in git as of
+# 2026-11-11 at the explicit, confirmed request of the project owner --
+# normally this is licensed data that should NOT be redistributed even to a
+# private repo. If this project is ever made public or EUROCONTROL licensing
+# terms change, revisit this decision.
 
 # Sphinx documentation
 /docs/_build/
@@ -115,8 +117,10 @@ analysis/monte_carlo/run_batch_log.txt
 analysis/monte_carlo_3nm/results/
 scenario/Backup/
 
-# Live credential/user store -- never commit real account data.
-data/users.json
+# Live credential/user store. Tracked in git as of 2026-11-11 at the
+# explicit, confirmed request of the project owner so collaborators share
+# one account list -- normally this should never be committed. Rotate any
+# password in here if repo access is ever widened or a collaborator leaves.
 
 # Internal-only reports/docs, not meant for the shared repo.
 docs/*.docx
