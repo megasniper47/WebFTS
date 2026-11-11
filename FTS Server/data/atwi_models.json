@@ -6,17 +6,17 @@
     "atcoOnPosition": 1,
     "availableSecondsPerAtcoPerHour": 3600,
     "coefficients": {
+      "airportCoeff": 0.1,
       "complexityCoeff": 0.15,
-      "weatherCoeff": 0.10,
-      "militaryCoeff": 0.10,
       "coordinationCoeff": 0.12,
-      "airportCoeff": 0.10,
-      "degradedCoeff": 0.20
+      "degradedCoeff": 0.2,
+      "militaryCoeff": 0.1,
+      "weatherCoeff": 0.1
     },
     "thresholds": {
+      "highMax": 90,
       "normalMax": 60,
-      "watchMax": 75,
-      "highMax": 90
+      "watchMax": 75
     },
     "taskDefinitions": [],
     "metadata": {
@@ -29,7 +29,7 @@
       "reviewedBy": null,
       "approvedBy": null,
       "createdAt": "2026-05-28T00:00:00.000Z",
-      "updatedAt": "2026-05-28T00:00:00.000Z",
+      "updatedAt": "2026-10-27T20:10:12.028386Z",
       "reviewedAt": null,
       "approvedAt": null,
       "notes": "Initial AI-generated/draft ATWI model. Not approved for official KPI reporting."

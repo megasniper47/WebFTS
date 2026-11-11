@@ -229,6 +229,9 @@ settings.cfg
 
 # TypeScript/Node.js build artifacts
 frontend/node_modules
+# node_modules o GOC repo -- sinh ra khi cai goi npm le (vi du docx dung cho
+# script xuat bao cao). Hang nghin file, cai lai duoc bat cu luc nao.
+/node_modules/
 frontend/dist/
 WebATM/static/dist/
 frontend/tsconfig.tsbuildinfo
