@@ -7,6 +7,14 @@
 #     nay "py" tro toi mot ban Python da bi xoa)
 #   - Ghi log ra logs\webfts_startup.log, giu lai 5 ban gan nhat
 #
+# QUAN TRONG -- khong dung "& $Python $App *>&1 | ForEach-Object { ... }" de
+# bat output: duoi phien AN cua Task Scheduler (khong co console that), kieu
+# dan output qua pipeline tuong tac nay da lam tien trinh Python TREO CUNG
+# truoc khi kip mo cong (0% CPU, khong bao gio toi dong log ke tiep) -- du
+# chinh ung dung nay chay binh thuong khi goi truc tiep tu dong lenh co
+# console that. Dung Start-Process voi -RedirectStandardOutput/-Error ghi
+# THANG ra file (khong qua pipe cua PowerShell) de tranh loi nay.
+#
 # Chay thu bang tay:
 #   powershell -ExecutionPolicy Bypass -File "D:\Coding\Dự án FTS\WebFTS v4\script\start_webfts.ps1"
 
@@ -60,13 +68,28 @@ if ($dang_chay) {
     exit 0
 }
 
-# --- Chay ung dung -------------------------------------------------------
-Ghi "Khoi dong: $Python $App"
+# --- Chuan bi file log rieng cho output cua ung dung (xoay vong giu 5 ban) --
+$AppOutLog = Join-Path $LogDir 'webfts_app_stdout.log'
+$AppErrLog = Join-Path $LogDir 'webfts_app_stderr.log'
+foreach ($f in @($AppOutLog, $AppErrLog)) {
+    if ((Test-Path -LiteralPath $f) -and ((Get-Item -LiteralPath $f).Length -gt 5MB)) {
+        $cu = $f -replace '\.log$', ("_{0}.log" -f (Get-Date -Format 'yyyyMMdd_HHmmss'))
+        Move-Item -LiteralPath $f -Destination $cu -Force
+        Get-ChildItem -LiteralPath $LogDir -Filter ((Split-Path -Leaf $f) -replace '\.log$', '_*.log') |
+            Sort-Object LastWriteTime -Descending | Select-Object -Skip 5 |
+            Remove-Item -Force -ErrorAction SilentlyContinue
+    }
+}
+
+# --- Chay ung dung --------------------------------------------------------
+Ghi "Khoi dong: $Python $App (stdout -> $AppOutLog, stderr -> $AppErrLog)"
 Set-Location -LiteralPath $Root
 $env:PYTHONUTF8 = '1'          # duong dan du an co dau tieng Viet
 $env:PYTHONIOENCODING = 'utf-8'
 
-& $Python $App *>&1 | ForEach-Object { Ghi $_ }
+$proc = Start-Process -FilePath $Python -ArgumentList @("`"$App`"") -WorkingDirectory $Root `
+    -RedirectStandardOutput $AppOutLog -RedirectStandardError $AppErrLog `
+    -NoNewWindow -PassThru -Wait
 
-Ghi "Ung dung da dung (ma thoat $LASTEXITCODE)."
-exit $LASTEXITCODE
+Ghi "Ung dung da dung (ma thoat $($proc.ExitCode))."
+exit $proc.ExitCode
