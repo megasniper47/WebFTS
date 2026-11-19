@@ -1,0 +1,2761 @@
+{
+  "HCM ACC Sector 1": {
+    "distinct_aircraft": 42,
+    "peak_count": 28,
+    "peak_time_s": 1096.0,
+    "avg_dwell_s": 1045.0,
+    "timeseries": [
+      {
+        "bin_start_s": 0.0,
+        "bin_end_s": 60.0,
+        "aircraft_count": 10,
+        "callsigns": [
+          "BAV1414",
+          "HVN1650",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC731",
+          "VJC787",
+          "VJC842",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 60.0,
+        "bin_end_s": 120.0,
+        "aircraft_count": 10,
+        "callsigns": [
+          "BAV1414",
+          "HVN1650",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC731",
+          "VJC787",
+          "VJC842",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 120.0,
+        "bin_end_s": 180.0,
+        "aircraft_count": 10,
+        "callsigns": [
+          "HVN1650",
+          "HVN594",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC731",
+          "VJC787",
+          "VJC842",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 180.0,
+        "bin_end_s": 240.0,
+        "aircraft_count": 12,
+        "callsigns": [
+          "HVN1650",
+          "HVN594",
+          "SPQ2966",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC715",
+          "VJC731",
+          "VJC787",
+          "VJC842",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 240.0,
+        "bin_end_s": 300.0,
+        "aircraft_count": 12,
+        "callsigns": [
+          "HVN1650",
+          "HVN594",
+          "SPQ2966",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC715",
+          "VJC731",
+          "VJC787",
+          "VJC842",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 300.0,
+        "bin_end_s": 360.0,
+        "aircraft_count": 14,
+        "callsigns": [
+          "BAV1414",
+          "HVN1650",
+          "HVN594",
+          "MAS753",
+          "SPQ2966",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC715",
+          "VJC731",
+          "VJC787",
+          "VJC842",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 360.0,
+        "bin_end_s": 420.0,
+        "aircraft_count": 16,
+        "callsigns": [
+          "BAV1414",
+          "HVN1650",
+          "HVN594",
+          "MAS753",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC787",
+          "VJC842",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 420.0,
+        "bin_end_s": 480.0,
+        "aircraft_count": 19,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "HVN1650",
+          "HVN594",
+          "MAS753",
+          "PAL731",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC731",
+          "VJC787",
+          "VJC842",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 480.0,
+        "bin_end_s": 540.0,
+        "aircraft_count": 19,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "HVN1650",
+          "HVN594",
+          "MAS753",
+          "PAL731",
+          "SIA894",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC787",
+          "VJC842",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 540.0,
+        "bin_end_s": 600.0,
+        "aircraft_count": 20,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "HVN1650",
+          "HVN594",
+          "HVN7940",
+          "MAS753",
+          "PAL731",
+          "SIA894",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC787",
+          "VJC842",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 600.0,
+        "bin_end_s": 660.0,
+        "aircraft_count": 21,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "HVN1650",
+          "HVN594",
+          "HVN7940",
+          "MAS753",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC787",
+          "VJC842",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 660.0,
+        "bin_end_s": 720.0,
+        "aircraft_count": 21,
+        "callsigns": [
+          "CHH701",
+          "HVN1650",
+          "HVN594",
+          "HVN7940",
+          "MAS753",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC464",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC787",
+          "VJC842",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 720.0,
+        "bin_end_s": 780.0,
+        "aircraft_count": 24,
+        "callsigns": [
+          "CHH701",
+          "HVN1394",
+          "HVN1650",
+          "HVN594",
+          "HVN7347",
+          "HVN7940",
+          "MAS753",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SKYFOX78",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC245",
+          "VJC275",
+          "VJC464",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC787",
+          "VJC842",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 780.0,
+        "bin_end_s": 840.0,
+        "aircraft_count": 25,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "CSN6049",
+          "HVN1394",
+          "HVN1650",
+          "HVN594",
+          "HVN7347",
+          "HVN7940",
+          "MAS753",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SKYFOX78",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC245",
+          "VJC464",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC787",
+          "VJC842",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 840.0,
+        "bin_end_s": 900.0,
+        "aircraft_count": 25,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "CSN6049",
+          "HVN1394",
+          "HVN1650",
+          "HVN594",
+          "HVN7347",
+          "HVN7940",
+          "MAS753",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC464",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC787",
+          "VJC842",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 900.0,
+        "bin_end_s": 960.0,
+        "aircraft_count": 27,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "CSN6049",
+          "HVN1394",
+          "HVN1650",
+          "HVN594",
+          "HVN7347",
+          "HVN7940",
+          "MAS753",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC374",
+          "VJC464",
+          "VJC5328",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC787",
+          "VJC842",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 960.0,
+        "bin_end_s": 1020.0,
+        "aircraft_count": 27,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "CSN6049",
+          "HVN1394",
+          "HVN1650",
+          "HVN594",
+          "HVN7347",
+          "HVN7940",
+          "MAS753",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC137",
+          "VJC374",
+          "VJC464",
+          "VJC5328",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC787",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 1020.0,
+        "bin_end_s": 1080.0,
+        "aircraft_count": 28,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "CSN6049",
+          "HVN1394",
+          "HVN1650",
+          "HVN594",
+          "HVN7347",
+          "MAS753",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2966",
+          "TVJ969",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC374",
+          "VJC464",
+          "VJC5328",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC731",
+          "VJC787",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 1080.0,
+        "bin_end_s": 1140.0,
+        "aircraft_count": 28,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "CSN6049",
+          "HVN1394",
+          "HVN1650",
+          "HVN594",
+          "HVN7347",
+          "MAS753",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "TVJ969",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC374",
+          "VJC464",
+          "VJC5328",
+          "VJC5530",
+          "VJC638",
+          "VJC715",
+          "VJC731",
+          "VJC787",
+          "VJC889",
+          "VSV5337"
+        ]
+      },
+      {
+        "bin_start_s": 1140.0,
+        "bin_end_s": 1200.0,
+        "aircraft_count": 26,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "CSN6049",
+          "HVN1394",
+          "HVN1650",
+          "HVN594",
+          "HVN7347",
+          "HVN7626",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "TVJ969",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC374",
+          "VJC464",
+          "VJC5328",
+          "VJC5530",
+          "VJC638",
+          "VJC731",
+          "VJC787",
+          "VJC889"
+        ]
+      },
+      {
+        "bin_start_s": 1200.0,
+        "bin_end_s": 1260.0,
+        "aircraft_count": 25,
+        "callsigns": [
+          "BAV1414",
+          "CHH701",
+          "CSN6049",
+          "HVN1394",
+          "HVN1650",
+          "HVN594",
+          "HVN7347",
+          "HVN7626",
+          "PAL731",
+          "PIC6037",
+          "SIA894",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC374",
+          "VJC464",
+          "VJC5328",
+          "VJC5530",
+          "VJC638",
+          "VJC731",
+          "VJC787",
+          "VJC889"
+        ]
+      },
+      {
+        "bin_start_s": 1260.0,
+        "bin_end_s": 1320.0,
+        "aircraft_count": 21,
+        "callsigns": [
+          "BAV1414",
+          "CSN6049",
+          "HVN1394",
+          "HVN594",
+          "HVN7347",
+          "HVN7626",
+          "PAL731",
+          "PIC6037",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC374",
+          "VJC464",
+          "VJC5328",
+          "VJC5530",
+          "VJC731",
+          "VJC787",
+          "VJC889"
+        ]
+      },
+      {
+        "bin_start_s": 1320.0,
+        "bin_end_s": 1380.0,
+        "aircraft_count": 16,
+        "callsigns": [
+          "BAV1414",
+          "CSN6049",
+          "HVN1394",
+          "HVN7626",
+          "PIC6037",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC374",
+          "VJC464",
+          "VJC5530",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1380.0,
+        "bin_end_s": 1440.0,
+        "aircraft_count": 16,
+        "callsigns": [
+          "BAV1414",
+          "CSN6049",
+          "HVN1394",
+          "HVN7626",
+          "PIC6037",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC278",
+          "VJC374",
+          "VJC464",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1440.0,
+        "bin_end_s": 1500.0,
+        "aircraft_count": 20,
+        "callsigns": [
+          "BAV1414",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN7626",
+          "HVN7940",
+          "PIC6037",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC278",
+          "VJC374",
+          "VJC464",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1500.0,
+        "bin_end_s": 1560.0,
+        "aircraft_count": 20,
+        "callsigns": [
+          "BAV1414",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN7626",
+          "HVN7940",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC464",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1560.0,
+        "bin_end_s": 1620.0,
+        "aircraft_count": 22,
+        "callsigns": [
+          "BAV1414",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC464",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1620.0,
+        "bin_end_s": 1680.0,
+        "aircraft_count": 20,
+        "callsigns": [
+          "BAV1414",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1680.0,
+        "bin_end_s": 1740.0,
+        "aircraft_count": 20,
+        "callsigns": [
+          "BAV1414",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1740.0,
+        "bin_end_s": 1800.0,
+        "aircraft_count": 21,
+        "callsigns": [
+          "BAV1414",
+          "BAV211",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "SPQ2953",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1800.0,
+        "bin_end_s": 1860.0,
+        "aircraft_count": 20,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC137",
+          "VJC252",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1860.0,
+        "bin_end_s": 1920.0,
+        "aircraft_count": 19,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC252",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1920.0,
+        "bin_end_s": 1980.0,
+        "aircraft_count": 18,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 1980.0,
+        "bin_end_s": 2040.0,
+        "aircraft_count": 18,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 2040.0,
+        "bin_end_s": 2100.0,
+        "aircraft_count": 18,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 2100.0,
+        "bin_end_s": 2160.0,
+        "aircraft_count": 18,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC278",
+          "VJC374",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 2160.0,
+        "bin_end_s": 2220.0,
+        "aircraft_count": 17,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7626",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC278",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 2220.0,
+        "bin_end_s": 2280.0,
+        "aircraft_count": 16,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "CSZ240",
+          "HVN1265",
+          "HVN1394",
+          "HVN214",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC278",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 2280.0,
+        "bin_end_s": 2340.0,
+        "aircraft_count": 14,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "CSZ240",
+          "HVN1394",
+          "HVN214",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 2340.0,
+        "bin_end_s": 2400.0,
+        "aircraft_count": 13,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "HVN1394",
+          "HVN214",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      },
+      {
+        "bin_start_s": 2400.0,
+        "bin_end_s": 2460.0,
+        "aircraft_count": 12,
+        "callsigns": [
+          "BAV211",
+          "CSN6049",
+          "HVN1394",
+          "HVN7940",
+          "PAL585",
+          "SKYFOX74",
+          "SKYFOX78",
+          "VFC8440",
+          "VJC433",
+          "VJC5102",
+          "VJC731",
+          "VJC787"
+        ]
+      }
+    ],
+    "dwell_detail": [
+      {
+        "callsign": "VFC8440",
+        "entries": 1,
+        "total_dwell_s": 2396.0,
+        "events": [
+          [
+            4.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC787",
+        "entries": 1,
+        "total_dwell_s": 2344.0,
+        "events": [
+          [
+            56.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC731",
+        "entries": 3,
+        "total_dwell_s": 1688.0,
+        "events": [
+          [
+            4.0,
+            316.0
+          ],
+          [
+            460.0,
+            476.0
+          ],
+          [
+            1040.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "HVN1394",
+        "entries": 1,
+        "total_dwell_s": 1656.0,
+        "events": [
+          [
+            744.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "SKYFOX78",
+        "entries": 1,
+        "total_dwell_s": 1644.0,
+        "events": [
+          [
+            756.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CSN6049",
+        "entries": 1,
+        "total_dwell_s": 1596.0,
+        "events": [
+          [
+            804.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "SKYFOX74",
+        "entries": 1,
+        "total_dwell_s": 1540.0,
+        "events": [
+          [
+            860.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC5530",
+        "entries": 1,
+        "total_dwell_s": 1344.0,
+        "events": [
+          [
+            4.0,
+            1348.0
+          ]
+        ]
+      },
+      {
+        "callsign": "BAV1414",
+        "entries": 3,
+        "total_dwell_s": 1320.0,
+        "events": [
+          [
+            4.0,
+            66.0
+          ],
+          [
+            310.0,
+            640.0
+          ],
+          [
+            822.0,
+            1750.0
+          ]
+        ]
+      },
+      {
+        "callsign": "HVN1650",
+        "entries": 1,
+        "total_dwell_s": 1232.0,
+        "events": [
+          [
+            4.0,
+            1236.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC374",
+        "entries": 1,
+        "total_dwell_s": 1216.0,
+        "events": [
+          [
+            918.0,
+            2134.0
+          ]
+        ]
+      },
+      {
+        "callsign": "HVN594",
+        "entries": 1,
+        "total_dwell_s": 1140.0,
+        "events": [
+          [
+            174.0,
+            1314.0
+          ]
+        ]
+      },
+      {
+        "callsign": "HVN7940",
+        "entries": 3,
+        "total_dwell_s": 1110.0,
+        "events": [
+          [
+            576.0,
+            1016.0
+          ],
+          [
+            1480.0,
+            1580.0
+          ],
+          [
+            1830.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VSV5337",
+        "entries": 2,
+        "total_dwell_s": 1072.0,
+        "events": [
+          [
+            4.0,
+            108.0
+          ],
+          [
+            134.0,
+            1102.0
+          ]
+        ]
+      },
+      {
+        "callsign": "HVN7626",
+        "entries": 1,
+        "total_dwell_s": 982.0,
+        "events": [
+          [
+            1196.0,
+            2178.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC5102",
+        "entries": 1,
+        "total_dwell_s": 952.0,
+        "events": [
+          [
+            1448.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC889",
+        "entries": 1,
+        "total_dwell_s": 940.0,
+        "events": [
+          [
+            360.0,
+            1300.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC715",
+        "entries": 1,
+        "total_dwell_s": 920.0,
+        "events": [
+          [
+            188.0,
+            1108.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC842",
+        "entries": 1,
+        "total_dwell_s": 904.0,
+        "events": [
+          [
+            4.0,
+            908.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC433",
+        "entries": 1,
+        "total_dwell_s": 892.0,
+        "events": [
+          [
+            1508.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CSZ240",
+        "entries": 1,
+        "total_dwell_s": 888.0,
+        "events": [
+          [
+            1440.0,
+            2328.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC278",
+        "entries": 1,
+        "total_dwell_s": 882.0,
+        "events": [
+          [
+            1398.0,
+            2280.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC464",
+        "entries": 1,
+        "total_dwell_s": 856.0,
+        "events": [
+          [
+            716.0,
+            1572.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC638",
+        "entries": 1,
+        "total_dwell_s": 852.0,
+        "events": [
+          [
+            388.0,
+            1240.0
+          ]
+        ]
+      },
+      {
+        "callsign": "PIC6037",
+        "entries": 1,
+        "total_dwell_s": 850.0,
+        "events": [
+          [
+            646.0,
+            1496.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC252",
+        "entries": 1,
+        "total_dwell_s": 840.0,
+        "events": [
+          [
+            1026.0,
+            1866.0
+          ]
+        ]
+      },
+      {
+        "callsign": "PAL731",
+        "entries": 1,
+        "total_dwell_s": 832.0,
+        "events": [
+          [
+            476.0,
+            1308.0
+          ]
+        ]
+      },
+      {
+        "callsign": "PAL585",
+        "entries": 1,
+        "total_dwell_s": 828.0,
+        "events": [
+          [
+            1572.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC137",
+        "entries": 1,
+        "total_dwell_s": 824.0,
+        "events": [
+          [
+            1004.0,
+            1828.0
+          ]
+        ]
+      },
+      {
+        "callsign": "HVN1265",
+        "entries": 1,
+        "total_dwell_s": 818.0,
+        "events": [
+          [
+            1442.0,
+            2260.0
+          ]
+        ]
+      },
+      {
+        "callsign": "TVJ969",
+        "entries": 1,
+        "total_dwell_s": 818.0,
+        "events": [
+          [
+            380.0,
+            1198.0
+          ]
+        ]
+      },
+      {
+        "callsign": "SPQ2966",
+        "entries": 1,
+        "total_dwell_s": 816.0,
+        "events": [
+          [
+            224.0,
+            1040.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CHH701",
+        "entries": 1,
+        "total_dwell_s": 810.0,
+        "events": [
+          [
+            442.0,
+            1252.0
+          ]
+        ]
+      },
+      {
+        "callsign": "HVN214",
+        "entries": 1,
+        "total_dwell_s": 802.0,
+        "events": [
+          [
+            1570.0,
+            2372.0
+          ]
+        ]
+      },
+      {
+        "callsign": "MAS753",
+        "entries": 1,
+        "total_dwell_s": 796.0,
+        "events": [
+          [
+            338.0,
+            1134.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC245",
+        "entries": 1,
+        "total_dwell_s": 782.0,
+        "events": [
+          [
+            4.0,
+            786.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC275",
+        "entries": 1,
+        "total_dwell_s": 760.0,
+        "events": [
+          [
+            4.0,
+            764.0
+          ]
+        ]
+      },
+      {
+        "callsign": "SPQ2953",
+        "entries": 1,
+        "total_dwell_s": 698.0,
+        "events": [
+          [
+            1096.0,
+            1794.0
+          ]
+        ]
+      },
+      {
+        "callsign": "SIA894",
+        "entries": 1,
+        "total_dwell_s": 696.0,
+        "events": [
+          [
+            528.0,
+            1224.0
+          ]
+        ]
+      },
+      {
+        "callsign": "BAV211",
+        "entries": 1,
+        "total_dwell_s": 632.0,
+        "events": [
+          [
+            1768.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "HVN7347",
+        "entries": 1,
+        "total_dwell_s": 544.0,
+        "events": [
+          [
+            740.0,
+            1284.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC5328",
+        "entries": 1,
+        "total_dwell_s": 376.0,
+        "events": [
+          [
+            916.0,
+            1292.0
+          ]
+        ]
+      }
+    ]
+  },
+  "HCM ACC Sector 5": {
+    "distinct_aircraft": 28,
+    "peak_count": 18,
+    "peak_time_s": 636.0,
+    "avg_dwell_s": 1170.4,
+    "timeseries": [
+      {
+        "bin_start_s": 0.0,
+        "bin_end_s": 60.0,
+        "aircraft_count": 11,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN6049",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "SIA851",
+          "SPQ451",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 60.0,
+        "bin_end_s": 120.0,
+        "aircraft_count": 13,
+        "callsigns": [
+          "BAV1414",
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN6049",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "SIA851",
+          "SPQ451",
+          "VJC863",
+          "VSV5337",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 120.0,
+        "bin_end_s": 180.0,
+        "aircraft_count": 13,
+        "callsigns": [
+          "BAV1414",
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN6049",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "SIA851",
+          "SPQ451",
+          "VJC863",
+          "VSV5337",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 180.0,
+        "bin_end_s": 240.0,
+        "aircraft_count": 12,
+        "callsigns": [
+          "BAV1414",
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN6049",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "SIA851",
+          "SPQ451",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 240.0,
+        "bin_end_s": 300.0,
+        "aircraft_count": 12,
+        "callsigns": [
+          "BAV1414",
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN6049",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "SIA851",
+          "SPQ451",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 300.0,
+        "bin_end_s": 360.0,
+        "aircraft_count": 13,
+        "callsigns": [
+          "BAV1414",
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN6049",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "SIA851",
+          "SPQ451",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 360.0,
+        "bin_end_s": 420.0,
+        "aircraft_count": 15,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN5047",
+          "CSN6049",
+          "CSN8118",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "PAL585",
+          "SIA851",
+          "SPQ451",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 420.0,
+        "bin_end_s": 480.0,
+        "aircraft_count": 16,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN5047",
+          "CSN6049",
+          "CSN8118",
+          "CXA897",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "PAL585",
+          "SIA851",
+          "SPQ451",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 480.0,
+        "bin_end_s": 540.0,
+        "aircraft_count": 17,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN354",
+          "CSN5047",
+          "CSN6049",
+          "CSN8118",
+          "CXA897",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "PAL585",
+          "SIA851",
+          "SPQ451",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 540.0,
+        "bin_end_s": 600.0,
+        "aircraft_count": 17,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN354",
+          "CSN5047",
+          "CSN6049",
+          "CSN8118",
+          "CXA897",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "PAL585",
+          "SIA851",
+          "SPQ451",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 600.0,
+        "bin_end_s": 660.0,
+        "aircraft_count": 18,
+        "callsigns": [
+          "BAV1414",
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN354",
+          "CSN5047",
+          "CSN6049",
+          "CSN8118",
+          "CXA897",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "PAL585",
+          "SIA851",
+          "SPQ451",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 660.0,
+        "bin_end_s": 720.0,
+        "aircraft_count": 18,
+        "callsigns": [
+          "BAV1414",
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN354",
+          "CSN5047",
+          "CSN6049",
+          "CSN8118",
+          "CXA897",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "PAL585",
+          "SIA851",
+          "SPQ451",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 720.0,
+        "bin_end_s": 780.0,
+        "aircraft_count": 17,
+        "callsigns": [
+          "BAV1414",
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN354",
+          "CSN5047",
+          "CSN6049",
+          "CSN8118",
+          "CXA897",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "PAL585",
+          "SPQ451",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 780.0,
+        "bin_end_s": 840.0,
+        "aircraft_count": 17,
+        "callsigns": [
+          "BAV1414",
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN354",
+          "CSN5047",
+          "CSN6049",
+          "CSN8118",
+          "CXA897",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "PAL585",
+          "SPQ451",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 840.0,
+        "bin_end_s": 900.0,
+        "aircraft_count": 16,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "PAL585",
+          "SPQ451",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 900.0,
+        "bin_end_s": 960.0,
+        "aircraft_count": 17,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN583",
+          "MXD605",
+          "PAL585",
+          "SPQ451",
+          "TGW157",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 960.0,
+        "bin_end_s": 1020.0,
+        "aircraft_count": 18,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CQH6523",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN583",
+          "HVN7940",
+          "MXD605",
+          "PAL585",
+          "SPQ451",
+          "TGW157",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 1020.0,
+        "bin_end_s": 1080.0,
+        "aircraft_count": 17,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN583",
+          "HVN7940",
+          "MXD605",
+          "PAL585",
+          "SPQ451",
+          "TGW157",
+          "VJC731",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 1080.0,
+        "bin_end_s": 1140.0,
+        "aircraft_count": 16,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN583",
+          "HVN7940",
+          "MXD605",
+          "PAL585",
+          "SPQ451",
+          "TGW157",
+          "VJC863",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 1140.0,
+        "bin_end_s": 1200.0,
+        "aircraft_count": 15,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN583",
+          "HVN7940",
+          "MXD605",
+          "PAL585",
+          "SPQ451",
+          "TGW157",
+          "XAX533"
+        ]
+      },
+      {
+        "bin_start_s": 1200.0,
+        "bin_end_s": 1260.0,
+        "aircraft_count": 14,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN583",
+          "HVN7940",
+          "MXD605",
+          "PAL585",
+          "SPQ451",
+          "TGW157"
+        ]
+      },
+      {
+        "bin_start_s": 1260.0,
+        "bin_end_s": 1320.0,
+        "aircraft_count": 14,
+        "callsigns": [
+          "CPA722",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN7940",
+          "MXD605",
+          "PAL585",
+          "PAL731",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1320.0,
+        "bin_end_s": 1380.0,
+        "aircraft_count": 13,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN7940",
+          "MXD605",
+          "PAL585",
+          "PAL731",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1380.0,
+        "bin_end_s": 1440.0,
+        "aircraft_count": 14,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN7940",
+          "MXD605",
+          "PAL585",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1440.0,
+        "bin_end_s": 1500.0,
+        "aircraft_count": 14,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN7940",
+          "MXD605",
+          "PAL585",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1500.0,
+        "bin_end_s": 1560.0,
+        "aircraft_count": 14,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "MXD605",
+          "PAL585",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC275",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1560.0,
+        "bin_end_s": 1620.0,
+        "aircraft_count": 15,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN7940",
+          "MXD605",
+          "PAL585",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC275",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1620.0,
+        "bin_end_s": 1680.0,
+        "aircraft_count": 14,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN7940",
+          "MXD605",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC275",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1680.0,
+        "bin_end_s": 1740.0,
+        "aircraft_count": 14,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN7940",
+          "MXD605",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC275",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1740.0,
+        "bin_end_s": 1800.0,
+        "aircraft_count": 13,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN7940",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC275",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1800.0,
+        "bin_end_s": 1860.0,
+        "aircraft_count": 12,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "HVN7940",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1860.0,
+        "bin_end_s": 1920.0,
+        "aircraft_count": 11,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1920.0,
+        "bin_end_s": 1980.0,
+        "aircraft_count": 11,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 1980.0,
+        "bin_end_s": 2040.0,
+        "aircraft_count": 11,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 2040.0,
+        "bin_end_s": 2100.0,
+        "aircraft_count": 11,
+        "callsigns": [
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 2100.0,
+        "bin_end_s": 2160.0,
+        "aircraft_count": 12,
+        "callsigns": [
+          "CHH701",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 2160.0,
+        "bin_end_s": 2220.0,
+        "aircraft_count": 12,
+        "callsigns": [
+          "CHH701",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328"
+        ]
+      },
+      {
+        "bin_start_s": 2220.0,
+        "bin_end_s": 2280.0,
+        "aircraft_count": 13,
+        "callsigns": [
+          "CHH701",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328",
+          "VJC889"
+        ]
+      },
+      {
+        "bin_start_s": 2280.0,
+        "bin_end_s": 2340.0,
+        "aircraft_count": 13,
+        "callsigns": [
+          "CHH701",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328",
+          "VJC889"
+        ]
+      },
+      {
+        "bin_start_s": 2340.0,
+        "bin_end_s": 2400.0,
+        "aircraft_count": 13,
+        "callsigns": [
+          "CHH701",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "EVA226",
+          "FDX5315",
+          "PAL731",
+          "SIA883",
+          "TGW157",
+          "VJC5328",
+          "VJC889"
+        ]
+      },
+      {
+        "bin_start_s": 2400.0,
+        "bin_end_s": 2460.0,
+        "aircraft_count": 11,
+        "callsigns": [
+          "CHH701",
+          "CPA758",
+          "CSN354",
+          "CSN5047",
+          "CSN8118",
+          "CXA897",
+          "FDX5315",
+          "SIA883",
+          "TGW157",
+          "VJC5328",
+          "VJC889"
+        ]
+      }
+    ],
+    "dwell_detail": [
+      {
+        "callsign": "CPA758",
+        "entries": 1,
+        "total_dwell_s": 2396.0,
+        "events": [
+          [
+            4.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "FDX5315",
+        "entries": 1,
+        "total_dwell_s": 2396.0,
+        "events": [
+          [
+            4.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CSN8118",
+        "entries": 1,
+        "total_dwell_s": 2012.0,
+        "events": [
+          [
+            388.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CSN5047",
+        "entries": 1,
+        "total_dwell_s": 2006.0,
+        "events": [
+          [
+            394.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CXA897",
+        "entries": 1,
+        "total_dwell_s": 1948.0,
+        "events": [
+          [
+            452.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CSN354",
+        "entries": 1,
+        "total_dwell_s": 1918.0,
+        "events": [
+          [
+            482.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "MXD605",
+        "entries": 1,
+        "total_dwell_s": 1680.0,
+        "events": [
+          [
+            4.0,
+            1684.0
+          ]
+        ]
+      },
+      {
+        "callsign": "EVA226",
+        "entries": 1,
+        "total_dwell_s": 1480.0,
+        "events": [
+          [
+            864.0,
+            2344.0
+          ]
+        ]
+      },
+      {
+        "callsign": "TGW157",
+        "entries": 1,
+        "total_dwell_s": 1448.0,
+        "events": [
+          [
+            952.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CPA722",
+        "entries": 1,
+        "total_dwell_s": 1314.0,
+        "events": [
+          [
+            4.0,
+            1318.0
+          ]
+        ]
+      },
+      {
+        "callsign": "HVN583",
+        "entries": 1,
+        "total_dwell_s": 1228.0,
+        "events": [
+          [
+            4.0,
+            1232.0
+          ]
+        ]
+      },
+      {
+        "callsign": "SPQ451",
+        "entries": 1,
+        "total_dwell_s": 1220.0,
+        "events": [
+          [
+            4.0,
+            1224.0
+          ]
+        ]
+      },
+      {
+        "callsign": "XAX533",
+        "entries": 1,
+        "total_dwell_s": 1192.0,
+        "events": [
+          [
+            4.0,
+            1196.0
+          ]
+        ]
+      },
+      {
+        "callsign": "PAL585",
+        "entries": 1,
+        "total_dwell_s": 1182.0,
+        "events": [
+          [
+            390.0,
+            1572.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC863",
+        "entries": 1,
+        "total_dwell_s": 1112.0,
+        "events": [
+          [
+            4.0,
+            1116.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC5328",
+        "entries": 1,
+        "total_dwell_s": 1108.0,
+        "events": [
+          [
+            1292.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "PAL731",
+        "entries": 1,
+        "total_dwell_s": 1088.0,
+        "events": [
+          [
+            1308.0,
+            2396.0
+          ]
+        ]
+      },
+      {
+        "callsign": "SIA883",
+        "entries": 1,
+        "total_dwell_s": 998.0,
+        "events": [
+          [
+            1402.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CQH6523",
+        "entries": 1,
+        "total_dwell_s": 962.0,
+        "events": [
+          [
+            4.0,
+            966.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CSN6049",
+        "entries": 1,
+        "total_dwell_s": 800.0,
+        "events": [
+          [
+            4.0,
+            804.0
+          ]
+        ]
+      },
+      {
+        "callsign": "HVN7940",
+        "entries": 2,
+        "total_dwell_s": 722.0,
+        "events": [
+          [
+            1016.0,
+            1480.0
+          ],
+          [
+            1572.0,
+            1830.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC731",
+        "entries": 2,
+        "total_dwell_s": 712.0,
+        "events": [
+          [
+            316.0,
+            464.0
+          ],
+          [
+            476.0,
+            1040.0
+          ]
+        ]
+      },
+      {
+        "callsign": "SIA851",
+        "entries": 1,
+        "total_dwell_s": 710.0,
+        "events": [
+          [
+            4.0,
+            714.0
+          ]
+        ]
+      },
+      {
+        "callsign": "BAV1414",
+        "entries": 2,
+        "total_dwell_s": 430.0,
+        "events": [
+          [
+            66.0,
+            310.0
+          ],
+          [
+            636.0,
+            822.0
+          ]
+        ]
+      },
+      {
+        "callsign": "CHH701",
+        "entries": 1,
+        "total_dwell_s": 264.0,
+        "events": [
+          [
+            2136.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC275",
+        "entries": 1,
+        "total_dwell_s": 252.0,
+        "events": [
+          [
+            1540.0,
+            1792.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VJC889",
+        "entries": 1,
+        "total_dwell_s": 164.0,
+        "events": [
+          [
+            2236.0,
+            2400.0
+          ]
+        ]
+      },
+      {
+        "callsign": "VSV5337",
+        "entries": 1,
+        "total_dwell_s": 30.0,
+        "events": [
+          [
+            104.0,
+            134.0
+          ]
+        ]
+      }
+    ]
+  }
+}
